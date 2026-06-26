@@ -10,7 +10,9 @@ class_name KeyTrigger3D
 func get_default_debug_print() -> String:
 	return "Pressed"
 
-func on_player_input(node: CollisionObject3D, event: InputEvent):
+func on_player_input(event: InputEvent):
+	if event.is_echo():
+		return
 	if use_action:
 		if event.is_action_pressed(action):
 			set_active(true)
