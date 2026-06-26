@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://byjmbm80d52dt"]
+
+[ext_resource type="Script" uid="uid://bkmcodkxxhokx" path="res://scripts/code_tower.gd" id="1_piacv"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_77cfe"]
+
+[node name="CodeTower" type="Node3D" unique_id=1430551621]
+script = ExtResource("1_piacv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1846519471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0035207, 0)
+mesh = SubResource("CylinderMesh_77cfe")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=608067118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9744692, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1751680250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7188733, 0)
+light_color = Color(0.19455332, 0.77, 0.1848, 1)
+light_energy = 1.333
+
+[node name="Timer" type="Timer" parent="." unique_id=1677361032]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
