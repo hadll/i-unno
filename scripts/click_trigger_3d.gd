@@ -15,7 +15,7 @@ enum BUTTONS{
 func get_default_debug_print() -> String:
 	return "Clicked"
 
-func on_player_input(node: CollisionObject3D, event: InputEvent):
+func on_player_input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if button == BUTTONS.LEFT_CLICK && event.button_index == MOUSE_BUTTON_LEFT:
 			set_active(event.is_pressed())

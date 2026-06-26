@@ -4,9 +4,15 @@ class_name InteractionTrigger3D
 
 @export var collision_object : CollisionObject3D
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group("InteractionTriggers", true)
+	Player.me.started_looking_at.connect(func(collider: CollisionObject3D):
+		if collider == collision_object:
+			Player.me.input.connect(on_player_input)
+	)
+	Player.me.stopped_looking_at.connect(func(collider: CollisionObject3D):
+		if collider == collision_object:
+			Player.me.input.disconnect(on_player_input)
+	)
 
 @abstract
-func on_player_input(node: CollisionObject3D, event: InputEvent)
+func on_player_input(event: InputEvent) -> void

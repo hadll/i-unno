@@ -1,6 +1,11 @@
 extends CharacterBody3D
 class_name Player
 
+static var me: Player
+
+signal input(event: InputEvent)
+signal started_looking_at(collider: CollisionObject3D)
+signal stopped_looking_at(collider: CollisionObject3D)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -13,11 +18,12 @@ var camera_request
 
 var look_dir: Vector2 # Input direction for look/aim
 var mouse_captured: bool = false
+var looking_at: CollisionObject3D
 
 @export_range(0.1, 3.0, 0.1, "or_greater") var camera_sens: float = 1
 
-
 func _ready() -> void:
+	me = self
 	camera = get_tree().current_scene.player_camera 
 	camera_request = camera.request_camera(global_transform, self, false)
 	capture_mouse()
@@ -25,8 +31,13 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventMouseButton:
 		raycast.force_raycast_update()
-		if raycast.is_colliding():
-			get_tree().call_group("InteractionTriggers", "on_player_input", raycast.get_collider(), event)
+		if raycast.get_collider() != looking_at:
+			if looking_at:
+				stopped_looking_at.emit(looking_at)
+			looking_at = raycast.get_collider()
+			if looking_at:
+				started_looking_at.emit(looking_at)
+		input.emit(event)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
