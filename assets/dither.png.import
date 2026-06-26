@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dexqi7a35s6r7"
+path="res://.godot/imported/dither.png-b738e3dd38001282a53b98b79bedd792.image"
+
+[deps]
+
+source_file="res://assets/dither.png"
+dest_files=["res://.godot/imported/dither.png-b738e3dd38001282a53b98b79bedd792.image"]
+
+[params]
+

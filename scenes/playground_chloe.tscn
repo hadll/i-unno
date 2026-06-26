@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/key_trigger.gd" id="7_xcfhe"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/relay_trigger_3d.gd" id="8_ydey3"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle.gd" id="9_tcolj"]
+[ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
 
@@ -23,6 +24,19 @@ size = Vector2(20, 20)
 device = -1
 keycode = 69
 unicode = 101
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("10_qokby")
+metadata/_custom_type_script = "uid://y8yqh08fax47"
+
+[sub_resource type="Compositor" id="Compositor_g4v7s"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5fn")])
 
 [node name="Level" type="Node3D" unique_id=1723509510 node_paths=PackedStringArray("player", "player_camera")]
 script = ExtResource("1_i8aiw")
@@ -89,3 +103,6 @@ transform = Transform3D(-0.9868557, -0.063867316, 0.1484479, 0, 0.9185912, 0.395
 script = ExtResource("9_tcolj")
 trigger = NodePath("../StaticBody3D2/RelayTrigger")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1464629999]
+compositor = SubResource("Compositor_g4v7s")
