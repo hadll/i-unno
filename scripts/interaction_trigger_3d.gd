@@ -12,6 +12,7 @@ func _ready() -> void:
 	Player.me.stopped_looking_at.connect(func(collider: CollisionObject3D):
 		if collider == collision_object:
 			Player.me.input.disconnect(on_player_input)
+			set_active(false)
 	)
 
 @abstract
