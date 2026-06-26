@@ -39,14 +39,10 @@ func add_output_trigger(child):
 		output_triggers.append(child)
 
 func increment_index(amount):
-	print("i want")
-	print(index+amount)
 	if wrap_index:
 		index = posmod((index + amount),output_triggers.size())
 	else:
 		index = clamp(index + amount,0, output_triggers.size()-1)
-	print("i got")
-	print(index)
 
 func change_index(trigger):
 	if output_triggers.size() == 0:
