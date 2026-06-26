@@ -12,7 +12,7 @@ static var me: Player
 
 @export_range(0.1, 3.0, 0.1, "or_greater") var camera_sens: float = 1
 
-var camera : PlayerCamera
+var camera: PlayerCamera
 var camera_request: int
 
 var look_dir: Vector2 # Input direction for look/aim

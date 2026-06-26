@@ -44,16 +44,16 @@ static func count_triggers(input: Dictionary[int, bool]) -> int:
 			count += 1
 	return count
 
-static func cond_xor(input : Dictionary[int, bool]) -> bool:
+static func cond_xor(input: Dictionary[int, bool]) -> bool:
 	return count_triggers(input) % 2 == 1
 
-static func cond_one(input : Dictionary[int, bool]) -> bool:
+static func cond_one(input: Dictionary[int, bool]) -> bool:
 	return count_triggers(input) == 1
 
-static func cond_nand(input : Dictionary[int, bool]) -> bool:
+static func cond_nand(input: Dictionary[int, bool]) -> bool:
 	return not cond_and(input)
 	
-static func cond_nor(input : Dictionary[int, bool]) -> bool:
+static func cond_nor(input: Dictionary[int, bool]) -> bool:
 	return not cond_or(input)
 
 func _ready():
