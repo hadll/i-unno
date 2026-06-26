@@ -17,9 +17,13 @@ void main() {
     float dither_value = float(imageLoad(dither_pattern, ivec2((gl_GlobalInvocationID.xy >> 1u) & 7u)).r) / 255.0 * 0.2 - 0.1;
     vec3 dithered = screen_colour - vec3(dither_value);
 
-    vec3 closest_colour = vec3(0, 0, 0);
-    float closest_dist = 10000000000.0;
-    for (int i = 0; i < 16; i++) {
+    int palette_count = min(15, int(params.calmness * 16.0));
+    float palette_dropoff = params.calmness * 16.0 - float(palette_count);
+    
+    vec3 closest_colour = vec3(imageLoad(palette, ivec2(palette_count, 0)).rgb) / 255.0;
+    vec3 diff = abs(dithered - closest_colour) / palette_dropoff;
+    float closest_dist = max(diff.r, diff.g) + max(diff.g, diff.b) + max(diff.b, diff.r);
+    for (int i = 0; i < palette_count; i++) {
         vec3 trying = vec3(imageLoad(palette, ivec2(i, 0)).rgb) / 255.0;
         vec3 diff = abs(dithered - trying);
         float trying_dist = max(diff.r, diff.g) + max(diff.g, diff.b) + max(diff.b, diff.r);

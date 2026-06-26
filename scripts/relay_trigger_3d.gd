@@ -1,8 +1,8 @@
 @icon("res://assets/icons/relay_trigger.png")
-extends Trigger
 class_name RelayTrigger
+extends Trigger
 
-enum CONDITIONS{
+enum Condition {
 	AND,
 	OR,
 	XOR,
@@ -11,67 +11,67 @@ enum CONDITIONS{
 	ONE
 }
 
-var condition_functions = {
-	CONDITIONS.AND: cond_and,
-	CONDITIONS.OR: cond_or,
-	CONDITIONS.XOR: cond_xor,
-	CONDITIONS.NAND: cond_nand,
-	CONDITIONS.NOR: cond_nor,
-	CONDITIONS.ONE: cond_one
+static var condition_functions: Dictionary[Condition, Callable] = {
+	Condition.AND: cond_and,
+	Condition.OR: cond_or,
+	Condition.XOR: cond_xor,
+	Condition.NAND: cond_nand,
+	Condition.NOR: cond_nor,
+	Condition.ONE: cond_one
 }
 
-@export var condition : CONDITIONS = CONDITIONS.OR
-@export var triggers : Array[Trigger]
+@export var condition: Condition = Condition.OR
+@export var triggers: Array[Trigger]
 
-var triggered_triggers = {}
+var triggered_triggers: Dictionary[int, bool] = {}
 
-func on_trigger_start(node: Trigger):
-	triggered_triggers[node.unique_key] = true
-	check_cond()
-func on_trigger_end(node: Trigger):
-	triggered_triggers[node.unique_key] = false
-	check_cond()
-
-
-func connect_trigger(node: Trigger):
-	node.trigger_start.connect(on_trigger_start)
-	node.trigger_end.connect(on_trigger_end)
-	triggered_triggers[node.unique_key] = false
-
-func cond_and(input : Dictionary):
+static func cond_and(input: Dictionary[int, bool]) -> bool:
 	for trigger_active in input.values():
-		if !trigger_active:
+		if not trigger_active:
 			return false
 	return true
 
-func cond_or(input : Dictionary):
+static func cond_or(input: Dictionary[int, bool]) -> bool:
 	for trigger_active in input.values():
 		if trigger_active:
 			return true
 	return false
 
-func count_triggers(input : Dictionary):
+static func count_triggers(input: Dictionary[int, bool]) -> int:
 	var count = 0
 	for trigger_active in input.values():
 		if trigger_active:
 			count += 1
 	return count
 
-func cond_xor(input : Dictionary):
-	return count_triggers(input)%2 == 1
+static func cond_xor(input: Dictionary[int, bool]) -> bool:
+	return count_triggers(input) % 2 == 1
 
-func cond_one(input : Dictionary):
+static func cond_one(input: Dictionary[int, bool]) -> bool:
 	return count_triggers(input) == 1
 
-func cond_nand(input : Dictionary):
-	return !cond_and(input)
+static func cond_nand(input: Dictionary[int, bool]) -> bool:
+	return not cond_and(input)
 	
-func cond_nor(input : Dictionary):
-	return !cond_or(input)
-
-func check_cond():
-	set_active(condition_functions[condition].call(triggered_triggers))
+static func cond_nor(input: Dictionary[int, bool]) -> bool:
+	return not cond_or(input)
 
 func _ready():
 	for node in triggers:
 		connect_trigger(node)
+
+func on_trigger_start(node: Trigger) -> void:
+	triggered_triggers[node.get_instance_id()] = true
+	check_cond()
+
+func on_trigger_end(node: Trigger) -> void:
+	triggered_triggers[node.get_instance_id()] = false
+	check_cond()
+
+func connect_trigger(node: Trigger) -> void:
+	node.trigger_start.connect(on_trigger_start)
+	node.trigger_end.connect(on_trigger_end)
+	triggered_triggers[node.get_instance_id()] = false
+
+func check_cond() -> void:
+	set_active(condition_functions[condition].call(triggered_triggers))

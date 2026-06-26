@@ -1,16 +1,16 @@
 @icon("res://assets/icons/key_trigger.png")
-extends InteractionTrigger3D
 class_name KeyTrigger3D
+extends InteractionTrigger3D
 
-@export var use_action : bool
+@export var use_action: bool
 
-@export var action : String
-@export var button : InputEventKey
+@export var action: StringName
+@export var button: InputEventKey
 
 func get_default_debug_print() -> String:
 	return "Pressed"
 
-func on_player_input(event: InputEvent):
+func on_player_input(event: InputEvent) -> void:
 	if event.is_echo():
 		return
 	if use_action:
