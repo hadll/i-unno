@@ -28,15 +28,18 @@ func _ready() -> void:
 	camera_request = camera.request_camera(global_transform, self, false)
 	capture_mouse()
 
+func _process(_delta: float) -> void:
+	camera.edit_request_transform(camera_request, $CameraPoint.global_transform)
+	raycast.force_raycast_update()
+	if raycast.get_collider() != looking_at:
+		if looking_at:
+			stopped_looking_at.emit(looking_at)
+		looking_at = raycast.get_collider() as CollisionObject3D
+		if looking_at:
+			started_looking_at.emit(looking_at)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventMouseButton:
-		raycast.force_raycast_update()
-		if raycast.get_collider() != looking_at:
-			if looking_at:
-				stopped_looking_at.emit(looking_at)
-			looking_at = raycast.get_collider()
-			if looking_at:
-				started_looking_at.emit(looking_at)
 		input.emit(event)
 
 func _unhandled_input(event: InputEvent) -> void:
