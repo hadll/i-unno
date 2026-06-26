@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do304x1b4fg7f"
-path="res://.godot/imported/key_trigger.png-0cbb76f666daeb77a0cdb5be39c7a4f6.ctex"
+uid="uid://ct1ipksucba1o"
+path="res://.godot/imported/click_trigger_3d.png-51eab8c809c8d52cd491d32d3a739f85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/key_trigger.png"
-dest_files=["res://.godot/imported/key_trigger.png-0cbb76f666daeb77a0cdb5be39c7a4f6.ctex"]
+source_file="res://assets/icons/click_trigger_3d.png"
+dest_files=["res://.godot/imported/click_trigger_3d.png-51eab8c809c8d52cd491d32d3a739f85.ctex"]
 
 [params]
 

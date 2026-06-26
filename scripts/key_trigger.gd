@@ -1,6 +1,6 @@
 @icon("res://assets/icons/key_trigger.png")
-extends InteractionTrigger
-class_name KeyTrigger
+extends InteractionTrigger3D
+class_name KeyTrigger3D
 
 @export var use_action : bool
 

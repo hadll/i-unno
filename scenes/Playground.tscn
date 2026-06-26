@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/Player.tscn" id="2_8tsvv"]
 [ext_resource type="PackedScene" uid="uid://cpp00pkiooqn" path="res://scenes/PlayerCamera.tscn" id="3_t01tg"]
 [ext_resource type="PackedScene" uid="uid://byjmbm80d52dt" path="res://scenes/CodeTower.tscn" id="4_8luvy"]
-[ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/click_trigger.gd" id="4_t01tg"]
+[ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/click_trigger_3d.gd" id="4_t01tg"]
 [ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="5_gv6bp"]
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/key_trigger.gd" id="6_h8tnp"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle.gd" id="6_pewrh"]
-[ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/relay_trigger.gd" id="7_8luvy"]
+[ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/relay_trigger_3d.gd" id="7_8luvy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
 

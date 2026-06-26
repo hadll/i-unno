@@ -1,6 +1,6 @@
 @abstract
 extends Trigger
-class_name InteractionTrigger
+class_name InteractionTrigger3D
 
 @export var collision_object : CollisionObject3D
 

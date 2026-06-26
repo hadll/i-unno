@@ -1,6 +1,6 @@
 @icon("res://assets/icons/click_trigger.png")
-extends InteractionTrigger
-class_name ClickTrigger
+extends InteractionTrigger3D
+class_name ClickTrigger3D
 
 enum BUTTONS{
 	LEFT_CLICK,
