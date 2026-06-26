@@ -1,13 +1,11 @@
 @tool
+class_name ArrowEditorPlugin
 extends EditorPlugin
 
+var gizmo_plugin := ArrowGizmoPlugin.new()
 
-const gizmo_plugin_class = preload("res://addons/camera_angle_gizmo/arrow_gizmo_plugin.gd")
-
-var gizmo_plugin = gizmo_plugin_class.new()
-
-func _enter_tree():
+func _enter_tree() -> void:
 	add_node_3d_gizmo_plugin(gizmo_plugin)
 
-func _exit_tree():
+func _exit_tree() -> void:
 	remove_node_3d_gizmo_plugin(gizmo_plugin)

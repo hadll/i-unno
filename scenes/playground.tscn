@@ -56,6 +56,7 @@ mesh = SubResource("SphereMesh_pewrh")
 
 [node name="ClickTrigger3D" type="Node3D" parent="StaticBody3D2" unique_id=2083440362 node_paths=PackedStringArray("collision_object")]
 script = ExtResource("4_t01tg")
+button = 1
 collision_object = NodePath("..")
 metadata/_custom_type_script = "uid://c2vlk0ij1eiwu"
 
