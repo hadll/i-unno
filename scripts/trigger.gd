@@ -1,5 +1,4 @@
 @icon("res://assets/icons/trigger.png")
-@abstract
 extends Node3D
 class_name Trigger
 
