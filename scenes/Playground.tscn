@@ -54,22 +54,22 @@ shape = SubResource("SphereShape3D_gv6bp")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1455265288]
 mesh = SubResource("SphereMesh_pewrh")
 
-[node name="ClickTrigger" type="Node3D" parent="StaticBody3D2" unique_id=2083440362 node_paths=PackedStringArray("collision_object")]
+[node name="ClickTrigger3D" type="Node3D" parent="StaticBody3D2" unique_id=2083440362 node_paths=PackedStringArray("collision_object")]
 script = ExtResource("4_t01tg")
 collision_object = NodePath("..")
 metadata/_custom_type_script = "uid://c2vlk0ij1eiwu"
 
 [node name="DebugPrint" type="Node" parent="StaticBody3D2" unique_id=1834883741 node_paths=PackedStringArray("trigger")]
 script = ExtResource("5_gv6bp")
-trigger = NodePath("../ClickTrigger")
+trigger = NodePath("../ClickTrigger3D")
 metadata/_custom_type_script = "uid://daowwhg8fxkuo"
 
 [node name="DebugPrint2" type="Node" parent="StaticBody3D2" unique_id=396005682 node_paths=PackedStringArray("trigger")]
 script = ExtResource("5_gv6bp")
-trigger = NodePath("../KeyTrigger")
+trigger = NodePath("../KeyTrigger3D")
 metadata/_custom_type_script = "uid://daowwhg8fxkuo"
 
-[node name="KeyTrigger" type="Node3D" parent="StaticBody3D2" unique_id=2054366890 node_paths=PackedStringArray("collision_object")]
+[node name="KeyTrigger3D" type="Node3D" parent="StaticBody3D2" unique_id=2054366890 node_paths=PackedStringArray("collision_object")]
 script = ExtResource("6_h8tnp")
 button = SubResource("InputEventKey_ak4i2")
 collision_object = NodePath("..")
@@ -78,7 +78,7 @@ metadata/_custom_type_script = "uid://56atenn0cf2b"
 [node name="RelayTrigger" type="Node3D" parent="StaticBody3D2" unique_id=2098003373 node_paths=PackedStringArray("triggers")]
 script = ExtResource("7_8luvy")
 condition = 0
-triggers = [NodePath("../ClickTrigger"), NodePath("../KeyTrigger")]
+triggers = [NodePath("../ClickTrigger3D"), NodePath("../KeyTrigger3D")]
 metadata/_custom_type_script = "uid://557bh1kgicsc"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=326908244]
