@@ -1,28 +1,34 @@
-[gd_scene format=3 uid="uid://dfl0ouravh1mb"]
+[gd_scene format=3 uid="uid://32vcejbkvioy"]
 
 [ext_resource type="Script" uid="uid://b635bb0hp26mg" path="res://scripts/level.gd" id="1_88rkb"]
-[ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/player.tscn" id="2_8tsvv"]
+[ext_resource type="PackedScene" uid="uid://bw0eofbp5j2b2" path="res://scenes/Player.tscn" id="2_8tsvv"]
 [ext_resource type="PackedScene" uid="uid://cpp00pkiooqn" path="res://scenes/player_camera.tscn" id="3_t01tg"]
 [ext_resource type="PackedScene" uid="uid://byjmbm80d52dt" path="res://scenes/code_tower.tscn" id="4_8luvy"]
-[ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/click_trigger_3d.gd" id="4_t01tg"]
-[ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="5_gv6bp"]
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/key_trigger.gd" id="6_h8tnp"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle.gd" id="6_pewrh"]
-[ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/relay_trigger_3d.gd" id="7_8luvy"]
+[ext_resource type="Script" uid="uid://xlmuadquvy0u" path="res://scripts/list_trigger.gd" id="7_mrac1"]
+[ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/trigger.gd" id="8_2q4k0"]
+[ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/auto_trigger.gd" id="8_x1amm"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t01tg"]
 size = Vector2(20, 20)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_gv6bp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2bfhc"]
+size = Vector3(25.140213, 4.0404663, 2.543457)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pewrh"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_ak4i2"]
+[sub_resource type="InputEventKey" id="InputEventKey_x1amm"]
 device = -1
-keycode = 69
-unicode = 101
+keycode = 68
+unicode = 100
+
+[sub_resource type="InputEventKey" id="InputEventKey_2q4k0"]
+device = -1
+keycode = 65
+unicode = 97
 
 [node name="Level" type="Node3D" unique_id=1723509510 node_paths=PackedStringArray("player", "player_camera")]
 script = ExtResource("1_88rkb")
@@ -49,43 +55,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.791702, -0.095057726, -5.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.677983, 1.5287521, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=765521050]
-shape = SubResource("SphereShape3D_gv6bp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8069263, -0.036956787, -2.037729)
+shape = SubResource("BoxShape3D_2bfhc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1455265288]
+transform = Transform3D(3.2616055, 0, 0, 0, 3.2616055, 0, 0, 0, 3.2616055, -4.726609, -0.07620382, -2.7438242)
 mesh = SubResource("SphereMesh_pewrh")
 
-[node name="ClickTrigger3D" type="Node3D" parent="StaticBody3D2" unique_id=2083440362 node_paths=PackedStringArray("collision_object")]
-script = ExtResource("4_t01tg")
-collision_object = NodePath("..")
-metadata/_custom_type_script = "uid://c2vlk0ij1eiwu"
+[node name="ListTrigger" type="Node3D" parent="StaticBody3D2" unique_id=1428575066 node_paths=PackedStringArray("triggers")]
+script = ExtResource("7_mrac1")
+triggers = {
+NodePath("../KeyTrigger(d)"): 1,
+NodePath("../KeyTrigger(a)"): -1
+}
+starting_index = 1
+wrap_index = false
+metadata/_custom_type_script = "uid://xlmuadquvy0u"
 
-[node name="DebugPrint" type="Node" parent="StaticBody3D2" unique_id=1834883741 node_paths=PackedStringArray("trigger")]
-script = ExtResource("5_gv6bp")
-trigger = NodePath("../ClickTrigger3D")
-metadata/_custom_type_script = "uid://daowwhg8fxkuo"
+[node name="Trigger2" type="Node3D" parent="StaticBody3D2/ListTrigger" unique_id=1393818805]
+script = ExtResource("8_2q4k0")
+metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
 
-[node name="DebugPrint2" type="Node" parent="StaticBody3D2" unique_id=396005682 node_paths=PackedStringArray("trigger")]
-script = ExtResource("5_gv6bp")
-trigger = NodePath("../KeyTrigger3D")
-metadata/_custom_type_script = "uid://daowwhg8fxkuo"
+[node name="AutoTrigger" type="Node3D" parent="StaticBody3D2/ListTrigger" unique_id=982999199]
+script = ExtResource("8_x1amm")
+behavior = 1
+metadata/_custom_type_script = "uid://bpj8ajinuuf45"
 
-[node name="KeyTrigger3D" type="Node3D" parent="StaticBody3D2" unique_id=2054366890 node_paths=PackedStringArray("collision_object")]
+[node name="Trigger3" type="Node3D" parent="StaticBody3D2/ListTrigger" unique_id=637113099]
+script = ExtResource("8_2q4k0")
+metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
+
+[node name="KeyTrigger(d)" type="Node3D" parent="StaticBody3D2" unique_id=380262093 node_paths=PackedStringArray("collision_object")]
 script = ExtResource("6_h8tnp")
-button = SubResource("InputEventKey_ak4i2")
+button = SubResource("InputEventKey_x1amm")
 collision_object = NodePath("..")
 metadata/_custom_type_script = "uid://56atenn0cf2b"
 
-[node name="RelayTrigger" type="Node3D" parent="StaticBody3D2" unique_id=2098003373 node_paths=PackedStringArray("triggers")]
-script = ExtResource("7_8luvy")
-condition = 0
-triggers = [NodePath("../ClickTrigger3D"), NodePath("../KeyTrigger3D")]
-metadata/_custom_type_script = "uid://557bh1kgicsc"
+[node name="KeyTrigger(a)" type="Node3D" parent="StaticBody3D2" unique_id=1493445759 node_paths=PackedStringArray("collision_object")]
+script = ExtResource("6_h8tnp")
+button = SubResource("InputEventKey_2q4k0")
+collision_object = NodePath("..")
+metadata/_custom_type_script = "uid://56atenn0cf2b"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=326908244]
 transform = Transform3D(0.96888196, 0.06710882, -0.23825234, 0.029179046, 0.9248675, 0.3791687, 0.2457974, -0.37432158, 0.8941292, 0, 14.024906, 0)
 
 [node name="CameraAngle" type="Node3D" parent="." unique_id=1162482808 node_paths=PackedStringArray("trigger")]
-transform = Transform3D(-0.9868557, -0.063867316, 0.1484479, 0, 0.9185912, 0.39520895, -0.1616039, 0.3900143, -0.9065168, 5.256095, 3.4371996, -3.481444)
+transform = Transform3D(-0.12773255, -0.06386733, -0.98974997, -0.39512223, 0.91859114, -0.00828287, 0.90970474, 0.39001423, -0.1425694, 2.6985497, 3.715285, -4.555227)
 script = ExtResource("6_pewrh")
-trigger = NodePath("../StaticBody3D2/RelayTrigger")
+trigger = NodePath("../StaticBody3D2/ListTrigger/Trigger2")
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="CameraAngle2" type="Node3D" parent="." unique_id=1387913572 node_paths=PackedStringArray("trigger")]
+transform = Transform3D(-0.9868557, -0.063867316, 0.1484479, 0, 0.9185912, 0.39520895, -0.1616039, 0.3900143, -0.9065168, 1.8685744, 3.4371996, -4.036172)
+script = ExtResource("6_pewrh")
+trigger = NodePath("../StaticBody3D2/ListTrigger/AutoTrigger")
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="CameraAngle3" type="Node3D" parent="." unique_id=46787041 node_paths=PackedStringArray("trigger")]
+transform = Transform3D(0.22521883, -0.06386733, 0.97221243, 0.39399707, 0.91859114, -0.030926973, -0.8910907, 0.3900143, 0.23204756, 1.2980375, 3.7093298, -4.770542)
+script = ExtResource("6_pewrh")
+trigger = NodePath("../StaticBody3D2/ListTrigger/Trigger3")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
