@@ -3,11 +3,11 @@ class_name Trigger
 extends Node3D
 
 ## Fires once at the start of the event
-signal trigger_start
+signal trigger_start(t: Trigger)
 ## Fires once at the end of the event
-signal trigger_end
+signal trigger_end(t: Trigger)
 ## Fires every frame that the trigger is active
-signal trigger
+signal trigger(t: Trigger)
 
 var able := true
 var active := false
