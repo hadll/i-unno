@@ -34,7 +34,7 @@ void main() {
     float palette_dropoff = params.calmness * 16.0 - float(palette_count);
 
     vec3 closest_colour = vec3(imageLoad(palette, ivec2(palette_count, 0)).rgb) / 255.0;
-    vec3 diff = abs(screen_colour - closest_colour) / palette_dropoff;
+    vec3 diff = abs(screen_colour - closest_colour) / (palette_dropoff * 0.9 + 0.1);
     float closest_dist = max(diff.r, diff.g) + max(diff.g, diff.b) + max(diff.b, diff.r);
     for (int i = 0; i < palette_count; i++) {
         vec3 trying = vec3(imageLoad(palette, ivec2(i, 0)).rgb) / 255.0;
