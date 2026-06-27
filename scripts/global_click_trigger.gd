@@ -4,6 +4,9 @@ class_name GlobalClickTrigger
 
 @export var button: MouseButton
 
+func _ready() -> void:
+	Player.me.input.connect(on_player_input)
+
 func get_default_debug_print() -> String:
 	return "Clicked"
 
