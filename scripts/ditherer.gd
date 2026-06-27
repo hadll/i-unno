@@ -3,6 +3,8 @@ const WIDTH := 1152
 const HEIGHT := 648
 
 @export var calmness: float = 1
+@export var view_dist: float = 5
+@export var view_fog: float = 8
 
 var rd: RenderingDevice
 var shader: RID
@@ -61,6 +63,26 @@ func _render_callback(called_effect_callback_type: int, render_data: RenderData)
 		push_error("wrong callback")
 		return
 	var render_scene_buffers: RenderSceneBuffersRD = render_data.get_render_scene_buffers()
+	var render_scene_data := render_data.get_render_scene_data()
+	
+	var camera_transform := render_scene_data.get_cam_transform()
+	var camera_projection := render_scene_data.get_cam_projection()
+	var camera_inv_projection := camera_projection.inverse()
+	
+	var camera_half_extents := camera_projection.get_viewport_half_extents()
+	var camera_quaternion := camera_transform.basis.get_rotation_quaternion()
+	var data_bytes := PackedFloat32Array([
+		camera_inv_projection.x.x, camera_inv_projection.x.y, camera_inv_projection.x.z, camera_inv_projection.x.w, 
+		camera_inv_projection.y.x, camera_inv_projection.y.y, camera_inv_projection.y.z, camera_inv_projection.y.w, 
+		camera_inv_projection.z.x, camera_inv_projection.z.y, camera_inv_projection.z.z, camera_inv_projection.z.w, 
+		camera_inv_projection.w.x, camera_inv_projection.w.y, camera_inv_projection.w.z, camera_inv_projection.w.w, 
+		camera_quaternion.x, camera_quaternion.y, camera_quaternion.z, camera_quaternion.w,
+		camera_transform.origin.x, camera_transform.origin.y, camera_transform.origin.z, Time.get_ticks_msec() / 1000.0,
+		camera_half_extents.x, camera_half_extents.y, camera_projection.get_z_near(), 0.0,
+		calmness,
+		view_dist,
+		view_fog
+	]).to_byte_array()
 	
 	if not uniform_set.is_valid():
 		var texture_buffer := render_scene_buffers.get_color_layer(0)
@@ -97,7 +119,7 @@ func _render_callback(called_effect_callback_type: int, render_data: RenderData)
 	var compute_list := rd.compute_list_begin()
 	rd.compute_list_bind_compute_pipeline(compute_list, pipeline)
 	rd.compute_list_bind_uniform_set(compute_list, uniform_set, 0)
-	rd.compute_list_set_push_constant(compute_list, PackedFloat32Array([calmness]).to_byte_array(), 4)
+	rd.compute_list_set_push_constant(compute_list, data_bytes, data_bytes.size())
 	@warning_ignore("integer_division")
 	rd.compute_list_dispatch(compute_list, WIDTH / 8, HEIGHT / 8, 1)
 	rd.compute_list_end()

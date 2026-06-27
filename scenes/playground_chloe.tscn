@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/key_trigger.gd" id="7_xcfhe"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/relay_trigger_3d.gd" id="8_ydey3"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle.gd" id="9_tcolj"]
+[ext_resource type="Texture2D" uid="uid://dslsvwjirb6rk" path="res://icon.svg" id="10_lrhon"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
@@ -24,6 +25,20 @@ size = Vector2(20, 20)
 device = -1
 keycode = 69
 unicode = 101
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_color = Color(1, 0, 1, 1)
+albedo_texture = ExtResource("10_lrhon")
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edks0"]
+albedo_color = Color(1, 0.64705884, 0, 1)
+albedo_texture = ExtResource("10_lrhon")
+
+[sub_resource type="BoxMesh" id="BoxMesh_04jj1"]
+material = SubResource("StandardMaterial3D_edks0")
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
 resource_local_to_scene = false
@@ -103,6 +118,14 @@ transform = Transform3D(-0.9868557, -0.063867316, 0.1484479, 0, 0.9185912, 0.395
 script = ExtResource("9_tcolj")
 trigger = NodePath("../StaticBody3D2/RelayTrigger")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=221468400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=506915317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01688, 1.0037162, 2.3011708)
+mesh = SubResource("BoxMesh_04jj1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1464629999]
 compositor = SubResource("Compositor_g4v7s")
