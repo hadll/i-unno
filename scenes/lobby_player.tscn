@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ortc1uhcfowp"]
+
+[ext_resource type="Script" uid="uid://chiy450tooumk" path="res://scripts/multiplayer/lobby_player.gd" id="1_6upnp"]
+
+[node name="LobbyPlayer" type="PanelContainer" unique_id=539736467]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6upnp")
+
+[node name="Username" type="Label" parent="." unique_id=1508830648]
+layout_mode = 2
+text = "Player"
+horizontal_alignment = 1

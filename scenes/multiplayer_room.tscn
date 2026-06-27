@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://ct1lqsxda07u3"]
+
+[ext_resource type="Script" uid="uid://b1f87nxncxmf3" path="res://scripts/multiplayer/multiplayer_room_screen.gd" id="1_7q14u"]
+[ext_resource type="PackedScene" uid="uid://ortc1uhcfowp" path="res://scenes/lobby_player.tscn" id="2_ugdk5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 40
+
+[node name="MultiplayerRoomScreen" type="HBoxContainer" unique_id=2106433219]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7q14u")
+lobby_player_scene = ExtResource("2_ugdk5")
+
+[node name="Start" type="VBoxContainer" parent="." unique_id=1303817634]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="Host" type="Button" parent="Start" unique_id=1369477469]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "HOST"
+
+[node name="RoomCodeInput" type="LineEdit" parent="Start" unique_id=949410279]
+layout_mode = 2
+placeholder_text = "Room Code"
+max_length = 4
+
+[node name="Join" type="Button" parent="Start" unique_id=75222495]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "JOIN"
+
+[node name="Lobby" type="VBoxContainer" parent="." unique_id=998892012]
+visible = false
+layout_mode = 2
+
+[node name="RoomCode" type="Label" parent="Lobby" unique_id=1705303308]
+layout_mode = 2
+text = "ROOM CODE"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="PlayersList" type="VBoxContainer" parent="Lobby" unique_id=1160323352]
+layout_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="." unique_id=277282943]
+layout_mode = 2
+
+[node name="UsernameInput" type="LineEdit" parent="Options" unique_id=412031614]
+layout_mode = 2
+placeholder_text = "Username"
+max_length = 32
+
+[node name="LobbyRefreshTimer" type="Timer" parent="." unique_id=1852848309]
+wait_time = 3.0
+
+[connection signal="pressed" from="Start/Host" to="." method="host"]
+[connection signal="pressed" from="Start/Join" to="." method="join"]
+[connection signal="editing_toggled" from="Options/UsernameInput" to="." method="username_touched"]
+[connection signal="timeout" from="LobbyRefreshTimer" to="." method="refresh_lobby"]

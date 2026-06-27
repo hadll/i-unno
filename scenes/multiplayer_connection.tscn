@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://mrb71ahcxv3j"]
+
+[ext_resource type="Script" uid="uid://c8esh1g6e111p" path="res://scripts/multiplayer/multiplayer_connection.gd" id="1_qh8bw"]
+
+[node name="MultiplayerConnection" type="Node" unique_id=1463752010]
+script = ExtResource("1_qh8bw")
+metadata/_custom_type_script = "uid://c8esh1g6e111p"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1846081899]
+timeout = 10.0
