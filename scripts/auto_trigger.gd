@@ -1,26 +1,25 @@
 @icon("res://assets/icons/auto_trigger.png")
-extends Trigger
 class_name AutoTrigger
+extends Trigger
 
-enum BEHAVIORS{
+enum Behaviour {
 	PULSE, ##triggers start and end immediately upon being added to the scene
 	HOLD ##triggers only start immediately upon being added to the scene
 }
 
-var behavior_functions = {
-	BEHAVIORS.PULSE: beh_pulse, 
-	BEHAVIORS.HOLD: beh_hold
+var behavior_functions: Dictionary[Behaviour, Callable]= {
+	Behaviour.PULSE: beh_pulse, 
+	Behaviour.HOLD: beh_hold
 }
 
-@export var behavior : BEHAVIORS = BEHAVIORS.PULSE
+@export var behavior := Behaviour.PULSE
 
-func beh_pulse():
+func _ready() -> void:
+	behavior_functions[behavior].call()
+
+func beh_pulse() -> void:
 	set_active(true)
 	set_active(false)
 
-func beh_hold():
+func beh_hold() -> void:
 	set_active(true)
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	behavior_functions[behavior].call()
