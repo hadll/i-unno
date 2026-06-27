@@ -1,5 +1,6 @@
 @tool
-class_name CameraAngle
+@icon("res://assets/icons/camera_angle_3d.png")
+class_name CameraAngle3D
 extends Node3D
 
 @export var trigger: Trigger
