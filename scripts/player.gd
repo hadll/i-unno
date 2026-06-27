@@ -19,6 +19,8 @@ static var me: Player
 @export var sensitivity := 1.0
 @export var disable_gravity := false
 
+@export var free_mouse := false
+
 @onready var jump_force := sqrt(2 * jump_height * gravity)
 
 var crouched := false
@@ -43,11 +45,11 @@ func _init() -> void:
 
 func _ready() -> void:
 	camera_request = PlayerCamera.me.request_camera(global_transform, self, false)
-	capture_mouse()
+	if not free_mouse: capture_mouse()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"meta_exit"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		release_mouse()
 	
 	if Input.is_action_just_pressed(&"freecam_on"):
 		detached_freecam = not detached_freecam
@@ -65,16 +67,27 @@ func _process(delta: float) -> void:
 	camera_point.position.y = lerpf(target_height, camera_point.position.y, exp(-delta * crouch_speed))
 	
 	PlayerCamera.me.edit_request_transform(camera_request, camera_point.global_transform)
-	raycast.force_raycast_update()
-	if raycast.get_collider() != looking_at:
+	
+	var query := PhysicsRayQueryParameters3D.new()
+	query.exclude = [get_rid()]
+	if free_mouse:
+		var mouse_pos := get_viewport().get_mouse_position()
+		query.from = PlayerCamera.me.project_ray_origin(mouse_pos)
+		query.to = query.from + PlayerCamera.me.project_ray_normal(mouse_pos) * 1000
+	else:
+		query.from = camera_point.global_position
+		query.to = camera_point.global_position - camera_point.global_basis.z * 2.5
+	var intersection := get_world_3d().direct_space_state.intersect_ray(query)
+	var now_looking_at := intersection.get("collider") as CollisionObject3D
+	if now_looking_at != looking_at:
 		if looking_at:
 			stopped_looking_at.emit(looking_at)
-		looking_at = raycast.get_collider() as CollisionObject3D
+		looking_at = now_looking_at
 		if looking_at:
 			started_looking_at.emit(looking_at)
 
 func _input(event: InputEvent) -> void:
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+	if not free_mouse and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseButton:
 			if event.is_pressed():
 				capture_mouse()

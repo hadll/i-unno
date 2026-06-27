@@ -22,6 +22,7 @@ shape = SubResource("CapsuleShape3D_3vyb7")
 [node name="CrouchingCollider" type="CollisionShape3D" parent="." unique_id=2142679757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99973834, 0)
 shape = SubResource("CapsuleShape3D_p0vlq")
+disabled = true
 
 [node name="StandingMesh" type="MeshInstance3D" parent="." unique_id=1842855089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99946284, 0)
@@ -30,6 +31,7 @@ mesh = SubResource("CapsuleMesh_3vyb7")
 
 [node name="CrouchingMesh" type="MeshInstance3D" parent="." unique_id=1758734265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99946284, 0)
+visible = false
 layers = 2
 mesh = SubResource("CapsuleMesh_v6fml")
 

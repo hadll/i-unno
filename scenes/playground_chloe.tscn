@@ -54,9 +54,9 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5f
 script = ExtResource("1_i8aiw")
 
 [node name="PlayerCamera" parent="." unique_id=700953360 instance=ExtResource("3_lrhon")]
-is_main = true
 
 [node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_qokby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3534713, 0, 3.1232643)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=952792393]
 
