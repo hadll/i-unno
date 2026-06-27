@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cpp00pkiooqn" path="res://scenes/player_camera.tscn" id="3_t01tg"]
 [ext_resource type="PackedScene" uid="uid://byjmbm80d52dt" path="res://scenes/code_tower.tscn" id="4_8luvy"]
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/key_trigger.gd" id="6_h8tnp"]
-[ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle.gd" id="6_pewrh"]
+[ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="6_pewrh"]
 [ext_resource type="Script" uid="uid://xlmuadquvy0u" path="res://scripts/list_trigger.gd" id="7_mrac1"]
 [ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/trigger.gd" id="8_2q4k0"]
 [ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/auto_trigger.gd" id="8_x1amm"]

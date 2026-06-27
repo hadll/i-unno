@@ -1,4 +1,4 @@
-@icon("res://assets/icons/click_trigger.png")
+@icon("res://assets/icons/click_trigger_3d.png")
 class_name ClickTrigger3D
 extends InteractionTrigger3D
 

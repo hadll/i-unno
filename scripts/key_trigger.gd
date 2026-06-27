@@ -1,4 +1,4 @@
-@icon("res://assets/icons/key_trigger.png")
+@icon("res://assets/icons/key_trigger_3d.png")
 class_name KeyTrigger3D
 extends InteractionTrigger3D
 
