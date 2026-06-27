@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/global_key_trigger.gd" id="8_2bfhc"]
 [ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/trigger.gd" id="8_2q4k0"]
 [ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/auto_trigger.gd" id="8_x1amm"]
+[ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="10_x1amm"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
 
@@ -29,6 +30,20 @@ unicode = 100
 device = -1
 keycode = 65
 unicode = 97
+
+[sub_resource type="InputEventKey" id="InputEventKey_2bfhc"]
+device = -1
+keycode = 87
+unicode = 119
+
+[sub_resource type="QuadMesh" id="QuadMesh_s8xio"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_clypn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8xio"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_clypn")
 
 [node name="Level" type="Node3D" unique_id=1723509510 node_paths=PackedStringArray("player", "player_camera")]
 script = ExtResource("1_88rkb")
@@ -115,3 +130,68 @@ transform = Transform3D(0.22521883, -0.06386733, 0.97221243, 0.39399707, 0.91859
 script = ExtResource("6_pewrh")
 trigger = NodePath("../StaticBody3D2/ListTrigger/Trigger3")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1202203462]
+
+[node name="CameraCamera" type="Camera3D" parent="SubViewport" unique_id=2072962339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1097753, 5.757988)
+script = ExtResource("10_x1amm")
+metadata/_custom_type_script = "uid://i4gm277hvbec"
+
+[node name="CameraAngle3D" type="Node3D" parent="SubViewport" unique_id=478425932 node_paths=PackedStringArray("camera", "trigger")]
+transform = Transform3D(0.99776834, 3.7252903e-09, -0.0667701, 0.028268954, 0.9059534, 0.42243263, 0.060490604, -0.42337742, 0.90393174, -6.7396126, 3.0802379, -2.484993)
+script = ExtResource("6_pewrh")
+camera = NodePath("../CameraCamera")
+use_player_camera = false
+trigger = NodePath("../ListTrigger/Trigger")
+tween = false
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="CameraAngle3D2" type="Node3D" parent="SubViewport" unique_id=1356454859 node_paths=PackedStringArray("camera", "trigger")]
+transform = Transform3D(0.99776834, 3.7252903e-09, -0.0667701, 0.028268954, 0.9059534, 0.42243263, 0.060490604, -0.42337742, 0.90393174, -0.033769492, 2.6460721, -0.265928)
+script = ExtResource("6_pewrh")
+camera = NodePath("../CameraCamera")
+use_player_camera = false
+trigger = NodePath("../ListTrigger/AutoTrigger")
+tween = false
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="CameraAngle3D3" type="Node3D" parent="SubViewport" unique_id=1975095267 node_paths=PackedStringArray("camera", "trigger")]
+transform = Transform3D(0.99776834, 0.061712172, -0.025492247, 0.028268952, -0.04454729, 0.99860734, 0.06049061, -0.9970994, -0.046192408, 0.36241913, 10.725213, -1.4159523)
+script = ExtResource("6_pewrh")
+camera = NodePath("../CameraCamera")
+use_player_camera = false
+trigger = NodePath("../ListTrigger/Trigger2")
+tween = false
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="ListTrigger" type="Node3D" parent="SubViewport" unique_id=1914850938 node_paths=PackedStringArray("triggers")]
+script = ExtResource("7_mrac1")
+triggers = {
+NodePath("../GlobalKeyTrigger"): 1
+}
+starting_index = 1
+metadata/_custom_type_script = "uid://xlmuadquvy0u"
+
+[node name="Trigger" type="Node3D" parent="SubViewport/ListTrigger" unique_id=798670284]
+script = ExtResource("8_2q4k0")
+metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
+
+[node name="AutoTrigger" type="Node3D" parent="SubViewport/ListTrigger" unique_id=1576923839]
+script = ExtResource("8_x1amm")
+behavior = 1
+metadata/_custom_type_script = "uid://bpj8ajinuuf45"
+
+[node name="Trigger2" type="Node3D" parent="SubViewport/ListTrigger" unique_id=343024899]
+script = ExtResource("8_2q4k0")
+metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
+
+[node name="GlobalKeyTrigger" type="Node3D" parent="SubViewport" unique_id=876971978]
+script = ExtResource("8_2bfhc")
+button = SubResource("InputEventKey_2bfhc")
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=178194767]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.8240962, 3.3833847, -1.9136934)
+mesh = SubResource("QuadMesh_s8xio")
+surface_material_override/0 = SubResource("StandardMaterial3D_s8xio")
