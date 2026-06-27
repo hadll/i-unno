@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bw0eofbp5j2b2" path="res://scenes/player.tscn" id="2_8tsvv"]
 [ext_resource type="PackedScene" uid="uid://cpp00pkiooqn" path="res://scenes/player_camera.tscn" id="3_t01tg"]
 [ext_resource type="PackedScene" uid="uid://byjmbm80d52dt" path="res://scenes/code_tower.tscn" id="4_8luvy"]
-[ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/key_trigger.gd" id="6_h8tnp"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="6_pewrh"]
 [ext_resource type="Script" uid="uid://xlmuadquvy0u" path="res://scripts/list_trigger.gd" id="7_mrac1"]
+[ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/global_key_trigger.gd" id="8_2bfhc"]
 [ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/trigger.gd" id="8_2q4k0"]
 [ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/auto_trigger.gd" id="8_x1amm"]
 
@@ -85,17 +85,15 @@ metadata/_custom_type_script = "uid://bpj8ajinuuf45"
 script = ExtResource("8_2q4k0")
 metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
 
-[node name="KeyTrigger(d)" type="Node3D" parent="StaticBody3D2" unique_id=380262093 node_paths=PackedStringArray("collision_object")]
-script = ExtResource("6_h8tnp")
+[node name="KeyTrigger(d)" type="Node3D" parent="StaticBody3D2" unique_id=670974866]
+script = ExtResource("8_2bfhc")
 button = SubResource("InputEventKey_x1amm")
-collision_object = NodePath("..")
-metadata/_custom_type_script = "uid://56atenn0cf2b"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
-[node name="KeyTrigger(a)" type="Node3D" parent="StaticBody3D2" unique_id=1493445759 node_paths=PackedStringArray("collision_object")]
-script = ExtResource("6_h8tnp")
+[node name="KeyTrigger(a)" type="Node3D" parent="StaticBody3D2" unique_id=1052222490]
+script = ExtResource("8_2bfhc")
 button = SubResource("InputEventKey_2q4k0")
-collision_object = NodePath("..")
-metadata/_custom_type_script = "uid://56atenn0cf2b"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=326908244]
 transform = Transform3D(0.96888196, 0.06710882, -0.23825234, 0.029179046, 0.9248675, 0.3791687, 0.2457974, -0.37432158, 0.8941292, 0, 14.024906, 0)
