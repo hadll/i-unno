@@ -3,4 +3,6 @@
 [ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="1_lp7lw"]
 
 [node name="PlayerCamera" type="Camera3D" unique_id=700953360]
+cull_mask = 1048573
+current = true
 script = ExtResource("1_lp7lw")
