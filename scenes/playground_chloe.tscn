@@ -8,8 +8,7 @@
 [ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="6_nn1bs"]
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/key_trigger.gd" id="7_xcfhe"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/relay_trigger_3d.gd" id="8_ydey3"]
-[ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle.gd" id="9_tcolj"]
-[ext_resource type="Texture2D" uid="uid://dslsvwjirb6rk" path="res://icon.svg" id="10_lrhon"]
+[ext_resource type="Script" path="res://scripts/camera_angle.gd" id="9_tcolj"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
@@ -28,14 +27,12 @@ unicode = 101
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
 albedo_color = Color(1, 0, 1, 1)
-albedo_texture = ExtResource("10_lrhon")
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 material = SubResource("StandardMaterial3D_yf5fn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edks0"]
 albedo_color = Color(1, 0.64705884, 0, 1)
-albedo_texture = ExtResource("10_lrhon")
 
 [sub_resource type="BoxMesh" id="BoxMesh_04jj1"]
 material = SubResource("StandardMaterial3D_edks0")
