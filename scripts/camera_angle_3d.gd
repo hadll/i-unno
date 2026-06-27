@@ -3,6 +3,11 @@
 class_name CameraAngle3D
 extends Node3D
 
+@export_category("Camera")
+@export var camera : PlayerCamera
+@export var use_player_camera := true
+
+@export_category("Settings")
 @export var trigger: Trigger
 
 @export var tween := true
@@ -18,7 +23,13 @@ func _ready() -> void:
 			on_trigger_start(trigger)
 
 func on_trigger_start(_node: Trigger) -> void:
-	level.player_camera.request_camera(global_transform, self, tween)
+	if use_player_camera:
+		level.player_camera.request_camera(global_transform, self, tween)
+	else:
+		camera.request_camera(global_transform, self, tween)
 
 func on_trigger_end(_node: Trigger) -> void:
-	level.player_camera.release_camera_by_requester(self)
+	if use_player_camera:
+		level.player_camera.release_camera_by_requester(self)
+	else:
+		camera.release_camera_by_requester(self)
