@@ -1,6 +1,6 @@
-@icon("res://assets/icons/click_trigger_3d.png")
-class_name ClickTrigger3D
-extends InteractionTrigger3D
+@icon("res://assets/icons/global_click_trigger.png")
+extends Trigger
+class_name GlobalClickTrigger
 
 @export var button: MouseButton
 

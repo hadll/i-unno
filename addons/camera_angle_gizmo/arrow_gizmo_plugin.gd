@@ -14,7 +14,7 @@ func _get_gizmo_name() -> String:
 	return "CameraAngleGizmo"
 
 func _has_gizmo(node: Node3D) -> bool:
-	return node is CameraAngle
+	return node is CameraAngle3D
 
 func _redraw(gizmo: EditorNode3DGizmo) -> void:
 	gizmo.clear()
