@@ -50,14 +50,13 @@ metadata/_custom_type_script = "uid://y8yqh08fax47"
 [sub_resource type="Compositor" id="Compositor_g4v7s"]
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5fn")])
 
-[node name="Level" type="Node3D" unique_id=1723509510 node_paths=PackedStringArray("player", "player_camera")]
+[node name="Level" type="Node3D" unique_id=1723509510]
 script = ExtResource("1_i8aiw")
-player = NodePath("Player")
-player_camera = NodePath("PlayerCamera")
-
-[node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_qokby")]
 
 [node name="PlayerCamera" parent="." unique_id=700953360 instance=ExtResource("3_lrhon")]
+is_main = true
+
+[node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_qokby")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=952792393]
 

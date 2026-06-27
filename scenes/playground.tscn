@@ -45,14 +45,13 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_clypn")
 
-[node name="Level" type="Node3D" unique_id=1723509510 node_paths=PackedStringArray("player", "player_camera")]
+[node name="Level" type="Node3D" unique_id=1723509510]
 script = ExtResource("1_88rkb")
-player = NodePath("Player")
-player_camera = NodePath("PlayerCamera")
-
-[node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_8tsvv")]
 
 [node name="PlayerCamera" parent="." unique_id=700953360 instance=ExtResource("3_t01tg")]
+is_main = true
+
+[node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_8tsvv")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=952792393]
 

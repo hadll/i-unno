@@ -6,12 +6,22 @@ const POS_KEY := &"pos"
 const REQUESTER_KEY := &"requester"
 const ID_KEY := &"id"
 
+static var main: PlayerCamera
+
+@export var is_main := false
+
 var requested_locations: Array[Dictionary] = []
 
 var is_tweening := false
 var tween_progress := 0.0
 
 var requests := 0
+
+func _ready() -> void:
+	if is_main:
+		if main:
+			push_error("Second Main PlayerCamera")
+		main = self
 
 func _process(delta: float) -> void:
 	tween_progress = minf(tween_progress+delta, TWEEN_DURATION)
