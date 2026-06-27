@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/global_key_trigger.gd" id="8_2bfhc"]
 [ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/trigger.gd" id="8_2q4k0"]
 [ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/auto_trigger.gd" id="8_x1amm"]
-[ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="10_x1amm"]
+[ext_resource type="Script" uid="uid://cgxpwvnjty112" path="res://scripts/scene_camera.gd" id="10_x1amm"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
 
@@ -49,7 +49,6 @@ albedo_texture = SubResource("ViewportTexture_clypn")
 script = ExtResource("1_88rkb")
 
 [node name="PlayerCamera" parent="." unique_id=700953360 instance=ExtResource("3_t01tg")]
-is_main = true
 
 [node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_8tsvv")]
 
@@ -132,10 +131,10 @@ metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1202203462]
 
-[node name="CameraCamera" type="Camera3D" parent="SubViewport" unique_id=2072962339]
+[node name="CameraCamera" type="Camera3D" parent="SubViewport" unique_id=275482667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1097753, 5.757988)
 script = ExtResource("10_x1amm")
-metadata/_custom_type_script = "uid://i4gm277hvbec"
+metadata/_custom_type_script = "uid://cgxpwvnjty112"
 
 [node name="CameraAngle3D" type="Node3D" parent="SubViewport" unique_id=478425932 node_paths=PackedStringArray("camera", "trigger")]
 transform = Transform3D(0.99776834, 3.7252903e-09, -0.0667701, 0.028268954, 0.9059534, 0.42243263, 0.060490604, -0.42337742, 0.90393174, -6.7396126, 3.0802379, -2.484993)

@@ -42,7 +42,7 @@ func _init() -> void:
 	me = self
 
 func _ready() -> void:
-	camera_request = PlayerCamera.main.request_camera(global_transform, self, false)
+	camera_request = PlayerCamera.me.request_camera(global_transform, self, false)
 	capture_mouse()
 
 func _process(delta: float) -> void:
@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 			freecam.global_transform = camera_point.global_transform
 			controlling_freecam = true
 		else:
-			PlayerCamera.main.make_current()
+			PlayerCamera.me.make_current()
 			controlling_freecam = false
 	if Input.is_action_just_pressed(&"freecam_swap"):
 		controlling_freecam = not controlling_freecam
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 	var target_height := crouch_height if crouched else stand_height
 	camera_point.position.y = lerpf(target_height, camera_point.position.y, exp(-delta * crouch_speed))
 	
-	PlayerCamera.main.edit_request_transform(camera_request, camera_point.global_transform)
+	PlayerCamera.me.edit_request_transform(camera_request, camera_point.global_transform)
 	raycast.force_raycast_update()
 	if raycast.get_collider() != looking_at:
 		if looking_at:
@@ -93,7 +93,7 @@ func _rotate_camera(by: Vector2, sens_mod: float = 1.0) -> void:
 	if controlling_freecam:
 		freecam.rotation.x = clamp(freecam.rotation.x - by.y * sensitivity, -1.5, 1.5)
 		freecam.rotation.y -= by.x * sensitivity
-	elif PlayerCamera.main.has_camera(self):
+	elif PlayerCamera.me.has_camera(self):
 		rotation.y -= by.x * sensitivity * sens_mod
 		camera_point.rotation.x = clamp(camera_point.rotation.x - by.y * sensitivity * sens_mod, -1.5, 1.5)
 
