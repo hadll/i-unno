@@ -5,9 +5,6 @@ signal input(event: InputEvent)
 signal started_looking_at(collider: CollisionObject3D)
 signal stopped_looking_at(collider: CollisionObject3D)
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
 static var me: Player
 
 @export var walk_speed := 4.0
