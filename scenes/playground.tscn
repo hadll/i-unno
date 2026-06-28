@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://32vcejbkvioy"]
 
-[ext_resource type="Script" uid="uid://b635bb0hp26mg" path="res://scripts/level.gd" id="1_88rkb"]
 [ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/player.tscn" id="2_8tsvv"]
 [ext_resource type="PackedScene" uid="uid://cpp00pkiooqn" path="res://scenes/player_camera.tscn" id="3_t01tg"]
 [ext_resource type="PackedScene" uid="uid://byjmbm80d52dt" path="res://scenes/code_tower.tscn" id="4_8luvy"]
@@ -46,7 +45,6 @@ resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_clypn")
 
 [node name="Level" type="Node3D" unique_id=1723509510]
-script = ExtResource("1_88rkb")
 
 [node name="PlayerCamera" parent="." unique_id=700953360 instance=ExtResource("3_t01tg")]
 

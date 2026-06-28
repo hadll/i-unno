@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dnyct1d4f44bs"]
+
+[ext_resource type="Script" uid="uid://dpqfxm6ek6g3f" path="res://scripts/levelgen/room.gd" id="1_36trf"]
+
+[node name="Room" type="Node3D" unique_id=1799004651]
+script = ExtResource("1_36trf")
+
+[node name="Static" type="StaticBody3D" parent="." unique_id=1507163358]
