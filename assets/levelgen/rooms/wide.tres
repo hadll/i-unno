@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="RoomDef" format=3 uid="uid://bydhl3hsn7g8f"]
+
+[ext_resource type="Script" uid="uid://jyutv7juuysb" path="res://scripts/levelgen/door_def.gd" id="1_65pks"]
+[ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/room_def.gd" id="2_0ed4q"]
+
+[sub_resource type="Resource" id="Resource_vel35"]
+script = ExtResource("1_65pks")
+from = Vector3i(1, 0, 0)
+dir = 1
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_hhw87"]
+script = ExtResource("1_65pks")
+from = Vector3i(1, 0, 0)
+dir = 3
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_f4ax7"]
+script = ExtResource("1_65pks")
+from = Vector3i(1, 0, 0)
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_uvcfg"]
+script = ExtResource("1_65pks")
+dir = 2
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_88utw"]
+script = ExtResource("1_65pks")
+dir = 3
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_tk0t1"]
+script = ExtResource("1_65pks")
+dir = 2
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[resource]
+script = ExtResource("2_0ed4q")
+name = "Wide"
+shape = Array[Vector3i]([Vector3i(0, 0, 0), Vector3i(1, 0, 0)])
+doors = Array[ExtResource("1_65pks")]([SubResource("Resource_vel35"), SubResource("Resource_hhw87"), SubResource("Resource_f4ax7"), SubResource("Resource_uvcfg"), SubResource("Resource_88utw"), SubResource("Resource_tk0t1")])
+metadata/_custom_type_script = "uid://b4gd7h41k7f6n"

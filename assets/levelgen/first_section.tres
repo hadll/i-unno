@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SectionDef" format=3 uid="uid://b4616u37fray3"]
+
+[ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/room_def.gd" id="1_a3e2q"]
+[ext_resource type="Resource" uid="uid://byjnj52wuuux8" path="res://assets/levelgen/rooms/stairs.tres" id="1_kich7"]
+[ext_resource type="Script" uid="uid://gh8ikjeckkx" path="res://scripts/levelgen/section_def.gd" id="2_d7vme"]
+[ext_resource type="Resource" uid="uid://ca5vmd637ay2x" path="res://assets/levelgen/rooms/four_way.tres" id="3_qytu8"]
+[ext_resource type="Resource" uid="uid://bydhl3hsn7g8f" path="res://assets/levelgen/rooms/wide.tres" id="4_faxrp"]
+
+[resource]
+script = ExtResource("2_d7vme")
+rooms = Array[ExtResource("1_a3e2q")]([ExtResource("3_qytu8"), ExtResource("4_faxrp")])
+required_density = 0.25
+end = ExtResource("1_kich7")
+metadata/_custom_type_script = "uid://gh8ikjeckkx"
