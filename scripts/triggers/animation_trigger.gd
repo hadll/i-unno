@@ -1,3 +1,4 @@
+@icon("res://assets/icons/animationtrigger.png")
 extends Trigger
 class_name AnimationTrigger
 
