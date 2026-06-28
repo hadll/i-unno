@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/triggers/key_trigger.gd" id="7_xcfhe"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/triggers/relay_trigger_3d.gd" id="8_ydey3"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="9_qokby"]
+[ext_resource type="PackedScene" uid="uid://dfl0ouravh1mb" path="res://scenes/level.tscn" id="10_lrhon"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
@@ -44,6 +45,8 @@ effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("10_qokby")
+view_dist = 10.175
+view_fog = 45.01
 metadata/_custom_type_script = "uid://y8yqh08fax47"
 
 [sub_resource type="Compositor" id="Compositor_g4v7s"]
@@ -124,3 +127,6 @@ mesh = SubResource("BoxMesh_04jj1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1464629999]
 compositor = SubResource("Compositor_g4v7s")
+
+[node name="Level" parent="." unique_id=862827639 instance=ExtResource("10_lrhon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.656041, 0, 0)

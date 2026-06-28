@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jyutv7juuysb" path="res://scripts/levelgen/door_def.gd" id="1_65pks"]
 [ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/room_def.gd" id="2_0ed4q"]
+[ext_resource type="PackedScene" uid="uid://d1cpwnnjcspjs" path="res://scenes/rooms/room_wide.tscn" id="2_lacgj"]
 
 [sub_resource type="Resource" id="Resource_vel35"]
 script = ExtResource("1_65pks")
@@ -38,6 +39,7 @@ metadata/_custom_type_script = "uid://jyutv7juuysb"
 [resource]
 script = ExtResource("2_0ed4q")
 name = "Wide"
+scene = ExtResource("2_lacgj")
 shape = Array[Vector3i]([Vector3i(0, 0, 0), Vector3i(1, 0, 0)])
 doors = Array[ExtResource("1_65pks")]([SubResource("Resource_vel35"), SubResource("Resource_hhw87"), SubResource("Resource_f4ax7"), SubResource("Resource_uvcfg"), SubResource("Resource_88utw"), SubResource("Resource_tk0t1")])
 metadata/_custom_type_script = "uid://b4gd7h41k7f6n"

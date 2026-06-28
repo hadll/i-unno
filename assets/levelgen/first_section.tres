@@ -8,7 +8,8 @@
 
 [resource]
 script = ExtResource("2_d7vme")
+name = "First"
 rooms = Array[ExtResource("1_a3e2q")]([ExtResource("3_qytu8"), ExtResource("4_faxrp")])
-required_density = 0.25
+required_density = 0.4
 end = ExtResource("1_kich7")
 metadata/_custom_type_script = "uid://gh8ikjeckkx"

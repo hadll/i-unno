@@ -2,6 +2,7 @@ class_name LevelGenerator
 extends Node
 
 const LOG_GEN := true
+const MAX_CONSECUTIVE_FAILS := 128
 
 enum Direction {
 	POS_X = 0,
@@ -15,13 +16,14 @@ enum DoorType {
 
 @export var gen: GenerationDef
 
-var spaces: Dictionary[Vector3i, RoomDef] = {}
-var unfilled_doors: Array[DoorDef] = []
-var doors: Dictionary[DoorDef, bool] = {}
-var min_placed := Vector3i.ZERO
-var max_placed := Vector3i.ZERO
+var spaces: Dictionary[Vector3i, RoomDef]
+var unfilled_doors: Array[DoorDef]
+var rooms: Dictionary[RoomDef, SectionDef]
+var doors: Dictionary[DoorDef, bool]
+var min_placed: Vector3i
+var max_placed: Vector3i
 
-static func rotate_dir(pos_x_dir: Direction, new_pos_x_dir: Direction) -> Direction:
+static func dir_rotate(pos_x_dir: Direction, new_pos_x_dir: Direction) -> Direction:
 	return posmod(pos_x_dir - new_pos_x_dir, 4) as Direction
 
 static func dir_vector(dir: Direction) -> Vector3i:
@@ -36,17 +38,41 @@ static func dir_vector(dir: Direction) -> Vector3i:
 		_:
 			return Vector3i(0, 0, -1)
 
+static func dir_angle(dir: Direction) -> float:
+	match dir:
+		Direction.POS_X:
+			return 0
+		Direction.POS_Z:
+			return TAU/4
+		Direction.NEG_X:
+			return TAU/2
+		#Direction.NEG_Z:
+		_:
+			return TAU*3/4
+
 func generate() -> void:
-	var total_space := gen.map_size.x * gen.map_size.y * gen.map_size.z
-	try_place(gen.start)
-	for section_id in len(gen.sections):
-		var section := gen.sections[section_id]
-		if LOG_GEN: print("Generating Section %d" % section_id)
-		while float(spaces.size()) / total_space <= section.required_density:
+	while not try_generate():
+		if LOG_GEN: print("Generation Failed... Retrying")
+	if LOG_GEN: print("Generation Done")
+
+func try_generate() -> bool:
+	spaces = {}
+	unfilled_doors = []
+	rooms = {}
+	doors = {}
+	min_placed = Vector3i.ZERO
+	max_placed = Vector3i.ZERO
+	
+	try_place(gen.start, gen.sections[0])
+	var existing_density := 0.0
+	for section_def in gen.sections:
+		if LOG_GEN: print("Generating Section %s" % section_def.name)
+		var consecutive_fails := 0
+		while get_density() - existing_density <= section_def.required_density:
 			var start_door_index = randi() % len(unfilled_doors)
 			var start_door := unfilled_doors[start_door_index]
-			var room_index = randi() % len(section.rooms)
-			var room := section.rooms[room_index]
+			var room_index = randi() % len(section_def.rooms)
+			var room := section_def.rooms[room_index]
 			var end_door_index = randi() % len(room.doors)
 			var end_door := room.doors[end_door_index]
 			var transformed := room.transform(
@@ -54,23 +80,32 @@ func generate() -> void:
 				posmod(start_door.dir - end_door.dir + 2, 4) as Direction, 
 				start_door.get_target()
 			)
-			try_place(transformed)
+			if try_place(transformed, section_def):
+				consecutive_fails = 0
+			else:
+				consecutive_fails += 1
+			if consecutive_fails > MAX_CONSECUTIVE_FAILS:
+				return false
 		while true:
 			var start_door_index = randi() % len(unfilled_doors)
 			var start_door := unfilled_doors[start_door_index]
-			var end_door_index = randi() % (len(section.end.doors) - 1)
-			var end_door := section.end.doors[end_door_index]
-			var transformed := section.end.transform(
+			var end_door_index = randi() % (len(section_def.end.doors) - 1)
+			var end_door := section_def.end.doors[end_door_index]
+			var transformed := section_def.end.transform(
 				end_door.from, 
 				posmod(start_door.dir - end_door.dir + 2, 4) as Direction, 
 				start_door.get_target()
 			)
-			if try_place(transformed, true):
+			if try_place(transformed, section_def, true):
 				break
-		
-	if LOG_GEN: print("Generation Done")
+			else:
+				consecutive_fails += 1
+			if consecutive_fails > MAX_CONSECUTIVE_FAILS:
+				return false
+		existing_density = get_density()
+	return true
 
-func try_place(room_def: RoomDef, must_continue := false) -> bool:
+func try_place(room_def: RoomDef, section_def: SectionDef, must_continue := false) -> bool:
 	if must_continue and room_def.doors[len(room_def.doors) - 1].get_target() in spaces:
 		return false
 	var min_added := min_placed
@@ -86,7 +121,8 @@ func try_place(room_def: RoomDef, must_continue := false) -> bool:
 		max_added = max_added.max(cell)
 	min_placed = min_added
 	max_placed = max_added
-	if LOG_GEN: print("Placed %s" % room_def.name)
+	rooms[room_def] = section_def
+	if LOG_GEN: print("Placed %s in %s" % [room_def.name, section_def.name])
 	
 	for cell in room_def.shape:
 		spaces[cell] = room_def
@@ -108,3 +144,6 @@ func try_place(room_def: RoomDef, must_continue := false) -> bool:
 		if door not in doors:
 			doors[door] = false
 	return true
+
+func get_density() -> float:
+	return float(spaces.size()) / (gen.map_size.x * gen.map_size.z)

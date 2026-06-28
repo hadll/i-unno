@@ -6,29 +6,32 @@ extends Resource
 @export var shape: Array[Vector3i]
 @export var doors: Array[DoorDef]
 
+var pos := Vector3i.ZERO
 var pos_x_dir := LevelGenerator.Direction.POS_X
 
-func transform(origin: Vector3i, new_pos_x_dir: LevelGenerator.Direction, pos: Vector3i) -> RoomDef:
+func transform(origin: Vector3i, new_pos_x_dir: LevelGenerator.Direction, offset: Vector3i) -> RoomDef:
 	var transformed := new()
 	transformed.name = name
 	transformed.scene = scene
 	transformed.shape = []
 	for point in shape:
-		transformed.shape.append(transform_point(origin, new_pos_x_dir, pos, point))
+		transformed.shape.append(transform_point(origin, new_pos_x_dir, offset, point))
 	transformed.doors = []
 	for door in doors:
-		transformed.doors.append(door.transform(origin, new_pos_x_dir, pos))
-	transformed.pos_x_dir = LevelGenerator.rotate_dir(pos_x_dir,  new_pos_x_dir)
+		transformed.doors.append(door.transform(origin, new_pos_x_dir, offset))
+	
+	transformed.pos = transform_point(origin, new_pos_x_dir, offset, pos)
+	transformed.pos_x_dir = LevelGenerator.dir_rotate(pos_x_dir,  new_pos_x_dir)
 	return transformed
 
-static func transform_point(origin: Vector3i, new_pos_x_dir: LevelGenerator.Direction, pos: Vector3i, point: Vector3i) -> Vector3i:
+static func transform_point(origin: Vector3i, new_pos_x_dir: LevelGenerator.Direction, offset: Vector3i, point: Vector3i) -> Vector3i:
 	match new_pos_x_dir:
 		LevelGenerator.Direction.POS_X:
-			return point - origin + pos
+			return point - origin + offset
 		LevelGenerator.Direction.POS_Z:
-			return Vector3i(point.z - origin.z, point.y - origin.y, origin.x - point.x) + pos
+			return Vector3i(point.z - origin.z, point.y - origin.y, origin.x - point.x) + offset
 		LevelGenerator.Direction.NEG_X:
-			return origin - point + pos
+			return origin - point + offset
 		#LevelGenerator.Direction.NEG_Z:
 		_:
-			return Vector3i(origin.z - point.z, point.y - origin.y, point.x - origin.x) + pos
+			return Vector3i(origin.z - point.z, point.y - origin.y, point.x - origin.x) + offset
