@@ -1,3 +1,4 @@
+@icon("res://scripts/triggers/multiplayer_flag_trigger.gd")
 class_name MultiplayerFlagTrigger
 extends Trigger
 
