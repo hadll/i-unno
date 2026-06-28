@@ -4,7 +4,7 @@ class_name _CLASS_
 
 #use whichever one youd prefer 
 @export var triggers: Array[Trigger]
-# @export var triggers: Dictionary[Trigger, int] 
+@export var triggers: Dictionary[Trigger, TYPE] 
 
 
 func _ready() -> void:
