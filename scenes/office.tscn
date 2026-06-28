@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/triggers/global_key_trigger.gd" id="5_gdafm"]
 [ext_resource type="Script" uid="uid://d22dt3j63vbyj" path="res://scripts/office_player.gd" id="7_2knxt"]
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="8_fmddn"]
-[ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="9_gdafm"]
+[ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="9_gdafm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_s8xio"]
 
@@ -16,6 +16,26 @@
 device = -1
 keycode = 32
 unicode = 32
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("9_gdafm")
+view_dist = 35.0
+view_fog = 75.0
+metadata/_custom_type_script = "uid://y8yqh08fax47"
+
+[sub_resource type="Compositor" id="Compositor_in4ui"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5fn")])
+
+[sub_resource type="SphereMesh" id="SphereMesh_s8xio"]
+flip_faces = true
+radius = 50.0
+height = 100.0
 
 [node name="Office" type="Node3D" unique_id=863738101]
 
@@ -103,8 +123,13 @@ script = ExtResource("5_gdafm")
 button = SubResource("InputEventKey_fmddn")
 metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
-[node name="DebugPrint" type="Node" parent="." unique_id=908344115 node_paths=PackedStringArray("trigger")]
-script = ExtResource("9_gdafm")
-trigger = NodePath("../GlobalKeyTrigger")
-print_text = "space"
-metadata/_custom_type_script = "uid://daowwhg8fxkuo"
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1512259475]
+compositor = SubResource("Compositor_in4ui")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=96264283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92233133, 3.0170763, -1.3512583)
+light_energy = 6.046
+omni_range = 8.606912
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=952926028]
+mesh = SubResource("SphereMesh_s8xio")
