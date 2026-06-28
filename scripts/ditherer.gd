@@ -27,6 +27,7 @@ func initialise_shader() -> void:
 	
 	var palette_image := preload("res://assets/palette.png")
 	palette_image.convert(Image.FORMAT_RGBA8)
+	palette_image.srgb_to_linear()
 	
 	var palette_texture_format := RDTextureFormat.new()
 	palette_texture_format.width = palette_image.get_width()
