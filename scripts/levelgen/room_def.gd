@@ -1,9 +1,13 @@
 class_name RoomDef
 extends Resource
 
+## name of this room
 @export var name: String
+## scene to use for this room
 @export var scene: PackedScene
+## every grid space used by this room
 @export var shape: Array[Vector3i]
+## possible doors for this room (must be empty space)
 @export var doors: Array[DoorDef]
 
 var pos := Vector3i.ZERO

@@ -45,8 +45,8 @@ effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("10_qokby")
-view_dist = 10.175
-view_fog = 45.01
+view_dist = 35.0
+view_fog = 75.0
 metadata/_custom_type_script = "uid://y8yqh08fax47"
 
 [sub_resource type="Compositor" id="Compositor_g4v7s"]

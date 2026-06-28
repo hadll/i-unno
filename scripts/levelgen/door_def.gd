@@ -1,8 +1,11 @@
 class_name DoorDef
 extends Resource
 
+## type of door (only identical types can connect)
 @export var type: LevelGenerator.DoorType
+## space in the room that this door comes from
 @export var from: Vector3i
+## direction this door goes out to
 @export var dir: LevelGenerator.Direction
 
 func transform(origin: Vector3i, new_pos_x_dir: LevelGenerator.Direction, offset: Vector3i) -> DoorDef:
