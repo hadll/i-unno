@@ -20,7 +20,7 @@ layout(push_constant, std430) uniform Params {
 
 void main() {
     vec3 screen_colour = imageLoad(screen_texture, ivec2(gl_GlobalInvocationID.xy & ~0u)).rgb;
-    float dither_value = float(imageLoad(dither_pattern, ivec2((gl_GlobalInvocationID.xy >> 0u) & 7u)).r) / 255.0 * 0.2 - 0.1;
+    float dither_value = float(imageLoad(dither_pattern, ivec2((gl_GlobalInvocationID.xy >> 0u) & 7u)).r) / 255.0 * 0.2;
     screen_colour -= vec3(dither_value);
     
     vec2 uv = vec2(gl_GlobalInvocationID.xy) / vec2(imageSize(screen_texture));
@@ -32,7 +32,6 @@ void main() {
 
     int palette_count = min(15, int(params.calmness * 16.0));
     float palette_dropoff = params.calmness * 16.0 - float(palette_count);
-
     vec3 closest_colour = vec3(imageLoad(palette, ivec2(palette_count, 0)).rgb) / 255.0;
     vec3 diff = abs(screen_colour - closest_colour) / (palette_dropoff * 0.9 + 0.1);
     float closest_dist = max(diff.r, diff.g) + max(diff.g, diff.b) + max(diff.b, diff.r);
