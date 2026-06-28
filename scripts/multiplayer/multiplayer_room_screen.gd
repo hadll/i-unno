@@ -1,42 +1,53 @@
 class_name MultiplayerRoomScreen
 extends Node
 
-@export var lobby_player_scene: PackedScene
+const REQUIRED_PLAYERS := 2
 
-@onready var start: VBoxContainer = $Start
-@onready var lobby: VBoxContainer = $Lobby
+@export var lobby_player_scene: PackedScene
+@export var game_scene: PackedScene
+
+@onready var start_section: VBoxContainer = $Start
+@onready var lobby_section: VBoxContainer = $Lobby
 @onready var players_list: VBoxContainer = $Lobby/PlayersList
 
 @onready var room_code_display: Label = $Lobby/RoomCode
 @onready var room_code_input: LineEdit = $Start/RoomCodeInput
 @onready var username_input: LineEdit = $Options/UsernameInput
+@onready var start_button: Button = $Lobby/StartButton
 
 var lobby_players: Dictionary[String, LobbyPlayer] = {}
 
 func _ready() -> void:
 	MultiplayerConnection.players_changed.connect(refresh_lobby)
+	MultiplayerConnection.game_state_changed.connect(game_state_changed)
 	change_username("")
+
+func game_state_changed(to: String) -> void:
+	if to == "game":
+		get_tree().change_scene_to_packed(game_scene)
 
 func host() -> void:
 	await MultiplayerConnection.host_room()
+	start_button.show()
 	show_lobby()
 
 func join() -> void:
 	if await MultiplayerConnection.join_room(room_code_input.text):
+		start_button.hide()
 		show_lobby()
 
 func show_lobby() -> void:
 	room_code_display.text = MultiplayerConnection.room_code
 	MultiplayerConnection.check_for_updates()
-	lobby.show()
-	start.hide()
+	lobby_section.show()
+	start_section.hide()
 
 func show_start() -> void:
 	for lobby_player in lobby_players.values():
 		lobby_player.queue_free()
 	lobby_players.clear()
-	lobby.hide()
-	start.show()
+	lobby_section.hide()
+	start_section.show()
 
 func refresh_lobby(all_player_data: Array) -> void:
 	var left := lobby_players.keys()
@@ -50,6 +61,7 @@ func refresh_lobby(all_player_data: Array) -> void:
 	for removed in left:
 		lobby_players[removed].queue_free()
 		lobby_players.erase(removed)
+	start_button.disabled = len(all_player_data) < REQUIRED_PLAYERS
 
 func change_username(to: String) -> void:
 	to = to.strip_edges()
@@ -62,3 +74,6 @@ func change_username(to: String) -> void:
 func username_touched(started: bool) -> void:
 	if not started:
 		change_username(username_input.text)
+
+func start() -> void:
+	MultiplayerConnection.start_game()

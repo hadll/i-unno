@@ -5,6 +5,10 @@ const ROOM_SCALE := Vector3i(5, 5, 5)
 
 @onready var level_generator: LevelGenerator = $LevelGenerator
 
+
+func _ready() -> void:
+	generate()
+
 func generate() -> void:
 	level_generator.generate()
 	for room_def in level_generator.rooms:

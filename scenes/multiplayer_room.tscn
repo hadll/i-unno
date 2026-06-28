@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1f87nxncxmf3" path="res://scripts/multiplayer/multiplayer_room_screen.gd" id="1_7q14u"]
 [ext_resource type="PackedScene" uid="uid://ortc1uhcfowp" path="res://scenes/lobby_player.tscn" id="2_ugdk5"]
-[ext_resource type="Script" uid="uid://bwylegauw8d3y" path="res://scripts/triggers/global_click_trigger.gd" id="3_05k0u"]
-[ext_resource type="Script" uid="uid://c7n73q285n0hx" path="res://scripts/multiplayer_flag_setter.gd" id="4_hwgj2"]
-[ext_resource type="Script" uid="uid://bo80mbsdidmdo" path="res://scripts/triggers/multiplayer_flag_trigger.gd" id="5_1iiay"]
-[ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="6_ak0ox"]
+[ext_resource type="PackedScene" uid="uid://fq52ykjqm3oj" path="res://scenes/playground_chloe.tscn" id="3_sm5bm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font_size = 40
@@ -18,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7q14u")
 lobby_player_scene = ExtResource("2_ugdk5")
+game_scene = ExtResource("3_sm5bm")
 
 [node name="Start" type="VBoxContainer" parent="." unique_id=1303817634]
 custom_minimum_size = Vector2(256, 0)
@@ -40,6 +38,7 @@ text = "JOIN"
 
 [node name="Lobby" type="VBoxContainer" parent="." unique_id=998892012]
 visible = false
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 
 [node name="RoomCode" type="Label" parent="Lobby" unique_id=1705303308]
@@ -50,7 +49,14 @@ label_settings = SubResource("LabelSettings_g4v7s")
 [node name="PlayersList" type="VBoxContainer" parent="Lobby" unique_id=1160323352]
 layout_mode = 2
 
+[node name="StartButton" type="Button" parent="Lobby" unique_id=1930628669]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "START"
+
 [node name="Options" type="VBoxContainer" parent="." unique_id=277282943]
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 
 [node name="UsernameInput" type="LineEdit" parent="Options" unique_id=412031614]
@@ -58,28 +64,7 @@ layout_mode = 2
 placeholder_text = "Username"
 max_length = 32
 
-[node name="GlobalClickTrigger" type="Node3D" parent="." unique_id=1729891799]
-script = ExtResource("3_05k0u")
-button = 2
-metadata/_custom_type_script = "uid://bwylegauw8d3y"
-
-[node name="MultiplayerFlagSetter" type="Node" parent="." unique_id=1757221961 node_paths=PackedStringArray("trigger")]
-script = ExtResource("4_hwgj2")
-trigger = NodePath("../GlobalClickTrigger")
-flag = "test"
-metadata/_custom_type_script = "uid://c7n73q285n0hx"
-
-[node name="MultiplayerFlagTrigger" type="Node3D" parent="." unique_id=1212086317]
-script = ExtResource("5_1iiay")
-flag = "test"
-metadata/_custom_type_script = "uid://bo80mbsdidmdo"
-
-[node name="DebugPrint" type="Node" parent="." unique_id=593035956 node_paths=PackedStringArray("trigger")]
-script = ExtResource("6_ak0ox")
-trigger = NodePath("../MultiplayerFlagTrigger")
-print_text = "TEST WORKED"
-metadata/_custom_type_script = "uid://daowwhg8fxkuo"
-
 [connection signal="pressed" from="Start/Host" to="." method="host"]
 [connection signal="pressed" from="Start/Join" to="." method="join"]
+[connection signal="pressed" from="Lobby/StartButton" to="." method="start"]
 [connection signal="editing_toggled" from="Options/UsernameInput" to="." method="username_touched"]

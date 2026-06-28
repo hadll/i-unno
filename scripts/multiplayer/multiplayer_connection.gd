@@ -1,5 +1,8 @@
 extends Node
+## emitted when any data about players changes
 signal players_changed(players: Array[Dictionary])
+## emitted when the game state changes
+signal game_state_changed(new_state: String)
 ## emitted when a multiplayer flag is queried with a different value
 signal flag_updated(updated: String, value: bool)
 
@@ -10,6 +13,7 @@ var http: HTTPRequest
 var timer: Timer
 var current_room_data: Dictionary = {
 	"players": [],
+	"state": "",
 	"flags": {}
 }
 var room_code: String
@@ -65,6 +69,7 @@ func check_for_updates() -> void:
 	if not room_data:
 		return
 	var players: Array = room_data["players"]
+	var state: String = room_data["state"]
 	var flags: Dictionary = room_data["flags"]
 	if len(players) != len(current_room_data["players"]):
 		players_changed.emit(players)
@@ -75,20 +80,18 @@ func check_for_updates() -> void:
 				players[i]["id"] == current_room_data["players"][i]["id"] and
 				players[i]["name"] == current_room_data["players"][i]["name"]
 			):
-				players_changed.emit(players)
 				current_room_data["players"] = players
+				players_changed.emit(players)
 				break
-		
+	
+	if state != current_room_data["state"]:
+		game_state_changed.emit(state)
+		current_room_data["state"] = state
+	
 	for flag in flags:
 		if flags[flag] != current_room_data["flags"].get(flag, false):
 			current_room_data["flags"][flag] = flags[flag]
 			flag_updated.emit(flag, flags[flag])
-
-func on_game_started() -> void:
-	in_game = true
-	
-func on_game_stopped() -> void:
-	in_game = false
 
 func on_room_entered() -> void:
 	in_room = true
@@ -115,6 +118,10 @@ func join_room(code: String) -> bool:
 	on_room_entered()
 	if LOG_MULTIPLAYER: print("Joining Room. Code: %s" % room_code)
 	return true
+
+func start_game() -> void:
+	var _response = await request("start_game", room_code)
+	if LOG_MULTIPLAYER: print("Starting Game")
 
 func query_room() -> Dictionary:
 	if in_room:

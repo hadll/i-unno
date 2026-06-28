@@ -53,7 +53,12 @@ static func dir_angle(dir: Direction) -> float:
 			return TAU*3/4
 
 func generate() -> void:
-	while not try_generate(randi()):
+	var seed_finder := RandomNumberGenerator.new()
+	if MultiplayerConnection.in_room:
+		seed_finder.seed = hash(MultiplayerConnection.room_code)
+	else:
+		seed_finder.seed = randi()
+	while not try_generate(seed_finder.randi()):
 		if LOG_GEN: print("Generation Failed... Retrying")
 	if LOG_GEN: print("Generation Done")
 
@@ -138,6 +143,7 @@ func try_generate(seed_value: int) -> bool:
 func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorDef, must_continue := false) -> bool:
 	if must_continue and room_def.doors[len(room_def.doors) - 1].get_target() in spaces:
 		return false
+	# filter fitting
 	var min_added := min_placed
 	var max_added := max_placed
 	for cell in room_def.shape:
@@ -149,6 +155,14 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 			return false
 		min_added = min_added.min(cell)
 		max_added = max_added.max(cell)
+	# filter non matching doors
+	if important_door:
+		var important_door_target := important_door.get_target()
+		for door in unfilled_doors:
+			if door.from == important_door_target and door.get_target() == important_door.from:
+				if door.type != important_door.type:
+					return false
+		
 	min_placed = min_added
 	max_placed = max_added
 	rooms[room_def] = section_def
@@ -159,20 +173,23 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 	for door in room_def.doors:
 		unfilled_doors.append(door)
 	
+	# find now blocked doors
 	var filled_doors: Array[DoorDef] = []
 	for door in unfilled_doors:
 		if door.get_target() in spaces:
 			filled_doors.append(door)
+	# find door pairs that connect
 	var connected_rooms: Array[RoomDef] = []
 	var paired_doors: Array[int] = []
 	for door_index in len(filled_doors):
 		if door_index in paired_doors:
 			continue
 		var door := filled_doors[door_index]
+		var door_target := door.get_target()
 		unfilled_doors.erase(door)
 		for pair_index in range(door_index + 1, len(filled_doors)):
 			var pair := filled_doors[door_index]
-			if door.get_target() == pair.from and pair.get_target() == door.from:
+			if door.type == pair.type and door_target == pair.from and pair.get_target() == door.from:
 				paired_doors.append(door_index)
 				paired_doors.append(pair_index)
 				if door == important_door or rng.randf() < (
@@ -183,13 +200,14 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 					doors[door] = true
 					connected_rooms.append(spaces[door.from])
 				break
+	# remove unpaired doors
 	for door_index in len(filled_doors):
 		if door_index in paired_doors:
 			continue
 		var door := filled_doors[door_index]
 		if door not in doors:
 			doors[door] = false
-	
+	# reset for next section
 	if must_continue:
 		unfilled_doors = [room_def.doors[len(room_def.doors) - 1]]
 	return true
