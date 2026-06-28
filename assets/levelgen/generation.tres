@@ -1,6 +1,8 @@
 [gd_resource type="Resource" script_class="GenerationDef" format=3 uid="uid://dix18e35cxckh"]
 
+[ext_resource type="PackedScene" uid="uid://v1p5b0d7c0vt" path="res://scenes/doors/door_standard.tscn" id="1_3l3m0"]
 [ext_resource type="Script" uid="uid://b5v713p1rgt3e" path="res://scripts/levelgen/generation_def.gd" id="1_5kpg1"]
+[ext_resource type="PackedScene" uid="uid://00uhsnlqm2fx" path="res://scenes/doors/door_wall.tscn" id="2_b2the"]
 [ext_resource type="Script" uid="uid://gh8ikjeckkx" path="res://scripts/levelgen/section_def.gd" id="2_kvr5c"]
 [ext_resource type="Resource" uid="uid://d3rmh0k0m520c" path="res://assets/levelgen/rooms/start.tres" id="2_rvjtp"]
 [ext_resource type="Resource" uid="uid://b4616u37fray3" path="res://assets/levelgen/first_section.tres" id="3_3l3m0"]
@@ -10,4 +12,8 @@ script = ExtResource("1_5kpg1")
 map_size = Vector3i(15, 2, 15)
 start = ExtResource("2_rvjtp")
 sections = Array[ExtResource("2_kvr5c")]([ExtResource("3_3l3m0")])
+door_scenes = Dictionary[int, PackedScene]({
+0: ExtResource("1_3l3m0"),
+1: ExtResource("2_b2the")
+})
 metadata/_custom_type_script = "uid://b5v713p1rgt3e"

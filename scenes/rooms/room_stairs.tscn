@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b01rh3gn3kpkw"]
 
-[ext_resource type="PackedScene" uid="uid://dnyct1d4f44bs" path="res://scenes/room.tscn" id="1_ded7l"]
+[ext_resource type="PackedScene" uid="uid://dnyct1d4f44bs" path="res://scenes/rooms/room.tscn" id="1_ded7l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rkmfa"]
 size = Vector3(5, 1, 5)

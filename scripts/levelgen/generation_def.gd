@@ -7,3 +7,5 @@ extends Resource
 @export var start: RoomDef
 ## sections, in order
 @export var sections: Array[SectionDef]
+## scenes for door types
+@export var door_scenes: Dictionary[LevelGenerator.DoorType, PackedScene]

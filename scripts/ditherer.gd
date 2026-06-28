@@ -62,6 +62,8 @@ func _render_callback(called_effect_callback_type: int, render_data: RenderData)
 	if called_effect_callback_type != EFFECT_CALLBACK_TYPE_POST_TRANSPARENT:
 		push_error("wrong callback")
 		return
+	if not rd:
+		return
 	var render_scene_buffers: RenderSceneBuffersRD = render_data.get_render_scene_buffers()
 	var render_scene_data := render_data.get_render_scene_data()
 	
@@ -108,7 +110,7 @@ func _render_callback(called_effect_callback_type: int, render_data: RenderData)
 		dither_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_IMAGE
 		dither_uniform.binding = 3
 		dither_uniform.add_id(dither_buffer)
-			
+		
 		uniform_set = rd.uniform_set_create([
 			texture_uniform,
 			depth_uniform,

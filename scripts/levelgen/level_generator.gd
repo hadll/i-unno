@@ -12,6 +12,7 @@ enum Direction {
 }
 enum DoorType {
 	STANDARD = 0,
+	WALL = 1,
 }
 
 @export var gen: GenerationDef
@@ -19,7 +20,7 @@ enum DoorType {
 var spaces: Dictionary[Vector3i, RoomDef]
 var unfilled_doors: Array[DoorDef]
 var rooms: Dictionary[RoomDef, SectionDef]
-var doors: Dictionary[DoorDef, bool]
+var doors: Dictionary[DoorDef, SectionDef]
 var min_placed: Vector3i
 var max_placed: Vector3i
 var level_seed: int
@@ -182,22 +183,23 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 	var connected_rooms: Array[RoomDef] = []
 	var paired_doors: Array[int] = []
 	for door_index in len(filled_doors):
+		var door := filled_doors[door_index]
 		if door_index in paired_doors:
 			continue
-		var door := filled_doors[door_index]
 		var door_target := door.get_target()
-		unfilled_doors.erase(door)
 		for pair_index in range(door_index + 1, len(filled_doors)):
-			var pair := filled_doors[door_index]
+			var pair := filled_doors[pair_index]
 			if door.type == pair.type and door_target == pair.from and pair.get_target() == door.from:
 				paired_doors.append(door_index)
 				paired_doors.append(pair_index)
 				if door == important_door or rng.randf() < (
-					section_def.duplicate_door_chance 
+					section_def.duplicate_door_chance
 					if spaces[door.from] in connected_rooms else 
 					section_def.extra_door_chance
 				):
-					doors[door] = true
+					unfilled_doors.erase(door)
+					unfilled_doors.erase(pair)
+					doors[door] = section_def
 					connected_rooms.append(spaces[door.from])
 				break
 	# remove unpaired doors
@@ -205,8 +207,9 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		if door_index in paired_doors:
 			continue
 		var door := filled_doors[door_index]
-		if door not in doors:
-			doors[door] = false
+		door.type = DoorType.WALL
+		unfilled_doors.erase(door)
+		doors[door] = section_def
 	# reset for next section
 	if must_continue:
 		unfilled_doors = [room_def.doors[len(room_def.doors) - 1]]

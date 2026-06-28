@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b5nlebb0xto7f"]
+
+[ext_resource type="Script" uid="uid://ue6j5ptyvxti" path="res://scripts/levelgen/door.gd" id="1_hpvv5"]
+
+[node name="Door" type="Node3D" unique_id=2032502056]
+script = ExtResource("1_hpvv5")

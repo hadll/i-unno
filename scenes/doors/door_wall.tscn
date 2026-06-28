@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://00uhsnlqm2fx"]
+
+[ext_resource type="PackedScene" uid="uid://b5nlebb0xto7f" path="res://scenes/doors/door.tscn" id="1_crc6u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i66w7"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ujsou"]
+size = Vector3(1, 5, 5)
+
+[node name="DoorWall" unique_id=2032502056 instance=ExtResource("1_crc6u")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0" unique_id=188380197]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=913630713]
+shape = SubResource("BoxShape3D_i66w7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" index="1" unique_id=1922969277]
+mesh = SubResource("BoxMesh_ujsou")
