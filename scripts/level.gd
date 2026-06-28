@@ -18,7 +18,6 @@ func generate() -> void:
 		var room: Room = room_def.scene.instantiate()
 		room.position = Vector3(room_def.pos) * ROOM_SCALE
 		room.rotation.y = -LevelGenerator.dir_angle(room_def.pos_x_dir)
-		room.scale = Vector3(0.9, 0.9, 0.9)
 		add_child(room)
 		room.generate(section_def, placement_rng)
 	for door_def in level_generator.doors:
