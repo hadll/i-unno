@@ -32,7 +32,11 @@ metadata/_custom_type_script = "uid://y8yqh08fax47"
 [sub_resource type="Compositor" id="Compositor_in4ui"]
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5fn")])
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frh1e"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_s8xio"]
+material = SubResource("StandardMaterial3D_frh1e")
 flip_faces = true
 radius = 50.0
 height = 100.0
@@ -115,7 +119,8 @@ transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70
 mesh = SubResource("BoxMesh_s8xio")
 
 [node name="SecurityDoor" parent="." unique_id=1712412024 node_paths=PackedStringArray("triggers") instance=ExtResource("8_fmddn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9730492, 0.7408118, 0.2910595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9730492, -1.2628686, 0.2910595)
+condition = 4
 triggers = [NodePath("../GlobalKeyTrigger")]
 
 [node name="GlobalKeyTrigger" type="Node3D" parent="." unique_id=2052040546]
@@ -132,4 +137,6 @@ light_energy = 6.046
 omni_range = 8.606912
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=952926028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018257856, 1.1920929e-07, -0.0017261505)
 mesh = SubResource("SphereMesh_s8xio")
+metadata/_edit_lock_ = true
