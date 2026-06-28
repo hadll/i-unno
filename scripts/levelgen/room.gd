@@ -5,7 +5,7 @@ extends Node3D
 @export var meshes_wall: Array[MeshInstance3D]
 @export var meshes_floor: Array[MeshInstance3D]
 
-func generate(section_def: SectionDef) -> void:
+func generate(section_def: SectionDef, _rng: RandomNumberGenerator) -> void:
 	for mesh in meshes_wall:
 		mesh.material_override = section_def.material_wall
 	for mesh in meshes_floor:

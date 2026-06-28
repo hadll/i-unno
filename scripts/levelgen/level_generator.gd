@@ -53,7 +53,7 @@ static func dir_angle(dir: Direction) -> float:
 		_:
 			return TAU*3/4
 
-func generate() -> void:
+func generate() -> int:
 	var seed_finder := RandomNumberGenerator.new()
 	if MultiplayerConnection.in_room:
 		seed_finder.seed = hash(MultiplayerConnection.room_code)
@@ -62,6 +62,7 @@ func generate() -> void:
 	while not try_generate(seed_finder.randi()):
 		if LOG_GEN: print("Generation Failed... Retrying")
 	if LOG_GEN: print("Generation Done")
+	return seed_finder.randi()
 
 func try_generate(seed_value: int) -> bool:
 	spaces = {}

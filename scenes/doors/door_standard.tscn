@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://v1p5b0d7c0vt"]
 
 [ext_resource type="PackedScene" uid="uid://b5nlebb0xto7f" path="res://scenes/doors/door.tscn" id="1_g6es6"]
+[ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="2_de7h5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-size = Vector3(0.5, 3, 3)
-
-[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(0.5, 3, 3)
 
 [node name="DoorStandard" unique_id=2032502056 instance=ExtResource("1_g6es6")]
@@ -13,7 +11,7 @@ size = Vector3(0.5, 3, 3)
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="0" unique_id=577448968]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=102676518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_g4v7s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" index="1" unique_id=1628612524]
-mesh = SubResource("BoxMesh_g4v7s")
+[node name="SecurityDoor" parent="." index="1" unique_id=1712412024 instance=ExtResource("2_de7h5")]

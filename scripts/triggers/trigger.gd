@@ -1,6 +1,6 @@
 @icon("res://assets/icons/trigger.png")
 class_name Trigger
-extends Node
+extends Node3D
 
 ## Fires once at the start of the event
 signal trigger_start(t: Trigger)
