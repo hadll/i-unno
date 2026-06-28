@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b1f87nxncxmf3" path="res://scripts/multiplayer/multiplayer_room_screen.gd" id="1_7q14u"]
 [ext_resource type="PackedScene" uid="uid://ortc1uhcfowp" path="res://scenes/lobby_player.tscn" id="2_ugdk5"]
+[ext_resource type="Script" uid="uid://bwylegauw8d3y" path="res://scripts/triggers/global_click_trigger.gd" id="3_05k0u"]
+[ext_resource type="Script" uid="uid://c7n73q285n0hx" path="res://scripts/multiplayer_flag_setter.gd" id="4_hwgj2"]
+[ext_resource type="Script" uid="uid://bo80mbsdidmdo" path="res://scripts/triggers/multiplayer_flag_trigger.gd" id="5_1iiay"]
+[ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="6_ak0ox"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font_size = 40
@@ -54,10 +58,28 @@ layout_mode = 2
 placeholder_text = "Username"
 max_length = 32
 
-[node name="LobbyRefreshTimer" type="Timer" parent="." unique_id=1852848309]
-wait_time = 3.0
+[node name="GlobalClickTrigger" type="Node3D" parent="." unique_id=1729891799]
+script = ExtResource("3_05k0u")
+button = 2
+metadata/_custom_type_script = "uid://bwylegauw8d3y"
+
+[node name="MultiplayerFlagSetter" type="Node" parent="." unique_id=1757221961 node_paths=PackedStringArray("trigger")]
+script = ExtResource("4_hwgj2")
+trigger = NodePath("../GlobalClickTrigger")
+flag = "test"
+metadata/_custom_type_script = "uid://c7n73q285n0hx"
+
+[node name="MultiplayerFlagTrigger" type="Node3D" parent="." unique_id=1212086317]
+script = ExtResource("5_1iiay")
+flag = "test"
+metadata/_custom_type_script = "uid://bo80mbsdidmdo"
+
+[node name="DebugPrint" type="Node" parent="." unique_id=593035956 node_paths=PackedStringArray("trigger")]
+script = ExtResource("6_ak0ox")
+trigger = NodePath("../MultiplayerFlagTrigger")
+print_text = "TEST WORKED"
+metadata/_custom_type_script = "uid://daowwhg8fxkuo"
 
 [connection signal="pressed" from="Start/Host" to="." method="host"]
 [connection signal="pressed" from="Start/Join" to="." method="join"]
 [connection signal="editing_toggled" from="Options/UsernameInput" to="." method="username_touched"]
-[connection signal="timeout" from="LobbyRefreshTimer" to="." method="refresh_lobby"]

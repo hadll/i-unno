@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="9_qokby"]
 [ext_resource type="PackedScene" uid="uid://dfl0ouravh1mb" path="res://scenes/level.tscn" id="10_lrhon"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
+[ext_resource type="PackedScene" uid="uid://ct1lqsxda07u3" path="res://scenes/multiplayer_room.tscn" id="11_lrhon"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
 
@@ -130,3 +131,5 @@ compositor = SubResource("Compositor_g4v7s")
 
 [node name="Level" parent="." unique_id=862827639 instance=ExtResource("10_lrhon")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.656041, 0, 0)
+
+[node name="MultiplayerRoomScreen" parent="." unique_id=2106433219 instance=ExtResource("11_lrhon")]

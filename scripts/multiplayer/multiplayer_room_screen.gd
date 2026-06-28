@@ -10,11 +10,11 @@ extends Node
 @onready var room_code_display: Label = $Lobby/RoomCode
 @onready var room_code_input: LineEdit = $Start/RoomCodeInput
 @onready var username_input: LineEdit = $Options/UsernameInput
-@onready var lobby_refresh_timer: Timer = $LobbyRefreshTimer
 
 var lobby_players: Dictionary[String, LobbyPlayer] = {}
 
 func _ready() -> void:
+	MultiplayerConnection.players_changed.connect(refresh_lobby)
 	change_username("")
 
 func host() -> void:
@@ -27,8 +27,7 @@ func join() -> void:
 
 func show_lobby() -> void:
 	room_code_display.text = MultiplayerConnection.room_code
-	refresh_lobby()
-	lobby_refresh_timer.start()
+	MultiplayerConnection.check_for_updates()
 	lobby.show()
 	start.hide()
 
@@ -39,9 +38,7 @@ func show_start() -> void:
 	lobby.hide()
 	start.show()
 
-func refresh_lobby() -> void:
-	var lobby_data := await MultiplayerConnection.query_room()
-	var all_player_data: Array = lobby_data["players"]
+func refresh_lobby(all_player_data: Array) -> void:
 	var left := lobby_players.keys()
 	for player_data: Dictionary in all_player_data:
 		if player_data["id"] not in lobby_players:

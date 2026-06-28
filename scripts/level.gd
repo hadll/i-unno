@@ -5,8 +5,7 @@ const ROOM_SCALE := Vector3i(5, 5, 5)
 
 @onready var level_generator: LevelGenerator = $LevelGenerator
 
-func _ready() -> void:
-	await get_tree().process_frame
+func generate() -> void:
 	level_generator.generate()
 	for room_def in level_generator.rooms:
 		var section_def := level_generator.rooms[room_def]

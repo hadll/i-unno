@@ -22,6 +22,8 @@ var rooms: Dictionary[RoomDef, SectionDef]
 var doors: Dictionary[DoorDef, bool]
 var min_placed: Vector3i
 var max_placed: Vector3i
+var level_seed: int
+var rng: RandomNumberGenerator
 
 static func dir_rotate(pos_x_dir: Direction, new_pos_x_dir: Direction) -> Direction:
 	return posmod(pos_x_dir - new_pos_x_dir, 4) as Direction
@@ -51,17 +53,20 @@ static func dir_angle(dir: Direction) -> float:
 			return TAU*3/4
 
 func generate() -> void:
-	while not try_generate():
+	while not try_generate(randi()):
 		if LOG_GEN: print("Generation Failed... Retrying")
 	if LOG_GEN: print("Generation Done")
 
-func try_generate() -> bool:
+func try_generate(seed_value: int) -> bool:
 	spaces = {}
 	unfilled_doors = []
 	rooms = {}
 	doors = {}
 	min_placed = Vector3i.ZERO
 	max_placed = Vector3i.ZERO
+	level_seed = seed_value
+	rng = RandomNumberGenerator.new()
+	rng.seed = seed_value
 	
 	try_place(gen.start, gen.sections[0], null)
 	var existing_density := 0.0
@@ -70,24 +75,24 @@ func try_generate() -> bool:
 		if LOG_GEN: print("Generating Section %s" % section_def.name)
 		var holes: Array[Vector2i] = []
 		for i in section_def.hole_density * gen.map_size.x * gen.map_size.z * 4:
-			var at := Vector2i(randi() % (gen.map_size.x * 2) - gen.map_size.x, randi() % (gen.map_size.z * 2) - gen.map_size.z)
+			var at := Vector2i(rng.randi() % (gen.map_size.x * 2) - gen.map_size.x, rng.randi() % (gen.map_size.z * 2) - gen.map_size.z)
 			if at in holes:
 				continue
 			holes.append(at)
-			var size := int(randf() * (1 + section_def.hole_size))
+			var size := int(rng.randf() * (1 + section_def.hole_size))
 			for j in size:
-				at += Vector2i(randi() % 3 - 1, randi() % 3 - 1)
+				at += Vector2i(rng.randi() % 3 - 1, rng.randi() % 3 - 1)
 				if at in holes:
 					continue
 				holes.append(at)
 		
 		var consecutive_fails := 0
 		while get_density() - existing_density <= section_def.required_density:
-			var start_door_index = int(randf()**(1 - section_def.sprawl) * len(unfilled_doors))
+			var start_door_index = int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors))
 			var start_door := unfilled_doors[start_door_index]
-			var room_index = randi() % len(section_def.rooms)
+			var room_index = rng.randi() % len(section_def.rooms)
 			var room := section_def.rooms[room_index]
-			var end_door_index = randi() % len(room.doors)
+			var end_door_index = rng.randi() % len(room.doors)
 			var end_door := room.doors[end_door_index]
 			var transformed := room.transform(
 				end_door.from, 
@@ -111,9 +116,9 @@ func try_generate() -> bool:
 			return a.from.distance_squared_to(section_start_rough) > b.from.distance_squared_to(section_start_rough)
 		)
 		while true:
-			var start_door_index = int(randf() * (1 - section_def.end_depth) * len(unfilled_doors))
+			var start_door_index = int(rng.randf() * (1 - section_def.end_depth) * len(unfilled_doors))
 			var start_door := unfilled_doors[start_door_index]
-			var end_door_index = randi() % (len(section_def.end.doors) - 1)
+			var end_door_index = rng.randi() % (len(section_def.end.doors) - 1)
 			var end_door := section_def.end.doors[end_door_index]
 			var transformed := section_def.end.transform(
 				end_door.from, 
@@ -170,7 +175,7 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 			if door.get_target() == pair.from and pair.get_target() == door.from:
 				paired_doors.append(door_index)
 				paired_doors.append(pair_index)
-				if door == important_door or randf() < (
+				if door == important_door or rng.randf() < (
 					section_def.duplicate_door_chance 
 					if spaces[door.from] in connected_rooms else 
 					section_def.extra_door_chance
