@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://qmbgnnxn3kip"]
-
-[ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/triggers/trigger.gd" id="1_du5ex"]
-
-[node name="Trigger" type="Node3D" unique_id=978072540]
-script = ExtResource("1_du5ex")
