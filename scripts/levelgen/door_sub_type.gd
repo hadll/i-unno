@@ -1,4 +1,4 @@
-class_name Door
+class_name DoorSubType
 extends Node3D
 
 func generate(_section_def: SectionDef, _rng: RandomNumberGenerator) -> void:

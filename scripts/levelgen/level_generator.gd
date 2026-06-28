@@ -213,6 +213,10 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		doors[door] = section_def
 	# reset for next section
 	if must_continue:
+		for door_index in len(unfilled_doors) - 1:
+			var door := unfilled_doors[door_index]
+			door.type = DoorType.WALL
+			doors[door] = section_def
 		unfilled_doors = [room_def.doors[len(room_def.doors) - 1]]
 	return true
 

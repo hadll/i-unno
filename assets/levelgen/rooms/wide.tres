@@ -28,12 +28,12 @@ metadata/_custom_type_script = "uid://jyutv7juuysb"
 
 [sub_resource type="Resource" id="Resource_88utw"]
 script = ExtResource("1_65pks")
-dir = 3
+dir = 1
 metadata/_custom_type_script = "uid://jyutv7juuysb"
 
 [sub_resource type="Resource" id="Resource_tk0t1"]
 script = ExtResource("1_65pks")
-dir = 2
+dir = 3
 metadata/_custom_type_script = "uid://jyutv7juuysb"
 
 [resource]
