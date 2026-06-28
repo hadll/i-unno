@@ -59,6 +59,8 @@ static func cond_nor(input: Dictionary[int, bool]) -> bool:
 func _ready():
 	for node in triggers:
 		connect_trigger(node)
+		triggered_triggers[node.get_instance_id()] = node.active
+	check_cond()
 
 func on_trigger_start(node: Trigger) -> void:
 	triggered_triggers[node.get_instance_id()] = true
