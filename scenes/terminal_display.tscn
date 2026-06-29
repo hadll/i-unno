@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://c75eqni3vr5ks"]
+
+[ext_resource type="Script" uid="uid://id2phn2ck8ag" path="res://scripts/terminal/terminal_display.gd" id="1_k6ius"]
+[ext_resource type="FontFile" uid="uid://c5jkmvx4sts05" path="res://assets/fonts/Mechanical.otf" id="2_06bkl"]
+[ext_resource type="FontFile" uid="uid://c1tkm8t2udyyr" path="res://assets/fonts/MechanicalBold.otf" id="3_8exin"]
+[ext_resource type="FontFile" uid="uid://uu3exw17m02j" path="res://assets/fonts/MechanicalBoldOblique.otf" id="4_u0ipa"]
+[ext_resource type="FontFile" uid="uid://dvqxtirfms1ku" path="res://assets/fonts/MechanicalOblique.otf" id="5_lorsi"]
+[ext_resource type="Script" uid="uid://cbto06xeb80ld" path="res://scripts/terminal/terminal_root_dir.gd" id="6_7j3o2"]
+[ext_resource type="Script" uid="uid://brtb5uyu08pxu" path="res://scripts/terminal/terminal_text_file.gd" id="7_gv23m"]
+[ext_resource type="Script" uid="uid://5mfiyh44bu0y" path="res://scripts/terminal/terminal_dir.gd" id="8_63nsn"]
+
+[node name="TerminalDisplay" type="PanelContainer" unique_id=387103375]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k6ius")
+
+[node name="ScreenText" type="RichTextLabel" parent="." unique_id=1334911848]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_06bkl")
+theme_override_fonts/bold_font = ExtResource("3_8exin")
+theme_override_fonts/bold_italics_font = ExtResource("4_u0ipa")
+theme_override_fonts/italics_font = ExtResource("5_lorsi")
+theme_override_fonts/mono_font = ExtResource("3_8exin")
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
+scroll_following_visible_characters = true
+autowrap_mode = 1
+autowrap_trim_flags = 0
+justification_flags = 0
+
+[node name="FileSystem" type="Node" parent="." unique_id=923089020]
+
+[node name="root" type="Node" parent="FileSystem" unique_id=95855335]
+script = ExtResource("6_7j3o2")
+metadata/_custom_type_script = "uid://cbto06xeb80ld"
+
+[node name="hello_world=txt" type="Node" parent="FileSystem/root" unique_id=427713209]
+script = ExtResource("7_gv23m")
+content = "This is a text file"
+metadata/_custom_type_script = "uid://brtb5uyu08pxu"
+
+[node name="dir" type="Node" parent="FileSystem/root" unique_id=1631843222]
+script = ExtResource("8_63nsn")
+metadata/_custom_type_script = "uid://5mfiyh44bu0y"
+
+[node name="test=txt" type="Node" parent="FileSystem/root/dir" unique_id=406712316]
+script = ExtResource("7_gv23m")
+content = "Another file"
+metadata/_custom_type_script = "uid://brtb5uyu08pxu"
