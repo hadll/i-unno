@@ -1,7 +1,7 @@
 class_name LevelGenerator
 extends Node
 
-const LOG_GEN := true
+const LOG_GEN := false
 const MAX_CONSECUTIVE_FAILS := 128
 
 enum Direction {

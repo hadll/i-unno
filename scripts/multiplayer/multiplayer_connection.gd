@@ -7,7 +7,7 @@ signal game_state_changed(new_state: String)
 signal flag_updated(updated: String, value: bool)
 
 const BASE_URL := "https://chloe.gregg.au/tasjam26/"
-const LOG_MULTIPLAYER := true
+const LOG_MULTIPLAYER := false
 
 var http: HTTPRequest
 var timer: Timer
