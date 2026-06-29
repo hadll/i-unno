@@ -31,14 +31,16 @@ var error_messages: Dictionary[TError, String] = {
 
 func run(command: String) -> void:
 	var args := command.split(" ", false)
-	if args[0].begins_with("./") or args[0].begins_with("/"):
-		var local_program := find(args[0])
-		if local_program:
-			run_item(local_program, args)
-	else:
-		var program := find(args[0], program_dir)
-		if program:
-			run_item(program, args)
+	if args:
+		if args[0].begins_with("./") or args[0].begins_with("/"):
+			var local_program := find(args[0])
+			if local_program:
+				run_item(local_program, args)
+		else:
+			var program := find(args[0], program_dir)
+			if program:
+				run_item(program, args)
+	
 	
 func run_item(item: TerminalItem, args: PackedStringArray) -> void:
 	if item is TerminalFile:
