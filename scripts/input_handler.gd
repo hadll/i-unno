@@ -9,6 +9,8 @@ signal stopped_looking_at(collider: CollisionObject3D)
 var looking_at: CollisionObject3D
 ## allow "looking" anywhere on the screen using mouse to interact with 3d objects
 var allow_free_mouse_look := true
+## disable all input handler methods (e.g. when using monitor)
+var disable_input := false
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"meta_exit"):
@@ -35,8 +37,25 @@ func update_look() -> void:
 			started_looking_at.emit(looking_at)
 
 func _input(event: InputEvent) -> void:
+	if disable_input:
+		return
 	if event is InputEventKey or event is InputEventMouseButton:
 		input.emit(event)
+
+func is_action_pressed(action: StringName, exact_match: bool = false) -> bool:
+	return false if disable_input else Input.is_action_pressed(action, exact_match)
+
+func is_action_just_pressed(action: StringName, exact_match: bool = false) -> bool:
+	return false if disable_input else Input.is_action_just_pressed(action, exact_match)
+
+func is_action_just_released(action: StringName, exact_match: bool = false) -> bool:
+	return false if disable_input else Input.is_action_just_released(action, exact_match)
+
+func get_vector(negative_x: StringName, positive_x: StringName, negative_y: StringName, positive_y: StringName, deadzone: float = -1.0) -> Vector2:
+	return Vector2.ZERO if disable_input else Input.get_vector(negative_x, positive_x, negative_y, positive_y, deadzone)
+
+func get_axis(negative_action: StringName, positive_action: StringName) -> float:
+	return 0.0 if disable_input else Input.get_axis(negative_action, positive_action)
 
 func capture_mouse() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

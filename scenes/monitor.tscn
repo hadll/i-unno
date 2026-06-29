@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ng5nu65d6a2w" path="res://scripts/monitor.gd" id="1_3jcr0"]
 [ext_resource type="PackedScene" uid="uid://c75eqni3vr5ks" path="res://scenes/terminal_display.tscn" id="1_gnqr3"]
+[ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/triggers/click_trigger_3d.gd" id="3_712wi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 
@@ -28,3 +29,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_d0u6y")
 [node name="SubViewport" type="SubViewport" parent="." unique_id=970360311]
 
 [node name="TerminalDisplay" parent="SubViewport" unique_id=387103375 instance=ExtResource("1_gnqr3")]
+
+[node name="ClickTrigger3D" type="Node3D" parent="." unique_id=2056104038 node_paths=PackedStringArray("collision_object")]
+script = ExtResource("3_712wi")
+button = 1
+collision_object = NodePath("..")
+metadata/_custom_type_script = "uid://c2vlk0ij1eiwu"

@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super(delta)
-	if Input.is_action_just_pressed(&"freecam_tp"):
+	if InputHandler.is_action_just_pressed(&"freecam_tp"):
 		body.global_position = freecam.global_position - camera_point.position
 		body.reset_physics_interpolation()
 		freecam_stop()
@@ -51,11 +51,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			rotate_camera(event.relative * 0.001)
 
 func _physics_process(delta: float) -> void:
-	var inp := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
-	var speed := sprint_speed if Input.is_action_pressed(&"move_sprint") and inp.y < 0 else walk_speed
+	var inp := InputHandler.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
+	var speed := sprint_speed if InputHandler.is_action_pressed(&"move_sprint") and inp.y < 0 else walk_speed
 	
 	if controlling_freecam:
-		var movement := Vector3(inp.x, Input.get_axis(&"move_crouch", &"move_jump"), inp.y)
+		var movement := Vector3(inp.x, InputHandler.get_axis(&"move_crouch", &"move_jump"), inp.y)
 		freecam.global_position += freecam.global_basis * movement * speed * 2 * delta
 		inp = Vector2.ZERO
 	
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	if body.is_on_floor():
 		if body.velocity.y < 0:
 			body.velocity.y = 0
-		if Input.is_action_just_pressed(&"move_crouch") and not controlling_freecam:
+		if InputHandler.is_action_just_pressed(&"move_crouch") and not controlling_freecam:
 			if crouched:
 				var query := PhysicsRayQueryParameters3D.new()
 				query.from = body.global_position + Vector3(0, crouch_height, 0)
@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 			crouching_collider.disabled = not crouched
 			standing_mesh.visible = not crouched
 			crouching_mesh.visible = crouched
-		if Input.is_action_pressed(&"move_jump") and not crouched and not controlling_freecam:
+		if InputHandler.is_action_pressed(&"move_jump") and not crouched and not controlling_freecam:
 			body.velocity.y = jump_force
 	elif not disable_gravity:
 		body.velocity.y -= gravity * delta

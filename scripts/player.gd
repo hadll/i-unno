@@ -15,12 +15,12 @@ func _init() -> void:
 	me = self
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(&"freecam_on"):
+	if InputHandler.is_action_just_pressed(&"freecam_on"):
 		if detached_freecam:
 			freecam_stop()
 		else:
 			freecam_start()
-	if Input.is_action_just_pressed(&"freecam_swap"):
+	if InputHandler.is_action_just_pressed(&"freecam_swap"):
 		controlling_freecam = not controlling_freecam
 
 func freecam_start() -> void:

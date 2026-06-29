@@ -2,17 +2,31 @@ class_name Monitor
 extends StaticBody3D
 
 @onready var terminal_display: TerminalDisplay = $SubViewport/TerminalDisplay
+@onready var start_using_trigger: Trigger = $ClickTrigger3D
+
+var focused := false
 
 func _ready() -> void:
-	InputHandler.started_looking_at.connect(func(collider: CollisionObject3D)-> void:
-		if collider == self:
-			InputHandler.input.connect(on_player_input)
-	)
-	InputHandler.stopped_looking_at.connect(func(collider: CollisionObject3D)-> void:
-		if collider == self:
-			InputHandler.input.disconnect(on_player_input)
-	)
+	start_using_trigger.trigger.connect(func(_t: Trigger) -> void: get_focus())
 
-func on_player_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	if not focused:
+		return
 	if event is InputEventKey:
 		terminal_display.key_input(event)
+	elif event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				release_focus()
+
+func get_focus() -> void:
+	if focused:
+		return
+	InputHandler.disable_input = true
+	focused = true
+
+func release_focus() -> void:
+	if not focused:
+		return
+	InputHandler.disable_input = false
+	focused = false
