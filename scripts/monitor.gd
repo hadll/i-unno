@@ -7,7 +7,7 @@ extends StaticBody3D
 var focused := false
 
 func _ready() -> void:
-	start_using_trigger.trigger.connect(func(_t: Trigger) -> void: get_focus())
+	start_using_trigger.trigger_start.connect(func(_t: Trigger) -> void: get_focus())
 
 func _input(event: InputEvent) -> void:
 	if not focused:
