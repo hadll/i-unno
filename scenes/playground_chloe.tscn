@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/triggers/key_trigger.gd" id="7_xcfhe"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/triggers/relay_trigger_3d.gd" id="8_ydey3"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="9_qokby"]
+[ext_resource type="PackedScene" uid="uid://dp50arh8m1yce" path="res://scenes/monitor.tscn" id="10_edks0"]
 [ext_resource type="PackedScene" uid="uid://dfl0ouravh1mb" path="res://scenes/level.tscn" id="10_lrhon"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
 
@@ -53,7 +54,7 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5f
 
 [node name="Level" type="Node3D" unique_id=1723509510]
 
-[node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_qokby")]
+[node name="MovingPlayer" parent="." unique_id=1396057957 instance=ExtResource("2_qokby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3534713, 0, 3.1232643)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=952792393]
@@ -127,3 +128,6 @@ compositor = SubResource("Compositor_g4v7s")
 
 [node name="Level" parent="." unique_id=862827639 instance=ExtResource("10_lrhon")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.656041, 0, 0)
+
+[node name="Monitor" parent="." unique_id=762516301 instance=ExtResource("10_edks0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
