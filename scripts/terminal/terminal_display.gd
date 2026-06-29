@@ -51,6 +51,7 @@ func key_input(event: InputEventKey) -> void:
 				screen_string = screen_string.substr(0, len(screen_string) - 4)
 			else:
 				screen_string = screen_string.substr(0, len(screen_string) - 1)
+			screen_text.text = "clear" # force a regeneration
 			screen_text.text = screen_string
 	elif event.keycode == Key.KEY_ENTER:
 		var command := screen_string.substr(typing_start_string_index).replace("[lb]", "[")
