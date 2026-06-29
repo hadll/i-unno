@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 MultiplayerConnection="*uid://c8esh1g6e111p"
 Terminal="*uid://ddklrxv22q5q0"
+InputHandler="*uid://brqgb7la2atw4"
 
 [editor_plugins]
 

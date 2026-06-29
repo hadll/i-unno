@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cuiqnc7ir6lns"]
+
+[ext_resource type="Script" uid="uid://dgymm6mt6o3t0" path="res://scripts/moving_player.gd" id="1_3mr7f"]
+[ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="2_1e7h7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p0vlq"]
+height = 1.4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v6fml"]
+height = 1.4
+
+[node name="MovingPlayer" type="Node3D" unique_id=1745051212 node_paths=PackedStringArray("body", "standing_collider", "crouching_collider", "standing_mesh", "crouching_mesh", "camera_point", "freecam")]
+script = ExtResource("1_3mr7f")
+body = NodePath("Body")
+standing_collider = NodePath("Body/StandingCollider")
+crouching_collider = NodePath("Body/CrouchingCollider")
+standing_mesh = NodePath("Body/StandingMesh")
+crouching_mesh = NodePath("Body/CrouchingMesh")
+camera_point = NodePath("Body/CameraPoint")
+freecam = NodePath("FreeCamera")
+
+[node name="Body" type="CharacterBody3D" parent="." unique_id=1396057957]
+
+[node name="StandingCollider" type="CollisionShape3D" parent="Body" unique_id=1420479490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99973834, 0)
+shape = SubResource("CapsuleShape3D_3vyb7")
+
+[node name="CrouchingCollider" type="CollisionShape3D" parent="Body" unique_id=2142679757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99973834, 0)
+shape = SubResource("CapsuleShape3D_p0vlq")
+disabled = true
+
+[node name="StandingMesh" type="MeshInstance3D" parent="Body" unique_id=1842855089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99946284, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_3vyb7")
+
+[node name="CrouchingMesh" type="MeshInstance3D" parent="Body" unique_id=1758734265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99946284, 0)
+visible = false
+layers = 2
+mesh = SubResource("CapsuleMesh_v6fml")
+
+[node name="CameraPoint" type="Node3D" parent="Body" unique_id=1373649591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="PlayerCamera" type="Camera3D" parent="." unique_id=968239037]
+top_level = true
+current = true
+script = ExtResource("2_1e7h7")
+metadata/_custom_type_script = "uid://i4gm277hvbec"
+
+[node name="FreeCamera" type="Camera3D" parent="." unique_id=204704429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6119912, 0)

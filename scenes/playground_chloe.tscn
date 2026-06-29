@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://fq52ykjqm3oj"]
 
-[ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/player.tscn" id="2_qokby"]
-[ext_resource type="PackedScene" uid="uid://cpp00pkiooqn" path="res://scenes/player_camera.tscn" id="3_lrhon"]
+[ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/moving_player.tscn" id="2_qokby"]
 [ext_resource type="PackedScene" uid="uid://byjmbm80d52dt" path="res://scenes/code_tower.tscn" id="4_edks0"]
 [ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/triggers/click_trigger_3d.gd" id="5_04jj1"]
 [ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="6_nn1bs"]
@@ -53,8 +52,6 @@ metadata/_custom_type_script = "uid://y8yqh08fax47"
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5fn")])
 
 [node name="Level" type="Node3D" unique_id=1723509510]
-
-[node name="PlayerCamera" parent="." unique_id=700953360 instance=ExtResource("3_lrhon")]
 
 [node name="Player" parent="." unique_id=1396057957 instance=ExtResource("2_qokby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3534713, 0, 3.1232643)

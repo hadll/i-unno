@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://di52orq243m4u"]
+
+[ext_resource type="Script" uid="uid://d22dt3j63vbyj" path="res://scripts/office_player.gd" id="1_k1xg8"]
+[ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="2_4fwej"]
+
+[node name="OfficePlayer" type="Node3D" unique_id=808834498 node_paths=PackedStringArray("camera_point", "freecam")]
+script = ExtResource("1_k1xg8")
+camera_point = NodePath("CameraPoint")
+freecam = NodePath("FreeCamera")
+
+[node name="CameraPoint" type="Node3D" parent="." unique_id=1984453337]
+
+[node name="PlayerCamera" type="Camera3D" parent="." unique_id=105009619]
+top_level = true
+current = true
+script = ExtResource("2_4fwej")
+metadata/_custom_type_script = "uid://i4gm277hvbec"
+
+[node name="FreeCamera" type="Camera3D" parent="." unique_id=752729604]

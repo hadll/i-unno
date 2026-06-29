@@ -4,9 +4,8 @@
 [ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/triggers/trigger.gd" id="2_hub07"]
 [ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/triggers/auto_trigger.gd" id="3_2knxt"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="4_fmddn"]
-[ext_resource type="Script" uid="uid://cgxpwvnjty112" path="res://scripts/scene_camera.gd" id="4_hub07"]
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/triggers/global_key_trigger.gd" id="5_gdafm"]
-[ext_resource type="Script" uid="uid://d22dt3j63vbyj" path="res://scripts/office_player.gd" id="7_2knxt"]
+[ext_resource type="PackedScene" uid="uid://di52orq243m4u" path="res://scenes/office_player.tscn" id="6_fmddn"]
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="8_fmddn"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="9_gdafm"]
 
@@ -69,27 +68,21 @@ metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
 [node name="PlayerCameraOrigin" type="Node3D" parent="." unique_id=529024169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6034347, 0.8064978)
 
-[node name="ForwardAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=522636575 node_paths=PackedStringArray("camera", "trigger")]
+[node name="ForwardAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=522636575 node_paths=PackedStringArray("trigger")]
 transform = Transform3D(1, 0, 0, 0, 0.9947474, 0.10236038, 0, -0.10236038, 0.9947474, 0, 0, 0)
 script = ExtResource("4_fmddn")
-camera = NodePath("../../OfficePlayer/MainCamera")
-use_player_camera = false
 trigger = NodePath("../../CameraLookList/AutoTrigger")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
-[node name="RightAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=1092755529 node_paths=PackedStringArray("camera", "trigger")]
+[node name="RightAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=1092755529 node_paths=PackedStringArray("trigger")]
 transform = Transform3D(0.25000003, -0.06698731, -0.9659258, 0.35296312, 0.93526214, 0.026492827, 0.9016191, -0.3475594, 0.2574596, 0.13586831, 0.049428347, 0.106822856)
 script = ExtResource("4_fmddn")
-camera = NodePath("../../OfficePlayer/MainCamera")
-use_player_camera = false
 trigger = NodePath("../../CameraLookList/Trigger3")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
-[node name="LeftAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=2144118109 node_paths=PackedStringArray("camera", "trigger")]
+[node name="LeftAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=2144118109 node_paths=PackedStringArray("trigger")]
 transform = Transform3D(0.25000003, 0.06698731, 0.9659258, -0.35296312, 0.93526214, 0.026492827, -0.9016191, -0.3475594, 0.2574596, -0.13309617, 0.049483303, 0.107504494)
 script = ExtResource("4_fmddn")
-camera = NodePath("../../OfficePlayer/MainCamera")
-use_player_camera = false
 trigger = NodePath("../../CameraLookList/Trigger2")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
@@ -105,14 +98,7 @@ use_action = true
 action = &"office_look_right"
 metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
-[node name="OfficePlayer" type="CharacterBody3D" parent="." unique_id=1687200852]
-script = ExtResource("7_2knxt")
-metadata/_custom_type_script = "uid://d22dt3j63vbyj"
-
-[node name="MainCamera" type="Camera3D" parent="OfficePlayer" unique_id=1348444973]
-transform = Transform3D(1, 0, 0, 0, 0.99124557, 0.13203102, 0, -0.13203102, 0.99124557, 0, 0.61980224, 0.8019997)
-script = ExtResource("4_hub07")
-metadata/_custom_type_script = "uid://cgxpwvnjty112"
+[node name="OfficePlayer" parent="." unique_id=808834498 instance=ExtResource("6_fmddn")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1927505321]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0, -1.4142135)
