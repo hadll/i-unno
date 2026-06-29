@@ -4,6 +4,7 @@ extends Control
 @export var print_speed: float
 
 @onready var fs_root: TerminalRootDir = $FileSystem/root
+@onready var fs_home: TerminalHomeDir = $FileSystem/root/users/USERNAME
 @onready var fs_programs: TerminalDir = $FileSystem/root/bin
 
 @onready var screen_text: RichTextLabel = $ScreenText
@@ -17,8 +18,10 @@ var printing := false
 func _ready() -> void:
 	Terminal.printed_text.connect(print_text)
 	Terminal.root = fs_root
-	Terminal.cwd = fs_root
+	Terminal.home = fs_home
+	Terminal.cwd = fs_home
 	Terminal.program_dir = fs_programs
+	Terminal.prompt()
 
 func _process(delta: float) -> void:
 	if printing:

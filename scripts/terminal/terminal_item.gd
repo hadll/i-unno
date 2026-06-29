@@ -9,3 +9,7 @@ func move(parent: TerminalDir) -> void:
 		})
 		return
 	reparent(parent)
+
+func get_item_node_path() -> String:
+	var parent: TerminalItem = get_parent()
+	return parent.get_item_node_path() + name

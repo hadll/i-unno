@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://cbto06xeb80ld" path="res://scripts/terminal/terminal_root_dir.gd" id="6_7j3o2"]
 [ext_resource type="Script" uid="uid://brtb5uyu08pxu" path="res://scripts/terminal/terminal_text_file.gd" id="7_gv23m"]
 [ext_resource type="Script" uid="uid://5mfiyh44bu0y" path="res://scripts/terminal/terminal_dir.gd" id="8_63nsn"]
+[ext_resource type="Script" uid="uid://dakhpemcfrplg" path="res://scripts/terminal/programs/terminal_program_list.gd" id="9_06bkl"]
+[ext_resource type="Script" uid="uid://dfmnt25brihfc" path="res://scripts/terminal/terminal_home_dir.gd" id="9_lorsi"]
+[ext_resource type="Script" uid="uid://b7jijc0b2c1t2" path="res://scripts/terminal/programs/terminal_program_read.gd" id="10_8exin"]
+[ext_resource type="Script" uid="uid://vqy10jnesghe" path="res://scripts/terminal/programs/terminal_program_change_working_dir.gd" id="11_u0ipa"]
 
 [node name="TerminalDisplay" type="PanelContainer" unique_id=387103375]
 anchors_preset = 15
@@ -44,11 +48,15 @@ script = ExtResource("7_gv23m")
 content = "This is a text file"
 metadata/_custom_type_script = "uid://brtb5uyu08pxu"
 
-[node name="dir" type="Node" parent="FileSystem/root" unique_id=1631843222]
+[node name="users" type="Node" parent="FileSystem/root" unique_id=1631843222]
 script = ExtResource("8_63nsn")
 metadata/_custom_type_script = "uid://5mfiyh44bu0y"
 
-[node name="test=txt" type="Node" parent="FileSystem/root/dir" unique_id=406712316]
+[node name="USERNAME" type="Node" parent="FileSystem/root/users" unique_id=102234334]
+script = ExtResource("9_lorsi")
+metadata/_custom_type_script = "uid://dfmnt25brihfc"
+
+[node name="test=txt" type="Node" parent="FileSystem/root/users/USERNAME" unique_id=406712316]
 script = ExtResource("7_gv23m")
 content = "Another file"
 metadata/_custom_type_script = "uid://brtb5uyu08pxu"
@@ -56,3 +64,15 @@ metadata/_custom_type_script = "uid://brtb5uyu08pxu"
 [node name="bin" type="Node" parent="FileSystem/root" unique_id=1340922483]
 script = ExtResource("8_63nsn")
 metadata/_custom_type_script = "uid://5mfiyh44bu0y"
+
+[node name="ls" type="Node" parent="FileSystem/root/bin" unique_id=367801455]
+script = ExtResource("9_06bkl")
+metadata/_custom_type_script = "uid://dakhpemcfrplg"
+
+[node name="cat" type="Node" parent="FileSystem/root/bin" unique_id=2003867213]
+script = ExtResource("10_8exin")
+metadata/_custom_type_script = "uid://b7jijc0b2c1t2"
+
+[node name="cd" type="Node" parent="FileSystem/root/bin" unique_id=2002665477]
+script = ExtResource("11_u0ipa")
+metadata/_custom_type_script = "uid://vqy10jnesghe"
