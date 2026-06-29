@@ -64,7 +64,7 @@ func trans_name_node_to_item(node_name: String) -> String:
 	return node_name.replace_char("=".unicode_at(0), ".".unicode_at(0))
 
 func trans_name_item_to_node(item_name: String) -> String:
-	if item_name.contains("=:@/\"%"):
+	if item_name.contains(INVALID_NAME_CHARS):
 		out_error(TError.INVALID_NAME, {
 			"name": item_name,
 			"chars": INVALID_NAME_CHARS
