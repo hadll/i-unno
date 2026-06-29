@@ -94,6 +94,8 @@ func find(path: String, from: TerminalDir = null) -> TerminalItem:
 				"dir": Terminal.trans_name_node_to_item(at.name)
 			})
 			return null
+		while next is TerminalAlias:
+			next = next.item
 		if next is TerminalDir:
 			at = next
 		else:
@@ -102,6 +104,8 @@ func find(path: String, from: TerminalDir = null) -> TerminalItem:
 			})
 			return null
 	var found_item := at.find(spl[-1])
+	while found_item is TerminalAlias:
+		found_item = found_item.item
 	if not found_item:
 		out_error(TError.NOT_FOUND, {
 			"item": spl[-1],

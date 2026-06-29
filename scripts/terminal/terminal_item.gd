@@ -13,3 +13,6 @@ func move(parent: TerminalDir) -> void:
 func get_item_node_path() -> String:
 	var parent: TerminalItem = get_parent()
 	return parent.get_item_node_path() + name
+
+func get_display_name(_follow_alias := true) -> String:
+	return Terminal.trans_name_node_to_item(name)

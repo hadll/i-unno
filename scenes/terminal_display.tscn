@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dakhpemcfrplg" path="res://scripts/terminal/programs/terminal_program_list.gd" id="9_06bkl"]
 [ext_resource type="Script" uid="uid://dfmnt25brihfc" path="res://scripts/terminal/terminal_home_dir.gd" id="9_lorsi"]
 [ext_resource type="Script" uid="uid://b7jijc0b2c1t2" path="res://scripts/terminal/programs/terminal_program_read.gd" id="10_8exin"]
+[ext_resource type="Script" uid="uid://dh0apa0ooacre" path="res://scripts/terminal/terminal_alias.gd" id="11_7j3o2"]
 [ext_resource type="Script" uid="uid://vqy10jnesghe" path="res://scripts/terminal/programs/terminal_program_change_working_dir.gd" id="11_u0ipa"]
 
 [node name="TerminalDisplay" type="PanelContainer" unique_id=387103375]
@@ -69,10 +70,45 @@ metadata/_custom_type_script = "uid://5mfiyh44bu0y"
 script = ExtResource("9_06bkl")
 metadata/_custom_type_script = "uid://dakhpemcfrplg"
 
-[node name="cat" type="Node" parent="FileSystem/root/bin" unique_id=2003867213]
-script = ExtResource("10_8exin")
-metadata/_custom_type_script = "uid://b7jijc0b2c1t2"
+[node name="dir" type="Node" parent="FileSystem/root/bin" unique_id=504477554 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../ls")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"
 
 [node name="cd" type="Node" parent="FileSystem/root/bin" unique_id=2002665477]
 script = ExtResource("11_u0ipa")
 metadata/_custom_type_script = "uid://vqy10jnesghe"
+
+[node name="chdir" type="Node" parent="FileSystem/root/bin" unique_id=1370181050 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../cd")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"
+
+[node name="cat" type="Node" parent="FileSystem/root/bin" unique_id=2003867213]
+script = ExtResource("10_8exin")
+metadata/_custom_type_script = "uid://b7jijc0b2c1t2"
+
+[node name="read" type="Node" parent="FileSystem/root/bin" unique_id=673833047 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../cat")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"
+
+[node name="open" type="Node" parent="FileSystem/root/bin" unique_id=347455454 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../cat")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"
+
+[node name="more" type="Node" parent="FileSystem/root/bin" unique_id=1839967177 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../cat")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"
+
+[node name="less" type="Node" parent="FileSystem/root/bin" unique_id=505492910 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../cat")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"
+
+[node name="type" type="Node" parent="FileSystem/root/bin" unique_id=1330101437 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../cat")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"
