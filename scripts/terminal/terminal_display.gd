@@ -16,6 +16,8 @@ var allow_typing := true
 var printing := false
 
 func _ready() -> void:
+	if MultiplayerConnection.username:
+		fs_home.name = Terminal.make_item_name(MultiplayerConnection.username)
 	Terminal.printed_text.connect(print_text)
 	Terminal.root = fs_root
 	Terminal.home = fs_home

@@ -71,6 +71,12 @@ func trans_name_item_to_node(item_name: String) -> String:
 		})
 	return item_name.replace_char(".".unicode_at(0), "=".unicode_at(0))
 
+func make_item_name(from: String) -> String:
+	return (from
+		.replace_chars(INVALID_NAME_CHARS, "_".unicode_at(0))
+		.replace_char(".".unicode_at(0), "=".unicode_at(0))
+	)
+
 func find(path: String, from: TerminalDir = null) -> TerminalItem:
 	var at: TerminalDir = from if from else cwd
 	if not path:
