@@ -1,4 +1,4 @@
-@icon("res://scripts/triggers/multiplayer_flag_trigger.gd")
+@icon("res://assets/icons/multiplayer_flag_trigger.png")
 class_name MultiplayerFlagTrigger
 extends Trigger
 
