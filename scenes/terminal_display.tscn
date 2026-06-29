@@ -16,7 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k6ius")
-print_speed = 20.0
+print_speed = 50.0
 
 [node name="ScreenText" type="RichTextLabel" parent="." unique_id=1334911848]
 layout_mode = 2
@@ -52,3 +52,7 @@ metadata/_custom_type_script = "uid://5mfiyh44bu0y"
 script = ExtResource("7_gv23m")
 content = "Another file"
 metadata/_custom_type_script = "uid://brtb5uyu08pxu"
+
+[node name="bin" type="Node" parent="FileSystem/root" unique_id=1340922483]
+script = ExtResource("8_63nsn")
+metadata/_custom_type_script = "uid://5mfiyh44bu0y"

@@ -8,7 +8,7 @@ func read() -> String:
 	})
 	return ""
 
-func run() -> void:
+func run(_args: PackedStringArray) -> void:
 	Terminal.out_error(Terminal.TError.INVALID_RUN, {
 		"item": Terminal.trans_name_node_to_item(name)
 	})

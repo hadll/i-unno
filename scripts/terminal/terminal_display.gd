@@ -3,6 +3,9 @@ extends Control
 
 @export var print_speed: float
 
+@onready var fs_root: TerminalRootDir = $FileSystem/root
+@onready var fs_programs: TerminalDir = $FileSystem/root/bin
+
 @onready var screen_text: RichTextLabel = $ScreenText
 var screen_string := ""
 var true_visible := 0.0
@@ -10,6 +13,12 @@ var typing_start_text_index := 0
 var typing_start_string_index := 0
 var allow_typing := true
 var printing := false
+
+func _ready() -> void:
+	Terminal.printed_text.connect(print_text)
+	Terminal.root = fs_root
+	Terminal.cwd = fs_root
+	Terminal.program_dir = fs_programs
 
 func _process(delta: float) -> void:
 	if printing:
@@ -42,7 +51,7 @@ func key_input(event: InputEventKey) -> void:
 		var command := screen_string.substr(typing_start_string_index).replace("[lb]", "[")
 		print_text("\n")
 		finish_printing()
-		print(command)
+		Terminal.run(command)
 
 func print_text(text: String, bbcode_start := "", bbcode_end := "") -> void:
 	if not printing:
