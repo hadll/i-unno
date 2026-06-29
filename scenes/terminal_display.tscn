@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://clebritjxvetu" path="res://scripts/terminal/programs/terminal_program_move.gd" id="17_4wun2"]
 [ext_resource type="Script" uid="uid://fm8fphny1bl3" path="res://scripts/terminal/programs/terminal_program_remove.gd" id="18_on0gj"]
 [ext_resource type="Script" uid="uid://3g4g6qvas2p8" path="res://scripts/terminal/programs/terminal_program_help.gd" id="19_w8cwc"]
+[ext_resource type="Script" uid="uid://duqdku2emd8nr" path="res://scripts/terminal/programs/terminal_program_door.gd" id="20_4wun2"]
 
 [node name="TerminalDisplay" type="PanelContainer" unique_id=387103375]
 anchors_preset = 15
@@ -142,3 +143,12 @@ metadata/_custom_type_script = "uid://fm8fphny1bl3"
 [node name="help" type="Node" parent="FileSystem/root/bin" unique_id=1824294907]
 script = ExtResource("19_w8cwc")
 metadata/_custom_type_script = "uid://3g4g6qvas2p8"
+
+[node name="dr" type="Node" parent="FileSystem/root/bin" unique_id=726121762]
+script = ExtResource("20_4wun2")
+metadata/_custom_type_script = "uid://duqdku2emd8nr"
+
+[node name="door" type="Node" parent="FileSystem/root/bin" unique_id=2048728820 node_paths=PackedStringArray("item")]
+script = ExtResource("11_7j3o2")
+item = NodePath("../dr")
+metadata/_custom_type_script = "uid://dh0apa0ooacre"

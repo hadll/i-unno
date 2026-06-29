@@ -9,6 +9,12 @@ signal flag_updated(updated: String, value: bool)
 const BASE_URL := "https://chloe.gregg.au/tasjam26/"
 const LOG_MULTIPLAYER := false
 
+enum FlagUpdate {
+	OFF = 0,
+	ON = 1,
+	TOGGLE = 2
+}
+
 var http: HTTPRequest
 var timer: Timer
 var current_room_data: Dictionary = {
@@ -135,6 +141,8 @@ func set_username(to: String) -> void:
 	if in_room:
 		var _response = await request("update_player", room_code)
 
-func update_flags(flag_changes: Dictionary[String, int]) -> void:
+func update_flags(flag_changes: Dictionary[String, FlagUpdate]) -> void:
 	if in_room:
 		var _response = await request("update_flags", [room_code, flag_changes])
+	else:
+		push_error("Can't update flags when not in room")
