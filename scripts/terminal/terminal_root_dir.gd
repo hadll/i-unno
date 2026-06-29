@@ -1,5 +1,5 @@
 class_name TerminalRootDir
-extends TerminalDir
+extends TerminalImmutableDir
 
 func find(item: String) -> TerminalItem:
 	if item == "..":
@@ -7,4 +7,4 @@ func find(item: String) -> TerminalItem:
 	return super(item)
 
 func get_item_node_path() -> String:
-	return "/"
+	return Terminal.SEP

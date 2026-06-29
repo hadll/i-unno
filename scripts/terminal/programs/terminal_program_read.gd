@@ -1,14 +1,15 @@
 class_name TerminalProgramRead
 extends TerminalProgram
 
+func get_help() -> String:
+	return "Displays the content of a given file"
+
 func run(args: PackedStringArray) -> void:
-	if len(args) < 2:
-		Terminal.out_error(Terminal.TError.MISSING_ARGS, {
-			"needed": "2",
-			"got": str(len(args))
-		})
+	if not check_args(args, 1):
 		return
 	var file := Terminal.find(args[1])
+	if not file:
+		return
 	if file is TerminalFile:
 		Terminal.out_print(file.read() + "\n")
 	else:

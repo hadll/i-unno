@@ -2,7 +2,10 @@ extends Node
 signal printed_text(text: String)
 
 const SEP := "/"
-const INVALID_NAME_CHARS := "=:@/\"%~"
+const EXT := "."
+const EXT_REPLACE := "="
+const HOME := "~"
+const INVALID_NAME_CHARS := ":@\"%" + SEP + EXT_REPLACE + HOME
 
 enum TError {
 	MISC = 0,
@@ -12,9 +15,11 @@ enum TError {
 	NOT_FOUND = 4, ## dir does not contain an item
 	MISSING_ARGS = 5, ## program not given enough args
 	INVALID_ARG = 6, ## program given invalid args
+	ITEM_EXISTS = 7, ## creating an item that already exists
 	INVALID_READ = 8, ## reading a non-readable file
 	INVALID_RUN = 9, ## running a non-runnable file
 	MOVING_INSIDE = 16, ## moving an item inside itself
+	IMMUTABLE_DIR = 17, ## trying to change an immutable dir (root, home...)
 }
 
 var root: TerminalRootDir
@@ -23,16 +28,17 @@ var cwd: TerminalDir
 var program_dir: TerminalDir
 
 var error_messages: Dictionary[TError, String] = {
-	TError.MISC: "ERROR",
+	TError.MISC: "ERROR: {msg}",
 	TError.NOT_A_FILE: "ERROR: {item} is not a file",
 	TError.NOT_A_DIR: "ERROR: {item} is not a directory",
 	TError.INVALID_NAME: "ERROR: {name} is not a valid name (do not use {chars})",
 	TError.NOT_FOUND: "ERROR: {item} not found in {dir}",
 	TError.MISSING_ARGS: "ERROR: only got {got} arg(s), needed {needed}",
 	TError.INVALID_ARG: "ERROR: arg {arg} is invalid",
+	TError.ITEM_EXISTS: "ERROR: {item} already exists in {dir}",
 	TError.INVALID_READ: "ERROR: {item} is not readable",
 	TError.INVALID_RUN: "ERROR: {item} is not runnable",
-	TError.MOVING_INSIDE: "ERROR: cannot move {item} to {parent} because {parent} is inside {item}",
+	TError.MOVING_INSIDE: "ERROR: cannot move {item} to {dir} because {dir} is inside {item}",
 }
 var error_colour: Color = Color.RED
 
@@ -42,14 +48,9 @@ func prompt() -> void:
 func run(command: String) -> void:
 	var args := command.split(" ", false)
 	if args:
-		if args[0].begins_with("./") or args[0].begins_with("/"):
-			var local_program := find(args[0])
-			if local_program:
-				run_item(local_program, args)
-		else:
-			var program := find(args[0], program_dir)
-			if program:
-				run_item(program, args)
+		var program := find_program_item(args[0])
+		if program:
+			run_item(program, args)
 	prompt()
 
 func run_item(item: TerminalItem, args: PackedStringArray) -> void:
@@ -61,7 +62,7 @@ func run_item(item: TerminalItem, args: PackedStringArray) -> void:
 		})
 
 func trans_name_node_to_item(node_name: String) -> String:
-	return node_name.replace_char("=".unicode_at(0), ".".unicode_at(0))
+	return node_name.replace_char(Terminal.EXT_REPLACE.unicode_at(0), Terminal.EXT.unicode_at(0))
 
 func trans_name_item_to_node(item_name: String) -> String:
 	if item_name.contains(INVALID_NAME_CHARS):
@@ -69,19 +70,42 @@ func trans_name_item_to_node(item_name: String) -> String:
 			"name": item_name,
 			"chars": INVALID_NAME_CHARS
 		})
-	return item_name.replace_char(".".unicode_at(0), "=".unicode_at(0))
+	return item_name.replace_char(Terminal.EXT.unicode_at(0), Terminal.EXT_REPLACE.unicode_at(0))
 
 func make_item_name(from: String) -> String:
 	return (from
 		.replace_chars(INVALID_NAME_CHARS, "_".unicode_at(0))
-		.replace_char(".".unicode_at(0), "=".unicode_at(0))
+		.replace_char(Terminal.EXT.unicode_at(0), Terminal.EXT_REPLACE.unicode_at(0))
 	)
+
+func valid_item_name(item_name: String) -> bool:
+	if item_name == EXT:
+		return false
+	if item_name == EXT.repeat(2):
+		return false
+	for c in INVALID_NAME_CHARS:
+		if item_name.contains(c):
+			return false
+	return true
+
+func can_remove(item: TerminalItem) -> bool:
+	return not (
+		item.is_ancestor_of(cwd) or item == cwd or
+		item.is_ancestor_of(home) or item == home or
+		item.is_ancestor_of(program_dir) or item == program_dir
+	)
+
+func find_program_item(path: String) -> TerminalItem:
+	var dir := program_dir
+	if path.begins_with(EXT + SEP):
+		dir = cwd
+	return find(path, dir)
 
 func find(path: String, from: TerminalDir = null) -> TerminalItem:
 	var at: TerminalDir = from if from else cwd
 	if not path:
 		return at
-	if path[0] == "/":
+	if path[0] == SEP:
 		at = root
 		path = path.substr(1)
 	elif path[0] == "~":

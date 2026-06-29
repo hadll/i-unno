@@ -13,6 +13,12 @@
 [ext_resource type="Script" uid="uid://b7jijc0b2c1t2" path="res://scripts/terminal/programs/terminal_program_read.gd" id="10_8exin"]
 [ext_resource type="Script" uid="uid://dh0apa0ooacre" path="res://scripts/terminal/terminal_alias.gd" id="11_7j3o2"]
 [ext_resource type="Script" uid="uid://vqy10jnesghe" path="res://scripts/terminal/programs/terminal_program_change_working_dir.gd" id="11_u0ipa"]
+[ext_resource type="Script" uid="uid://cbbdfxut24qdh" path="res://scripts/terminal/programs/terminal_program_make_dir.gd" id="14_gv23m"]
+[ext_resource type="Script" uid="uid://cko3mau8qgtec" path="res://scripts/terminal/programs/terminal_program_zip.gd" id="15_gava2"]
+[ext_resource type="Script" uid="uid://iijn77v8666r" path="res://scripts/terminal/programs/terminal_program_unzip.gd" id="16_w8cwc"]
+[ext_resource type="Script" uid="uid://clebritjxvetu" path="res://scripts/terminal/programs/terminal_program_move.gd" id="17_4wun2"]
+[ext_resource type="Script" uid="uid://fm8fphny1bl3" path="res://scripts/terminal/programs/terminal_program_remove.gd" id="18_on0gj"]
+[ext_resource type="Script" uid="uid://3g4g6qvas2p8" path="res://scripts/terminal/programs/terminal_program_help.gd" id="19_w8cwc"]
 
 [node name="TerminalDisplay" type="PanelContainer" unique_id=387103375]
 anchors_preset = 15
@@ -112,3 +118,27 @@ metadata/_custom_type_script = "uid://dh0apa0ooacre"
 script = ExtResource("11_7j3o2")
 item = NodePath("../cat")
 metadata/_custom_type_script = "uid://dh0apa0ooacre"
+
+[node name="mkdir" type="Node" parent="FileSystem/root/bin" unique_id=1721913046]
+script = ExtResource("14_gv23m")
+metadata/_custom_type_script = "uid://cbbdfxut24qdh"
+
+[node name="zip" type="Node" parent="FileSystem/root/bin" unique_id=979212276]
+script = ExtResource("15_gava2")
+metadata/_custom_type_script = "uid://cko3mau8qgtec"
+
+[node name="unzip" type="Node" parent="FileSystem/root/bin" unique_id=581990109]
+script = ExtResource("16_w8cwc")
+metadata/_custom_type_script = "uid://iijn77v8666r"
+
+[node name="mv" type="Node" parent="FileSystem/root/bin" unique_id=1466080558]
+script = ExtResource("17_4wun2")
+metadata/_custom_type_script = "uid://clebritjxvetu"
+
+[node name="rm" type="Node" parent="FileSystem/root/bin" unique_id=1251269070]
+script = ExtResource("18_on0gj")
+metadata/_custom_type_script = "uid://fm8fphny1bl3"
+
+[node name="help" type="Node" parent="FileSystem/root/bin" unique_id=1824294907]
+script = ExtResource("19_w8cwc")
+metadata/_custom_type_script = "uid://3g4g6qvas2p8"
