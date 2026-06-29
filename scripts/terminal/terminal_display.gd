@@ -25,15 +25,21 @@ func key_input(event: InputEventKey) -> void:
 		return
 	if OS.is_keycode_unicode(event.keycode):
 		if allow_typing:
-			var character := String.chr(event.keycode)
+			var character := String.chr(event.unicode)
 			screen_text.add_text(character)
-			screen_string += character
+			if character == "[":
+				screen_string += "[lb]"
+			else:
+				screen_string += character
 	elif event.keycode == Key.KEY_BACKSPACE:
 		if len(screen_string) > typing_start_string_index:
-			screen_string = screen_string.substr(0, len(screen_string) - 1)
+			if screen_string.substr(len(screen_string) - 4) == "[lb]":
+				screen_string = screen_string.substr(0, len(screen_string) - 4)
+			else:
+				screen_string = screen_string.substr(0, len(screen_string) - 1)
 			screen_text.text = screen_string
 	elif event.keycode == Key.KEY_ENTER:
-		var command := screen_string.substr(typing_start_string_index)
+		var command := screen_string.substr(typing_start_string_index).replace("[lb]", "[")
 		print_text("\n")
 		finish_printing()
 		print(command)
