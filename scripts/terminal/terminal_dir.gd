@@ -17,6 +17,12 @@ func get_items() -> Array[TerminalItem]:
 	items.sort_custom(func(a: TerminalItem, b: TerminalItem) -> bool:
 		if a is TerminalDir and b is not TerminalDir:
 			return true
+		if a is not TerminalDir and b is TerminalDir:
+			return false
+		if a is TerminalAlias and b is not TerminalAlias:
+			return false
+		if a is not TerminalAlias and b is TerminalAlias:
+			return true
 		return Terminal.trans_name_node_to_item(a.name) < Terminal.trans_name_node_to_item(b.name)
 	)
 	return items
