@@ -16,13 +16,20 @@ func _init() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"freecam_on"):
-		detached_freecam = not detached_freecam
 		if detached_freecam:
-			freecam.make_current()
-			freecam.global_transform = camera_point.global_transform
-			controlling_freecam = true
+			freecam_stop()
 		else:
-			PlayerCamera.me.make_current()
-			controlling_freecam = false
+			freecam_start()
 	if Input.is_action_just_pressed(&"freecam_swap"):
 		controlling_freecam = not controlling_freecam
+
+func freecam_start() -> void:
+	detached_freecam = true
+	freecam.make_current()
+	freecam.global_transform = camera_point.global_transform
+	controlling_freecam = true
+
+func freecam_stop() -> void:
+	detached_freecam = false
+	PlayerCamera.me.make_current()
+	controlling_freecam = false

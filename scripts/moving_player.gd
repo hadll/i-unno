@@ -30,6 +30,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super(delta)
+	if Input.is_action_just_pressed(&"freecam_tp"):
+		body.global_position = freecam.global_position - camera_point.position
+		body.reset_physics_interpolation()
+		freecam_stop()
+
 	var target_height := crouch_height if crouched else stand_height
 	camera_point.position.y = lerpf(target_height, camera_point.position.y, exp(-delta * crouch_speed))
 	
