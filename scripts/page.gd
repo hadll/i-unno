@@ -1,8 +1,8 @@
 class_name Page
 extends Node3D
 
-@onready var paper: MeshInstance3D = $Paper
+@export var paper: MeshInstance3D
 
 func set_image(img: Image) -> void:
-	var sm: ShaderMaterial = paper.material_override
-	sm.set_shader_parameter(&"image", img)
+	var sm: StandardMaterial3D = paper.material_override
+	sm.albedo_texture = ImageTexture.create_from_image(img)

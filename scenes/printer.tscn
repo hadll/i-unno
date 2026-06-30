@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d3gjhb4lxf248"]
 
 [ext_resource type="Script" uid="uid://dfvg8uldxo0df" path="res://scripts/printer.gd" id="1_4lrxx"]
+[ext_resource type="PackedScene" uid="uid://cv10ho8plvgl4" path="res://scenes/page.tscn" id="2_kdvce"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 
@@ -8,6 +9,7 @@
 
 [node name="Printer" type="StaticBody3D" unique_id=745413632]
 script = ExtResource("1_4lrxx")
+page_scene = ExtResource("2_kdvce")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1761605121]
 mesh = SubResource("BoxMesh_g4v7s")

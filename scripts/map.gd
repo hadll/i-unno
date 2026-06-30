@@ -28,6 +28,13 @@ func draw(level_generator: LevelGenerator) -> void:
 		if door_def.type != LevelGenerator.DoorType.WALL:
 			draw_door(door_def)
 
+func add_files(dir: TerminalDir) -> void:
+	for i in len(layers):
+		var map_file := TerminalImageFile.new()
+		map_file.name = Terminal.trans_name_item_to_node("floor-%02d.png" % (i + 1))
+		map_file.content = layers[i]
+		dir.add_child(map_file)
+
 func clear(map_size: Vector3i) -> void:
 	var width := MAP_MARGIN * 2 + ROOM_SCALE * map_size.x
 	var height := MAP_MARGIN * 2 + ROOM_SCALE * map_size.z

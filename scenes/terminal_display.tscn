@@ -5,13 +5,13 @@
 [ext_resource type="FontFile" uid="uid://c1tkm8t2udyyr" path="res://assets/fonts/MechanicalBold.otf" id="3_8exin"]
 [ext_resource type="FontFile" uid="uid://uu3exw17m02j" path="res://assets/fonts/MechanicalBoldOblique.otf" id="4_u0ipa"]
 [ext_resource type="FontFile" uid="uid://dvqxtirfms1ku" path="res://assets/fonts/MechanicalOblique.otf" id="5_lorsi"]
-[ext_resource type="Script" uid="uid://cbto06xeb80ld" path="res://scripts/terminal/terminal_root_dir.gd" id="6_7j3o2"]
-[ext_resource type="Script" uid="uid://brtb5uyu08pxu" path="res://scripts/terminal/terminal_text_file.gd" id="7_gv23m"]
-[ext_resource type="Script" uid="uid://5mfiyh44bu0y" path="res://scripts/terminal/terminal_dir.gd" id="8_63nsn"]
+[ext_resource type="Script" uid="uid://cbto06xeb80ld" path="res://scripts/terminal/item_types/terminal_root_dir.gd" id="6_7j3o2"]
+[ext_resource type="Script" uid="uid://brtb5uyu08pxu" path="res://scripts/terminal/item_types/terminal_text_file.gd" id="7_gv23m"]
+[ext_resource type="Script" uid="uid://5mfiyh44bu0y" path="res://scripts/terminal/item_types/terminal_dir.gd" id="8_63nsn"]
 [ext_resource type="Script" uid="uid://dakhpemcfrplg" path="res://scripts/terminal/programs/terminal_program_list.gd" id="9_06bkl"]
-[ext_resource type="Script" uid="uid://dfmnt25brihfc" path="res://scripts/terminal/terminal_home_dir.gd" id="9_lorsi"]
+[ext_resource type="Script" uid="uid://dfmnt25brihfc" path="res://scripts/terminal/item_types/terminal_home_dir.gd" id="9_lorsi"]
 [ext_resource type="Script" uid="uid://b7jijc0b2c1t2" path="res://scripts/terminal/programs/terminal_program_read.gd" id="10_8exin"]
-[ext_resource type="Script" uid="uid://dh0apa0ooacre" path="res://scripts/terminal/terminal_alias.gd" id="11_7j3o2"]
+[ext_resource type="Script" uid="uid://dh0apa0ooacre" path="res://scripts/terminal/item_types/terminal_alias.gd" id="11_7j3o2"]
 [ext_resource type="Script" uid="uid://vqy10jnesghe" path="res://scripts/terminal/programs/terminal_program_change_working_dir.gd" id="11_u0ipa"]
 [ext_resource type="Script" uid="uid://cbbdfxut24qdh" path="res://scripts/terminal/programs/terminal_program_make_dir.gd" id="14_gv23m"]
 [ext_resource type="Script" uid="uid://cko3mau8qgtec" path="res://scripts/terminal/programs/terminal_program_zip.gd" id="15_gava2"]
@@ -20,8 +20,9 @@
 [ext_resource type="Script" uid="uid://fm8fphny1bl3" path="res://scripts/terminal/programs/terminal_program_remove.gd" id="18_on0gj"]
 [ext_resource type="Script" uid="uid://3g4g6qvas2p8" path="res://scripts/terminal/programs/terminal_program_help.gd" id="19_w8cwc"]
 [ext_resource type="Script" uid="uid://duqdku2emd8nr" path="res://scripts/terminal/programs/terminal_program_door.gd" id="20_4wun2"]
+[ext_resource type="Script" uid="uid://dqjrbs3wvkb7p" path="res://scripts/terminal/programs/terminal_program_print.gd" id="21_on0gj"]
 
-[node name="TerminalDisplay" type="PanelContainer" unique_id=387103375]
+[node name="TerminalDisplay" type="PanelContainer" unique_id=387103375 node_paths=PackedStringArray("fs_root", "fs_home", "fs_programs", "fs_maps", "screen_text")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,6 +30,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k6ius")
 print_speed = 50.0
+fs_root = NodePath("FileSystem/root")
+fs_home = NodePath("FileSystem/root/users/USERNAME")
+fs_programs = NodePath("FileSystem/root/bin")
+fs_maps = NodePath("FileSystem/root/users/USERNAME/maps")
+screen_text = NodePath("ScreenText")
 
 [node name="ScreenText" type="RichTextLabel" parent="." unique_id=1334911848]
 layout_mode = 2
@@ -68,6 +74,10 @@ metadata/_custom_type_script = "uid://dfmnt25brihfc"
 script = ExtResource("7_gv23m")
 content = "Another file"
 metadata/_custom_type_script = "uid://brtb5uyu08pxu"
+
+[node name="maps" type="Node" parent="FileSystem/root/users/USERNAME" unique_id=619603907]
+script = ExtResource("8_63nsn")
+metadata/_custom_type_script = "uid://5mfiyh44bu0y"
 
 [node name="bin" type="Node" parent="FileSystem/root" unique_id=1340922483]
 script = ExtResource("8_63nsn")
@@ -152,3 +162,7 @@ metadata/_custom_type_script = "uid://duqdku2emd8nr"
 script = ExtResource("11_7j3o2")
 item = NodePath("../dr")
 metadata/_custom_type_script = "uid://dh0apa0ooacre"
+
+[node name="print" type="Node" parent="FileSystem/root/bin" unique_id=346361250]
+script = ExtResource("21_on0gj")
+metadata/_custom_type_script = "uid://dqjrbs3wvkb7p"

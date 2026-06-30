@@ -21,6 +21,7 @@ MultiplayerConnection="*uid://c8esh1g6e111p"
 Terminal="*uid://ddklrxv22q5q0"
 InputHandler="*uid://brqgb7la2atw4"
 Map="*uid://bd4ysp1jsa3bf"
+PrinterManager="*uid://3a6jvsiki65d"
 
 [editor_plugins]
 

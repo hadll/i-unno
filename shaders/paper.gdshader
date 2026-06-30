@@ -1,7 +1,8 @@
 shader_type spatial;
+render_mode cull_disabled;
 
-uniform sampler2D image: filter_nearest;
+uniform sampler2D tex: filter_nearest;
 
 void fragment() {
-	ALBEDO = texture(image, UV).rgb;
+	ALBEDO = texture(tex, UV).rgb;
 }

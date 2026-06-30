@@ -3,11 +3,12 @@ extends Control
 
 @export var print_speed: float
 
-@onready var fs_root: TerminalRootDir = $FileSystem/root
-@onready var fs_home: TerminalHomeDir = $FileSystem/root/users/USERNAME
-@onready var fs_programs: TerminalDir = $FileSystem/root/bin
+@export var fs_root: TerminalRootDir
+@export var fs_home: TerminalHomeDir
+@export var fs_programs: TerminalDir
+@export var fs_maps: TerminalDir
+@export var screen_text: RichTextLabel
 
-@onready var screen_text: RichTextLabel = $ScreenText
 var screen_string := ""
 var true_visible := 0.0
 var typing_start_text_index := 0
@@ -23,6 +24,7 @@ func _ready() -> void:
 	Terminal.home = fs_home
 	Terminal.cwd = fs_home
 	Terminal.program_dir = fs_programs
+	Map.add_files(fs_maps)
 	Terminal.prompt()
 
 func _process(delta: float) -> void:
