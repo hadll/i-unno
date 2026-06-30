@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="RoomDef" format=3 uid="uid://d3rmh0k0m520c"]
 
-[ext_resource type="Script" uid="uid://jyutv7juuysb" path="res://scripts/levelgen/door_def.gd" id="1_iqv2q"]
-[ext_resource type="PackedScene" uid="uid://dyni76lnddcgj" path="res://scenes/rooms/room_start.tscn" id="2_fbnds"]
-[ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/room_def.gd" id="2_xdw4a"]
+[ext_resource type="Script" uid="uid://jyutv7juuysb" path="res://scripts/levelgen/defs/door_def.gd" id="1_iqv2q"]
+[ext_resource type="PackedScene" uid="uid://brgo1fltj8ewl" path="res://scenes/levelgen/rooms/room_start.tscn" id="2_fbnds"]
+[ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/defs/room_def.gd" id="2_xdw4a"]
 
 [sub_resource type="Resource" id="Resource_k1wax"]
 script = ExtResource("1_iqv2q")

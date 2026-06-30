@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://brgo1fltj8ewl"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_8ewhc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hg6cr"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_so8dq"]
+size = Vector3(10, 1, 10)
+
+[node name="RoomStart" type="Node3D" unique_id=1906132364]
+script = ExtResource("1_8ewhc")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="Static" type="StaticBody3D" parent="." unique_id=217643138]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static" unique_id=1791527053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 2.5)
+shape = SubResource("BoxShape3D_hg6cr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static" unique_id=1232164423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 2.5)
+mesh = SubResource("BoxMesh_so8dq")

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c4l4srevdndr5"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_g1oio"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vu12"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7c1hi"]
+size = Vector3(5, 1, 5)
+
+[node name="RoomFourWay" type="Node3D" unique_id=1121319207]
+script = ExtResource("1_g1oio")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="Static" type="StaticBody3D" parent="." unique_id=1228799141]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static" unique_id=1569538166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_1vu12")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static" unique_id=763442555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_7c1hi")

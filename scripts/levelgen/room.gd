@@ -1,5 +1,5 @@
 class_name Room
-extends Node3D
+extends GenerationObject
 
 @export_group("Material Meshes", "meshes_")
 @export var meshes_wall: Array[MeshInstance3D]

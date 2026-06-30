@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0kiqaeii41qh"]
 
-[ext_resource type="Script" uid="uid://v3ota6oqrcgq" path="res://scripts/levelgen/door_sub_type_security.gd" id="1_bo4q1"]
+[ext_resource type="Script" uid="uid://v3ota6oqrcgq" path="res://scripts/levelgen/doors/door_security.gd" id="1_bo4q1"]
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="2_enr8c"]
 [ext_resource type="Script" uid="uid://bo80mbsdidmdo" path="res://scripts/triggers/multiplayer_flag_trigger.gd" id="3_gms86"]
 

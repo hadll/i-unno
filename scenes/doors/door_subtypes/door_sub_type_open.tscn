@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://bb23mxrf0lqf2"]
-
-[ext_resource type="Script" uid="uid://cvac6qo25lono" path="res://scripts/levelgen/door_sub_type.gd" id="1_pyu87"]
-
-[node name="DoorSubTypeOpen" type="Node3D" unique_id=1334290406]
-script = ExtResource("1_pyu87")

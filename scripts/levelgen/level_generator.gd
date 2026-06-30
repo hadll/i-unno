@@ -140,6 +140,14 @@ func try_generate(seed_value: int) -> bool:
 				return false
 		existing_density = get_density()
 		section_start_rough = unfilled_doors[0].get_target()
+	
+	prints(min_placed, max_placed)
+	for room in rooms:
+		for i in len(room.shape):
+			room.shape[i] -= min_placed
+	for door in doors:
+		door.from -= min_placed
+	
 	return true
 
 func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorDef, must_continue := false) -> bool:
@@ -191,13 +199,13 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		for pair_index in range(door_index + 1, len(filled_doors)):
 			var pair := filled_doors[pair_index]
 			if door.type == pair.type and door_target == pair.from and pair.get_target() == door.from:
-				paired_doors.append(door_index)
-				paired_doors.append(pair_index)
 				if door == important_door or rng.randf() < (
 					section_def.duplicate_door_chance
 					if spaces[door.from] in connected_rooms else 
 					section_def.extra_door_chance
 				):
+					paired_doors.append(door_index)
+					paired_doors.append(pair_index)
 					unfilled_doors.erase(door)
 					unfilled_doors.erase(pair)
 					doors[door] = section_def
