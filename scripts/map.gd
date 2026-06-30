@@ -27,8 +27,6 @@ func draw(level_generator: LevelGenerator) -> void:
 	for door_def in level_generator.doors:
 		if door_def.type != LevelGenerator.DoorType.WALL:
 			draw_door(door_def)
-	for i in len(layers):
-		layers[i].save_png("res://testmap%d.png" % i)
 
 func clear(map_size: Vector3i) -> void:
 	var width := MAP_MARGIN * 2 + ROOM_SCALE * map_size.x

@@ -1,5 +1,5 @@
 class_name Monitor
-extends StaticBody3D
+extends Node3D
 
 @onready var terminal_display: TerminalDisplay = $SubViewport/TerminalDisplay
 @onready var start_using_trigger: Trigger = $ClickTrigger3D

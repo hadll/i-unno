@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cv10ho8plvgl4"]
+
+[ext_resource type="Script" uid="uid://bfbnbd7kb0xpu" path="res://scripts/page.gd" id="1_kkqxg"]
+[ext_resource type="Shader" uid="uid://5vjxa07tky2" path="res://shaders/paper.gdshader" id="2_1g3qv"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+size = Vector2(0.707, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1g3qv"]
+render_priority = 0
+shader = ExtResource("2_1g3qv")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.707, 0.01, 1)
+
+[node name="Page" type="StaticBody3D" unique_id=1925210237]
+script = ExtResource("1_kkqxg")
+
+[node name="Paper" type="MeshInstance3D" parent="." unique_id=10938709]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_g4v7s")
+surface_material_override/0 = SubResource("ShaderMaterial_1g3qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=608281572]
+shape = SubResource("BoxShape3D_g4v7s")
