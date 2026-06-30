@@ -12,6 +12,7 @@ extends Resource
 
 var pos := Vector3i.ZERO
 var pos_x_dir := LevelGenerator.Direction.POS_X
+var section: SectionDef
 
 func transform(origin: Vector3i, new_pos_x_dir: LevelGenerator.Direction, offset: Vector3i) -> RoomDef:
 	var transformed := new()

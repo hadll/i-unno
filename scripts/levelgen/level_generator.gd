@@ -19,8 +19,8 @@ enum DoorType {
 
 var spaces: Dictionary[Vector3i, RoomDef]
 var unfilled_doors: Array[DoorDef]
-var rooms: Dictionary[RoomDef, SectionDef]
-var doors: Dictionary[DoorDef, SectionDef]
+var rooms: Array[RoomDef]
+var doors: Array[DoorDef]
 var min_placed: Vector3i
 var max_placed: Vector3i
 var level_seed: int
@@ -67,8 +67,8 @@ func generate() -> int:
 func try_generate(seed_value: int) -> bool:
 	spaces = {}
 	unfilled_doors = []
-	rooms = {}
-	doors = {}
+	rooms = []
+	doors = []
 	min_placed = Vector3i.ZERO
 	max_placed = Vector3i.ZERO
 	level_seed = seed_value
@@ -141,8 +141,8 @@ func try_generate(seed_value: int) -> bool:
 		existing_density = get_density()
 		section_start_rough = unfilled_doors[0].get_target()
 	
-	prints(min_placed, max_placed)
 	for room in rooms:
+		room.pos -= min_placed
 		for i in len(room.shape):
 			room.shape[i] -= min_placed
 	for door in doors:
@@ -172,15 +172,17 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 			if door.from == important_door_target and door.get_target() == important_door.from:
 				if door.type != important_door.type:
 					return false
-		
+	
 	min_placed = min_added
 	max_placed = max_added
-	rooms[room_def] = section_def
 	if LOG_GEN: print("Placed %s in %s" % [room_def.name, section_def.name])
 	
+	room_def.section = section_def
+	rooms.append(room_def)
 	for cell in room_def.shape:
 		spaces[cell] = room_def
 	for door in room_def.doors:
+		door.section = section_def
 		unfilled_doors.append(door)
 	
 	# find now blocked doors
@@ -208,7 +210,7 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 					paired_doors.append(pair_index)
 					unfilled_doors.erase(door)
 					unfilled_doors.erase(pair)
-					doors[door] = section_def
+					doors.append(door)
 					connected_rooms.append(spaces[door.from])
 				break
 	# remove unpaired doors
@@ -218,13 +220,13 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		var door := filled_doors[door_index]
 		door.type = DoorType.WALL
 		unfilled_doors.erase(door)
-		doors[door] = section_def
+		doors.append(door)
 	# reset for next section
 	if must_continue:
 		for door_index in len(unfilled_doors) - 1:
 			var door := unfilled_doors[door_index]
 			door.type = DoorType.WALL
-			doors[door] = section_def
+			doors.append(door)
 		unfilled_doors = [room_def.doors[len(room_def.doors) - 1]]
 	return true
 

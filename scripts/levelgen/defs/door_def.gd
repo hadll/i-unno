@@ -8,6 +8,8 @@ extends Resource
 ## direction this door goes out to
 @export var dir: LevelGenerator.Direction
 
+var section: SectionDef
+
 func transform(origin: Vector3i, new_pos_x_dir: LevelGenerator.Direction, offset: Vector3i) -> DoorDef:
 	var transformed := new()
 	transformed.type = type
