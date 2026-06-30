@@ -11,6 +11,9 @@ func _ready() -> void:
 	for i_trigger in triggers:
 		i_trigger.trigger_start.connect(on_trigger_start)
 		i_trigger.trigger_start.connect(on_trigger_end)
+		# you might want to remove this line depending on how you want it to behave
+		if i_trigger.active:
+			on_trigger_start(i_trigger)
 
 func on_trigger_start(trigger: Trigger):
 	# this runs whenever a trigger in the triggers array starts
