@@ -17,6 +17,13 @@ func _ready() -> void:
 	for i_trigger in triggers:
 		i_trigger.trigger_start.connect(on_trigger_start)
 		i_trigger.trigger_end.connect(on_trigger_end)
+	animation_player.animation_started.connect(on_animation_start)
+
+func on_animation_start(animation_name):
+	if animation_name == start_animation_name:
+		set_active(true)
+	elif animation_name == end_animation_name:
+		set_active(false)
 
 func on_trigger_start(trigger: Trigger):
 	play_animation(start_animation_name)
@@ -32,11 +39,9 @@ func play_animation(animation_name:String):
 			var size = queue.size()
 			for i in range(size):
 				if queue[i] == start_animation_name and i+1 < size and queue[i+1] == end_animation_name:
-					print(queue)
 					queue.remove_at(i+1)
 					queue.remove_at(i)
 					animation_player.clear_queue()
-					print("refilling_queue")
 					for anim in queue:
 						print(anim)
 						animation_player.queue(anim)
