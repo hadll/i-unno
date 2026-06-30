@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/triggers/relay_trigger_3d.gd" id="1_kwogt"]
 [ext_resource type="Texture2D" uid="uid://58f0puxskcyd" path="res://assets/models/blend/doortex.png" id="2_0qws5"]
 [ext_resource type="Script" uid="uid://cydbsfqpayirx" path="res://scripts/triggers/animation_trigger.gd" id="2_yi343"]
+[ext_resource type="Script" uid="uid://i3pknic7tykt" path="res://scripts/triggers/sound_trigger.gd" id="4_0qws5"]
+[ext_resource type="AudioStream" uid="uid://dmfjtkkbqjfwm" path="res://assets/sounds/security_door_close.ogg" id="5_s0v7l"]
+[ext_resource type="AudioStream" uid="uid://bay4jbg4pb4wf" path="res://assets/sounds/security_door_open.ogg" id="6_m0qib"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2jlm"]
 resource_name = "Material.003"
@@ -68,7 +71,7 @@ bind/2/pose = Transform3D(1, 0, 0, 0, 1.509958e-07, 1, 0, -1, 1.509958e-07, 0, -
 
 [sub_resource type="Animation" id="Animation_ty0fx"]
 resource_name = "DoorClose"
-length = 0.75
+length = 0.76666665
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -93,6 +96,8 @@ _data = {
 &"DoorClose": SubResource("Animation_ty0fx"),
 &"DoorOpen": SubResource("Animation_yl170")
 }
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_pcxf7"]
 
 [node name="SecurityDoor" type="Node3D" unique_id=1712412024]
 script = ExtResource("1_kwogt")
@@ -120,7 +125,7 @@ bones/0/name = "MainDoor"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, -1.3297098e-07, 0, 1.3297098e-07, 1, 0, 0.5820823, -2.2775652e-08)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.58208245, -2.6254572e-08)
+bones/0/position = Vector3(0, -9.336681, -1.4816613e-06)
 bones/0/rotation = Quaternion(6.648549e-08, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "BottomDoor"
@@ -145,3 +150,22 @@ skeleton = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="security_door" unique_id=1216719830]
 libraries/ = SubResource("AnimationLibrary_jxx1y")
+
+[node name="Not" type="Node3D" parent="." unique_id=401412955 node_paths=PackedStringArray("triggers")]
+script = ExtResource("1_kwogt")
+condition = 4
+triggers = [NodePath("../AnimationTrigger")]
+metadata/_custom_type_script = "uid://557bh1kgicsc"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1139598988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9604905, 0)
+stream = SubResource("AudioStreamPolyphonic_pcxf7")
+
+[node name="SoundTrigger" type="Node3D" parent="AudioStreamPlayer3D" unique_id=56903842 node_paths=PackedStringArray("triggers", "audio_player")]
+script = ExtResource("4_0qws5")
+triggers = {
+NodePath("../../Not"): ExtResource("5_s0v7l"),
+NodePath("../../AnimationTrigger"): ExtResource("6_m0qib")
+}
+audio_player = NodePath("..")
+metadata/_custom_type_script = "uid://i3pknic7tykt"
