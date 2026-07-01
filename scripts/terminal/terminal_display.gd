@@ -18,6 +18,8 @@ var printing := false
 var command_history: Array[String] = []
 var command_history_index := 0
 var cursor_inset_amount := 0
+var tab_completions: Array[String] = []
+var tab_completion_index := 0
 
 func _ready() -> void:
 	if MultiplayerConnection.username:
@@ -44,23 +46,12 @@ func key_input(event: InputEventKey) -> void:
 		return
 	if event.unicode:
 		if allow_typing:
-			var character := String.chr(event.unicode)
-			if character == "[":
-				screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount) + "[lb]" + screen_string.substr(len(screen_string) - cursor_inset_amount)
-			else:
-				screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount) + character + screen_string.substr(len(screen_string) - cursor_inset_amount)
-			if cursor_inset_amount == 0:
-				screen_text.add_text(character)
-			else:
-				update_display_text()
+			type_ahead(String.chr(event.unicode))
+			tab_completions = []
 	elif event.keycode == Key.KEY_BACKSPACE:
 		if len(screen_string) - cursor_inset_amount > typing_start_string_index:
-			if screen_string.substr(len(screen_string) - cursor_inset_amount - 4, 4) == "[lb]":
-				screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount - 4) + screen_string.substr(len(screen_string) - cursor_inset_amount)
-			else:
-				screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount - 1) + screen_string.substr(len(screen_string) - cursor_inset_amount)
-			screen_text.text = "clear" # force a regeneration
-			update_display_text()
+			delete_behind(1)
+			tab_completions = []
 	elif event.keycode == Key.KEY_ENTER:
 		var command := screen_string.substr(typing_start_string_index).replace("[lb]", "[")
 		print_text("\n")
@@ -69,11 +60,13 @@ func key_input(event: InputEventKey) -> void:
 		command_history.append(command)
 		command_history_index = len(command_history)
 		cursor_inset_amount = 0
+		tab_completions = []
 	elif event.keycode == Key.KEY_UP:
 		command_history_index = maxi(0, command_history_index - 1)
 		screen_string = screen_string.substr(0, typing_start_string_index)
 		screen_string += command_history[command_history_index].replace("[", "[lb]")
 		cursor_inset_amount = 0
+		tab_completions = []
 		update_display_text()
 	elif event.keycode == Key.KEY_DOWN:
 		command_history_index = mini(len(command_history), command_history_index + 1)
@@ -81,6 +74,7 @@ func key_input(event: InputEventKey) -> void:
 		if command_history_index < len(command_history):
 			screen_string += command_history[command_history_index].replace("[", "[lb]")
 		cursor_inset_amount = 0
+		tab_completions = []
 		update_display_text()
 	elif event.keycode == Key.KEY_LEFT:
 		if screen_string.substr(len(screen_string) - cursor_inset_amount - 4, 4) == "[lb]":
@@ -88,14 +82,59 @@ func key_input(event: InputEventKey) -> void:
 		else:
 			cursor_inset_amount += 1
 		cursor_inset_amount = mini(len(screen_string) - typing_start_string_index, cursor_inset_amount)
+		tab_completions = []
 	elif event.keycode == Key.KEY_RIGHT:
 		if screen_string.substr(len(screen_string) - cursor_inset_amount, 4) == "[lb]":
 			cursor_inset_amount -= 4
 		else:
 			cursor_inset_amount -= 1
 		cursor_inset_amount = maxi(0, cursor_inset_amount)
+		tab_completions = []
+	elif event.keycode == Key.KEY_TAB:
+		if not tab_completions:
+			var typed := screen_string.substr(typing_start_string_index, len(screen_string) - cursor_inset_amount)
+			var arg_index = typed.count(" ")
+			var incomplete_path := typed.get_slice(" ", arg_index)
+			var parts := incomplete_path.rsplit(Terminal.SEP, true, 1)
+			if parts:
+				var dir_path := Terminal.EXT if len(parts) == 1 else parts[0]
+				var partial := parts[0] if len(parts) == 1 else parts[1]
+				var dir := Terminal.find_program_item(dir_path) if arg_index == 0 else Terminal.find(dir_path)
+				if dir is TerminalDir:
+					tab_completions = []
+					for item in dir.get_items(false):
+						var item_name := Terminal.trans_name_node_to_item(item.name)
+						if item_name.begins_with(partial):
+							tab_completions.append(item_name.substr(len(partial)))
+					tab_completion_index = 0
+					if tab_completions:
+						type_ahead(tab_completions[tab_completion_index])
+		else:
+			delete_behind(len(tab_completions[tab_completion_index]))
+			tab_completion_index = posmod(tab_completion_index + (-1 if event.shift_pressed else 1), len(tab_completions))
+			type_ahead(tab_completions[tab_completion_index])
+			
+
+func type_ahead(text: String, update := true) -> void:
+	screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount) + text.replace("[", "[lb]") + screen_string.substr(len(screen_string) - cursor_inset_amount)
+	if cursor_inset_amount == 0:
+		screen_text.add_text(text)
+	elif update:
+		update_display_text()
+
+func delete_behind(amount: int, update := true) -> void:
+	var true_amount := 0
+	for i in amount:
+		if screen_string.substr(len(screen_string) - cursor_inset_amount - true_amount - 4, 4) == "[lb]":
+			true_amount += 4
+		else:
+			true_amount += 1
+	screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount - true_amount) + screen_string.substr(len(screen_string) - cursor_inset_amount)
+	if update:
+		update_display_text()
 
 func update_display_text() -> void:
+	screen_text.text = "clear" # force a regeneration
 	screen_text.text = screen_string
 
 func print_text(text: String, bbcode_start := "", bbcode_end := "") -> void:
