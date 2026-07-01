@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 func key_input(event: InputEventKey) -> void:
 	if not event.is_pressed():
 		return
-	if OS.is_keycode_unicode(event.keycode):
+	if event.unicode:
 		if allow_typing:
 			var character := String.chr(event.unicode)
 			if character == "[":
