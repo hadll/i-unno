@@ -4,16 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="2_enr8c"]
 [ext_resource type="Script" uid="uid://bo80mbsdidmdo" path="res://scripts/triggers/multiplayer_flag_trigger.gd" id="3_gms86"]
 [ext_resource type="PackedScene" uid="uid://ydt20mvuuuj3" path="res://scenes/door_code.tscn" id="4_mxki2"]
+[ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/triggers/auto_trigger.gd" id="4_tewie"]
 
 [node name="DoorSecurity" type="Node3D" unique_id=1334290406]
 script = ExtResource("1_bo4q1")
 
 [node name="SecurityDoor" parent="." unique_id=1712412024 node_paths=PackedStringArray("triggers") instance=ExtResource("2_enr8c")]
-triggers = [NodePath("../MultiplayerFlagTrigger")]
+triggers = [NodePath("../MultiplayerFlagTrigger"), NodePath("../AutoTrigger")]
 
 [node name="MultiplayerFlagTrigger" type="Node3D" parent="." unique_id=246283855]
 script = ExtResource("3_gms86")
 metadata/_custom_type_script = "uid://bo80mbsdidmdo"
+
+[node name="AutoTrigger" type="Node3D" parent="." unique_id=1437505559]
+script = ExtResource("4_tewie")
+metadata/_custom_type_script = "uid://bpj8ajinuuf45"
 
 [node name="DoorCodeNote1" parent="." unique_id=708163455 instance=ExtResource("4_mxki2")]
 transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -0.3, 1.5, 1.5)
