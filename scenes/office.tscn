@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bdx3p52q2uq86"]
 
+[ext_resource type="Script" uid="uid://b82rag0br1w7i" path="res://scripts/office.gd" id="1_6hbky"]
 [ext_resource type="Script" uid="uid://xlmuadquvy0u" path="res://scripts/triggers/list_trigger.gd" id="1_qphb6"]
 [ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/triggers/trigger.gd" id="2_hub07"]
 [ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/triggers/auto_trigger.gd" id="3_2knxt"]
@@ -8,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://di52orq243m4u" path="res://scenes/office_player.tscn" id="6_fmddn"]
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="8_fmddn"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="9_gdafm"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_s8xio"]
+[ext_resource type="Script" uid="uid://b7iqdjcxrkkum" path="res://scripts/levelgen/level_generator.gd" id="10_o23kw"]
+[ext_resource type="Resource" uid="uid://dix18e35cxckh" path="res://assets/levelgen/generation.tres" id="11_wruke"]
+[ext_resource type="PackedScene" uid="uid://dp50arh8m1yce" path="res://scenes/monitor.tscn" id="12_o23kw"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_fmddn"]
 device = -1
@@ -40,7 +42,10 @@ flip_faces = true
 radius = 50.0
 height = 100.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_s8xio"]
+
 [node name="Office" type="Node3D" unique_id=863738101]
+script = ExtResource("1_6hbky")
 
 [node name="CameraLookList" type="Node3D" parent="." unique_id=1551749769 node_paths=PackedStringArray("triggers")]
 script = ExtResource("1_qphb6")
@@ -100,10 +105,6 @@ metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
 [node name="OfficePlayer" parent="." unique_id=808834498 instance=ExtResource("6_fmddn")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1927505321]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0, -1.4142135)
-mesh = SubResource("BoxMesh_s8xio")
-
 [node name="SecurityDoor" parent="." unique_id=1712412024 node_paths=PackedStringArray("triggers") instance=ExtResource("8_fmddn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9730492, -1.2628686, 0.2910595)
 condition = 4
@@ -118,7 +119,7 @@ metadata/_custom_type_script = "uid://dkq6mobqqioes"
 compositor = SubResource("Compositor_in4ui")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=96264283]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92233133, 3.0170763, -1.3512583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92233133, 3.0170763, 0.44297194)
 light_energy = 6.046
 omni_range = 8.606912
 
@@ -126,3 +127,15 @@ omni_range = 8.606912
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018257856, 1.1920929e-07, -0.0017261505)
 mesh = SubResource("SphereMesh_s8xio")
 metadata/_edit_lock_ = true
+
+[node name="LevelGenerator" type="Node" parent="." unique_id=140893405]
+script = ExtResource("10_o23kw")
+gen = ExtResource("11_wruke")
+metadata/_custom_type_script = "uid://b7iqdjcxrkkum"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1927505321]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0, -1.4142135)
+mesh = SubResource("BoxMesh_s8xio")
+
+[node name="Monitor" parent="." unique_id=762516301 instance=ExtResource("12_o23kw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521579, -0.7304406)

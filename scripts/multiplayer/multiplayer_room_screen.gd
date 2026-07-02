@@ -4,7 +4,8 @@ extends Node
 const REQUIRED_PLAYERS := 2
 
 @export var lobby_player_scene: PackedScene
-@export var game_scene: PackedScene
+@export var level_scene: PackedScene
+@export var office_scene: PackedScene
 
 @onready var start_section: VBoxContainer = $Start
 @onready var lobby_section: VBoxContainer = $Lobby
@@ -24,7 +25,10 @@ func _ready() -> void:
 
 func game_state_changed(to: String) -> void:
 	if to == "game":
-		get_tree().change_scene_to_packed(game_scene)
+		if MultiplayerConnection.is_host():
+			get_tree().change_scene_to_packed(office_scene)
+		else:
+			get_tree().change_scene_to_packed(level_scene)
 
 func host() -> void:
 	await MultiplayerConnection.host_room()

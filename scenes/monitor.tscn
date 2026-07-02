@@ -6,6 +6,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1, 1, 0.99)
+
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fcnqv"]
@@ -20,6 +23,9 @@ script = ExtResource("1_3jcr0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1503137045]
 shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=636389825]
+mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="ScreenMesh" type="MeshInstance3D" parent="." unique_id=1854944995]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)

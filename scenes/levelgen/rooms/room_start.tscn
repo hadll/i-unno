@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://brgo1fltj8ewl"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_8ewhc"]
+[ext_resource type="Script" uid="uid://c0gji5pa8chf5" path="res://scripts/levelgen/rooms/room_start.gd" id="1_8ewhc"]
+[ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/moving_player.tscn" id="2_hg6cr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hg6cr"]
 size = Vector3(10, 1, 10)
@@ -8,8 +9,10 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_so8dq"]
 size = Vector3(10, 1, 10)
 
-[node name="RoomStart" type="Node3D" unique_id=1906132364]
+[node name="RoomStart" type="Node3D" unique_id=1906132364 node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_8ewhc")
+player_scene = ExtResource("2_hg6cr")
+spawn_point = NodePath("Static/Spawn")
 metadata/_custom_type_script = "uid://ddw38u6b6an1a"
 
 [node name="Static" type="StaticBody3D" parent="." unique_id=217643138]
@@ -21,3 +24,6 @@ shape = SubResource("BoxShape3D_hg6cr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Static" unique_id=1232164423]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 2.5)
 mesh = SubResource("BoxMesh_so8dq")
+
+[node name="Spawn" type="Node3D" parent="Static" unique_id=1617246010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)

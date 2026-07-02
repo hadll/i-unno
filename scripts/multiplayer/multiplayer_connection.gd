@@ -38,6 +38,9 @@ func _ready() -> void:
 	timer.timeout.connect(check_for_updates)
 	add_child(timer)
 
+func is_host() -> bool:
+	return room_player_id == 0
+
 func get_my_data() -> Dictionary:
 	return {
 		"id": connection_id,

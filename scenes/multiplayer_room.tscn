@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b1f87nxncxmf3" path="res://scripts/multiplayer/multiplayer_room_screen.gd" id="1_7q14u"]
 [ext_resource type="PackedScene" uid="uid://ortc1uhcfowp" path="res://scenes/lobby_player.tscn" id="2_ugdk5"]
-[ext_resource type="PackedScene" uid="uid://fq52ykjqm3oj" path="res://scenes/playground_chloe.tscn" id="3_sm5bm"]
+[ext_resource type="PackedScene" uid="uid://dfl0ouravh1mb" path="res://scenes/level.tscn" id="3_uxuh7"]
+[ext_resource type="PackedScene" uid="uid://bdx3p52q2uq86" path="res://scenes/office.tscn" id="4_1eep4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font_size = 40
@@ -15,7 +16,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7q14u")
 lobby_player_scene = ExtResource("2_ugdk5")
-game_scene = ExtResource("3_sm5bm")
+level_scene = ExtResource("3_uxuh7")
+office_scene = ExtResource("4_1eep4")
 
 [node name="Start" type="VBoxContainer" parent="." unique_id=1303817634]
 custom_minimum_size = Vector2(256, 0)
