@@ -25,20 +25,25 @@ const ROOM_COLOURS: Dictionary[LevelGenerator.RoomType, Color] = {
 
 @export var layers: Array[Image]
 
-func draw(level_generator: LevelGenerator) -> void:
-	clear(level_generator.gen.map_size)
-	for room_def in level_generator.rooms:
-		draw_room(room_def)
-	for door_def in level_generator.doors:
-		if door_def.type != LevelGenerator.DoorType.WALL:
-			draw_door(door_def)
+var drawn := false
 
 func add_files(dir: TerminalDir) -> void:
+	if not drawn:
+		draw()
 	for i in len(layers):
 		var map_file := TerminalImageFile.new()
 		map_file.name = Terminal.trans_name_item_to_node("floor-%02d.png" % (i + 1))
 		map_file.content = layers[i]
 		dir.add_child(map_file)
+
+func draw() -> void:
+	clear(LevelGenerator.gen.map_size)
+	for room_def in LevelGenerator.rooms:
+		draw_room(room_def)
+	for door_def in LevelGenerator.doors:
+		if door_def.type != LevelGenerator.DoorType.WALL:
+			draw_door(door_def)
+	drawn = true
 
 func clear(map_size: Vector3i) -> void:
 	var width := MAP_MARGIN * 2 + ROOM_SCALE * map_size.x
@@ -47,6 +52,7 @@ func clear(map_size: Vector3i) -> void:
 	for y in map_size.y:
 		layers.append(Image.create_empty(width, height, false, Image.FORMAT_RGB8))
 		layers[y].fill(BACKGROUND_COLOUR)
+	drawn = false
 
 func draw_room(room_def: RoomDef) -> void:
 	for cell in room_def.shape:

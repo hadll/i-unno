@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://dfl0ouravh1mb"]
 
-[ext_resource type="Script" uid="uid://b7iqdjcxrkkum" path="res://scripts/levelgen/level_generator.gd" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://b635bb0hp26mg" path="res://scripts/level.gd" id="1_w8frs"]
-[ext_resource type="Resource" uid="uid://dix18e35cxckh" path="res://assets/levelgen/generation.tres" id="2_w7c3h"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="4_mx8sn"]
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
@@ -20,11 +18,6 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5f
 
 [node name="Level" type="Node3D" unique_id=862827639]
 script = ExtResource("1_w8frs")
-
-[node name="LevelGenerator" type="Node" parent="." unique_id=1530519590]
-script = ExtResource("1_2q6dc")
-gen = ExtResource("2_w7c3h")
-metadata/_custom_type_script = "uid://b7iqdjcxrkkum"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=556321814]
 compositor = SubResource("Compositor_g4v7s")

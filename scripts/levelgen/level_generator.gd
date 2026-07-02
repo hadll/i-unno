@@ -1,4 +1,3 @@
-class_name LevelGenerator
 extends Node
 
 const LOG_GEN := false
@@ -20,9 +19,7 @@ enum DoorType {
 	STANDARD = 0,
 	WALL = 1,
 }
-
-@export var gen: GenerationDef
-
+var gen: GenerationDef = preload("res://assets/levelgen/generation.tres")
 var spaces: Dictionary[Vector3i, RoomDef]
 var unfilled_doors: Array[DoorDef]
 var rooms: Array[RoomDef]
@@ -32,10 +29,10 @@ var max_placed: Vector3i
 var level_seed: int
 var rng: RandomNumberGenerator
 
-static func dir_rotate(pos_x_dir: Direction, new_pos_x_dir: Direction) -> Direction:
+func dir_rotate(pos_x_dir: Direction, new_pos_x_dir: Direction) -> Direction:
 	return posmod(pos_x_dir - new_pos_x_dir, 4) as Direction
 
-static func dir_vector(dir: Direction) -> Vector3i:
+func dir_vector(dir: Direction) -> Vector3i:
 	match dir:
 		Direction.POS_X:
 			return Vector3i(1, 0, 0)
@@ -47,7 +44,7 @@ static func dir_vector(dir: Direction) -> Vector3i:
 		_:
 			return Vector3i(0, 0, -1)
 
-static func dir_angle(dir: Direction) -> float:
+func dir_angle(dir: Direction) -> float:
 	match dir:
 		Direction.POS_X:
 			return 0

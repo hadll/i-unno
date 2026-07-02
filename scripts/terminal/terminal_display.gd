@@ -29,8 +29,8 @@ func _ready() -> void:
 	Terminal.home = fs_home
 	Terminal.cwd = fs_home
 	Terminal.program_dir = fs_programs
-	Map.add_files(fs_maps)
 	Terminal.prompt()
+	Map.add_files(fs_maps)
 
 func _process(delta: float) -> void:
 	if printing:

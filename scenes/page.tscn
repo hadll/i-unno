@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bfbnbd7kb0xpu" path="res://scripts/page.gd" id="1_kkqxg"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_crrp6"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6hbky"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3vee"]
-albedo_texture = SubResource("ImageTexture_crrp6")
+albedo_texture = SubResource("PlaceholderTexture2D_6hbky")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o23kw"]
+albedo_color = Color(0, 0.33406153, 0.29770398, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_o23kw")
 size = Vector2(0.707, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]

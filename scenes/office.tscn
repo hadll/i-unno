@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://di52orq243m4u" path="res://scenes/office_player.tscn" id="6_fmddn"]
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="8_fmddn"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="9_gdafm"]
-[ext_resource type="Script" uid="uid://b7iqdjcxrkkum" path="res://scripts/levelgen/level_generator.gd" id="10_o23kw"]
-[ext_resource type="Resource" uid="uid://dix18e35cxckh" path="res://assets/levelgen/generation.tres" id="11_wruke"]
+[ext_resource type="PackedScene" uid="uid://d3gjhb4lxf248" path="res://scenes/printer.tscn" id="11_6hbky"]
 [ext_resource type="PackedScene" uid="uid://dp50arh8m1yce" path="res://scenes/monitor.tscn" id="12_o23kw"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_fmddn"]
@@ -128,14 +127,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018257856, 1.1920929e-07, -
 mesh = SubResource("SphereMesh_s8xio")
 metadata/_edit_lock_ = true
 
-[node name="LevelGenerator" type="Node" parent="." unique_id=140893405]
-script = ExtResource("10_o23kw")
-gen = ExtResource("11_wruke")
-metadata/_custom_type_script = "uid://b7iqdjcxrkkum"
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1927505321]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0, -1.4142135)
 mesh = SubResource("BoxMesh_s8xio")
 
 [node name="Monitor" parent="." unique_id=762516301 instance=ExtResource("12_o23kw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521579, -0.7304406)
+
+[node name="Printer" parent="." unique_id=745413632 instance=ExtResource("11_6hbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)

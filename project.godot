@@ -22,6 +22,7 @@ Terminal="*uid://ddklrxv22q5q0"
 InputHandler="*uid://brqgb7la2atw4"
 Map="*uid://bd4ysp1jsa3bf"
 PrinterManager="*uid://3a6jvsiki65d"
+LevelGenerator="*uid://b7iqdjcxrkkum"
 
 [editor_plugins]
 
