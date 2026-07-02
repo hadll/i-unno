@@ -17,11 +17,11 @@ func _ready() -> void:
 		i_trigger.trigger_start.connect(on_trigger_end)
 	audio_player.stream = stream
 
-func on_trigger_start(trigger: Trigger):
+func on_trigger_start(t: Trigger):
 	if not audio_player.playing:
 		audio_player.play()
-	audio_player.get_stream_playback().play_stream(triggers[trigger])
+	audio_player.get_stream_playback().play_stream(triggers[t])
 
-func on_trigger_end(trigger:Trigger):
+func on_trigger_end(_trigger:Trigger):
 	if stop_audio_on_end:
 		audio_player.stop()
