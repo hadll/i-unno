@@ -145,4 +145,14 @@ func update_flags(flag_changes: Dictionary[String, FlagUpdate]) -> void:
 	if in_room:
 		var _response = await request("update_flags", [room_code, flag_changes])
 	else:
-		push_error("Can't update flags when not in room")
+		push_warning("Toggling flags while not connected to a room")
+		for flag in flag_changes:
+			match flag_changes[flag]:
+				FlagUpdate.OFF:
+					current_room_data["flags"][flag] = false
+				FlagUpdate.ON:
+					current_room_data["flags"][flag] = true
+				#FlagUpdate.TOGGLE:
+				_:
+					current_room_data["flags"][flag] = not current_room_data["flags"].get(flag, false)
+			flag_updated.emit(flag, current_room_data["flags"][flag])

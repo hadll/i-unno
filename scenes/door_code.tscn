@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ydt20mvuuuj3"]
+
+[ext_resource type="Texture2D" uid="uid://4y4h45qqrxy6" path="res://assets/pixel_characters.png" id="1_0mjbt"]
+[ext_resource type="Script" uid="uid://b2sxx0j6k4rl5" path="res://scripts/door_code_note.gd" id="1_cm34v"]
+[ext_resource type="Texture2D" uid="uid://jf2s05h0cpke" path="res://assets/sticky_note.png" id="2_6cmww"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_texture = ExtResource("2_6cmww")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+size = Vector2(0.3, 0.3)
+
+[node name="DoorCodeNote" type="Node3D" unique_id=708163455]
+script = ExtResource("1_cm34v")
+
+[node name="Letter" type="Sprite3D" parent="." unique_id=1521020550]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.1, 0, 0.00737904)
+modulate = Color(0, 0, 0, 1)
+texture_filter = 0
+texture = ExtResource("1_0mjbt")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Number1" type="Sprite3D" parent="." unique_id=623719960]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0.00737904)
+modulate = Color(0, 0, 0, 1)
+texture_filter = 0
+texture = ExtResource("1_0mjbt")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="Number2" type="Sprite3D" parent="." unique_id=165684331]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.1, 0, 0.00737904)
+modulate = Color(0, 0, 0, 1)
+texture_filter = 0
+texture = ExtResource("1_0mjbt")
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+
+[node name="Note" type="MeshInstance3D" parent="." unique_id=600573440]
+mesh = SubResource("QuadMesh_g4v7s")
