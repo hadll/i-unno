@@ -77,3 +77,6 @@ func username_touched(started: bool) -> void:
 
 func start() -> void:
 	MultiplayerConnection.start_game()
+
+func copy_code() -> void:
+	DisplayServer.clipboard_set(MultiplayerConnection.room_code)

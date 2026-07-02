@@ -46,6 +46,11 @@ layout_mode = 2
 text = "ROOM CODE"
 label_settings = SubResource("LabelSettings_g4v7s")
 
+[node name="CopyCodeButton" type="Button" parent="Lobby" unique_id=466647240]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Copy"
+
 [node name="PlayersList" type="VBoxContainer" parent="Lobby" unique_id=1160323352]
 layout_mode = 2
 
@@ -66,5 +71,6 @@ max_length = 32
 
 [connection signal="pressed" from="Start/Host" to="." method="host"]
 [connection signal="pressed" from="Start/Join" to="." method="join"]
+[connection signal="pressed" from="Lobby/CopyCodeButton" to="." method="copy_code"]
 [connection signal="pressed" from="Lobby/StartButton" to="." method="start"]
 [connection signal="editing_toggled" from="Options/UsernameInput" to="." method="username_touched"]
