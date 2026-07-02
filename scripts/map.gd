@@ -17,7 +17,7 @@ enum RoomPattern {
 	BOTH_SHORT = 6,
 }
 const ROOM_COLOURS: Dictionary[LevelGenerator.RoomType, Color] = {
-	LevelGenerator.RoomType.STANDARD: Color.DARK_GRAY,
+	LevelGenerator.RoomType.STANDARD: Color.TAN,
 	
 	LevelGenerator.RoomType.START: Color.PALE_GREEN,
 	LevelGenerator.RoomType.CHECKPOINT: Color.ORANGE_RED,
