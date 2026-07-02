@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://i3pknic7tykt" path="res://scripts/triggers/sound_trigger.gd" id="4_0qws5"]
 [ext_resource type="AudioStream" uid="uid://dmfjtkkbqjfwm" path="res://assets/sounds/security_door_close.ogg" id="5_s0v7l"]
 [ext_resource type="AudioStream" uid="uid://bay4jbg4pb4wf" path="res://assets/sounds/security_door_open.ogg" id="6_m0qib"]
+[ext_resource type="Texture2D" uid="uid://bktu3b6v2ho4k" path="res://assets/particle_sprites/trace_01.png" id="7_pcxf7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2jlm"]
 resource_name = "Material.003"
@@ -71,7 +72,6 @@ bind/2/pose = Transform3D(1, 0, 0, 0, 1.509958e-07, 1, 0, -1, 1.509958e-07, 0, -
 
 [sub_resource type="Animation" id="Animation_ty0fx"]
 resource_name = "DoorClose"
-length = 0.76666665
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -79,6 +79,72 @@ tracks/0/path = NodePath("Armature/Skeleton3D:MainDoor")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, -9.292669, -1.4752034e-06, 0.033333335, 1, 0, -9.292669, -1.4752034e-06, 0.06666667, 1, 0, -9.195497, -1.460945e-06, 0.1, 1, 0, -9.01886, -1.4350265e-06, 0.13333334, 1, 0, -8.771402, -1.3987164e-06, 0.16666667, 1, 0, -8.452707, -1.3519535e-06, 0.2, 1, 0, -8.036886, -1.2909388e-06, 0.23333333, 1, 0, -7.5452857, -1.2188051e-06, 0.26666668, 1, 0, -6.9746733, -1.1350776e-06, 0.3, 1, 0, -6.3208065, -1.039134e-06, 0.33333334, 1, 0, -5.578435, -9.3020367e-07, 0.36666667, 1, 0, -4.7005057, -8.013828e-07, 0.4, 1, 0, -3.697113, -6.5415236e-07, 0.43333334, 1, 0, -2.534544, -4.835655e-07, 0.46666667, 1, 0, -1.1432642, -2.7941934e-07, 0.5, 1, 0, 0.58208245, -2.6254572e-08, 0.53333336, 1, 0, 0.38661343, -5.493627e-08, 0.56666666, 1, 0, 0.2638428, -7.295073e-08, 0.6, 1, 0, 0.1960675, -8.289558e-08, 0.6333333, 1, 0, 0.17199565, -8.6427704e-08, 0.6666667, 1, 0, 0.18674585, -8.426338e-08, 0.7, 1, 0, 0.26078957, -7.339874e-08, 0.73333335, 1, 0, 0.46096987, -4.4025747e-08, 0.75, 1, 0, 0.58208245, -2.6254572e-08)
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GPUParticles3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3.1844366, -0.0005, 0, 0.0005, 0, 0.465, -0.13333333, 2.24468, 0.25, 0, 0.4007376, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.53333336)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GPUParticles3D:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0.023459546, -0.0005, 0, 0.0005, 0, 0.026858851, -0.00016666668, -0.00016097198, 0.083166674, 0.080325015, 0.50637543, -0.06666666, -0.31580794, 0.25, 0),
+"times": PackedFloat32Array(0, 0.001, 0.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../GPUParticles3D:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.16666667, 0.8081979, 1.0194736, -0.25, 0, 0.03333336, -0.96583176, 0, -0.03333336, 1.2072898, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 0.53333336)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GPUParticles3D2:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(3.1844366, -0.24888664, 0.32591185, 0.3, -0.39284372, 0.4666691, -0.03333333, 0.7308905, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../GPUParticles3D2:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0.029844549, -0.24839567, -0.12459456, 0.33333334, 0.16719906, 0.50755614, -0.03333333, -0.17914185, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../GPUParticles3D2:amount_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(0.002972722, -0.16238186, -0.6642077, 0.1, 0.40904057, 1.024081, -0.3333333, 0.014928818, 0, 0, -1.2859702e-05, 0, 0.089570925, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 0.53333336)
+}
 
 [sub_resource type="Animation" id="Animation_yl170"]
 resource_name = "DoorOpen"
@@ -91,13 +157,70 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.48617363, -4.0327535e-08, 0.033333335, 1, 0, 0.48617363, -4.0327535e-08, 0.06666667, 1, 0, 0.4117437, -5.1248836e-08, 0.1, 1, 0, 0.29950935, -6.771728e-08, 0.13333334, 1, 0, 0.16668317, -8.720722e-08, 0.16666667, 1, 0, 0.011065125, -1.1004147e-07, 0.2, 1, 0, -0.18062717, -1.38169e-07, 0.23333333, 1, 0, -0.4050156, -1.710941e-07, 0.26666668, 1, 0, -0.66721165, -2.0956683e-07, 0.3, 1, 0, -0.9733511, -2.544875e-07, 0.33333334, 1, 0, -1.3305943, -3.069068e-07, 0.36666667, 1, 0, -1.77667, -3.7236066e-07, 0.4, 1, 0, -2.3122835, -4.5095265e-07, 0.43333334, 1, 0, -2.9593585, -5.458997e-07, 0.46666667, 1, 0, -3.7406929, -6.605469e-07, 0.5, 1, 0, -4.6799617, -7.9836826e-07, 0.53333336, 1, 0, -5.799451, -9.626339e-07, 0.56666666, 1, 0, -6.8716855, -1.1199659e-06, 0.6, 1, 0, -7.7824025, -1.2535978e-06, 0.6333333, 1, 0, -8.478116, -1.3556817e-06, 0.6666667, 1, 0, -8.966129, -1.4272892e-06, 0.7, 1, 0, -9.262696, -1.4708053e-06, 0.73333335, 1, 0, -9.46305, -1.5002037e-06, 0.76666665, 1, 0, -9.586757, -1.5183557e-06, 0.8, 1, 0, -9.624556, -1.523902e-06, 0.8333333, 1, 0, -9.538354, -1.5112533e-06, 0.8666667, 1, 0, -9.409437, -1.492337e-06, 0.9, 1, 0, -9.352892, -1.48404e-06, 0.9166667, 1, 0, -9.336681, -1.4816613e-06)
 
+[sub_resource type="Animation" id="Animation_ettjd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../GPUParticles3D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.099, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GPUParticles3D:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.03, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jxx1y"]
 _data = {
 &"DoorClose": SubResource("Animation_ty0fx"),
-&"DoorOpen": SubResource("Animation_yl170")
+&"DoorOpen": SubResource("Animation_yl170"),
+&"RESET": SubResource("Animation_ettjd")
 }
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_pcxf7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pcxf7"]
+velocity_pivot = Vector3(1, 0, 0)
+direction = Vector3(0, 1, 1)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 89.785
+damping_max = 92.47301
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4d1p"]
+transparency = 1
+albedo_color = Color(1, 0.8666667, 0, 1)
+albedo_texture = ExtResource("7_pcxf7")
+emission_enabled = true
+emission = Color(0.9718415, 0.81609386, 0.29473543, 1)
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_im4el"]
+lightmap_size_hint = Vector2i(9, 7)
+material = SubResource("StandardMaterial3D_r4d1p")
+size = Vector2(1.5, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s8xio"]
+velocity_pivot = Vector3(1, 0, 0)
+direction = Vector3(0, 1, -1)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 89.785
+damping_max = 92.47301
 
 [node name="SecurityDoor" type="Node3D" unique_id=1712412024]
 script = ExtResource("1_kwogt")
@@ -125,7 +248,7 @@ bones/0/name = "MainDoor"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, -1.3297098e-07, 0, 1.3297098e-07, 1, 0, 0.5820823, -2.2775652e-08)
 bones/0/enabled = true
-bones/0/position = Vector3(0, -9.336681, -1.4816613e-06)
+bones/0/position = Vector3(0, 0.58208245, -2.6254572e-08)
 bones/0/rotation = Quaternion(6.648549e-08, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "BottomDoor"
@@ -169,3 +292,21 @@ NodePath("../../AnimationTrigger"): ExtResource("6_m0qib")
 }
 audio_player = NodePath("..")
 metadata/_custom_type_script = "uid://i3pknic7tykt"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=215639443]
+transform = Transform3D(0.205, 0, 0, 0, 0.03, 0, 0, 0, 0.105, -0.06747636, 3.099, -1.364355)
+amount = 32
+amount_ratio = 0.0
+lifetime = 0.13
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_pcxf7")
+draw_pass_1 = SubResource("QuadMesh_im4el")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=1557001891]
+transform = Transform3D(0.205, 0, 0, 0, 0.50755614, 0, 0, 0, 0.105, -0.06747636, 0.4666691, 1.3656641)
+amount = 30
+amount_ratio = -1.2859702e-05
+lifetime = 0.13
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_s8xio")
+draw_pass_1 = SubResource("QuadMesh_im4el")
