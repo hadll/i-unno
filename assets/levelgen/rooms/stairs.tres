@@ -20,4 +20,5 @@ name = "Stairs"
 scene = ExtResource("2_6mde5")
 shape = Array[Vector3i]([Vector3i(0, 0, 0), Vector3i(1, 0, 0), Vector3i(1, -1, 0), Vector3i(2, -1, 0)])
 doors = Array[ExtResource("1_yckne")]([SubResource("Resource_2q6dc"), SubResource("Resource_w7c3h")])
+type = 9
 metadata/_custom_type_script = "uid://b4gd7h41k7f6n"

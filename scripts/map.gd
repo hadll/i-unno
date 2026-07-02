@@ -6,7 +6,6 @@ const ROOM_MARGIN := 2
 const DOOR_HALF_WIDTH := 2
 
 const BACKGROUND_COLOUR := Color.WHITE
-const ROOM_COLOUR := Color.TAN
 const WALL_COLOUR := Color.BLACK
 
 enum RoomPattern {
@@ -16,6 +15,12 @@ enum RoomPattern {
 	BOTH_LEFT = 3,
 	RIGHT_SHORT = 4,
 	BOTH_SHORT = 6,
+}
+const ROOM_COLOURS: Dictionary[LevelGenerator.RoomType, Color] = {
+	LevelGenerator.RoomType.STANDARD: Color.DARK_GRAY,
+	
+	LevelGenerator.RoomType.START: Color.PALE_GREEN,
+	LevelGenerator.RoomType.CHECKPOINT: Color.ORANGE_RED,
 }
 
 @export var layers: Array[Image]
@@ -63,16 +68,16 @@ func draw_room(room_def: RoomDef) -> void:
 		
 		for i in range(ROOM_MARGIN + 1, ROOM_SCALE - 1 - ROOM_MARGIN):
 			for y in range(ROOM_MARGIN + 1, ROOM_SCALE - 1 - ROOM_MARGIN):
-				layers[cell.y].set_pixel(top_left.x + i, top_left.y + y, ROOM_COLOUR)
+				layers[cell.y].set_pixel(top_left.x + i, top_left.y + y, ROOM_COLOURS[room_def.type])
 			for m in range(ROOM_MARGIN + 1):
 				if not up_pattern & RoomPattern.LONG:
-					layers[cell.y].set_pixel(top_left.x + i, top_left.y + m, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + i, top_left.y + m, ROOM_COLOURS[room_def.type])
 				if not right_pattern & RoomPattern.LONG:
-					layers[cell.y].set_pixel(top_left.x + ROOM_SCALE - 1 - m, top_left.y + i, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + ROOM_SCALE - 1 - m, top_left.y + i, ROOM_COLOURS[room_def.type])
 				if not down_pattern & RoomPattern.LONG:
-					layers[cell.y].set_pixel(top_left.x + i, top_left.y + ROOM_SCALE - 1 - m, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + i, top_left.y + ROOM_SCALE - 1 - m, ROOM_COLOURS[room_def.type])
 				if not left_pattern & RoomPattern.LONG:
-					layers[cell.y].set_pixel(top_left.x + m, top_left.y + i, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + m, top_left.y + i, ROOM_COLOURS[room_def.type])
 		
 		for i in range(ROOM_MARGIN, ROOM_SCALE - ROOM_MARGIN):
 			if up_pattern & RoomPattern.LONG:
@@ -87,13 +92,13 @@ func draw_room(room_def: RoomDef) -> void:
 		for i in range(ROOM_MARGIN + 1):
 			for m in range(ROOM_MARGIN + 1):
 				if not up_pattern:
-					layers[cell.y].set_pixel(top_left.x + i, top_left.y + m, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + i, top_left.y + m, ROOM_COLOURS[room_def.type])
 				if not right_pattern:
-					layers[cell.y].set_pixel(top_left.x + ROOM_SCALE - 1 - ROOM_MARGIN + i, top_left.y + m, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + ROOM_SCALE - 1 - ROOM_MARGIN + i, top_left.y + m, ROOM_COLOURS[room_def.type])
 				if not down_pattern:
-					layers[cell.y].set_pixel(top_left.x + ROOM_SCALE - 1 - m, top_left.y + ROOM_SCALE - 1 - ROOM_MARGIN + i, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + ROOM_SCALE - 1 - m, top_left.y + ROOM_SCALE - 1 - ROOM_MARGIN + i, ROOM_COLOURS[room_def.type])
 				if not left_pattern:
-					layers[cell.y].set_pixel(top_left.x + i, top_left.y + ROOM_SCALE - 1 - m, ROOM_COLOUR)
+					layers[cell.y].set_pixel(top_left.x + i, top_left.y + ROOM_SCALE - 1 - m, ROOM_COLOURS[room_def.type])
 			if up_pattern & RoomPattern.LEFT_SHORT:
 				layers[cell.y].set_pixel(top_left.x + i, top_left.y + ROOM_MARGIN, WALL_COLOUR)
 			if up_pattern & RoomPattern.RIGHT_SHORT:
@@ -119,7 +124,7 @@ func draw_door(door_def: DoorDef) -> void:
 	var middle := Vector2i(MAP_MARGIN, MAP_MARGIN) + sum * Vector2i(ROOM_SCALE, ROOM_SCALE) / 2
 	var horz := dir.x != 0
 	for w in range(-DOOR_HALF_WIDTH, DOOR_HALF_WIDTH):
-		var colour := WALL_COLOUR if w == DOOR_HALF_WIDTH - 1 or w == -DOOR_HALF_WIDTH else ROOM_COLOUR
+		var colour := WALL_COLOUR if w == DOOR_HALF_WIDTH - 1 or w == -DOOR_HALF_WIDTH else ROOM_COLOURS[LevelGenerator.RoomType.STANDARD]
 		for l in range(-ROOM_MARGIN - 1, ROOM_MARGIN + 1):
 			layers[door_def.from.y].set_pixel(middle.x + (l if horz else w), middle.y + (w if horz else l), colour)
 

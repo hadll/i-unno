@@ -32,4 +32,5 @@ name = "Start"
 scene = ExtResource("2_fbnds")
 shape = Array[Vector3i]([Vector3i(0, 0, 0), Vector3i(1, 0, 0), Vector3i(0, 0, 1), Vector3i(1, 0, 1)])
 doors = Array[ExtResource("1_iqv2q")]([SubResource("Resource_k1wax"), SubResource("Resource_ns72m"), SubResource("Resource_log5c"), SubResource("Resource_fbnds")])
+type = 8
 metadata/_custom_type_script = "uid://b4gd7h41k7f6n"

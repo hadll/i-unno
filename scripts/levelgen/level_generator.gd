@@ -10,6 +10,12 @@ enum Direction {
 	NEG_X = 2,
 	NEG_Z = 3
 }
+enum RoomType {
+	STANDARD = 0,
+	
+	START = 8,
+	CHECKPOINT = 9,
+}
 enum DoorType {
 	STANDARD = 0,
 	WALL = 1,
