@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://rchgqjh135p2"]
+
+[ext_resource type="Script" uid="uid://k02y4an8yisx" path="res://scripts/item_slot.gd" id="1_567tv"]
+
+[node name="ItemSlot" type="PanelContainer" unique_id=1385488667]
+custom_minimum_size = Vector2(96, 96)
+mouse_filter = 2
+script = ExtResource("1_567tv")

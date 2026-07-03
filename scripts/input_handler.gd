@@ -1,6 +1,6 @@
 extends Node3D
 
-const INTERACTION_MASK := 1
+const INTERACTION_MASK := 3
 
 signal input(event: InputEvent)
 signal started_looking_at(collider: CollisionObject3D)

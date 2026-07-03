@@ -43,7 +43,6 @@ func play_animation(animation_name:String):
 					queue.remove_at(i)
 					animation_player.clear_queue()
 					for anim in queue:
-						print(anim)
 						animation_player.queue(anim)
 					return
 	else:

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://byr7u03oqvevc"]
+
+[ext_resource type="Script" uid="uid://daikq1ii1nx7j" path="res://scripts/items/test_item.gd" id="1_mh7tv"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.3
+
+[node name="TestItem" type="Node3D" unique_id=319714798]
+script = ExtResource("1_mh7tv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=351243150]
+mesh = SubResource("CylinderMesh_g4v7s")

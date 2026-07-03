@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b3aau1b4a46b7"]
+
+[ext_resource type="Script" uid="uid://ci2275xiwyl7f" path="res://scripts/item_pickup.gd" id="1_lgqak"]
+[ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/triggers/key_trigger.gd" id="2_yiukj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[node name="ItemPickup" type="Node3D" unique_id=869098384 node_paths=PackedStringArray("trigger")]
+script = ExtResource("1_lgqak")
+trigger = NodePath("KeyTrigger3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=98336736]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=634912033]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="KeyTrigger3D" type="Node3D" parent="." unique_id=392580001 node_paths=PackedStringArray("collision_object")]
+script = ExtResource("2_yiukj")
+use_action = true
+action = &"item_grab"
+collision_object = NodePath("../StaticBody3D")
+metadata/_custom_type_script = "uid://56atenn0cf2b"

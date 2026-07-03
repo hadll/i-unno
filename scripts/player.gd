@@ -9,6 +9,8 @@ var controlling_freecam := false
 var camera_request: int
 
 @export var camera_point: Node3D
+@export var flashlight: Light3D
+@export var inventory: Inventory
 @export var freecam: Camera3D
 
 func _init() -> void:
@@ -22,6 +24,9 @@ func _process(_delta: float) -> void:
 			freecam_start()
 	if detached_freecam and InputHandler.is_action_just_pressed(&"freecam_swap"):
 		controlling_freecam = not controlling_freecam
+
+func pick_up_item(item: Item) -> bool:
+	return inventory.pick_up_item(item)
 
 func freecam_start() -> void:
 	detached_freecam = true

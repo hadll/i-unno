@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://di7e5sbchs1de"]
+
+[ext_resource type="Script" uid="uid://b301mh7c2dgrh" path="res://scripts/inventory.gd" id="1_hj2ta"]
+[ext_resource type="PackedScene" uid="uid://rchgqjh135p2" path="res://scenes/item_slot.tscn" id="1_qw0r6"]
+
+[node name="Inventory" type="Control" unique_id=491016439 node_paths=PackedStringArray("slots")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hj2ta")
+slots = [NodePath("Slots/ItemSlot1"), NodePath("Slots/ItemSlot2"), NodePath("Slots/ItemSlot3"), NodePath("Slots/ItemSlot4")]
+
+[node name="Slots" type="HBoxContainer" parent="." unique_id=740609684]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 1
+
+[node name="ItemSlot1" parent="Slots" unique_id=1385488667 instance=ExtResource("1_qw0r6")]
+layout_mode = 2
+
+[node name="ItemSlot2" parent="Slots" unique_id=1889775649 instance=ExtResource("1_qw0r6")]
+layout_mode = 2
+
+[node name="ItemSlot3" parent="Slots" unique_id=1311709049 instance=ExtResource("1_qw0r6")]
+layout_mode = 2
+
+[node name="ItemSlot4" parent="Slots" unique_id=744483395 instance=ExtResource("1_qw0r6")]
+layout_mode = 2
