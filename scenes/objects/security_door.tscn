@@ -181,6 +181,18 @@ tracks/1/keys = {
 "points": PackedFloat32Array(0.03, -0.0005, 0, 0.0005, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../GPUParticles3D2:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jxx1y"]
 _data = {
@@ -192,6 +204,8 @@ _data = {
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_pcxf7"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pcxf7"]
+emission_shape = 3
+emission_box_extents = Vector3(1.36, 0, 0)
 velocity_pivot = Vector3(1, 0, 0)
 direction = Vector3(0, 1, 1)
 initial_velocity_min = 50.0
@@ -214,6 +228,8 @@ material = SubResource("StandardMaterial3D_r4d1p")
 size = Vector2(1.5, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s8xio"]
+emission_shape = 3
+emission_box_extents = Vector3(1.35, 0, 0)
 velocity_pivot = Vector3(1, 0, 0)
 direction = Vector3(0, 1, -1)
 initial_velocity_min = 50.0
@@ -248,7 +264,7 @@ bones/0/name = "MainDoor"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, -1.3297098e-07, 0, 1.3297098e-07, 1, 0, 0.5820823, -2.2775652e-08)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.58208245, -2.6254572e-08)
+bones/0/position = Vector3(0, 0.48617363, -4.0327535e-08)
 bones/0/rotation = Quaternion(6.648549e-08, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "BottomDoor"
@@ -303,9 +319,9 @@ process_material = SubResource("ParticleProcessMaterial_pcxf7")
 draw_pass_1 = SubResource("QuadMesh_im4el")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=1557001891]
-transform = Transform3D(0.205, 0, 0, 0, 0.50755614, 0, 0, 0, 0.105, -0.06747636, 0.4666691, 1.3656641)
+transform = Transform3D(0.205, 0, 0, 0, 0.029844549, 0, 0, 0, 0.105, -0.06747636, 3.1844366, 1.3656641)
 amount = 30
-amount_ratio = -1.2859702e-05
+amount_ratio = 0.0
 lifetime = 0.13
 transform_align = 2
 process_material = SubResource("ParticleProcessMaterial_s8xio")
