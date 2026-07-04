@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://d04kbdpodjah" path="res://scripts/triggers/toggle_trigger.gd" id="12_wruke"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/triggers/relay_trigger_3d.gd" id="13_wruke"]
 [ext_resource type="Script" uid="uid://dpot1lmhj56kc" path="res://scripts/triggers/lock_trigger.gd" id="14_ujkv6"]
-[ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="15_k578b"]
+[ext_resource type="Script" uid="uid://b8chm1hajslsg" path="res://scripts/triggers/axis_trigger.gd" id="16_07d2k"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_fmddn"]
 device = -1
@@ -189,7 +189,11 @@ use_action = true
 action = &"office_unfocus_monitor"
 metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
-[node name="DebugPrint" type="Node" parent="MonitorToggle" unique_id=1462717845 node_paths=PackedStringArray("trigger")]
-script = ExtResource("15_k578b")
-trigger = NodePath("../UnfocusKey")
-metadata/_custom_type_script = "uid://daowwhg8fxkuo"
+[node name="CameraAngle3D" type="Node3D" parent="." unique_id=911976296]
+transform = Transform3D(1, 0, 0, 0, 0.1102348, -0.99390554, 0, 0.99390554, 0.1102348, 0, 0.8510197, 0.78189176)
+script = ExtResource("4_fmddn")
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="AxisTrigger" type="Node3D" parent="." unique_id=1515014632]
+script = ExtResource("16_07d2k")
+metadata/_custom_type_script = "uid://b8chm1hajslsg"
