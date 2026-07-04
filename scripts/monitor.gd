@@ -19,11 +19,11 @@ func _input(event: InputEvent) -> void:
 func get_focus() -> void:
 	if focused:
 		return
-	InputHandler.disable_input = true
+	#InputHandler.disable_input = true
 	focused = true
 
 func release_focus() -> void:
 	if not focused:
 		return
-	InputHandler.disable_input = false
+	#InputHandler.disable_input = false
 	focused = false
