@@ -2,22 +2,19 @@ class_name Monitor
 extends Node3D
 
 @onready var terminal_display: TerminalDisplay = $SubViewport/TerminalDisplay
-@onready var start_using_trigger: Trigger = $ClickTrigger3D
+@onready var trigger: Trigger = self.get_parent()
 
 var focused := false
 
 func _ready() -> void:
-	start_using_trigger.trigger_start.connect(func(_t: Trigger) -> void: get_focus())
+	trigger.trigger_start.connect(func(_t: Trigger) -> void: get_focus())
+	trigger.trigger_end.connect(func (_t: Trigger) -> void: release_focus())
 
 func _input(event: InputEvent) -> void:
 	if not focused:
 		return
 	if event is InputEventKey:
 		terminal_display.key_input(event)
-	elif event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == MOUSE_BUTTON_RIGHT:
-				release_focus()
 
 func get_focus() -> void:
 	if focused:
