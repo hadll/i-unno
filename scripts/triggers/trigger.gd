@@ -9,7 +9,7 @@ signal trigger_end(t: Trigger)
 ## Fires every frame that the trigger is active
 signal trigger(t: Trigger)
 
-var able := true
+var locked := false
 var active := false
 
 func _process(_delta: float) -> void:
@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 		trigger.emit(self)
 
 func set_active(state: bool) -> void:
-	if state == active:
+	if state == active or locked:
 		return
 	active = state
 	if state:
@@ -25,14 +25,14 @@ func set_active(state: bool) -> void:
 	else:
 		trigger_end.emit(self)
 
-func set_able(state: bool) -> void:
-	able = state
+func set_locked(state: bool) -> void:
+	locked = state
 
 func enable():
-	set_able(true)
+	set_locked(false)
 
 func disable():
-	set_able(false)
+	set_locked(true)
 
 func get_default_debug_print() -> String:
 	return "Triggered"

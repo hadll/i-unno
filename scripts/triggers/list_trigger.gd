@@ -45,7 +45,7 @@ func increment_index(amount: int) -> void:
 		index = clampi(index + amount, 0, output_triggers.size() - 1)
 
 func change_index(sub_trigger: Trigger) -> void:
-	if output_triggers.size() == 0:
+	if output_triggers.size() == 0 or locked:
 		return
 	if triggers[sub_trigger] == 0 and not trigger_children:
 		output_triggers[index].set_active(true)
@@ -58,7 +58,7 @@ func change_index(sub_trigger: Trigger) -> void:
 		increment_index(triggers[sub_trigger])
 
 func disable_trigger_children(_sub_trigger: Trigger) -> void:
-	if not use_zero_as_confirm:
+	if not use_zero_as_confirm or locked:
 		return
 	var found_active = false
 	for trigger_i: Trigger in triggers.keys():
