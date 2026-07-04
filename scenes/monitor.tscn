@@ -11,12 +11,12 @@ size = Vector3(1, 1, 0.99)
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fcnqv"]
-viewport_path = NodePath("SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_0ed4q"]
+viewport_path = NodePath("Monitor/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_fcnqv")
+albedo_texture = SubResource("ViewportTexture_0ed4q")
 
 [node name="Monitor" type="Node3D" unique_id=1658872581]
 script = ExtResource("1_712wi")
