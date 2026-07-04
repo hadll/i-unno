@@ -4,12 +4,12 @@ class_name GlobalKeyTrigger
 
 @export var use_action: bool
 
-@export var action: StringName
+@export_custom(PROPERTY_HINT_INPUT_NAME, "show_builtin") var action: StringName
 @export var button: InputEventKey
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	InputHandler.input.connect(on_player_input)
+		InputHandler.input.connect(on_player_input)
 
 func get_default_debug_print() -> String:
 	return "Keyboard Pressed"
