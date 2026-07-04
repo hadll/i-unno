@@ -10,7 +10,7 @@ class_name _CLASS_
 func _ready() -> void:
 	for i_trigger in triggers:
 		i_trigger.trigger_start.connect(on_trigger_start)
-		i_trigger.trigger_start.connect(on_trigger_end)
+		i_trigger.trigger_end.connect(on_trigger_end)
 		# you might want to remove this line depending on how you want it to behave
 		if i_trigger.active:
 			on_trigger_start(i_trigger)
