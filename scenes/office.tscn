@@ -261,7 +261,7 @@ mesh = SubResource("QuadMesh_gnmmx")
 [node name="Printer" parent="." unique_id=745413632 instance=ExtResource("11_6hbky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)
 
-[node name="Honker" type="Area3D" parent="." unique_id=1732613403]
+[node name="Honker" type="StaticBody3D" parent="." unique_id=1083886316]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Honker" unique_id=690284944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.935979, 1.5469587, -1.6377994)
@@ -276,6 +276,7 @@ metadata/_custom_type_script = "uid://c2vlk0ij1eiwu"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Honker" unique_id=101461956]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.935979, 1.5469587, -1.6377994)
+volume_db = -21.053
 
 [node name="SoundTrigger" type="Node3D" parent="Honker/AudioStreamPlayer3D" unique_id=1917113993 node_paths=PackedStringArray("triggers", "audio_player")]
 script = ExtResource("17_kviqm")
