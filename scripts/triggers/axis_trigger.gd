@@ -76,12 +76,12 @@ func update():
 	dir = get_directions_from_vector(dir)
 	activate_triggers(dir)
 
-func on_trigger_start(trigger: Trigger):
-	pressed_order.append(trigger)
+func on_trigger_start(t: Trigger):
+	pressed_order.append(t)
 	update()
 
-func on_trigger_end(trigger:Trigger):
+func on_trigger_end(t: Trigger):
 	for i in range(len(pressed_order)):
-		if pressed_order[len(pressed_order)-i-1] == trigger:
+		if pressed_order[len(pressed_order)-i-1] == t:
 			pressed_order.remove_at(len(pressed_order)-i-1)
 	update()

@@ -47,6 +47,8 @@ func release_camera(key: StringName, value: Variant) -> void:
 	for loc in requested_locations.size():
 		if requested_locations[requested_locations.size() - loc - 1][key] == value:
 			requested_locations.remove_at(requested_locations.size() - loc - 1)
+			tween_camera()
+			return
 
 func edit_request_transform(id: int, requested_transform: Transform3D) -> void:
 	for loc in requested_locations:
