@@ -62,6 +62,7 @@ func generate() -> int:
 		seed_finder.seed = hash(MultiplayerConnection.room_code)
 	else:
 		seed_finder.seed = randi()
+	print("Generation Seed: %d" % seed_finder.seed)
 	while not try_generate(seed_finder.randi()):
 		if LOG_GEN: print("Generation Failed... Retrying")
 	if LOG_GEN: print("Generation Done")
@@ -98,7 +99,7 @@ func try_generate(seed_value: int) -> bool:
 		
 		var consecutive_fails := 0
 		while get_density() - existing_density <= section_def.required_density:
-			var start_door_index = int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors))
+			var start_door_index = clampi(int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors)), 0, len(unfilled_doors) - 1)
 			var start_door := unfilled_doors[start_door_index]
 			var room_index = rng.randi() % len(section_def.rooms)
 			var room := section_def.rooms[room_index]
@@ -126,7 +127,7 @@ func try_generate(seed_value: int) -> bool:
 			return a.from.distance_squared_to(section_start_rough) > b.from.distance_squared_to(section_start_rough)
 		)
 		while true:
-			var start_door_index = int(rng.randf() * (1 - section_def.end_depth) * len(unfilled_doors))
+			var start_door_index = clampi(int(rng.randf() * (1 - section_def.end_depth) * len(unfilled_doors)), 0, len(unfilled_doors) - 1)
 			var start_door := unfilled_doors[start_door_index]
 			var end_door_index = rng.randi() % (len(section_def.end.doors) - 1)
 			var end_door := section_def.end.doors[end_door_index]
