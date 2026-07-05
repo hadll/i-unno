@@ -10,7 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://d3gjhb4lxf248" path="res://scenes/printer.tscn" id="11_6hbky"]
 [ext_resource type="PackedScene" uid="uid://dp50arh8m1yce" path="res://scenes/monitor.tscn" id="12_o23kw"]
 [ext_resource type="Script" uid="uid://d04kbdpodjah" path="res://scripts/triggers/toggle_trigger.gd" id="12_wruke"]
+[ext_resource type="Texture2D" uid="uid://dhsql566kud8s" path="res://assets/office_controls.png" id="13_ujkv6"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/triggers/relay_trigger_3d.gd" id="13_wruke"]
+[ext_resource type="Texture2D" uid="uid://bw3f8t6evcvbh" path="res://assets/office_controls_terminal_hint.png" id="14_k578b"]
+[ext_resource type="Script" uid="uid://dpot1lmhj56kc" path="res://scripts/triggers/lock_trigger.gd" id="14_ujkv6"]
 [ext_resource type="Script" uid="uid://b8chm1hajslsg" path="res://scripts/triggers/axis_trigger.gd" id="16_07d2k"]
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
@@ -38,6 +41,25 @@ radius = 50.0
 height = 100.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_s8xio"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbsom"]
+albedo_color = Color(0.41, 0.41, 0.41, 1)
+albedo_texture = ExtResource("13_ujkv6")
+
+[sub_resource type="QuadMesh" id="QuadMesh_s8xio"]
+material = SubResource("StandardMaterial3D_fbsom")
+size = Vector2(1, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k578b"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.48, 0.48, 0.48, 1)
+albedo_texture = ExtResource("14_k578b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ujkv6"]
+material = SubResource("StandardMaterial3D_k578b")
+size = Vector2(0.3, 0.3)
 
 [node name="Office" type="Node3D" unique_id=863738101]
 script = ExtResource("1_6hbky")
@@ -163,15 +185,16 @@ mesh = SubResource("BoxMesh_s8xio")
 
 [node name="Monitor" parent="." unique_id=762516301 node_paths=PackedStringArray("triggers") instance=ExtResource("12_o23kw")]
 transform = Transform3D(0.95717835, 0, 0.2894989, 0, 1, 0, -0.2894989, 0, 0.95717835, -0.9722295, 0.9893547, -1.9249489)
-triggers = [NodePath("MonitorAngle/ToggleTrigger")]
+triggers = [NodePath("MonitorToggle")]
 
 [node name="MonitorAngle" type="Node3D" parent="Monitor" unique_id=350395122 node_paths=PackedStringArray("trigger")]
 transform = Transform3D(0.99839294, 0, 0.05667019, 0, 1, 0, -0.05667019, 0, 0.99839294, -0.01588437, 0.040851355, 1.2223675)
 script = ExtResource("4_fmddn")
-trigger = NodePath("ToggleTrigger")
+trigger = NodePath("../MonitorToggle")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
-[node name="ToggleTrigger" type="Node3D" parent="Monitor/MonitorAngle" unique_id=141675544 node_paths=PackedStringArray("triggers")]
+[node name="MonitorToggle" type="Node3D" parent="Monitor" unique_id=141675544 node_paths=PackedStringArray("triggers")]
+transform = Transform3D(0.998393, 0, 0.05667016, 0, 1, 0, -0.05667016, 0, 0.998393, -0.01588434, 0.040851355, 1.2223675)
 script = ExtResource("12_wruke")
 triggers = {
 NodePath("../RelayTrigger"): 1,
@@ -179,17 +202,33 @@ NodePath("../EscapeMonitorKey"): 0
 }
 metadata/_custom_type_script = "uid://d04kbdpodjah"
 
-[node name="RelayTrigger" type="Node3D" parent="Monitor/MonitorAngle" unique_id=206390528 node_paths=PackedStringArray("triggers")]
+[node name="RelayTrigger" type="Node3D" parent="Monitor" unique_id=206390528 node_paths=PackedStringArray("triggers")]
+transform = Transform3D(0.998393, 0, 0.05667016, 0, 1, 0, -0.05667016, 0, 0.998393, -0.01588434, 0.040851355, 1.2223675)
 script = ExtResource("13_wruke")
 condition = 0
-triggers = [NodePath("../../../AxisTrigger/LookForward"), NodePath("../../../InteractKey")]
+triggers = [NodePath("../../AxisTrigger/LookForward"), NodePath("../../InteractKey")]
 metadata/_custom_type_script = "uid://557bh1kgicsc"
 
-[node name="EscapeMonitorKey" type="Node3D" parent="Monitor/MonitorAngle" unique_id=526400559]
+[node name="EscapeMonitorKey" type="Node3D" parent="Monitor" unique_id=526400559]
+transform = Transform3D(0.998393, 0, 0.05667016, 0, 1, 0, -0.05667016, 0, 0.998393, -0.01588434, 0.040851355, 1.2223675)
 script = ExtResource("5_gdafm")
 use_action = true
 action = &"office_unfocus_monitor"
 metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="LockTrigger" type="Node3D" parent="Monitor" unique_id=1407903017 node_paths=PackedStringArray("input_triggers", "triggers_to_lock")]
+script = ExtResource("14_ujkv6")
+input_triggers = [NodePath("../MonitorToggle")]
+triggers_to_lock = [NodePath("../../LookLeftKey"), NodePath("../../LookRightKey"), NodePath("../../LookUpKey")]
+metadata/_custom_type_script = "uid://dpot1lmhj56kc"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Monitor" unique_id=19432116]
+transform = Transform3D(0.6339472, 0, -2.9802322e-08, 0, 0.63394713, 0, 2.9802322e-08, 0, 0.6339472, -1.0367583, 0.3412801, 0)
+mesh = SubResource("QuadMesh_s8xio")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Monitor" unique_id=1117459201]
+transform = Transform3D(0.6288364, -0.07945742, -0.011845256, 0.08033551, 0.62196314, 0.09272, 3.014787e-08, -0.09347356, 0.6270181, 0.40935105, 0.40366805, 0.52445984)
+mesh = SubResource("QuadMesh_ujkv6")
 
 [node name="Printer" parent="." unique_id=745413632 instance=ExtResource("11_6hbky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)
