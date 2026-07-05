@@ -44,7 +44,7 @@ func evaluate_net_vector() -> Vector2: #this vector is intentionally non normali
 			net_vector += direction_map[triggers[i_trigger]]
 	return net_vector
 
-func get_directions_from_vector(vec: Vector2) -> Array[Directions]:
+func get_directions_from_vector(vec: Vector2) -> Array:
 	var applicable_vectors = []
 	if vec.x >= 1:
 		applicable_vectors.append(Directions.RIGHT)
@@ -52,27 +52,31 @@ func get_directions_from_vector(vec: Vector2) -> Array[Directions]:
 		applicable_vectors.append(Directions.LEFT)
 	if vec.y >= 1:
 		applicable_vectors.append(Directions.DOWN)
-	elif vec.y <= 1:
-		applicable_vectors.append(Directions.NEUTRAL)
+	elif vec.y <= -1:
+		applicable_vectors.append(Directions.UP)
 	elif len(applicable_vectors) == 0:
-		applicable_vectors[0] = Directions.NEUTRAL
+		applicable_vectors.append(Directions.NEUTRAL)
 	return applicable_vectors
 
-func get_newest_direction(dirs: Array[Directions]) -> Array[Directions]:
+func get_newest_direction(dirs: Array) -> Array:
 	for i in range(len(pressed_order)):
-		if pressed_order[len(pressed_order)-i-1] in dirs:
-			return [pressed_order[len(pressed_order)-i-1]]
-	return []
+		print(i, pressed_order[len(pressed_order)-i-1])
+		if triggers[pressed_order[len(pressed_order)-i-1]] in dirs:
+			return [triggers[pressed_order[len(pressed_order)-i-1]]]
+	return [Directions.NEUTRAL]
 
-func activate_triggers(dirs: Array[Directions]):
+func activate_triggers(dirs: Array):
 	if not allow_multiple_outputs:
 		dirs = get_newest_direction(dirs) # seperate function in case we want more behaviors
+	print("newest dir: ",dirs)
 	for dir in output_triggers.keys():
 		output_triggers[dir].set_active(dir in dirs)
 
 func update():
 	var dir = evaluate_net_vector()
+	print("net vector: ", dir)
 	dir = get_directions_from_vector(dir)
+	print("directions: ", dir)
 	activate_triggers(dir)
 
 func on_trigger_start(trigger: Trigger):
