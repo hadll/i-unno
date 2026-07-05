@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/triggers/click_trigger_3d.gd" id="16_jp1e5"]
 [ext_resource type="Script" uid="uid://i3pknic7tykt" path="res://scripts/triggers/sound_trigger.gd" id="17_kviqm"]
 [ext_resource type="AudioStream" uid="uid://b8lihijcm3d4f" path="res://assets/sounds/honk.mp3" id="18_ja80a"]
+[ext_resource type="AudioStream" uid="uid://vxiaj8gpduea" path="res://assets/sounds/office_ambience_main.wav" id="19_kviqm"]
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
 resource_local_to_scene = false
@@ -283,3 +284,8 @@ NodePath("../../ClickTrigger3D"): ExtResource("18_ja80a")
 }
 audio_player = NodePath("..")
 metadata/_custom_type_script = "uid://i3pknic7tykt"
+
+[node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=2086005315]
+stream = ExtResource("19_kviqm")
+volume_db = -15.509
+autoplay = true
