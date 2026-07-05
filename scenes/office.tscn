@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://bw3f8t6evcvbh" path="res://assets/office_controls_terminal_hint.png" id="14_k578b"]
 [ext_resource type="Script" uid="uid://dpot1lmhj56kc" path="res://scripts/triggers/lock_trigger.gd" id="14_ujkv6"]
 [ext_resource type="Script" uid="uid://b8chm1hajslsg" path="res://scripts/triggers/axis_trigger.gd" id="16_07d2k"]
+[ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/triggers/click_trigger_3d.gd" id="16_jp1e5"]
+[ext_resource type="Script" uid="uid://i3pknic7tykt" path="res://scripts/triggers/sound_trigger.gd" id="17_kviqm"]
+[ext_resource type="AudioStream" uid="uid://b8lihijcm3d4f" path="res://assets/sounds/honk.mp3" id="18_ja80a"]
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
 resource_local_to_scene = false
@@ -77,6 +80,9 @@ albedo_texture = SubResource("CompressedTexture2D_k578b")
 [sub_resource type="QuadMesh" id="QuadMesh_gnmmx"]
 material = SubResource("StandardMaterial3D_07d2k")
 size = Vector2(0.3, 0.3)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s8xio"]
+radius = 0.0635511
 
 [node name="Office" type="Node3D" unique_id=863738101]
 script = ExtResource("1_6hbky")
@@ -253,3 +259,27 @@ mesh = SubResource("QuadMesh_gnmmx")
 
 [node name="Printer" parent="." unique_id=745413632 instance=ExtResource("11_6hbky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1732613403]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=690284944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.935979, 1.5469587, -1.6377994)
+shape = SubResource("SphereShape3D_s8xio")
+
+[node name="ClickTrigger3D" type="Node3D" parent="Area3D" unique_id=1125886493 node_paths=PackedStringArray("collision_object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.935979, 1.5469587, -1.6377994)
+script = ExtResource("16_jp1e5")
+button = 1
+collision_object = NodePath("..")
+metadata/_custom_type_script = "uid://c2vlk0ij1eiwu"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Area3D" unique_id=101461956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.935979, 1.5469587, -1.6377994)
+
+[node name="SoundTrigger" type="Node3D" parent="Area3D/AudioStreamPlayer3D" unique_id=1917113993 node_paths=PackedStringArray("triggers", "audio_player")]
+script = ExtResource("17_kviqm")
+triggers = {
+NodePath("../../ClickTrigger3D"): ExtResource("18_ja80a")
+}
+audio_player = NodePath("..")
+metadata/_custom_type_script = "uid://i3pknic7tykt"
