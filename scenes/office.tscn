@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://bdx3p52q2uq86"]
 
 [ext_resource type="Script" uid="uid://b82rag0br1w7i" path="res://scripts/office.gd" id="1_6hbky"]
-[ext_resource type="Script" uid="uid://xlmuadquvy0u" path="res://scripts/triggers/list_trigger.gd" id="1_qphb6"]
 [ext_resource type="Script" uid="uid://q3t4j0k4xwsm" path="res://scripts/triggers/trigger.gd" id="2_hub07"]
-[ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/triggers/auto_trigger.gd" id="3_2knxt"]
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="4_fmddn"]
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/triggers/global_key_trigger.gd" id="5_gdafm"]
 [ext_resource type="PackedScene" uid="uid://di52orq243m4u" path="res://scenes/office_player.tscn" id="6_fmddn"]
@@ -13,12 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dp50arh8m1yce" path="res://scenes/monitor.tscn" id="12_o23kw"]
 [ext_resource type="Script" uid="uid://d04kbdpodjah" path="res://scripts/triggers/toggle_trigger.gd" id="12_wruke"]
 [ext_resource type="Script" uid="uid://557bh1kgicsc" path="res://scripts/triggers/relay_trigger_3d.gd" id="13_wruke"]
-[ext_resource type="Script" uid="uid://dpot1lmhj56kc" path="res://scripts/triggers/lock_trigger.gd" id="14_ujkv6"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_fmddn"]
-device = -1
-keycode = 32
-unicode = 32
+[ext_resource type="Script" uid="uid://b8chm1hajslsg" path="res://scripts/triggers/axis_trigger.gd" id="16_07d2k"]
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
 resource_local_to_scene = false
@@ -49,26 +42,34 @@ height = 100.0
 [node name="Office" type="Node3D" unique_id=863738101]
 script = ExtResource("1_6hbky")
 
-[node name="CameraLookList" type="Node3D" parent="." unique_id=1551749769 node_paths=PackedStringArray("triggers")]
-script = ExtResource("1_qphb6")
+[node name="AxisTrigger" type="Node3D" parent="." unique_id=1809519187 node_paths=PackedStringArray("triggers", "output_triggers")]
+script = ExtResource("16_07d2k")
 triggers = {
-NodePath("../LookLeftKey"): -1,
-NodePath("../LookRightKey"): 1
+NodePath("../LookLeftKey"): 0,
+NodePath("../LookRightKey"): 1,
+NodePath("../LookUpKey"): 2
 }
-starting_index = 1
-wrap_index = false
-metadata/_custom_type_script = "uid://xlmuadquvy0u"
+output_triggers = {
+0: NodePath("LookLeft"),
+1: NodePath("LookRight"),
+2: NodePath("LookUp"),
+4: NodePath("LookForward")
+}
+metadata/_custom_type_script = "uid://b8chm1hajslsg"
 
-[node name="Trigger2" type="Node3D" parent="CameraLookList" unique_id=1938080547]
+[node name="LookForward" type="Node3D" parent="AxisTrigger" unique_id=1340390358]
 script = ExtResource("2_hub07")
 metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
 
-[node name="AutoTrigger" type="Node3D" parent="CameraLookList" unique_id=1893135713]
-script = ExtResource("3_2knxt")
-behavior = 1
-metadata/_custom_type_script = "uid://bpj8ajinuuf45"
+[node name="LookLeft" type="Node3D" parent="AxisTrigger" unique_id=1559290158]
+script = ExtResource("2_hub07")
+metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
 
-[node name="Trigger3" type="Node3D" parent="CameraLookList" unique_id=1459795712]
+[node name="LookRight" type="Node3D" parent="AxisTrigger" unique_id=2038381883]
+script = ExtResource("2_hub07")
+metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
+
+[node name="LookUp" type="Node3D" parent="AxisTrigger" unique_id=1492768771]
 script = ExtResource("2_hub07")
 metadata/_custom_type_script = "uid://q3t4j0k4xwsm"
 
@@ -78,19 +79,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6034347, 0.8064978)
 [node name="ForwardAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=522636575 node_paths=PackedStringArray("trigger")]
 transform = Transform3D(1, 0, 0, 0, 0.9947474, 0.10236038, 0, -0.10236038, 0.9947474, 0, 0, 0)
 script = ExtResource("4_fmddn")
-trigger = NodePath("../../CameraLookList/AutoTrigger")
+trigger = NodePath("../../AxisTrigger/LookForward")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
 [node name="RightAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=1092755529 node_paths=PackedStringArray("trigger")]
 transform = Transform3D(0.25000003, -0.06698731, -0.9659258, 0.35296312, 0.93526214, 0.026492827, 0.9016191, -0.3475594, 0.2574596, 0.13586831, 0.049428347, 0.106822856)
 script = ExtResource("4_fmddn")
-trigger = NodePath("../../CameraLookList/Trigger3")
+trigger = NodePath("../../AxisTrigger/LookRight")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
 [node name="LeftAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=2144118109 node_paths=PackedStringArray("trigger")]
 transform = Transform3D(0.25000003, 0.06698731, 0.9659258, -0.35296312, 0.93526214, 0.026492827, -0.9016191, -0.3475594, 0.2574596, -0.13309617, 0.049483303, 0.107504494)
 script = ExtResource("4_fmddn")
-trigger = NodePath("../../CameraLookList/Trigger2")
+trigger = NodePath("../../AxisTrigger/LookLeft")
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+
+[node name="UpAngle" type="Node3D" parent="PlayerCameraOrigin" unique_id=911976296 node_paths=PackedStringArray("trigger")]
+transform = Transform3D(1, 0, 0, 0, 0.1102348, -0.99390554, 0, 0.99390554, 0.1102348, 0, 0.247585, -0.024606049)
+script = ExtResource("4_fmddn")
+trigger = NodePath("../../AxisTrigger/LookUp")
 metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
 [node name="LookLeftKey" type="Node3D" parent="." unique_id=505381427]
@@ -105,24 +112,37 @@ use_action = true
 action = &"office_look_right"
 metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
+[node name="LookUpKey" type="Node3D" parent="." unique_id=1664178869]
+script = ExtResource("5_gdafm")
+use_action = true
+action = &"office_look_up"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="InteractKey" type="Node3D" parent="." unique_id=1514670701]
+script = ExtResource("5_gdafm")
+use_action = true
+action = &"office_interact"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
 [node name="OfficePlayer" parent="." unique_id=808834498 instance=ExtResource("6_fmddn")]
 
 [node name="SecurityDoor" parent="." unique_id=1712412024 node_paths=PackedStringArray("triggers") instance=ExtResource("8_fmddn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9730492, -1.2628686, 0.2910595)
-condition = 4
-triggers = [NodePath("../DoorTrigger")]
+triggers = [NodePath("DoorTrigger")]
 
-[node name="DoorTrigger" type="Node3D" parent="." unique_id=276171205 node_paths=PackedStringArray("triggers")]
+[node name="DoorTrigger" type="Node3D" parent="SecurityDoor" unique_id=276171205 node_paths=PackedStringArray("triggers")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9730492, 1.2628686, -0.2910595)
 script = ExtResource("12_wruke")
 triggers = {
-NodePath("DoorKey"): 2
+NodePath("RelayTrigger"): 2
 }
 metadata/_custom_type_script = "uid://d04kbdpodjah"
 
-[node name="DoorKey" type="Node3D" parent="DoorTrigger" unique_id=2052040546]
-script = ExtResource("5_gdafm")
-button = SubResource("InputEventKey_fmddn")
-metadata/_custom_type_script = "uid://dkq6mobqqioes"
+[node name="RelayTrigger" type="Node3D" parent="SecurityDoor/DoorTrigger" unique_id=1390520368 node_paths=PackedStringArray("triggers")]
+script = ExtResource("13_wruke")
+condition = 0
+triggers = [NodePath("../../../InteractKey"), NodePath("../../../AxisTrigger/LookLeft")]
+metadata/_custom_type_script = "uid://557bh1kgicsc"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1512259475]
 compositor = SubResource("Compositor_in4ui")
@@ -143,52 +163,33 @@ mesh = SubResource("BoxMesh_s8xio")
 
 [node name="Monitor" parent="." unique_id=762516301 node_paths=PackedStringArray("triggers") instance=ExtResource("12_o23kw")]
 transform = Transform3D(0.95717835, 0, 0.2894989, 0, 1, 0, -0.2894989, 0, 0.95717835, -0.9722295, 0.9893547, -1.9249489)
-triggers = [NodePath("../MonitorToggle")]
+triggers = [NodePath("MonitorAngle/ToggleTrigger")]
 
-[node name="Printer" parent="." unique_id=745413632 instance=ExtResource("11_6hbky")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)
+[node name="MonitorAngle" type="Node3D" parent="Monitor" unique_id=350395122 node_paths=PackedStringArray("trigger")]
+transform = Transform3D(0.99839294, 0, 0.05667019, 0, 1, 0, -0.05667019, 0, 0.99839294, -0.01588437, 0.040851355, 1.2223675)
+script = ExtResource("4_fmddn")
+trigger = NodePath("ToggleTrigger")
+metadata/_custom_type_script = "uid://bvmwuhi6j156l"
 
-[node name="MonitorToggle" type="Node3D" parent="." unique_id=738734658 node_paths=PackedStringArray("triggers")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)
+[node name="ToggleTrigger" type="Node3D" parent="Monitor/MonitorAngle" unique_id=141675544 node_paths=PackedStringArray("triggers")]
 script = ExtResource("12_wruke")
 triggers = {
-NodePath("LookingatAndW"): 1,
-NodePath("UnfocusKey"): 0
+NodePath("../RelayTrigger"): 1,
+NodePath("../EscapeMonitorKey"): 0
 }
 metadata/_custom_type_script = "uid://d04kbdpodjah"
 
-[node name="LookingatAndW" type="Node3D" parent="MonitorToggle" unique_id=1109764871 node_paths=PackedStringArray("triggers")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87247145, -0.046094656, 1.0775814)
+[node name="RelayTrigger" type="Node3D" parent="Monitor/MonitorAngle" unique_id=206390528 node_paths=PackedStringArray("triggers")]
 script = ExtResource("13_wruke")
 condition = 0
-triggers = [NodePath("../../CameraLookList/AutoTrigger"), NodePath("../FocusKey")]
+triggers = [NodePath("../../../AxisTrigger/LookForward"), NodePath("../../../InteractKey")]
 metadata/_custom_type_script = "uid://557bh1kgicsc"
 
-[node name="FocusKey" type="Node3D" parent="MonitorToggle" unique_id=424919486]
-script = ExtResource("5_gdafm")
-use_action = true
-action = &"office_focus_monitor"
-metadata/_custom_type_script = "uid://dkq6mobqqioes"
-
-[node name="LockTrigger" type="Node3D" parent="MonitorToggle" unique_id=468004383 node_paths=PackedStringArray("input_triggers", "triggers_to_lock")]
-script = ExtResource("14_ujkv6")
-input_triggers = [NodePath("..")]
-triggers_to_lock = [NodePath("../../CameraLookList"), NodePath("../../DoorTrigger")]
-metadata/_custom_type_script = "uid://dpot1lmhj56kc"
-
-[node name="CameraAngle3D" type="Node3D" parent="MonitorToggle" unique_id=964906935 node_paths=PackedStringArray("trigger")]
-transform = Transform3D(0.9437498, -2.910383e-11, 0.3306604, -0.0022989942, 0.9999758, 0.006561641, -0.33065245, -0.006952734, 0.94372696, -1.3727216, 0.9713615, 0.48740065)
-script = ExtResource("4_fmddn")
-trigger = NodePath("..")
-metadata/_custom_type_script = "uid://bvmwuhi6j156l"
-
-[node name="UnfocusKey" type="Node3D" parent="MonitorToggle" unique_id=858648729]
+[node name="EscapeMonitorKey" type="Node3D" parent="Monitor/MonitorAngle" unique_id=526400559]
 script = ExtResource("5_gdafm")
 use_action = true
 action = &"office_unfocus_monitor"
 metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
-[node name="CameraAngle3D" type="Node3D" parent="." unique_id=911976296]
-transform = Transform3D(1, 0, 0, 0, 0.1102348, -0.99390554, 0, 0.99390554, 0.1102348, 0, 0.8510197, 0.78189176)
-script = ExtResource("4_fmddn")
-metadata/_custom_type_script = "uid://bvmwuhi6j156l"
+[node name="Printer" parent="." unique_id=745413632 instance=ExtResource("11_6hbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)
