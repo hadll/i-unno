@@ -64,6 +64,20 @@ albedo_texture = ExtResource("14_k578b")
 material = SubResource("StandardMaterial3D_k578b")
 size = Vector2(0.3, 0.3)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k578b"]
+load_path = "res://.godot/imported/office_controls_terminal_hint2.png-fd0275f2f1330984c43156915a507888.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07d2k"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.48, 0.48, 0.48, 1)
+albedo_texture = SubResource("CompressedTexture2D_k578b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gnmmx"]
+material = SubResource("StandardMaterial3D_07d2k")
+size = Vector2(0.3, 0.3)
+
 [node name="Office" type="Node3D" unique_id=863738101]
 script = ExtResource("1_6hbky")
 
@@ -229,9 +243,13 @@ metadata/_custom_type_script = "uid://dpot1lmhj56kc"
 transform = Transform3D(0.6339472, 0, -2.9802322e-08, 0, 0.63394713, 0, 2.9802322e-08, 0, 0.6339472, -1.0367583, 0.3412801, 0)
 mesh = SubResource("QuadMesh_s8xio")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Monitor" unique_id=1117459201]
-transform = Transform3D(0.6288364, -0.07945742, -0.011845256, 0.08033551, 0.62196314, 0.09272, 3.014787e-08, -0.09347356, 0.6270181, 0.40935105, 0.40366805, 0.52445984)
+[node name="MonitorHint1" type="MeshInstance3D" parent="Monitor" unique_id=1117459201]
+transform = Transform3D(0.6168267, 0.14616637, -0.007001877, -0.13835733, 0.59241366, 0.17830387, 0.04765384, -0.17196052, 0.60831535, 0.41684866, 0.23218632, 0.52672744)
 mesh = SubResource("QuadMesh_ujkv6")
+
+[node name="MonitorHint2" type="MeshInstance3D" parent="Monitor" unique_id=137397543]
+transform = Transform3D(0.6288364, -0.07945742, -0.011845256, 0.08033551, 0.62196314, 0.09272, 3.014787e-08, -0.09347356, 0.6270181, 0.40935105, 0.40366805, 0.52445984)
+mesh = SubResource("QuadMesh_gnmmx")
 
 [node name="Printer" parent="." unique_id=745413632 instance=ExtResource("11_6hbky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87247145, 0.046094656, -1.0775814)
