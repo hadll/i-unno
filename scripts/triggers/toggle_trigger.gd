@@ -22,10 +22,10 @@ func trigger_toggle() -> void:
 
 func _ready() -> void:
 	for i_trigger in triggers:
-		i_trigger.trigger_start.connect(on_trigger_start)
+		i_trigger.trigger_start.connect(on_trigger_start.bind(i_trigger))
 		# you might want to remove this line depending on how you want it to behave
 		if i_trigger.active:
 			on_trigger_start(i_trigger)
 
-func on_trigger_start(t: Trigger) -> void:
-	mode_funcs[triggers[t]].call()
+func on_trigger_start(i_trigger: Trigger) -> void:
+	mode_funcs[triggers[i_trigger]].call()

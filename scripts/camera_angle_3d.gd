@@ -17,15 +17,15 @@ func _ready() -> void:
 		trigger.trigger_start.connect(on_trigger_start)
 		trigger.trigger_end.connect(on_trigger_end)
 		if trigger.active:
-			on_trigger_start(trigger)
+			on_trigger_start()
 
-func on_trigger_start(_node: Trigger) -> void:
+func on_trigger_start() -> void:
 	if use_player_camera:
 		PlayerCamera.me.request_camera(global_transform, self, tween)
 	else:
 		camera.request_camera(global_transform, self, tween)
 
-func on_trigger_end(_node: Trigger) -> void:
+func on_trigger_end() -> void:
 	if use_player_camera:
 		PlayerCamera.me.release_camera_by_requester(self)
 	else:

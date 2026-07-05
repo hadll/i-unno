@@ -15,7 +15,7 @@ func _ready() -> void:
 		i_trigger.trigger_end.connect(on_trigger_end)
 		# you might want to remove this line depending on how you want it to behave
 		if i_trigger.active:
-			on_trigger_start(i_trigger)
+			on_trigger_start()
 
 func set_all_locked(state: bool) -> void:
 	for i_trigger in triggers_to_lock:
@@ -29,10 +29,10 @@ func are_any_triggered() -> bool:
 			return true
 	return false
 
-func on_trigger_start(_t: Trigger):
+func on_trigger_start():
 	if are_any_triggered():
 		set_all_locked(true)
 
-func on_trigger_end(_t: Trigger):
+func on_trigger_end():
 	if not are_any_triggered():
 		set_all_locked(false)

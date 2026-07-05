@@ -71,8 +71,8 @@ func on_trigger_end(node: Trigger) -> void:
 	check_cond()
 
 func connect_trigger(node: Trigger) -> void:
-	node.trigger_start.connect(on_trigger_start)
-	node.trigger_end.connect(on_trigger_end)
+	node.trigger_start.connect(on_trigger_start.bind(node))
+	node.trigger_end.connect(on_trigger_end.bind(node))
 	triggered_triggers[node.get_instance_id()] = false
 
 func check_cond() -> void:

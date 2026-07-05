@@ -16,14 +16,14 @@ func _ready() -> void:
 	if not print_text:
 		print_text = trigger.get_default_debug_print()
 
-func trigger_trigger(node: Trigger) -> void:
+func trigger_trigger() -> void:
 	if show_trigger:
-		print("[%s Trigger] %s" % [node.name, print_text])
+		print("[%s Trigger] %s" % [trigger.name, print_text])
 
-func trigger_start(node: Trigger) -> void:
+func trigger_start() -> void:
 	if show_start:
-		print("[%s Trigger Start] %s" % [node.name, print_text])
+		print("[%s Trigger Start] %s" % [trigger.name, print_text])
 
-func trigger_end(node: Trigger) -> void:
+func trigger_end() -> void:
 	if show_end:
-		print("[%s Trigger End] %s" % [node.name, print_text])
+		print("[%s Trigger End] %s" % [trigger.name, print_text])

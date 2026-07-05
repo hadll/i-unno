@@ -29,7 +29,7 @@ func _ready() -> void:
 	trigger_children = not use_zero_as_confirm
 	child_entered_tree.connect(add_output_trigger)
 	for sub_trigger: Trigger in triggers.keys():
-		sub_trigger.trigger_start.connect(change_index)
+		sub_trigger.trigger_start.connect(change_index.bind(sub_trigger))
 		sub_trigger.trigger_end.connect(disable_trigger_children)
 	for child in self.get_children():
 		add_output_trigger(child)
@@ -57,7 +57,7 @@ func change_index(sub_trigger: Trigger) -> void:
 	else:
 		increment_index(triggers[sub_trigger])
 
-func disable_trigger_children(_sub_trigger: Trigger) -> void:
+func disable_trigger_children() -> void:
 	if not use_zero_as_confirm or locked:
 		return
 	var found_active = false

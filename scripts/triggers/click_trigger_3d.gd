@@ -20,15 +20,15 @@ func on_player_input(event: InputEvent) -> void:
 		MOUSE_BUTTON_MIDDLE:
 			set_active(event.is_pressed())
 		MOUSE_BUTTON_WHEEL_UP:
-			trigger.emit(self)
+			trigger.emit()
 		MOUSE_BUTTON_WHEEL_DOWN:
-			trigger.emit(self)
+			trigger.emit()
 		MOUSE_BUTTON_WHEEL_LEFT:
-			trigger.emit(self)
+			trigger.emit()
 		MOUSE_BUTTON_WHEEL_RIGHT:
-			trigger.emit(self)
+			trigger.emit()
 		MOUSE_BUTTON_WHEEL_UP:
-			trigger.emit(self)
+			trigger.emit()
 		MOUSE_BUTTON_XBUTTON1:
 			set_active(event.is_pressed())
 		MOUSE_BUTTON_XBUTTON2:

@@ -16,13 +16,13 @@ enum FilterMode {
 func _ready() -> void:
 	interact_trigger.trigger_start.connect(interact)
 
-func interact(_t: Trigger) -> void:
+func interact() -> void:
 	var selected := Player.me.inventory.get_selected_item()
 	if not selected:
 		return
 	match filter_mode:
 		FilterMode.ITEM: if selected != filter_item: return
 		FilterMode.ITEM_ID: if selected.get_item_id() != filter_item_id: return
-	trigger.emit(self)
+	trigger.emit()
 	if consume:
 		Player.me.inventory.set_selected_item(null)

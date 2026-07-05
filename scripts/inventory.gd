@@ -16,22 +16,22 @@ var selected_slot := 0
 func _ready() -> void:
 	select_slot(0)
 	InputHandler.input.connect(item_input)
-	trigger_item_next.trigger_start.connect(func(_t: Trigger) -> void:
+	trigger_item_next.trigger_start.connect(func() -> void:
 		select_slot(selected_slot + 1)
 	)
-	trigger_item_previous.trigger_start.connect(func(_t: Trigger) -> void:
+	trigger_item_previous.trigger_start.connect(func() -> void:
 		select_slot(selected_slot - 1)
 	)
-	trigger_item_1.trigger_start.connect(func(_t: Trigger) -> void:
+	trigger_item_1.trigger_start.connect(func() -> void:
 		select_slot(0)
 	)
-	trigger_item_2.trigger_start.connect(func(_t: Trigger) -> void:
+	trigger_item_2.trigger_start.connect(func() -> void:
 		select_slot(1)
 	)
-	trigger_item_3.trigger_start.connect(func(_t: Trigger) -> void:
+	trigger_item_3.trigger_start.connect(func() -> void:
 		select_slot(2)
 	)
-	trigger_item_4.trigger_start.connect(func(_t: Trigger) -> void:
+	trigger_item_4.trigger_start.connect(func() -> void:
 		select_slot(3)
 	)
 

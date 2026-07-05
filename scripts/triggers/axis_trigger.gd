@@ -30,8 +30,8 @@ var pressed_order = []
 
 func _ready() -> void:
 	for i_trigger in triggers.keys():
-		i_trigger.trigger_start.connect(on_trigger_start)
-		i_trigger.trigger_end.connect(on_trigger_end)
+		i_trigger.trigger_start.connect(on_trigger_start.bind(i_trigger))
+		i_trigger.trigger_end.connect(on_trigger_end.bind(i_trigger))
 		# you might want to remove this line depending on how you want it to behave
 	update()
 
@@ -76,12 +76,12 @@ func update():
 	dir = get_directions_from_vector(dir)
 	activate_triggers(dir)
 
-func on_trigger_start(t: Trigger):
-	pressed_order.append(t)
+func on_trigger_start(i_trigger: Trigger):
+	pressed_order.append(i_trigger)
 	update()
 
-func on_trigger_end(t: Trigger):
+func on_trigger_end(i_trigger: Trigger):
 	for i in range(len(pressed_order)):
-		if pressed_order[len(pressed_order)-i-1] == t:
+		if pressed_order[len(pressed_order)-i-1] == i_trigger:
 			pressed_order.remove_at(len(pressed_order)-i-1)
 	update()

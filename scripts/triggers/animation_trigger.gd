@@ -25,10 +25,10 @@ func on_animation_start(animation_name):
 	elif animation_name == end_animation_name:
 		deactivate()
 
-func on_trigger_start(_t: Trigger):
+func on_trigger_start():
 	play_animation(start_animation_name)
 	
-func on_trigger_end(_t: Trigger):
+func on_trigger_end():
 	play_animation(end_animation_name)
 
 func play_animation(animation_name:String):
