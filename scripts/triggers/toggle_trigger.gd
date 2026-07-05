@@ -33,5 +33,5 @@ func _ready() -> void:
 		if i_trigger.active:
 			on_trigger_start(i_trigger)
 
-func on_trigger_start(trigger: Trigger):
-	mode_funcs[triggers[trigger]].call()
+func on_trigger_start(t: Trigger):
+	mode_funcs[triggers[t]].call()

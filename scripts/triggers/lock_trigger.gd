@@ -29,10 +29,10 @@ func are_any_triggered() -> bool:
 			return true
 	return false
 
-func on_trigger_start(trigger: Trigger):
+func on_trigger_start(_t: Trigger):
 	if are_any_triggered():
 		set_all_locked(true)
 
-func on_trigger_end(trigger:Trigger):
+func on_trigger_end(_t: Trigger):
 	if not are_any_triggered():
 		set_all_locked(false)
