@@ -44,6 +44,12 @@ func select_slot(slot: int) -> void:
 	selected_slot = posmod(slot, len(slots))
 	slots[selected_slot].select()
 
+func get_selected_item() -> Item:
+	return slots[selected_slot].item
+
+func set_selected_item(to: Item) -> void:
+	slots[selected_slot].set_item(to)
+
 func pick_up_item(item: Item) -> bool:
 	for slot in slots:
 		if not slot.item:

@@ -4,7 +4,7 @@ extends InteractionTrigger3D
 
 @export var use_action: bool
 
-@export var action: StringName
+@export_custom(PROPERTY_HINT_INPUT_NAME, "show_builtin") var action: StringName
 @export var button: InputEventKey
 
 func get_default_debug_print() -> String:

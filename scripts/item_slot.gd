@@ -13,10 +13,11 @@ func _process(delta: float) -> void:
 	offset_transform_scale = Vector2.ONE * current_scale
 
 func set_item(to: Item) -> void:
+	if item:
+		item.queue_free()
 	item = to
 	if item:
 		item.hide()
-		add_child(item)
 
 func select() -> void:
 	target_scale = selection_scale

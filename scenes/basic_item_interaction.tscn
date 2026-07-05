@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bttdmfaqv4k50"]
+
+[ext_resource type="Script" uid="uid://b1wpkjq4gthjj" path="res://scripts/triggers/item_interaction_trigger.gd" id="1_bgi37"]
+[ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/triggers/key_trigger.gd" id="2_tivq7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_msbjo"]
+
+[node name="BasicItemInteraction" type="Node3D" unique_id=1033956577 node_paths=PackedStringArray("interact_trigger")]
+script = ExtResource("1_bgi37")
+interact_trigger = NodePath("KeyTrigger3D")
+metadata/_custom_type_script = "uid://b1wpkjq4gthjj"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1262365045]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=999532908]
+shape = SubResource("SphereShape3D_msbjo")
+
+[node name="KeyTrigger3D" type="Node3D" parent="." unique_id=856634379 node_paths=PackedStringArray("collision_object")]
+script = ExtResource("2_tivq7")
+use_action = true
+action = &"item_interact"
+collision_object = NodePath("../StaticBody3D")
+metadata/_custom_type_script = "uid://56atenn0cf2b"
