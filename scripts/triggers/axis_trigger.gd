@@ -68,15 +68,12 @@ func get_newest_direction(dirs: Array) -> Array:
 func activate_triggers(dirs: Array):
 	if not allow_multiple_outputs:
 		dirs = get_newest_direction(dirs) # seperate function in case we want more behaviors
-	print("newest dir: ",dirs)
 	for dir in output_triggers.keys():
 		output_triggers[dir].set_active(dir in dirs)
 
 func update():
 	var dir = evaluate_net_vector()
-	print("net vector: ", dir)
 	dir = get_directions_from_vector(dir)
-	print("directions: ", dir)
 	activate_triggers(dir)
 
 func on_trigger_start(trigger: Trigger):
