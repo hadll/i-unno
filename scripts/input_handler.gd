@@ -1,6 +1,7 @@
 extends Node3D
 
 const INTERACTION_MASK := 3
+const LOG_LOOKING := false
 
 signal input(event: InputEvent)
 signal started_looking_at(collider: CollisionObject3D)
@@ -31,9 +32,11 @@ func update_look() -> void:
 	var now_looking_at := intersection.get("collider") as CollisionObject3D
 	if now_looking_at != looking_at:
 		if looking_at:
+			if LOG_LOOKING: print("Stopped looking at %s" % str(looking_at))
 			stopped_looking_at.emit(looking_at)
 		looking_at = now_looking_at
 		if looking_at:
+			if LOG_LOOKING: print("Started looking at %s" % str(looking_at))
 			started_looking_at.emit(looking_at)
 
 func _input(event: InputEvent) -> void:
