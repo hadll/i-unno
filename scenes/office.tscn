@@ -243,7 +243,7 @@ metadata/_custom_type_script = "uid://dkq6mobqqioes"
 [node name="LockTrigger" type="Node3D" parent="Monitor" unique_id=1407903017 node_paths=PackedStringArray("input_triggers", "triggers_to_lock")]
 script = ExtResource("14_ujkv6")
 input_triggers = [NodePath("../MonitorToggle")]
-triggers_to_lock = [NodePath("../../LookLeftKey"), NodePath("../../LookRightKey"), NodePath("../../LookUpKey")]
+triggers_to_lock = [NodePath("../../LookLeftKey"), NodePath("../../LookRightKey"), NodePath("../../LookUpKey"), NodePath("../../OfficePlayer/Inventory/TriggerItemNext"), NodePath("../../OfficePlayer/Inventory/TriggerItemPrevious"), NodePath("../../OfficePlayer/Inventory/TriggerItem1"), NodePath("../../OfficePlayer/Inventory/TriggerItem2"), NodePath("../../OfficePlayer/Inventory/TriggerItem3"), NodePath("../../OfficePlayer/Inventory/TriggerItem4")]
 metadata/_custom_type_script = "uid://dpot1lmhj56kc"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Monitor" unique_id=19432116]

@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b301mh7c2dgrh" path="res://scripts/inventory.gd" id="1_hj2ta"]
 [ext_resource type="PackedScene" uid="uid://rchgqjh135p2" path="res://scenes/item_slot.tscn" id="1_qw0r6"]
+[ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/triggers/global_key_trigger.gd" id="3_ty45s"]
 
-[node name="Inventory" type="Control" unique_id=491016439 node_paths=PackedStringArray("slots")]
+[node name="Inventory" type="Control" unique_id=491016439 node_paths=PackedStringArray("trigger_item_next", "trigger_item_previous", "trigger_item_1", "trigger_item_2", "trigger_item_3", "trigger_item_4", "slots")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_hj2ta")
+trigger_item_next = NodePath("TriggerItemNext")
+trigger_item_previous = NodePath("TriggerItemPrevious")
+trigger_item_1 = NodePath("TriggerItem1")
+trigger_item_2 = NodePath("TriggerItem2")
+trigger_item_3 = NodePath("TriggerItem3")
+trigger_item_4 = NodePath("TriggerItem4")
 slots = [NodePath("Slots/ItemSlot1"), NodePath("Slots/ItemSlot2"), NodePath("Slots/ItemSlot3"), NodePath("Slots/ItemSlot4")]
 
 [node name="Slots" type="HBoxContainer" parent="." unique_id=740609684]
@@ -36,3 +43,39 @@ layout_mode = 2
 
 [node name="ItemSlot4" parent="Slots" unique_id=744483395 instance=ExtResource("1_qw0r6")]
 layout_mode = 2
+
+[node name="TriggerItemNext" type="Node3D" parent="." unique_id=1532982334]
+script = ExtResource("3_ty45s")
+use_action = true
+action = &"item_next"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="TriggerItemPrevious" type="Node3D" parent="." unique_id=644320424]
+script = ExtResource("3_ty45s")
+use_action = true
+action = &"item_previous"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="TriggerItem1" type="Node3D" parent="." unique_id=1302310499]
+script = ExtResource("3_ty45s")
+use_action = true
+action = &"item_1"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="TriggerItem2" type="Node3D" parent="." unique_id=1725506887]
+script = ExtResource("3_ty45s")
+use_action = true
+action = &"item_2"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="TriggerItem3" type="Node3D" parent="." unique_id=1313725403]
+script = ExtResource("3_ty45s")
+use_action = true
+action = &"item_3"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="TriggerItem4" type="Node3D" parent="." unique_id=428095868]
+script = ExtResource("3_ty45s")
+use_action = true
+action = &"item_4"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"

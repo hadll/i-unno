@@ -4,5 +4,7 @@
 
 [node name="ItemSlot" type="PanelContainer" unique_id=1385488667]
 custom_minimum_size = Vector2(96, 96)
+offset_transform_enabled = true
 mouse_filter = 2
 script = ExtResource("1_567tv")
+animation_speed = 25.0
