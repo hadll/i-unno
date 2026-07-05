@@ -21,9 +21,9 @@ func _ready() -> void:
 
 func on_animation_start(animation_name):
 	if animation_name == start_animation_name:
-		set_active(true)
+		activate()
 	elif animation_name == end_animation_name:
-		set_active(false)
+		deactivate()
 
 func on_trigger_start(_t: Trigger):
 	play_animation(start_animation_name)

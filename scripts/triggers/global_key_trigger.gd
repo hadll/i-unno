@@ -9,7 +9,7 @@ class_name GlobalKeyTrigger
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-		InputHandler.input.connect(on_player_input)
+	InputHandler.input.connect(on_player_input)
 
 func get_default_debug_print() -> String:
 	return "Keyboard Pressed"
@@ -20,11 +20,11 @@ func on_player_input(event: InputEvent):
 		return
 	if use_action:
 		if event.is_action_pressed(action):
-			set_active(true)
+			activate()
 		elif event.is_action_released(action):
-			set_active(false)
+			deactivate()
 	elif event.is_match(button):
 		if event.is_pressed():
-			set_active(true)
+			activate()
 		elif event.is_released():
-			set_active(false)
+			deactivate()

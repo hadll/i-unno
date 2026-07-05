@@ -25,13 +25,19 @@ func set_active(state: bool) -> void:
 	else:
 		trigger_end.emit(self)
 
+func activate() -> void:
+	set_active(true)
+
+func deactivate() -> void:
+	set_active(false)
+
 func set_locked(state: bool) -> void:
 	locked = state
 
-func enable():
+func enable() -> void:
 	set_locked(false)
 
-func disable():
+func disable() -> void:
 	set_locked(true)
 
 func get_default_debug_print() -> String:

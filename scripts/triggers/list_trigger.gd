@@ -48,12 +48,12 @@ func change_index(sub_trigger: Trigger) -> void:
 	if output_triggers.size() == 0 or locked:
 		return
 	if triggers[sub_trigger] == 0 and not trigger_children:
-		output_triggers[index].set_active(true)
+		output_triggers[index].activate()
 		trigger_children = true
 	elif not use_zero_as_confirm or trigger_children:
-		output_triggers[index].set_active(false)
+		output_triggers[index].deactivate()
 		increment_index(triggers[sub_trigger])
-		output_triggers[index].set_active(true)
+		output_triggers[index].activate()
 	else:
 		increment_index(triggers[sub_trigger])
 
@@ -67,4 +67,4 @@ func disable_trigger_children(_sub_trigger: Trigger) -> void:
 			break
 	if not found_active:
 		trigger_children = false
-		output_triggers[index].set_active(false)
+		output_triggers[index].deactivate()

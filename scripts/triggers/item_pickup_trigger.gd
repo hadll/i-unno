@@ -1,11 +1,12 @@
-class_name ItemPickup
-extends Node3D
+class_name ItemPickupTrigger
+extends Trigger
 
-@export var trigger: Trigger
+@export var pickup_trigger: Trigger
 @export var item: Item
+@export var hold := false
 
 func _ready() -> void:
-	trigger.trigger_start.connect(pick_up)
+	pickup_trigger.trigger_start.connect(pick_up)
 
 func set_item(to: Item) -> void:
 	item = to
@@ -18,5 +19,9 @@ func pick_up(_t: Trigger) -> void:
 		remove_child(item)
 		if Player.me.pick_up_item(item):
 			queue_free()
+			if hold:
+				activate()
+			else:
+				trigger.emit()
 		else:
 			add_child(item)

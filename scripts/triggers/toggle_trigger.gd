@@ -2,28 +2,22 @@
 extends Trigger
 class_name ToggleTrigger
 
-enum MODES{
-	OFF,
-	ON,
-	TOGGLE
+enum Mode {
+	OFF = 0,
+	ON = 1,
+	TOGGLE = 2
 }
 
-var mode_funcs = {
-	MODES.OFF: trigger_off,
-	MODES.ON: trigger_on,
-	MODES.TOGGLE: trigger_toggle
+var mode_funcs: Dictionary[Mode, Callable] = {
+	Mode.OFF: deactivate,
+	Mode.ON: activate,
+	Mode.TOGGLE: trigger_toggle
 }
 
 #use whichever one youd prefer 
-@export var triggers: Dictionary[Trigger, MODES] 
+@export var triggers: Dictionary[Trigger, Mode] 
 
-func trigger_off():
-	set_active(false)
-
-func trigger_on():
-	set_active(true)
-
-func trigger_toggle():
+func trigger_toggle() -> void:
 	set_active(not active)
 
 func _ready() -> void:
@@ -33,5 +27,5 @@ func _ready() -> void:
 		if i_trigger.active:
 			on_trigger_start(i_trigger)
 
-func on_trigger_start(t: Trigger):
+func on_trigger_start(t: Trigger) -> void:
 	mode_funcs[triggers[t]].call()

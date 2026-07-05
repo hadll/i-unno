@@ -43,7 +43,6 @@ func select_slot(slot: int) -> void:
 	slots[selected_slot].deselect()
 	selected_slot = posmod(slot, len(slots))
 	slots[selected_slot].select()
-	
 
 func pick_up_item(item: Item) -> bool:
 	for slot in slots:

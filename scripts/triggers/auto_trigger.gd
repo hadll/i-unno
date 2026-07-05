@@ -18,8 +18,8 @@ func _ready() -> void:
 	behavior_functions[behavior].call()
 
 func beh_pulse() -> void:
-	set_active(true)
-	set_active(false)
+	activate()
+	deactivate()
 
 func beh_hold() -> void:
-	set_active(true)
+	activate()

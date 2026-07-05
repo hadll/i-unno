@@ -20,7 +20,7 @@ func _ready() -> void:
 func set_all_locked(state: bool) -> void:
 	for i_trigger in triggers_to_lock:
 		if deactivate_on_lock:
-			i_trigger.set_active(false)
+			i_trigger.deactivate()
 		i_trigger.set_locked(state)
 
 func are_any_triggered() -> bool:
