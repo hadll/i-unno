@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ci3omh2llccth"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g4v7s"]
+points = PackedVector3Array(-4, 0, -4, -4, 0, 4, 4, -5, -4, 4, -5, 4, -4, -1, -4, -4, -1, 4, 4, -6, -4, 4, -6, 4)
+
+[sub_resource type="QuadMesh" id="QuadMesh_3gngh"]
+size = Vector2(9.434, 8)
+orientation = 1
+
+[node name="Stairs" type="StaticBody3D" unique_id=1605496743]
+
+[node name="StairsCollider" type="CollisionShape3D" parent="." unique_id=796169314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("ConvexPolygonShape3D_g4v7s")
+
+[node name="StairsMesh" type="MeshInstance3D" parent="." unique_id=1029641147]
+transform = Transform3D(0.8480481, 0.52991927, 0, -0.52991927, 0.8480481, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("QuadMesh_3gngh")

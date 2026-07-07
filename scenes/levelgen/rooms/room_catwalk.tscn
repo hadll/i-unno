@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ck6vj4m7qyx0g"]
+
+[ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="1_12tur"]
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_436pa"]
+[ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="2_q3pmg"]
+[ext_resource type="PackedScene" uid="uid://bf8jhdi1a52t5" path="res://scenes/levelgen/blocks/underhang_wall.tscn" id="3_q3pmg"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+size = Vector2(8, 2)
+orientation = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_q3pmg"]
+size = Vector2(2, 3)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(8, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q3pmg"]
+size = Vector3(2, 0.1, 3)
+
+[node name="RoomCatwalk" type="Node3D" unique_id=779560363]
+script = ExtResource("1_436pa")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("1_12tur")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="Ceiling" parent="." unique_id=162293560 instance=ExtResource("2_q3pmg")]
+
+[node name="UnderhangWall" parent="." unique_id=731952364 instance=ExtResource("3_q3pmg")]
+
+[node name="UnderhangWall2" parent="." unique_id=1988073560 instance=ExtResource("3_q3pmg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="UnderhangWall3" parent="." unique_id=2122369810 instance=ExtResource("3_q3pmg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="UnderhangWall4" parent="." unique_id=438358381 instance=ExtResource("3_q3pmg")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
+
+[node name="Catwalk" type="StaticBody3D" parent="." unique_id=434780564]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Catwalk" unique_id=1578811800]
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Catwalk" unique_id=1014308837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+mesh = SubResource("QuadMesh_q3pmg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Catwalk" unique_id=1554417590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+mesh = SubResource("QuadMesh_q3pmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalk" unique_id=2023464456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalk" unique_id=333188884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 2.5)
+shape = SubResource("BoxShape3D_q3pmg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalk" unique_id=719211399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -2.5)
+shape = SubResource("BoxShape3D_q3pmg")

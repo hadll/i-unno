@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://byr7u03oqvevc" path="res://scenes/items/test_item.tscn" id="13_nn1bs"]
 [ext_resource type="PackedScene" uid="uid://bttdmfaqv4k50" path="res://scenes/basic_item_interaction.tscn" id="14_nn1bs"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8tsvv"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_nn1bs"]
+size = Vector3(20, 1, 20)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t01tg"]
 size = Vector2(20, 20)
@@ -66,7 +67,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3534713, 0, 3.1232643)
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=952792393]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=433861530]
-shape = SubResource("WorldBoundaryShape3D_8tsvv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_nn1bs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=513620939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04359317, -0.00901866, -0.0055043697)

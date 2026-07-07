@@ -5,11 +5,14 @@
 [ext_resource type="Script" uid="uid://gh8ikjeckkx" path="res://scripts/levelgen/defs/section_def.gd" id="2_d7vme"]
 [ext_resource type="Resource" uid="uid://ca5vmd637ay2x" path="res://assets/levelgen/rooms/four_way.tres" id="3_qytu8"]
 [ext_resource type="Resource" uid="uid://bydhl3hsn7g8f" path="res://assets/levelgen/rooms/wide.tres" id="4_faxrp"]
+[ext_resource type="Resource" uid="uid://crjdndfx5gqxb" path="res://assets/levelgen/rooms/catwalk.tres" id="5_812dm"]
+[ext_resource type="Resource" uid="uid://bji15e0uph0if" path="res://assets/levelgen/rooms/tall.tres" id="6_twu6x"]
+[ext_resource type="Resource" uid="uid://dre4r4k00m2u1" path="res://assets/levelgen/rooms/dip.tres" id="7_nkfym"]
 
 [resource]
 script = ExtResource("2_d7vme")
 name = "First"
-rooms = Array[ExtResource("1_a3e2q")]([ExtResource("3_qytu8"), ExtResource("4_faxrp")])
+rooms = Array[ExtResource("1_a3e2q")]([ExtResource("3_qytu8"), ExtResource("4_faxrp"), ExtResource("5_812dm"), ExtResource("6_twu6x"), ExtResource("7_nkfym")])
 end = ExtResource("1_kich7")
 required_density = 0.6
 hole_density = 0.1

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://diu1ecfno8cbt"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_ow3fa"]
+[ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="1_pk4su"]
+[ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="2_8uino"]
+[ext_resource type="PackedScene" uid="uid://bhem43hh2qlpm" path="res://scenes/levelgen/blocks/overhang_wall.tscn" id="3_8uino"]
+
+[node name="RoomTall" type="Node3D" unique_id=229395015]
+script = ExtResource("1_ow3fa")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("1_pk4su")]
+
+[node name="Ceiling" parent="." unique_id=60897152 instance=ExtResource("2_8uino")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="OverhangWall" parent="." unique_id=731952364 instance=ExtResource("3_8uino")]
+
+[node name="OverhangWall2" parent="." unique_id=1717091872 instance=ExtResource("3_8uino")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="OverhangWall3" parent="." unique_id=779585353 instance=ExtResource("3_8uino")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="OverhangWall4" parent="." unique_id=1045210941 instance=ExtResource("3_8uino")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
