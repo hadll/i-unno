@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dmfjtkkbqjfwm" path="res://assets/sounds/security_door_close.ogg" id="5_s0v7l"]
 [ext_resource type="AudioStream" uid="uid://bay4jbg4pb4wf" path="res://assets/sounds/security_door_open.ogg" id="6_m0qib"]
 [ext_resource type="Texture2D" uid="uid://bktu3b6v2ho4k" path="res://assets/particle_sprites/trace_01.png" id="7_pcxf7"]
+[ext_resource type="Script" uid="uid://ch4pn6mh5derq" path="res://scripts/collision_setter.gd" id="8_ettjd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2jlm"]
 resource_name = "Material.003"
@@ -238,6 +239,9 @@ gravity = Vector3(0, 0, 0)
 damping_min = 89.785
 damping_max = 92.47301
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pcxf7"]
+size = Vector3(0.3, 3.2, 3)
+
 [node name="SecurityDoor" type="Node3D" unique_id=1712412024]
 script = ExtResource("1_kwogt")
 metadata/_custom_type_script = "uid://557bh1kgicsc"
@@ -326,3 +330,13 @@ lifetime = 0.13
 transform_align = 2
 process_material = SubResource("ParticleProcessMaterial_s8xio")
 draw_pass_1 = SubResource("QuadMesh_im4el")
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=98387460]
+
+[node name="TriggerableCollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=413501264 node_paths=PackedStringArray("trigger")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("BoxShape3D_pcxf7")
+script = ExtResource("8_ettjd")
+trigger = NodePath("../..")
+make_passable = true
+metadata/_custom_type_script = "uid://ch4pn6mh5derq"
