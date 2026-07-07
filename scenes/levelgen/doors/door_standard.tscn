@@ -4,16 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://c0kiqaeii41qh" path="res://scenes/levelgen/doors/door_security.tscn" id="2_rofvo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rofvo"]
-size = Vector3(0.2, 3.2, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bcjmr"]
-size = Vector3(0.2, 1.8, 5)
+size = Vector3(0.2, 3.2, 2.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qfnq8"]
-size = Vector3(0.2, 3.2, 1)
+size = Vector3(0.2, 3.2, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcjmr"]
+size = Vector3(0.2, 0.8, 8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g3b13"]
-size = Vector3(0.2, 1.8, 5)
+size = Vector3(0.2, 0.8, 8)
 
 [node name="DoorStandard" type="Node3D" unique_id=649409107]
 script = ExtResource("1_c7omj")
@@ -22,26 +22,26 @@ weights = Array[float]([5.0, 1.0])
 
 [node name="Static" type="StaticBody3D" parent="." unique_id=1351123145]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Static" unique_id=1976695591]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 2)
+[node name="LeftCollider" type="CollisionShape3D" parent="Static" unique_id=1976695591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 2.75)
 shape = SubResource("BoxShape3D_rofvo")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Static" unique_id=1797124579]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -2)
+[node name="LeftMesh" type="MeshInstance3D" parent="Static" unique_id=2105643588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 2.75)
+mesh = SubResource("BoxMesh_qfnq8")
+
+[node name="RightCollider" type="CollisionShape3D" parent="Static" unique_id=1797124579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -2.75)
 shape = SubResource("BoxShape3D_rofvo")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Static" unique_id=162590647]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
+[node name="RightMesh" type="MeshInstance3D" parent="Static" unique_id=328322899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -2.75)
+mesh = SubResource("BoxMesh_qfnq8")
+
+[node name="TopCollider" type="CollisionShape3D" parent="Static" unique_id=162590647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
 shape = SubResource("BoxShape3D_bcjmr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Static" unique_id=2105643588]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 2)
-mesh = SubResource("BoxMesh_qfnq8")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Static" unique_id=328322899]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -2)
-mesh = SubResource("BoxMesh_qfnq8")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Static" unique_id=274307991]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
+[node name="TopMesh" type="MeshInstance3D" parent="Static" unique_id=274307991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
 mesh = SubResource("BoxMesh_g3b13")

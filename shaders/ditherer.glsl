@@ -23,12 +23,12 @@ void main() {
     float dither_value = float(imageLoad(dither_pattern, ivec2((gl_GlobalInvocationID.xy >> 0u) & 7u)).r) / 255.0 * 0.2;
     screen_colour -= vec3(dither_value);
     
-    vec2 uv = vec2(gl_GlobalInvocationID.xy) / vec2(imageSize(screen_texture));
-    float raw_depth = texture(depth_texture, uv).r;
-    vec4 upos = params.inv_projection * vec4(uv * 2.0 - 1.0, raw_depth, 1.0);
-    vec3 pixel_position = upos.xyz / upos.w;
-    float pixel_distance = length(pixel_position);
-    screen_colour *= clamp(1.0 - (pixel_distance - params.view_dist) / params.view_fog, 0.0, 1.0);
+    // vec2 uv = vec2(gl_GlobalInvocationID.xy) / vec2(imageSize(screen_texture));
+    // float raw_depth = texture(depth_texture, uv).r;
+    // vec4 upos = params.inv_projection * vec4(uv * 2.0 - 1.0, raw_depth, 1.0);
+    // vec3 pixel_position = upos.xyz / upos.w;
+    // float pixel_distance = length(pixel_position);
+    // screen_colour *= clamp(1.0 - (pixel_distance - params.view_dist) / params.view_fog, 0.0, 1.0);
 
     int palette_count = min(15, int(params.calmness * 16.0));
     float palette_dropoff = params.calmness * 16.0 - float(palette_count);

@@ -1,31 +1,63 @@
 [gd_scene format=3 uid="uid://d1kffolob8sih"]
 
 [ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_p0prh"]
+[ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_xfoet"]
+[ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_6wu7r"]
+[ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="4_22eqy"]
+[ext_resource type="PackedScene" uid="uid://5lepirb3fmo5" path="res://scenes/levelgen/blocks/tall_wall.tscn" id="5_p7gti"]
+[ext_resource type="PackedScene" uid="uid://bhem43hh2qlpm" path="res://scenes/levelgen/blocks/overhang_wall.tscn" id="6_8fcwi"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mg5dn"]
-size = Vector3(5, 1, 5)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g4v7s"]
+points = PackedVector3Array(-4, 0, -4, -4, 0, 4, 4, -5, -4, 4, -5, 4, -4, -1, -4, -4, -1, 4, 4, -6, -4, 4, -6, 4)
 
-[sub_resource type="BoxMesh" id="BoxMesh_60lbp"]
-size = Vector3(5, 1, 5)
+[sub_resource type="QuadMesh" id="QuadMesh_3gngh"]
+size = Vector2(9.434, 8)
+orientation = 1
 
 [node name="RoomStairs" type="Node3D" unique_id=1481586815]
 script = ExtResource("1_p0prh")
 metadata/_custom_type_script = "uid://ddw38u6b6an1a"
 
-[node name="Static" type="StaticBody3D" parent="." unique_id=978110552]
+[node name="Stairs" type="StaticBody3D" parent="." unique_id=978110552]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Static" unique_id=511580290]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_mg5dn")
+[node name="StairsCollider" type="CollisionShape3D" parent="Stairs" unique_id=375318584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_g4v7s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Static" unique_id=202200658]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_60lbp")
+[node name="StairsMesh" type="MeshInstance3D" parent="Stairs" unique_id=108701613]
+transform = Transform3D(0.8480481, 0.52991927, 0, -0.52991927, 0.8480481, 0, 0, 0, 1, 8, -2.5, 0)
+mesh = SubResource("QuadMesh_3gngh")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Static" unique_id=626039298]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -5.5, 0)
-shape = SubResource("BoxShape3D_mg5dn")
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_xfoet")]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Static" unique_id=1633927385]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -5.5, 0)
-mesh = SubResource("BoxMesh_60lbp")
+[node name="Floor2" parent="." unique_id=1684924538 instance=ExtResource("2_xfoet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 0)
+
+[node name="Ceiling" parent="." unique_id=845570810 instance=ExtResource("3_6wu7r")]
+
+[node name="Ceiling2" parent="." unique_id=1699015705 instance=ExtResource("3_6wu7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 0)
+
+[node name="Ceiling3" parent="." unique_id=1716310470 instance=ExtResource("3_6wu7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Wall" parent="." unique_id=731952364 instance=ExtResource("4_22eqy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Wall2" parent="." unique_id=137377572 instance=ExtResource("4_22eqy")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
+
+[node name="Wall3" parent="." unique_id=937110458 instance=ExtResource("4_22eqy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, -5, 0)
+
+[node name="Wall4" parent="." unique_id=71662223 instance=ExtResource("4_22eqy")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 16, -5, 0)
+
+[node name="TallWall" parent="." unique_id=1147066669 instance=ExtResource("5_p7gti")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, -5, 0)
+
+[node name="TallWall2" parent="." unique_id=372221236 instance=ExtResource("5_p7gti")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, -5, 0)
+
+[node name="OverhangWall" parent="." unique_id=1679508564 instance=ExtResource("6_8fcwi")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, -5, 0)

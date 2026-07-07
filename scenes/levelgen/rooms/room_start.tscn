@@ -2,28 +2,48 @@
 
 [ext_resource type="Script" uid="uid://c0gji5pa8chf5" path="res://scripts/levelgen/rooms/room_start.gd" id="1_8ewhc"]
 [ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/moving_player.tscn" id="2_hg6cr"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hg6cr"]
-size = Vector3(10, 1, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_so8dq"]
-size = Vector3(10, 1, 10)
+[ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="3_bp07h"]
+[ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="4_6a77m"]
+[ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="5_6a77m"]
 
 [node name="RoomStart" type="Node3D" unique_id=1906132364 node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_8ewhc")
 player_scene = ExtResource("2_hg6cr")
-spawn_point = NodePath("Static/Spawn")
+spawn_point = NodePath("Spawn")
 metadata/_custom_type_script = "uid://ddw38u6b6an1a"
 
-[node name="Static" type="StaticBody3D" parent="." unique_id=217643138]
+[node name="Spawn" type="Node3D" parent="." unique_id=1617246010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Static" unique_id=1791527053]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 2.5)
-shape = SubResource("BoxShape3D_hg6cr")
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("3_bp07h")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Static" unique_id=1232164423]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 2.5)
-mesh = SubResource("BoxMesh_so8dq")
+[node name="Ceiling" parent="." unique_id=280239341 instance=ExtResource("4_6a77m")]
 
-[node name="Spawn" type="Node3D" parent="Static" unique_id=1617246010]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+[node name="Floor2" parent="." unique_id=116812086 instance=ExtResource("3_bp07h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Ceiling2" parent="." unique_id=610838646 instance=ExtResource("4_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Floor3" parent="." unique_id=1891033067 instance=ExtResource("3_bp07h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Ceiling3" parent="." unique_id=1835628635 instance=ExtResource("4_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Floor4" parent="." unique_id=285205752 instance=ExtResource("3_bp07h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="Ceiling4" parent="." unique_id=256626768 instance=ExtResource("4_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="Wall" parent="." unique_id=731952364 instance=ExtResource("5_6a77m")]
+
+[node name="Wall2" parent="." unique_id=1531751282 instance=ExtResource("5_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Wall3" parent="." unique_id=1440320832 instance=ExtResource("5_6a77m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Wall4" parent="." unique_id=583910154 instance=ExtResource("5_6a77m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 8)

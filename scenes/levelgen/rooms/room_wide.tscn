@@ -1,23 +1,19 @@
 [gd_scene format=3 uid="uid://c13vnlsvqwjuw"]
 
 [ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_m2jou"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_j45xc"]
-size = Vector3(10, 1, 5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tg72a"]
-size = Vector3(10, 1, 5)
+[ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_tg72a"]
+[ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_xsbnx"]
 
 [node name="RoomWide" type="Node3D" unique_id=2087679140]
 script = ExtResource("1_m2jou")
 metadata/_custom_type_script = "uid://ddw38u6b6an1a"
 
-[node name="Static" type="StaticBody3D" parent="." unique_id=189498855]
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_tg72a")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Static" unique_id=417584501]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 0)
-shape = SubResource("BoxShape3D_j45xc")
+[node name="Floor2" parent="." unique_id=569061124 instance=ExtResource("2_tg72a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Static" unique_id=1738541925]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 0)
-mesh = SubResource("BoxMesh_tg72a")
+[node name="Ceiling" parent="." unique_id=1486313409 instance=ExtResource("3_xsbnx")]
+
+[node name="Ceiling2" parent="." unique_id=946666765 instance=ExtResource("3_xsbnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)

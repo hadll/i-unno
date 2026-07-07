@@ -1,7 +1,7 @@
 class_name Level
 extends Node3D
 
-const ROOM_SCALE := Vector3(5, 5, 5)
+const ROOM_SCALE := Vector3(8, 5, 8)
 
 func _ready() -> void:
 	generate()
