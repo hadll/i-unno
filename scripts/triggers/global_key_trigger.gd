@@ -28,3 +28,7 @@ func on_player_input(event: InputEvent):
 			activate()
 		elif event.is_released():
 			deactivate()
+
+func unlock() -> void:
+	super()
+	set_active(false)

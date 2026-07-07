@@ -38,3 +38,7 @@ func on_player_input(event: InputEvent) -> void:
 			set_active(event.is_pressed())
 		_:
 			pass
+
+func unlock() -> void:
+	super()
+	set_active(false)

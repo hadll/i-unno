@@ -19,3 +19,7 @@ func _ready() -> void:
 
 @abstract
 func on_player_input(event: InputEvent) -> void
+
+func unlock() -> void:
+	super()
+	set_active(false)

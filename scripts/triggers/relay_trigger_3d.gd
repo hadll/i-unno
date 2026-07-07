@@ -77,3 +77,7 @@ func connect_trigger(node: Trigger) -> void:
 
 func check_cond() -> void:
 	set_active(condition_functions[condition].call(triggered_triggers))
+
+func unlock() -> void:
+	super()
+	check_cond()

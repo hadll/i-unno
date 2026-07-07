@@ -34,10 +34,10 @@ func deactivate() -> void:
 func set_locked(state: bool) -> void:
 	locked = state
 
-func enable() -> void:
+func unlock() -> void:
 	set_locked(false)
 
-func disable() -> void:
+func lock() -> void:
 	set_locked(true)
 
 func get_default_debug_print() -> String:
