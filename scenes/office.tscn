@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bvmwuhi6j156l" path="res://scripts/camera_angle_3d.gd" id="4_fmddn"]
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/triggers/global_key_trigger.gd" id="5_gdafm"]
 [ext_resource type="PackedScene" uid="uid://di52orq243m4u" path="res://scenes/office_player.tscn" id="6_fmddn"]
+[ext_resource type="Script" uid="uid://b1bhud65igef6" path="res://scripts/triggers/pulse_trigger.gd" id="6_ja80a"]
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="8_fmddn"]
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="9_gdafm"]
 [ext_resource type="PackedScene" uid="uid://d3gjhb4lxf248" path="res://scenes/printer.tscn" id="11_6hbky"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" uid="uid://i3pknic7tykt" path="res://scripts/triggers/sound_trigger.gd" id="17_kviqm"]
 [ext_resource type="AudioStream" uid="uid://b8lihijcm3d4f" path="res://assets/sounds/honk.mp3" id="18_ja80a"]
 [ext_resource type="AudioStream" uid="uid://vxiaj8gpduea" path="res://assets/sounds/office_ambience_main.wav" id="19_kviqm"]
+[ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="21_alkg7"]
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
 resource_local_to_scene = false
@@ -164,7 +166,12 @@ use_action = true
 action = &"office_look_up"
 metadata/_custom_type_script = "uid://dkq6mobqqioes"
 
-[node name="InteractKey" type="Node3D" parent="." unique_id=1514670701]
+[node name="InteractTrigger" type="Node3D" parent="." unique_id=1931941096 node_paths=PackedStringArray("triggers")]
+script = ExtResource("6_ja80a")
+triggers = [NodePath("InteractKey")]
+metadata/_custom_type_script = "uid://b1bhud65igef6"
+
+[node name="InteractKey" type="Node3D" parent="InteractTrigger" unique_id=1514670701]
 script = ExtResource("5_gdafm")
 use_action = true
 action = &"office_interact"
@@ -187,7 +194,7 @@ metadata/_custom_type_script = "uid://d04kbdpodjah"
 [node name="RelayTrigger" type="Node3D" parent="SecurityDoor/DoorTrigger" unique_id=1390520368 node_paths=PackedStringArray("triggers")]
 script = ExtResource("13_wruke")
 condition = 0
-triggers = [NodePath("../../../InteractKey"), NodePath("../../../AxisTrigger/LookLeft")]
+triggers = [NodePath("../../../AxisTrigger/LookLeft"), NodePath("../../../InteractTrigger")]
 metadata/_custom_type_script = "uid://557bh1kgicsc"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1512259475]
@@ -230,7 +237,7 @@ metadata/_custom_type_script = "uid://d04kbdpodjah"
 transform = Transform3D(0.998393, 0, 0.05667016, 0, 1, 0, -0.05667016, 0, 0.998393, -0.01588434, 0.040851355, 1.2223675)
 script = ExtResource("13_wruke")
 condition = 0
-triggers = [NodePath("../../AxisTrigger/LookForward"), NodePath("../../InteractKey")]
+triggers = [NodePath("../../AxisTrigger/LookForward"), NodePath("../../InteractTrigger")]
 metadata/_custom_type_script = "uid://557bh1kgicsc"
 
 [node name="EscapeMonitorKey" type="Node3D" parent="Monitor" unique_id=526400559]
@@ -243,7 +250,7 @@ metadata/_custom_type_script = "uid://dkq6mobqqioes"
 [node name="LockTrigger" type="Node3D" parent="Monitor" unique_id=1407903017 node_paths=PackedStringArray("input_triggers", "triggers_to_lock")]
 script = ExtResource("14_ujkv6")
 input_triggers = [NodePath("../MonitorToggle")]
-triggers_to_lock = [NodePath("../../LookLeftKey"), NodePath("../../LookRightKey"), NodePath("../../LookUpKey"), NodePath("../../OfficePlayer/Inventory/TriggerItemNext"), NodePath("../../OfficePlayer/Inventory/TriggerItemPrevious"), NodePath("../../OfficePlayer/Inventory/TriggerItem1"), NodePath("../../OfficePlayer/Inventory/TriggerItem2"), NodePath("../../OfficePlayer/Inventory/TriggerItem3"), NodePath("../../OfficePlayer/Inventory/TriggerItem4")]
+triggers_to_lock = [NodePath("../../LookLeftKey"), NodePath("../../LookRightKey"), NodePath("../../LookUpKey"), NodePath("../../InteractTrigger/InteractKey")]
 metadata/_custom_type_script = "uid://dpot1lmhj56kc"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Monitor" unique_id=19432116]
@@ -290,3 +297,8 @@ metadata/_custom_type_script = "uid://i3pknic7tykt"
 stream = ExtResource("19_kviqm")
 volume_db = -15.509
 autoplay = true
+
+[node name="DebugPrint" type="Node" parent="." unique_id=63515035 node_paths=PackedStringArray("trigger")]
+script = ExtResource("21_alkg7")
+trigger = NodePath("../InteractTrigger")
+metadata/_custom_type_script = "uid://daowwhg8fxkuo"
