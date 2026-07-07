@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="RoomDef" format=3 uid="uid://cyvs7j77sfcok"]
+
+[ext_resource type="Script" uid="uid://jyutv7juuysb" path="res://scripts/levelgen/defs/door_def.gd" id="1_3gw3u"]
+[ext_resource type="PackedScene" uid="uid://d2oc74haysif2" path="res://scenes/levelgen/rooms/room_l.tscn" id="2_3gw3u"]
+[ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/defs/room_def.gd" id="3_jw07e"]
+
+[sub_resource type="Resource" id="Resource_0c0pq"]
+script = ExtResource("1_3gw3u")
+from = Vector3i(1, 0, 0)
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_sfarc"]
+script = ExtResource("1_3gw3u")
+from = Vector3i(1, 0, 0)
+dir = 3
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_yu8ec"]
+script = ExtResource("1_3gw3u")
+from = Vector3i(0, 0, 1)
+dir = 1
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_f7y4m"]
+script = ExtResource("1_3gw3u")
+from = Vector3i(0, 0, 1)
+dir = 2
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[resource]
+script = ExtResource("3_jw07e")
+name = "L"
+scene = ExtResource("2_3gw3u")
+shape = Array[Vector3i]([Vector3i(0, 0, 0), Vector3i(0, 0, 1), Vector3i(1, 0, 0)])
+doors = Array[ExtResource("1_3gw3u")]([SubResource("Resource_0c0pq"), SubResource("Resource_sfarc"), SubResource("Resource_yu8ec"), SubResource("Resource_f7y4m")])
+metadata/_custom_type_script = "uid://b4gd7h41k7f6n"

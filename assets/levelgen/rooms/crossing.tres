@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RoomDef" format=3 uid="uid://c1wfqs5eibkwy"]
+
+[ext_resource type="Script" uid="uid://jyutv7juuysb" path="res://scripts/levelgen/defs/door_def.gd" id="1_rpfft"]
+[ext_resource type="PackedScene" uid="uid://bo2i04ij8xe0a" path="res://scenes/levelgen/rooms/room_crossing.tscn" id="2_h10ka"]
+[ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/defs/room_def.gd" id="2_o8wqh"]
+
+[sub_resource type="Resource" id="Resource_h10ka"]
+script = ExtResource("1_rpfft")
+dir = 2
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_vai1a"]
+script = ExtResource("1_rpfft")
+from = Vector3i(1, 0, 0)
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[resource]
+script = ExtResource("2_o8wqh")
+name = "Crossing"
+scene = ExtResource("2_h10ka")
+shape = Array[Vector3i]([Vector3i(0, 0, 0), Vector3i(1, 0, 0), Vector3i(0, -1, 0), Vector3i(1, -1, 0), Vector3i(0, -2, 0), Vector3i(1, -2, 0)])
+doors = Array[ExtResource("1_rpfft")]([SubResource("Resource_h10ka"), SubResource("Resource_vai1a")])
+metadata/_custom_type_script = "uid://b4gd7h41k7f6n"

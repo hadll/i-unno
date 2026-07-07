@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://6gub2e75ioy6"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_a7663"]
+size = Vector2(8, 8)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o28kv"]
+size = Vector3(8, 0.2, 8)
+
+[node name="PitFloor" type="StaticBody3D" unique_id=1786931697]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=768772384]
+mesh = SubResource("QuadMesh_a7663")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=882452346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_o28kv")

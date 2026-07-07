@@ -3,8 +3,8 @@ extends Resource
 
 ## name of this section
 @export var name: String
-## room pool for this section
-@export var rooms: Array[RoomDef]
+## room weighting for this section
+@export var rooms: Dictionary[RoomDef, float]
 ## final room of this section
 @export var end: RoomDef
 @export_group("Layout")

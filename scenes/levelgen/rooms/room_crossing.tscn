@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bo2i04ij8xe0a"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_gbbcu"]
+[ext_resource type="PackedScene" uid="uid://jg2a6lplrj07" path="res://scenes/levelgen/blocks/half_floor.tscn" id="2_mwgqm"]
+[ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_yad7o"]
+[ext_resource type="PackedScene" uid="uid://dt42j82gd4xjr" path="res://scenes/levelgen/blocks/double_underhang_wall.tscn" id="4_ll2ol"]
+[ext_resource type="PackedScene" uid="uid://ni0x1wkx2o3n" path="res://scenes/levelgen/blocks/double_tall_wall.tscn" id="5_ll2ol"]
+[ext_resource type="PackedScene" uid="uid://6gub2e75ioy6" path="res://scenes/levelgen/blocks/pit_floor.tscn" id="6_wbn8n"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ll2ol"]
+size = Vector2(8, 2)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wbn8n"]
+size = Vector3(8, 0.1, 2)
+
+[node name="RoomCrossing" type="Node3D" unique_id=2074461258]
+script = ExtResource("1_gbbcu")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="HalfFloor" parent="." unique_id=1786931697 instance=ExtResource("2_mwgqm")]
+
+[node name="HalfFloor2" parent="." unique_id=771467907 instance=ExtResource("2_mwgqm")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 8, 0, 0)
+
+[node name="Ceiling" parent="." unique_id=1297273533 instance=ExtResource("3_yad7o")]
+
+[node name="Ceiling2" parent="." unique_id=1635558482 instance=ExtResource("3_yad7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="DoubleUnderhangWall" parent="." unique_id=731952364 instance=ExtResource("4_ll2ol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="DoubleUnderhangWall2" parent="." unique_id=1746334668 instance=ExtResource("4_ll2ol")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 0)
+
+[node name="DoubleTallWall" parent="." unique_id=1058616285 instance=ExtResource("5_ll2ol")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -10, 0)
+
+[node name="DoubleTallWall4" parent="." unique_id=170013254 instance=ExtResource("5_ll2ol")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, -10, 0)
+
+[node name="DoubleTallWall2" parent="." unique_id=1736651187 instance=ExtResource("5_ll2ol")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, -10, 0)
+
+[node name="DoubleTallWall3" parent="." unique_id=679919763 instance=ExtResource("5_ll2ol")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, -10, 0)
+
+[node name="PitFloor" parent="." unique_id=1779059031 instance=ExtResource("6_wbn8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -10, 0)
+
+[node name="Crossing" type="StaticBody3D" parent="." unique_id=622268222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Crossing" unique_id=1413604370]
+mesh = SubResource("QuadMesh_ll2ol")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crossing" unique_id=649962635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_wbn8n")

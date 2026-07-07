@@ -8,11 +8,25 @@
 [ext_resource type="Resource" uid="uid://crjdndfx5gqxb" path="res://assets/levelgen/rooms/catwalk.tres" id="5_812dm"]
 [ext_resource type="Resource" uid="uid://bji15e0uph0if" path="res://assets/levelgen/rooms/tall.tres" id="6_twu6x"]
 [ext_resource type="Resource" uid="uid://dre4r4k00m2u1" path="res://assets/levelgen/rooms/dip.tres" id="7_nkfym"]
+[ext_resource type="Resource" uid="uid://b8j5rq4fy52x7" path="res://assets/levelgen/rooms/t.tres" id="8_5akl6"]
+[ext_resource type="Resource" uid="uid://cyvs7j77sfcok" path="res://assets/levelgen/rooms/l.tres" id="9_x2chi"]
+[ext_resource type="Resource" uid="uid://c1wfqs5eibkwy" path="res://assets/levelgen/rooms/crossing.tres" id="10_xlagp"]
+[ext_resource type="Resource" uid="uid://b7v23f3acs1r5" path="res://assets/levelgen/rooms/raised.tres" id="11_kx1sv"]
 
 [resource]
 script = ExtResource("2_d7vme")
 name = "First"
-rooms = Array[ExtResource("1_a3e2q")]([ExtResource("3_qytu8"), ExtResource("4_faxrp"), ExtResource("5_812dm"), ExtResource("6_twu6x"), ExtResource("7_nkfym")])
+rooms = Dictionary[ExtResource("1_a3e2q"), float]({
+ExtResource("3_qytu8"): 100.0,
+ExtResource("4_faxrp"): 100.0,
+ExtResource("5_812dm"): 30.0,
+ExtResource("6_twu6x"): 70.0,
+ExtResource("7_nkfym"): 15.0,
+ExtResource("8_5akl6"): 70.0,
+ExtResource("9_x2chi"): 80.0,
+ExtResource("10_xlagp"): 25.0,
+ExtResource("11_kx1sv"): 15.0
+})
 end = ExtResource("1_kich7")
 required_density = 0.6
 hole_density = 0.1
