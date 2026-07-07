@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://bkn3ji1jinmgb"]
 
 [node name="FlashlightBeam" type="SpotLight3D" unique_id=1354591547]
-spot_range = 8.0
+spot_range = 15.0
 spot_angle = 35.0
