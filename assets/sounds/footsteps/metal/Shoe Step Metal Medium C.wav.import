@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://drwjxxxh3o234"
+path="res://.godot/imported/Shoe Step Metal Medium C.wav-6852a245ecf49a40344205e6033f7af0.sample"
+
+[deps]
+
+source_file="res://assets/sounds/footsteps/metal/Shoe Step Metal Medium C.wav"
+dest_files=["res://.godot/imported/Shoe Step Metal Medium C.wav-6852a245ecf49a40344205e6033f7af0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
