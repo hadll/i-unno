@@ -13,15 +13,24 @@ extends Player
 @export var sensitivity := 1.0
 @export var disable_gravity := false
 
-@onready var jump_force := sqrt(2 * jump_height * gravity)
+@export_group("Steps", "step_")
+@export var step_walk_distance := 1.5
+@export var step_sprint_distance := 2.0
+@export var step_bob_vertical := 0.15
+@export var step_bob_horizontal := 0.2
+@export var step_influence_velocity := 1.0
 
-var crouched := false
+@onready var jump_force := sqrt(2 * jump_height * gravity)
 
 @export var body: CharacterBody3D
 @export var standing_collider: CollisionShape3D
 @export var crouching_collider: CollisionShape3D
 @export var standing_mesh: MeshInstance3D
 @export var crouching_mesh: MeshInstance3D
+
+var crouched := false
+var step_progress := 0.0
+var left_step := true
 
 func _ready() -> void:
 	camera_request = PlayerCamera.me.request_camera(global_transform, self, false)
@@ -34,9 +43,12 @@ func _process(delta: float) -> void:
 		body.global_position = freecam.global_position - camera_point.position
 		body.reset_physics_interpolation()
 		freecam_stop()
-
-	var target_height := crouch_height if crouched else stand_height
-	camera_point.position.y = lerpf(target_height, camera_point.position.y, exp(-delta * crouch_speed))
+	
+	var step_factor := minf(body.velocity.length() / step_influence_velocity, 1.0) if body.is_on_floor() else 0.0
+	var target_y := (crouch_height if crouched else stand_height) - step_progress * step_bob_vertical * step_factor
+	var target_x := (-1 if left_step else 1) * sin(step_progress * PI) * step_bob_horizontal * step_factor
+	camera_point.position.y = lerpf(target_y, camera_point.position.y, exp(-delta * crouch_speed))
+	camera_point.position.x = lerpf(target_x, camera_point.position.x, exp(-delta * crouch_speed))
 	
 	PlayerCamera.me.edit_request_transform(camera_request, camera_point.global_transform)
 
@@ -52,7 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	var inp := InputHandler.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
-	var speed := sprint_speed if InputHandler.is_action_pressed(&"move_sprint") and inp.y < 0 else walk_speed
+	var speed := sprint_speed if InputHandler.is_action_pressed(&"move_sprint") and inp.y < 0 and not crouched else walk_speed
 	
 	if controlling_freecam:
 		var movement := Vector3(inp.x, InputHandler.get_axis(&"move_crouch", &"move_jump"), inp.y)
@@ -65,9 +77,14 @@ func _physics_process(delta: float) -> void:
 	body.velocity.x = new_horizontal.x
 	body.velocity.z = new_horizontal.y
 	
+	if body.velocity.length() < step_influence_velocity * 0.01:
+		reset_step()
+	
 	if body.is_on_floor():
 		if body.velocity.y < 0:
 			body.velocity.y = 0
+			reset_step()
+			step()
 		if InputHandler.is_action_just_pressed(&"move_crouch") and not controlling_freecam:
 			if crouched:
 				var query := PhysicsRayQueryParameters3D.new()
@@ -77,16 +94,23 @@ func _physics_process(delta: float) -> void:
 				var intersection := get_world_3d().direct_space_state.intersect_ray(query)
 				if intersection.size() == 0:
 					crouched = false
+					step()
 			else:
 				crouched = true
+				step()
 			standing_collider.disabled = crouched
 			crouching_collider.disabled = not crouched
 			standing_mesh.visible = not crouched
 			crouching_mesh.visible = crouched
 		if InputHandler.is_action_pressed(&"move_jump") and not crouched and not controlling_freecam:
 			body.velocity.y = jump_force
+		
+		step_progress += body.velocity.length() * delta / get_step_length()
+		if step_progress > 1.0:
+			step()
 	elif not disable_gravity:
 		body.velocity.y -= gravity * delta
+	
 	body.move_and_slide()
 
 func rotate_camera(by: Vector2, sens_mod: float = 1.0) -> void:
@@ -96,3 +120,18 @@ func rotate_camera(by: Vector2, sens_mod: float = 1.0) -> void:
 	elif PlayerCamera.me.has_camera(self):
 		body.rotation.y -= by.x * sensitivity * sens_mod
 		camera_point.rotation.x = clamp(camera_point.rotation.x - by.y * sensitivity * sens_mod, -1.5, 1.5)
+
+func get_step_length() -> float:
+	return (
+		(step_sprint_distance if InputHandler.is_action_pressed(&"move_sprint") else step_walk_distance) *
+		(stand_height / crouch_height if crouched else 1.0)
+	)
+
+func reset_step() -> void:
+	step_progress = 0.0
+	left_step = false
+
+func step() -> void:
+	step_progress = 0.0
+	left_step = not left_step
+	# play sound?
