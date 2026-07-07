@@ -97,12 +97,22 @@ func try_generate(seed_value: int) -> bool:
 					continue
 				holes.append(at)
 		
+		var room_weight_total := 0.0
+		for weight in section_def.rooms.values():
+			room_weight_total += weight
+		var room_list: Array[RoomDef] = []
+		room_list.assign(section_def.rooms.keys())
+		
 		var consecutive_fails := 0
 		while get_density() - existing_density <= section_def.required_density:
 			var start_door_index = clampi(int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors)), 0, len(unfilled_doors) - 1)
 			var start_door := unfilled_doors[start_door_index]
-			var room_index = rng.randi() % len(section_def.rooms)
-			var room := section_def.rooms[room_index]
+			var room_weighted_choice := rng.randf() * room_weight_total
+			var room_index := -1
+			while room_weighted_choice >= 0.0:
+				room_index += 1
+				room_weighted_choice -= section_def.rooms[room_list[room_index]]
+			var room := room_list[room_index]
 			var end_door_index = rng.randi() % len(room.doors)
 			var end_door := room.doors[end_door_index]
 			var transformed := room.transform(
