@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bo2i04ij8xe0a"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_gbbcu"]
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_gbbcu"]
 [ext_resource type="PackedScene" uid="uid://jg2a6lplrj07" path="res://scenes/levelgen/blocks/half_floor.tscn" id="2_mwgqm"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_yad7o"]
 [ext_resource type="PackedScene" uid="uid://dt42j82gd4xjr" path="res://scenes/levelgen/blocks/double_underhang_wall.tscn" id="4_ll2ol"]

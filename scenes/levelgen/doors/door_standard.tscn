@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blhw6lssbjanr"]
 
-[ext_resource type="Script" uid="uid://dyxlhwjtmd48c" path="res://scripts/levelgen/generation_object_picker.gd" id="1_c7omj"]
+[ext_resource type="Script" uid="uid://dyxlhwjtmd48c" path="res://scripts/levelgen/objects/generation_object_picker.gd" id="1_c7omj"]
 [ext_resource type="PackedScene" uid="uid://c0kiqaeii41qh" path="res://scenes/levelgen/doors/door_security.tscn" id="2_rofvo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rofvo"]

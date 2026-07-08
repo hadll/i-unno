@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://iynj1aj5p0dw"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/generation_object.gd" id="1_aefar"]
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_aefar"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_aefar"]
 size = Vector2(8, 4)

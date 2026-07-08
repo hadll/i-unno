@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://csx1p65bksj2m"]
+
+[ext_resource type="Script" uid="uid://c58w5le86o66m" path="res://scripts/levelgen/objects/generation_object_offset.gd" id="1_ibv7q"]
+[ext_resource type="PackedScene" uid="uid://cc1ariserwuiv" path="res://assets/models/blend/table.blend" id="2_ayvbl"]
+
+[node name="Table" type="Node3D" unique_id=73215599]
+script = ExtResource("1_ibv7q")
+metadata/_custom_type_script = "uid://c58w5le86o66m"
+
+[node name="table" parent="." unique_id=2109759532 instance=ExtResource("2_ayvbl")]

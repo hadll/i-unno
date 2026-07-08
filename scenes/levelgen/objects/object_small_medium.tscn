@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://lrdii16wib0v"]
+
+[ext_resource type="Script" uid="uid://d0xl3p2twm1gu" path="res://scripts/levelgen/objects/generation_object_multiple.gd" id="1_mt6cf"]
+[ext_resource type="PackedScene" uid="uid://baf5tje315omh" path="res://scenes/levelgen/objects/object_small.tscn" id="2_aniov"]
+[ext_resource type="PackedScene" uid="uid://dussvfh7tgqqm" path="res://scenes/levelgen/objects/object_medium.tscn" id="3_aniov"]
+
+[node name="ObjectSmallMedium" type="Node3D" unique_id=1070557937]
+script = ExtResource("1_mt6cf")
+metadata/_custom_type_script = "uid://d0xl3p2twm1gu"
+
+[node name="ObjectSmall" parent="." unique_id=447843928 instance=ExtResource("2_aniov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="ObjectMedium" parent="." unique_id=1420284768 instance=ExtResource("3_aniov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
