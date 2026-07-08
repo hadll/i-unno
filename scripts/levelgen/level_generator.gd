@@ -190,7 +190,9 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 					break
 				else:
 					return false
-			assert(important_door_connects)
+		if not important_door_connects:
+			push_error("Important Door failed to connect in %s" % room_def.name)
+			return false
 	
 	min_placed = min_added
 	max_placed = max_added
@@ -237,7 +239,8 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		if door_index in paired_doors:
 			continue
 		var door := filled_doors[door_index]
-		assert(door != important_door)
+		if door == important_door:
+			push_error("Removed important door during generation of %s" % room_def.name)
 		door.type = DoorType.WALL
 		unfilled_doors.erase(door)
 		doors.append(door)
