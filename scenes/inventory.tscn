@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rchgqjh135p2" path="res://scenes/item_slot.tscn" id="1_qw0r6"]
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/triggers/global_key_trigger.gd" id="3_ty45s"]
 
-[node name="Inventory" type="Control" unique_id=491016439 node_paths=PackedStringArray("trigger_item_next", "trigger_item_previous", "trigger_item_1", "trigger_item_2", "trigger_item_3", "trigger_item_4", "slots")]
+[node name="Inventory" type="Control" unique_id=491016439 node_paths=PackedStringArray("trigger_item_next", "trigger_item_previous", "trigger_item_1", "trigger_item_2", "trigger_item_3", "trigger_item_4", "trigger_item_use", "slot_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,13 +13,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_hj2ta")
+item_slot_scene = ExtResource("1_qw0r6")
 trigger_item_next = NodePath("TriggerItemNext")
 trigger_item_previous = NodePath("TriggerItemPrevious")
 trigger_item_1 = NodePath("TriggerItem1")
 trigger_item_2 = NodePath("TriggerItem2")
 trigger_item_3 = NodePath("TriggerItem3")
 trigger_item_4 = NodePath("TriggerItem4")
-slots = [NodePath("Slots/ItemSlot1"), NodePath("Slots/ItemSlot2"), NodePath("Slots/ItemSlot3"), NodePath("Slots/ItemSlot4")]
+trigger_item_use = NodePath("TriggerItemUse")
+slot_container = NodePath("Slots")
 
 [node name="Slots" type="HBoxContainer" parent="." unique_id=740609684]
 layout_mode = 1
@@ -31,18 +33,6 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 alignment = 1
-
-[node name="ItemSlot1" parent="Slots" unique_id=1385488667 instance=ExtResource("1_qw0r6")]
-layout_mode = 2
-
-[node name="ItemSlot2" parent="Slots" unique_id=1889775649 instance=ExtResource("1_qw0r6")]
-layout_mode = 2
-
-[node name="ItemSlot3" parent="Slots" unique_id=1311709049 instance=ExtResource("1_qw0r6")]
-layout_mode = 2
-
-[node name="ItemSlot4" parent="Slots" unique_id=744483395 instance=ExtResource("1_qw0r6")]
-layout_mode = 2
 
 [node name="TriggerItemNext" type="Node3D" parent="." unique_id=1532982334]
 script = ExtResource("3_ty45s")
@@ -78,4 +68,10 @@ metadata/_custom_type_script = "uid://dkq6mobqqioes"
 script = ExtResource("3_ty45s")
 use_action = true
 action = &"item_4"
+metadata/_custom_type_script = "uid://dkq6mobqqioes"
+
+[node name="TriggerItemUse" type="Node3D" parent="." unique_id=754203214]
+script = ExtResource("3_ty45s")
+use_action = true
+action = &"item_use"
 metadata/_custom_type_script = "uid://dkq6mobqqioes"

@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
 [ext_resource type="PackedScene" uid="uid://d3gjhb4lxf248" path="res://scenes/printer.tscn" id="11_lrhon"]
 [ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="12_04jj1"]
-[ext_resource type="PackedScene" uid="uid://byr7u03oqvevc" path="res://scenes/items/test_item.tscn" id="13_nn1bs"]
+[ext_resource type="PackedScene" uid="uid://byr7u03oqvevc" path="res://scenes/items/item_flashlight.tscn" id="13_nn1bs"]
 [ext_resource type="PackedScene" uid="uid://bttdmfaqv4k50" path="res://scenes/basic_item_interaction.tscn" id="14_nn1bs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nn1bs"]

@@ -18,6 +18,8 @@ func set_item(to: Item) -> void:
 	item = to
 	if item:
 		item.hide()
+		item.slot = self
+		item.init_item_slot()
 
 func select() -> void:
 	target_scale = selection_scale

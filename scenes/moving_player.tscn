@@ -85,3 +85,4 @@ metadata/_custom_type_script = "uid://i4gm277hvbec"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6119912, 0)
 
 [node name="Inventory" parent="." unique_id=491016439 instance=ExtResource("4_xw8ta")]
+slot_count = 4

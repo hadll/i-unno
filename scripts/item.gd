@@ -2,7 +2,10 @@
 class_name Item
 extends Node3D
 
-signal held_sprite_update
+@export var default_texture: Texture2D
+
+var held := false
+var slot: ItemSlot
 
 @abstract
 func get_item_name() -> String
@@ -10,11 +13,8 @@ func get_item_name() -> String
 @abstract
 func get_item_id() -> StringName
 
-func item_input(_event: InputEvent) -> void:
+@abstract
+func init_item_slot() -> void
+
+func use() -> void:
 	pass
-
-@abstract
-func get_item_icon() -> Image
-
-@abstract
-func get_item_held_sprite() -> Image
