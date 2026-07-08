@@ -13,7 +13,7 @@ func generate(section_def: SectionDef, rng: RandomNumberGenerator) -> void:
 	for scene in scenes:
 		roll -= scenes[scene]
 		if roll < 0.0:
-			if not scenes[scene]:
+			if not scene:
 				break
 			picked = scene.instantiate()
 			add_child(picked)
