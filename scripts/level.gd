@@ -4,11 +4,11 @@ extends Node3D
 const ROOM_SCALE := Vector3(8, 5, 8)
 
 func _ready() -> void:
-	generate()
+	await generate()
 
 func generate() -> void:
 	var placement_rng := RandomNumberGenerator.new()
-	placement_rng.seed = LevelGenerator.generate()
+	placement_rng.seed = await LevelGenerator.generate()
 	
 	for room_def in LevelGenerator.rooms:
 		var room: GenerationObject = room_def.scene.instantiate()

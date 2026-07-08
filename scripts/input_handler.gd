@@ -19,6 +19,8 @@ func _process(_delta: float) -> void:
 	update_look()
 
 func update_look() -> void:
+	if not PlayerCamera.me:
+		return
 	var query := PhysicsRayQueryParameters3D.new()
 	query.collision_mask = INTERACTION_MASK
 	if allow_free_mouse_look and not mouse_captured():

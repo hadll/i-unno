@@ -65,6 +65,7 @@ func generate() -> int:
 	print("Generation Seed: %d" % seed_finder.seed)
 	while not try_generate(seed_finder.randi()):
 		if LOG_GEN: print("Generation Failed... Retrying")
+		await get_tree().process_frame
 	if LOG_GEN: print("Generation Done")
 	return seed_finder.randi()
 
@@ -79,7 +80,7 @@ func try_generate(seed_value: int) -> bool:
 	rng = RandomNumberGenerator.new()
 	rng.seed = seed_value
 	
-	try_place(gen.start, gen.sections[0], null)
+	try_place(gen.start.transform(Vector3i.ZERO, Direction.POS_X, Vector3i.ZERO), gen.sections[0], null)
 	var existing_density := 0.0
 	var section_start_rough := Vector3i.ZERO
 	for section_def in gen.sections:
@@ -117,7 +118,7 @@ func try_generate(seed_value: int) -> bool:
 			var end_door := room.doors[end_door_index]
 			var transformed := room.transform(
 				end_door.from, 
-				posmod(start_door.dir - end_door.dir + 2, 4) as Direction, 
+				posmod(end_door.dir - start_door.dir + 2, 4) as Direction, 
 				start_door.get_target()
 			)
 			var in_hole := false
@@ -173,7 +174,6 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 	for cell in room_def.shape:
 		if cell in spaces or (
 			cell.x <= max_added.x - gen.map_size.x or cell.x >= min_added.x + gen.map_size.x or
-			cell.y <= max_added.y - gen.map_size.y or cell.y >= min_added.y + gen.map_size.y or
 			cell.z <= max_added.z - gen.map_size.y or cell.z >= min_added.z + gen.map_size.y
 		):
 			return false
@@ -181,11 +181,16 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		max_added = max_added.max(cell)
 	# filter non matching doors
 	if important_door:
+		var important_door_connects := false
 		var important_door_target := important_door.get_target()
-		for door in unfilled_doors:
+		for door in room_def.doors:
 			if door.from == important_door_target and door.get_target() == important_door.from:
-				if door.type != important_door.type:
+				if door.type == important_door.type:
+					important_door_connects = true
+					break
+				else:
 					return false
+			assert(important_door_connects)
 	
 	min_placed = min_added
 	max_placed = max_added
@@ -232,6 +237,7 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		if door_index in paired_doors:
 			continue
 		var door := filled_doors[door_index]
+		assert(door != important_door)
 		door.type = DoorType.WALL
 		unfilled_doors.erase(door)
 		doors.append(door)
