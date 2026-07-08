@@ -2,8 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dgymm6mt6o3t0" path="res://scripts/moving_player.gd" id="1_3mr7f"]
 [ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="2_1e7h7"]
+[ext_resource type="AudioStream" uid="uid://b4efgsv5igrye" path="res://assets/sounds/footsteps/stone_hard.tres" id="2_knrqe"]
 [ext_resource type="PackedScene" uid="uid://bkn3ji1jinmgb" path="res://scenes/flashlight_beam.tscn" id="2_ws1kw"]
+[ext_resource type="AudioStream" uid="uid://kmso74muypkk" path="res://assets/sounds/footsteps/stone_soft.tres" id="4_7klvn"]
 [ext_resource type="PackedScene" uid="uid://di7e5sbchs1de" path="res://scenes/inventory.tscn" id="4_xw8ta"]
+[ext_resource type="AudioStream" uid="uid://ckf4o8jtr5tc1" path="res://assets/sounds/footsteps/stone_medium.tres" id="5_a7ac3"]
+[ext_resource type="AudioStream" uid="uid://dnipxxarswcj6" path="res://assets/sounds/footsteps/metal_hard.tres" id="5_skkqu"]
+[ext_resource type="AudioStream" uid="uid://caywwjqxw04o1" path="res://assets/sounds/footsteps/metal_medium.tres" id="6_it6dx"]
+[ext_resource type="AudioStream" uid="uid://mj0tde28hhmv" path="res://assets/sounds/footsteps/metal_soft.tres" id="7_xlojs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 
@@ -15,10 +21,19 @@ height = 1.4
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v6fml"]
 height = 1.4
 
-[node name="MovingPlayer" type="Node3D" unique_id=1745051212 node_paths=PackedStringArray("body", "standing_collider", "crouching_collider", "standing_mesh", "crouching_mesh", "camera_point", "flashlight", "inventory", "freecam")]
+[node name="MovingPlayer" type="Node3D" unique_id=1745051212 node_paths=PackedStringArray("step_audio_player", "body", "standing_collider", "crouching_collider", "standing_mesh", "crouching_mesh", "camera_point", "flashlight", "inventory", "freecam")]
 script = ExtResource("1_3mr7f")
 walk_speed = 3.0
 sprint_speed = 5.0
+step_group_sounds = Dictionary[StringName, AudioStream]({
+&"StepMetalHard": ExtResource("5_skkqu"),
+&"StepMetalMedium": ExtResource("6_it6dx"),
+&"StepMetalSoft": ExtResource("7_xlojs"),
+&"StepStoneHard": ExtResource("2_knrqe"),
+&"StepStoneMedium": ExtResource("5_a7ac3"),
+&"StepStoneSoft": ExtResource("4_7klvn")
+})
+step_audio_player = NodePath("Body/StepAudio")
 body = NodePath("Body")
 standing_collider = NodePath("Body/StandingCollider")
 crouching_collider = NodePath("Body/CrouchingCollider")
@@ -55,6 +70,10 @@ mesh = SubResource("CapsuleMesh_v6fml")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="FlashlightBeam" parent="Body/CameraPoint" unique_id=1354591547 instance=ExtResource("2_ws1kw")]
+
+[node name="StepAudio" type="AudioStreamPlayer3D" parent="Body" unique_id=778331850]
+stream = ExtResource("5_a7ac3")
+max_polyphony = 4
 
 [node name="PlayerCamera" type="Camera3D" parent="." unique_id=968239037]
 top_level = true

@@ -1,0 +1,17 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://ckf4o8jtr5tc1"]
+
+[ext_resource type="AudioStream" uid="uid://grk3gux5g4v4" path="res://assets/sounds/footsteps/stone/Shoe Step Stone Medium A.wav" id="1_whiv5"]
+[ext_resource type="AudioStream" uid="uid://bhgvcsp11rvrq" path="res://assets/sounds/footsteps/stone/Shoe Step Stone Medium B.wav" id="2_deiu0"]
+[ext_resource type="AudioStream" uid="uid://du7aihupb2ovf" path="res://assets/sounds/footsteps/stone/Shoe Step Stone Medium C.wav" id="3_r7x2y"]
+[ext_resource type="AudioStream" uid="uid://dkhoot3bi6ax3" path="res://assets/sounds/footsteps/stone/Shoe Step Stone Medium D.wav" id="4_2rmxs"]
+[ext_resource type="AudioStream" uid="uid://c305of8cd2esl" path="res://assets/sounds/footsteps/stone/Shoe Step Stone Medium E.wav" id="5_sip88"]
+
+[resource]
+random_pitch = 1.0594631
+random_volume_offset_db = 3.0
+streams_count = 5
+stream_0/stream = ExtResource("1_whiv5")
+stream_1/stream = ExtResource("2_deiu0")
+stream_2/stream = ExtResource("3_r7x2y")
+stream_3/stream = ExtResource("4_2rmxs")
+stream_4/stream = ExtResource("5_sip88")

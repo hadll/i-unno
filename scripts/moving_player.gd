@@ -19,14 +19,17 @@ extends Player
 @export var step_bob_vertical := 0.15
 @export var step_bob_horizontal := 0.2
 @export var step_influence_velocity := 1.0
-
-@onready var jump_force := sqrt(2 * jump_height * gravity)
+@export var step_group_sounds: Dictionary[StringName, AudioStream]
+@export var step_audio_player: AudioStreamPlayer3D
 
 @export var body: CharacterBody3D
 @export var standing_collider: CollisionShape3D
 @export var crouching_collider: CollisionShape3D
 @export var standing_mesh: MeshInstance3D
 @export var crouching_mesh: MeshInstance3D
+
+
+@onready var jump_force := sqrt(2 * jump_height * gravity)
 
 var crouched := false
 var step_progress := 0.0
@@ -63,6 +66,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			rotate_camera(event.relative * 0.001)
 
 func _physics_process(delta: float) -> void:
+	var was_on_floor := body.is_on_floor()
 	var inp := InputHandler.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
 	var speed := sprint_speed if InputHandler.is_action_pressed(&"move_sprint") and inp.y < 0 and not crouched else walk_speed
 	
@@ -72,19 +76,18 @@ func _physics_process(delta: float) -> void:
 		inp = Vector2.ZERO
 	
 	var target_velocity := inp.rotated(-body.rotation.y) * speed
-	var grip := ground_grip if body.is_on_floor() else air_grip
+	var grip := ground_grip if was_on_floor else air_grip
 	var new_horizontal: Vector2 = lerp(target_velocity,  Vector2(body.velocity.x, body.velocity.z), exp(-delta * grip))
 	body.velocity.x = new_horizontal.x
 	body.velocity.z = new_horizontal.y
 	
-	if body.velocity.length() < step_influence_velocity * 0.01:
-		reset_step()
-	
-	if body.is_on_floor():
-		if body.velocity.y < 0:
-			body.velocity.y = 0
-			reset_step()
+	if body.velocity.length() < 0.001:
+		body.velocity = Vector3.ZERO
+		if step_progress > 0.0:
 			step()
+			reset_step()
+	
+	if was_on_floor:
 		if InputHandler.is_action_just_pressed(&"move_crouch") and not controlling_freecam:
 			if crouched:
 				var query := PhysicsRayQueryParameters3D.new()
@@ -108,10 +111,13 @@ func _physics_process(delta: float) -> void:
 		step_progress += body.velocity.length() * delta / get_step_length()
 		if step_progress > 1.0:
 			step()
-	elif not disable_gravity:
+	else:
 		body.velocity.y -= gravity * delta
 	
 	body.move_and_slide()
+	
+	if not was_on_floor and body.is_on_floor():
+		step()
 
 func rotate_camera(by: Vector2, sens_mod: float = 1.0) -> void:
 	if controlling_freecam:
@@ -128,10 +134,21 @@ func get_step_length() -> float:
 	)
 
 func reset_step() -> void:
-	step_progress = 0.0
 	left_step = false
 
 func step() -> void:
 	step_progress = 0.0
 	left_step = not left_step
-	# play sound?
+	
+	var query := PhysicsRayQueryParameters3D.new()
+	query.from = body.global_position
+	query.to = body.global_position + Vector3.DOWN
+	query.exclude = [body.get_rid()]
+	var intersection := get_world_3d().direct_space_state.intersect_ray(query)
+	if intersection:
+		for group in intersection["collider"].get_groups():
+			if group in step_group_sounds:
+				step_audio_player.stream = step_group_sounds[group]
+				break
+	
+	step_audio_player.play()

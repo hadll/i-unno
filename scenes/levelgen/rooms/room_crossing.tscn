@@ -49,7 +49,7 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, -
 [node name="PitFloor" parent="." unique_id=1779059031 instance=ExtResource("6_wbn8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -10, 0)
 
-[node name="Crossing" type="StaticBody3D" parent="." unique_id=622268222]
+[node name="Crossing" type="StaticBody3D" parent="." unique_id=622268222 groups=["StepMetalMedium"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Crossing" unique_id=1413604370]

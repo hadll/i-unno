@@ -30,7 +30,12 @@ enabled=PackedStringArray("res://addons/camera_angle_gizmo/plugin.cfg")
 
 [global_group]
 
-Triggers=""
+StepMetalHard="Plays metal_hard step sounds"
+StepMetalMedium="Plays metal_medium step sounds"
+StepMetalSoft="Plays metal_soft step sounds"
+StepStoneHard="Plays stone_hard step sounds"
+StepStoneSoft="Plays stone_soft step sounds"
+StepStoneMedium="Plays stone_medium step sounds"
 
 [input]
 
