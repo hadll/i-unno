@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://6wkffw8jydh8"]
+
+[ext_resource type="Script" uid="uid://cnr1be64cu1ce" path="res://scripts/levelgen/objects/generation_object_spawner.gd" id="1_yyx3d"]
+[ext_resource type="PackedScene" uid="uid://dussvfh7tgqqm" path="res://scenes/levelgen/objects/types/object_medium.tscn" id="2_yyx3d"]
+
+[node name="ObjectSpawnerMedium" type="Node3D" unique_id=674842031]
+script = ExtResource("1_yyx3d")
+scenes = Array[PackedScene]([null, ExtResource("2_yyx3d")])
+weights = Array[float]([2.0, 1.0])
+metadata/_custom_type_script = "uid://cnr1be64cu1ce"

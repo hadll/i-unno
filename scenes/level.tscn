@@ -21,3 +21,6 @@ script = ExtResource("1_w8frs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=556321814]
 compositor = SubResource("Compositor_g4v7s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=358889708]
+transform = Transform3D(-0.47521585, -0.29210627, 0.82996625, 0.7482936, 0.36203122, 0.5558689, -0.46284646, 0.88521606, 0.046538293, 0, 0, 0)

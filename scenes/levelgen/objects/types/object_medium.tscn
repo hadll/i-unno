@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dussvfh7tgqqm"]
+
+[ext_resource type="Script" uid="uid://dyxlhwjtmd48c" path="res://scripts/levelgen/objects/generation_object_picker.gd" id="1_ro880"]
+[ext_resource type="PackedScene" uid="uid://psy6ndq6brmy" path="res://scenes/levelgen/objects/types/collections/object_small_small.tscn" id="2_t6pjf"]
+[ext_resource type="PackedScene" uid="uid://baf5tje315omh" path="res://scenes/levelgen/objects/types/object_small.tscn" id="3_uy7av"]
+
+[node name="ObjectMedium" type="Node3D" unique_id=1502716668]
+script = ExtResource("1_ro880")
+scenes = Array[PackedScene]([ExtResource("2_t6pjf"), ExtResource("3_uy7av")])
+weights = Array[float]([1.0, 1.0])
+metadata/_custom_type_script = "uid://dyxlhwjtmd48c"

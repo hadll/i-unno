@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://psy6ndq6brmy"]
 
 [ext_resource type="Script" uid="uid://d0xl3p2twm1gu" path="res://scripts/levelgen/objects/generation_object_multiple.gd" id="1_e2m7b"]
-[ext_resource type="PackedScene" uid="uid://baf5tje315omh" path="res://scenes/levelgen/objects/object_small.tscn" id="2_5bm4c"]
+[ext_resource type="PackedScene" uid="uid://baf5tje315omh" path="res://scenes/levelgen/objects/types/object_small.tscn" id="2_5bm4c"]
 
 [node name="ObjectSmallSmall" type="Node3D" unique_id=1070557937]
 script = ExtResource("1_e2m7b")

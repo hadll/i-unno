@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_2ldck"]
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="4_37w8d"]
 [ext_resource type="PackedScene" uid="uid://dlr3sp2d2w5u3" path="res://scenes/levelgen/blocks/pillar.tscn" id="5_6jb1p"]
+[ext_resource type="PackedScene" uid="uid://bdmmugrkqvah0" path="res://scenes/levelgen/objects/spawners/object_spawner_wide.tscn" id="6_37w8d"]
+[ext_resource type="PackedScene" uid="uid://6wkffw8jydh8" path="res://scenes/levelgen/objects/spawners/object_spawner_medium.tscn" id="7_e23kq"]
 
 [node name="RoomT" type="Node3D" unique_id=609273534]
 script = ExtResource("1_6jb1p")
@@ -51,3 +53,18 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="Pillar2" parent="." unique_id=1271427548 instance=ExtResource("5_6jb1p")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="ObjectSpawnerWide" parent="." unique_id=674842031 instance=ExtResource("6_37w8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="ObjectSpawnerMedium" parent="." unique_id=2045846062 instance=ExtResource("7_e23kq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 3)
+
+[node name="ObjectSpawnerMedium2" parent="." unique_id=572057428 instance=ExtResource("7_e23kq")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 6, 0, -3)
+
+[node name="ObjectSpawnerMedium3" parent="." unique_id=1554551059 instance=ExtResource("7_e23kq")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 3, 0, -6)
+
+[node name="ObjectSpawnerMedium4" parent="." unique_id=1660859276 instance=ExtResource("7_e23kq")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 3, 0, 6)

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://lrdii16wib0v"]
 
 [ext_resource type="Script" uid="uid://d0xl3p2twm1gu" path="res://scripts/levelgen/objects/generation_object_multiple.gd" id="1_mt6cf"]
-[ext_resource type="PackedScene" uid="uid://baf5tje315omh" path="res://scenes/levelgen/objects/object_small.tscn" id="2_aniov"]
-[ext_resource type="PackedScene" uid="uid://dussvfh7tgqqm" path="res://scenes/levelgen/objects/object_medium.tscn" id="3_aniov"]
+[ext_resource type="PackedScene" uid="uid://baf5tje315omh" path="res://scenes/levelgen/objects/types/object_small.tscn" id="2_aniov"]
+[ext_resource type="PackedScene" uid="uid://dussvfh7tgqqm" path="res://scenes/levelgen/objects/types/object_medium.tscn" id="3_aniov"]
 
 [node name="ObjectSmallMedium" type="Node3D" unique_id=1070557937]
 script = ExtResource("1_mt6cf")

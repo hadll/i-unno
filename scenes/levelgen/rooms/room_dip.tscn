@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="6_ofau8"]
 [ext_resource type="PackedScene" uid="uid://5lepirb3fmo5" path="res://scenes/levelgen/blocks/tall_wall.tscn" id="7_lmqg0"]
 [ext_resource type="PackedScene" uid="uid://dlr3sp2d2w5u3" path="res://scenes/levelgen/blocks/pillar.tscn" id="8_lmqg0"]
+[ext_resource type="PackedScene" uid="uid://bdmmugrkqvah0" path="res://scenes/levelgen/objects/spawners/object_spawner_wide.tscn" id="9_gwga5"]
+[ext_resource type="PackedScene" uid="uid://6wkffw8jydh8" path="res://scenes/levelgen/objects/spawners/object_spawner_medium.tscn" id="10_xpjrh"]
 
 [node name="RoomDip" type="Node3D" unique_id=892180288]
 script = ExtResource("1_lmqg0")
@@ -100,3 +102,21 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 16, 
 
 [node name="Pillar4" parent="." unique_id=1258494919 instance=ExtResource("8_lmqg0")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 16, -5, 0)
+
+[node name="ObjectSpawnerWide" parent="." unique_id=674842031 instance=ExtResource("9_gwga5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, -5, 11)
+
+[node name="ObjectSpawnerWide2" parent="." unique_id=432732948 instance=ExtResource("9_gwga5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, -5, -11)
+
+[node name="ObjectSpawnerMedium" parent="." unique_id=467218004 instance=ExtResource("10_xpjrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -5, 7)
+
+[node name="ObjectSpawnerMedium2" parent="." unique_id=2002933966 instance=ExtResource("10_xpjrh")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, -5, 7)
+
+[node name="ObjectSpawnerMedium3" parent="." unique_id=777682919 instance=ExtResource("10_xpjrh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -5, -7)
+
+[node name="ObjectSpawnerMedium4" parent="." unique_id=626121114 instance=ExtResource("10_xpjrh")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, -5, -7)
