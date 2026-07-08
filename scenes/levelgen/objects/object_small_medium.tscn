@@ -9,7 +9,7 @@ script = ExtResource("1_mt6cf")
 metadata/_custom_type_script = "uid://d0xl3p2twm1gu"
 
 [node name="ObjectSmall" parent="." unique_id=447843928 instance=ExtResource("2_aniov")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="ObjectMedium" parent="." unique_id=1420284768 instance=ExtResource("3_aniov")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

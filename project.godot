@@ -26,7 +26,7 @@ LevelGenerator="*uid://b7iqdjcxrkkum"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/camera_angle_gizmo/plugin.cfg", "res://addons/object_angle_gizmo/plugin.cfg")
+enabled=PackedStringArray("res://addons/camera_angle_gizmo/plugin.cfg", "res://addons/object_angle_gizmo/plugin.cfg", "res://addons/object_spawner_gizmo/plugin.cfg")
 
 [global_group]
 
