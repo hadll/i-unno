@@ -19,7 +19,7 @@ enum DoorType {
 	STANDARD = 0,
 	WALL = 1,
 }
-var gen: GenerationDef = preload("res://assets/levelgen/generation.tres")
+var gen: GenerationDef = load("res://assets/levelgen/generation.tres")
 var spaces: Dictionary[Vector3i, RoomDef]
 var unfilled_doors: Array[DoorDef]
 var rooms: Array[RoomDef]
