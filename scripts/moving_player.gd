@@ -145,8 +145,9 @@ func step() -> void:
 	query.to = body.global_position + Vector3.DOWN
 	query.exclude = [body.get_rid()]
 	var intersection := get_world_3d().direct_space_state.intersect_ray(query)
-	if intersection:
-		for group in intersection["collider"].get_groups():
+	var collider := intersection.get("collider") as CollisionObject3D
+	if collider:
+		for group in collider.get_groups():
 			if group in step_group_sounds:
 				step_audio_player.stream = step_group_sounds[group]
 				break
