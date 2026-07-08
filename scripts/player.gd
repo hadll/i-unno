@@ -3,15 +3,17 @@ extends Node3D
 
 static var me: Player
 
-var detached_freecam := false
-var controlling_freecam := false
-
-var camera_request: int
-
 @export var camera_point: Node3D
 @export var flashlight: Light3D
 @export var inventory: Inventory
 @export var freecam: Camera3D
+
+var detached_freecam := false
+var controlling_freecam := false
+var debug_map_display: TextureRect
+var debug_map_display_layer := 0
+
+var camera_request: int
 
 func _init() -> void:
 	me = self
@@ -24,6 +26,20 @@ func _process(_delta: float) -> void:
 			freecam_start()
 	if detached_freecam and InputHandler.is_action_just_pressed(&"freecam_swap"):
 		controlling_freecam = not controlling_freecam
+	if InputHandler.is_action_just_pressed(&"debug_map"):
+		if debug_map_display:
+			debug_map_display_layer += 1
+			if debug_map_display_layer >= len(Map.layers):
+				remove_child(debug_map_display)
+				debug_map_display = null
+			else:
+				debug_map_display.texture = ImageTexture.create_from_image(Map.layers[debug_map_display_layer])
+		else:
+			Map.draw()
+			debug_map_display = TextureRect.new()
+			debug_map_display.texture = ImageTexture.create_from_image(Map.layers[0])
+			add_child(debug_map_display)
+			debug_map_display_layer = 0
 
 func pick_up_item(item: Item) -> bool:
 	return inventory.pick_up_item(item)

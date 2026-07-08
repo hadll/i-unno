@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("1_5kpg1")
-map_size = Vector3i(15, 2, 15)
+map_size = Vector2i(15, 15)
 start = ExtResource("2_rvjtp")
 sections = Array[ExtResource("2_kvr5c")]([ExtResource("3_3l3m0")])
 door_scenes = Dictionary[int, PackedScene]({

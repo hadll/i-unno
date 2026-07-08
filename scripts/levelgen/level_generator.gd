@@ -85,8 +85,8 @@ func try_generate(seed_value: int) -> bool:
 	for section_def in gen.sections:
 		if LOG_GEN: print("Generating Section %s" % section_def.name)
 		var holes: Array[Vector2i] = []
-		for i in section_def.hole_density * gen.map_size.x * gen.map_size.z * 4:
-			var at := Vector2i(rng.randi() % (gen.map_size.x * 2) - gen.map_size.x, rng.randi() % (gen.map_size.z * 2) - gen.map_size.z)
+		for i in section_def.hole_density * gen.map_size.x * gen.map_size.y * 4:
+			var at := Vector2i(rng.randi() % (gen.map_size.x * 2) - gen.map_size.x, rng.randi() % (gen.map_size.y * 2) - gen.map_size.y)
 			if at in holes:
 				continue
 			holes.append(at)
@@ -174,7 +174,7 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 		if cell in spaces or (
 			cell.x <= max_added.x - gen.map_size.x or cell.x >= min_added.x + gen.map_size.x or
 			cell.y <= max_added.y - gen.map_size.y or cell.y >= min_added.y + gen.map_size.y or
-			cell.z <= max_added.z - gen.map_size.z or cell.z >= min_added.z + gen.map_size.z
+			cell.z <= max_added.z - gen.map_size.y or cell.z >= min_added.z + gen.map_size.y
 		):
 			return false
 		min_added = min_added.min(cell)
@@ -245,4 +245,4 @@ func try_place(room_def: RoomDef, section_def: SectionDef, important_door: DoorD
 	return true
 
 func get_density() -> float:
-	return float(spaces.size()) / (gen.map_size.x * gen.map_size.z)
+	return float(spaces.size()) / (gen.map_size.x * gen.map_size.y)

@@ -28,8 +28,7 @@ const ROOM_COLOURS: Dictionary[LevelGenerator.RoomType, Color] = {
 var drawn := false
 
 func add_files(dir: TerminalDir) -> void:
-	if not drawn:
-		draw()
+	draw()
 	for i in len(layers):
 		var map_file := TerminalImageFile.new()
 		map_file.name = Terminal.trans_name_item_to_node("floor-%02d.png" % (i + 1))
@@ -37,6 +36,8 @@ func add_files(dir: TerminalDir) -> void:
 		dir.add_child(map_file)
 
 func draw() -> void:
+	if drawn:
+		return
 	clear(LevelGenerator.gen.map_size)
 	for room_def in LevelGenerator.rooms:
 		draw_room(room_def)
@@ -45,11 +46,11 @@ func draw() -> void:
 			draw_door(door_def)
 	drawn = true
 
-func clear(map_size: Vector3i) -> void:
+func clear(map_size: Vector2i) -> void:
 	var width := MAP_MARGIN * 2 + ROOM_SCALE * map_size.x
-	var height := MAP_MARGIN * 2 + ROOM_SCALE * map_size.z
+	var height := MAP_MARGIN * 2 + ROOM_SCALE * map_size.y
 	layers = []
-	for y in map_size.y:
+	for y in LevelGenerator.max_placed.y - LevelGenerator.min_placed.y + 1:
 		layers.append(Image.create_empty(width, height, false, Image.FORMAT_RGB8))
 		layers[y].fill(BACKGROUND_COLOUR)
 	drawn = false

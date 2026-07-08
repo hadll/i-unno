@@ -2,7 +2,7 @@ class_name GenerationDef
 extends Resource
 
 ## max size of the map (origin is not 0)
-@export var map_size: Vector3i
+@export var map_size: Vector2i
 ## starting room
 @export var start: RoomDef
 ## sections, in order
