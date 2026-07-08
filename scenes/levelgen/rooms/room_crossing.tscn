@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bo2i04ij8xe0a"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_gbbcu"]
+[ext_resource type="Script" uid="uid://dpqfxm6ek6g3f" path="res://scripts/levelgen/room.gd" id="1_ll2ol"]
 [ext_resource type="PackedScene" uid="uid://jg2a6lplrj07" path="res://scenes/levelgen/blocks/half_floor.tscn" id="2_mwgqm"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_yad7o"]
 [ext_resource type="PackedScene" uid="uid://dt42j82gd4xjr" path="res://scenes/levelgen/blocks/double_underhang_wall.tscn" id="4_ll2ol"]
@@ -14,9 +14,9 @@ orientation = 1
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbn8n"]
 size = Vector3(8, 0.1, 2)
 
-[node name="RoomCrossing" type="Node3D" unique_id=2074461258]
-script = ExtResource("1_gbbcu")
-metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+[node name="RoomCrossing" type="Node3D" unique_id=414392575]
+script = ExtResource("1_ll2ol")
+metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
 [node name="HalfFloor" parent="." unique_id=1786931697 instance=ExtResource("2_mwgqm")]
 

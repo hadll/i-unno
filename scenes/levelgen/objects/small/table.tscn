@@ -3,8 +3,17 @@
 [ext_resource type="Script" uid="uid://c58w5le86o66m" path="res://scripts/levelgen/objects/generation_object_offset.gd" id="1_ibv7q"]
 [ext_resource type="PackedScene" uid="uid://cc1ariserwuiv" path="res://assets/models/blend/table.blend" id="2_ayvbl"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1.8, 0.1, 1.8)
+
 [node name="Table" type="Node3D" unique_id=73215599]
 script = ExtResource("1_ibv7q")
 metadata/_custom_type_script = "uid://c58w5le86o66m"
 
-[node name="table" parent="." unique_id=2109759532 instance=ExtResource("2_ayvbl")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=697655052]
+
+[node name="table" parent="StaticBody3D" unique_id=2109759532 instance=ExtResource("2_ayvbl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1839659159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8394983, 0)
+shape = SubResource("BoxShape3D_g4v7s")

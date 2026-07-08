@@ -8,10 +8,6 @@
 
 [node name="ObjectWide" type="Node3D" unique_id=1161064656]
 script = ExtResource("1_ujk1t")
-scenes = Dictionary[PackedScene, float]({
-ExtResource("2_ujk1t"): 1.0,
-ExtResource("3_fc7sg"): 1.0,
-ExtResource("4_tpjge"): 1.0,
-ExtResource("3_ujk1t"): 1.0
-})
+scenes = Array[PackedScene]([ExtResource("2_ujk1t"), ExtResource("3_fc7sg"), ExtResource("3_ujk1t"), ExtResource("4_tpjge")])
+weights = Array[float]([1.0, 1.0, 1.0, 1.0])
 metadata/_custom_type_script = "uid://cnr1be64cu1ce"

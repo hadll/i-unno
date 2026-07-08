@@ -1,5 +1,5 @@
 class_name RoomStart
-extends GenerationObject
+extends Room
 
 @export var player_scene: PackedScene
 @export var spawn_point: Node3D

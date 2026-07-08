@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://d2oc74haysif2"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_sbrxy"]
+[ext_resource type="Script" uid="uid://dpqfxm6ek6g3f" path="res://scripts/levelgen/room.gd" id="1_vhk50"]
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_vhk50"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_nu1ya"]
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="4_gbdwo"]
 [ext_resource type="PackedScene" uid="uid://dlr3sp2d2w5u3" path="res://scenes/levelgen/blocks/pillar.tscn" id="5_vhk50"]
 
-[node name="RoomL" type="Node3D" unique_id=2063421377]
-script = ExtResource("1_sbrxy")
-metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+[node name="RoomL" type="Node3D" unique_id=713928196]
+script = ExtResource("1_vhk50")
+metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
 [node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_vhk50")]
 

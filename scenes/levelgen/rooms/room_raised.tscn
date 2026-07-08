@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b18slp5l1qjjd"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_nb6ol"]
+[ext_resource type="Script" uid="uid://dpqfxm6ek6g3f" path="res://scripts/levelgen/room.gd" id="1_sotti"]
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_ieghc"]
 [ext_resource type="PackedScene" uid="uid://ci3omh2llccth" path="res://scenes/levelgen/blocks/stairs.tscn" id="3_virs3"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="4_0gxmm"]
@@ -11,9 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bttjx4w60ea8w" path="res://scenes/levelgen/blocks/ramp_wall.tscn" id="9_sotti"]
 [ext_resource type="PackedScene" uid="uid://dlr3sp2d2w5u3" path="res://scenes/levelgen/blocks/pillar.tscn" id="10_7hgif"]
 
-[node name="RoomRaised" type="Node3D" unique_id=1380726272]
-script = ExtResource("1_nb6ol")
-metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+[node name="RoomRaised" type="Node3D" unique_id=331541554]
+script = ExtResource("1_sotti")
+metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
 [node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_ieghc")]
 

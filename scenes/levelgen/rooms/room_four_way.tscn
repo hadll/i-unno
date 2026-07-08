@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c4l4srevdndr5"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_g1oio"]
+[ext_resource type="Script" uid="uid://dpqfxm6ek6g3f" path="res://scripts/levelgen/room.gd" id="1_7c1hi"]
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_7c1hi"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_b6dda"]
 
-[node name="RoomFourWay" type="Node3D" unique_id=1121319207]
-script = ExtResource("1_g1oio")
-metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+[node name="RoomFourWay" type="Node3D" unique_id=1530586601]
+script = ExtResource("1_7c1hi")
+metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
 [node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_7c1hi")]
 

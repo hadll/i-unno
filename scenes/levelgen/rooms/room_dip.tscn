@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbl0q1shem1qd"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_uctk8"]
+[ext_resource type="Script" uid="uid://dpqfxm6ek6g3f" path="res://scripts/levelgen/room.gd" id="1_lmqg0"]
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_24875"]
 [ext_resource type="PackedScene" uid="uid://ci3omh2llccth" path="res://scenes/levelgen/blocks/stairs.tscn" id="3_eheo6"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="4_o3a52"]
@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://5lepirb3fmo5" path="res://scenes/levelgen/blocks/tall_wall.tscn" id="7_lmqg0"]
 [ext_resource type="PackedScene" uid="uid://dlr3sp2d2w5u3" path="res://scenes/levelgen/blocks/pillar.tscn" id="8_lmqg0"]
 
-[node name="RoomDip" type="Node3D" unique_id=278036456]
-script = ExtResource("1_uctk8")
-metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+[node name="RoomDip" type="Node3D" unique_id=892180288]
+script = ExtResource("1_lmqg0")
+metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
 [node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_24875")]
 
