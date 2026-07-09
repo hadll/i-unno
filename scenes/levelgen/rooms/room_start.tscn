@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="3_bp07h"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="4_6a77m"]
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="5_6a77m"]
-[ext_resource type="PackedScene" uid="uid://byr7u03oqvevc" path="res://scenes/items/item_flashlight.tscn" id="9_rv6hv"]
+[ext_resource type="Script" uid="uid://daikq1ii1nx7j" path="res://scripts/items/item_flashlight.gd" id="7_vswvw"]
 [ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="9_snexx"]
 
 [node name="RoomStart" type="Node3D" unique_id=1067108896 node_paths=PackedStringArray("spawn_point")]
@@ -51,7 +51,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 8)
 
 [node name="BasicItemPickup" parent="." unique_id=612810599 node_paths=PackedStringArray("item") instance=ExtResource("9_snexx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.397811, 0, 6.8635902)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.398, 0.2, 6.864)
 item = NodePath("ItemFlashlight")
 
-[node name="ItemFlashlight" parent="BasicItemPickup" unique_id=319714798 instance=ExtResource("9_rv6hv")]
+[node name="ItemFlashlight" type="Node3D" parent="BasicItemPickup" unique_id=541553972]
+script = ExtResource("7_vswvw")
+metadata/_custom_type_script = "uid://daikq1ii1nx7j"

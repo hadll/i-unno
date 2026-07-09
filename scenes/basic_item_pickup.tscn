@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://ci2275xiwyl7f" path="res://scripts/triggers/item_pickup_trigger.gd" id="1_84efc"]
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/triggers/key_trigger.gd" id="2_54rpc"]
+[ext_resource type="Texture2D" uid="uid://cbjws68aa3gkg" path="res://assets/items/flashlight_off.png" id="2_kwkdm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 0.25
 
-[node name="BasicItemPickup" type="Node3D" unique_id=612810599 node_paths=PackedStringArray("pickup_trigger")]
+[node name="BasicItemPickup" type="Node3D" unique_id=612810599 node_paths=PackedStringArray("sprite", "pickup_trigger")]
 script = ExtResource("1_84efc")
+sprite = NodePath("Sprite3D")
 pickup_trigger = NodePath("KeyTrigger3D")
 metadata/_custom_type_script = "uid://ci2275xiwyl7f"
 
@@ -16,6 +19,13 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=634912033]
 shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1600854492]
+billboard = 1
+shaded = true
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_kwkdm")
 
 [node name="KeyTrigger3D" type="Node3D" parent="." unique_id=392580001 node_paths=PackedStringArray("collision_object")]
 script = ExtResource("2_54rpc")

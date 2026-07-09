@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="10_qokby"]
 [ext_resource type="PackedScene" uid="uid://d3gjhb4lxf248" path="res://scenes/printer.tscn" id="11_lrhon"]
 [ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="12_04jj1"]
-[ext_resource type="PackedScene" uid="uid://byr7u03oqvevc" path="res://scenes/items/item_flashlight.tscn" id="13_nn1bs"]
+[ext_resource type="Script" uid="uid://daikq1ii1nx7j" path="res://scripts/items/item_flashlight.gd" id="13_nn1bs"]
 [ext_resource type="PackedScene" uid="uid://bttdmfaqv4k50" path="res://scenes/basic_item_interaction.tscn" id="14_nn1bs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nn1bs"]
@@ -143,33 +143,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3980119, 0.5, 0.1197052)
 
 [node name="BasicItemPickup" parent="." unique_id=869098384 node_paths=PackedStringArray("item") instance=ExtResource("12_04jj1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5614381, 0, -4.288844)
-item = NodePath("TestItem")
+item = NodePath("ItemFlashlight")
 
-[node name="TestItem" parent="BasicItemPickup" unique_id=319714798 instance=ExtResource("13_nn1bs")]
+[node name="ItemFlashlight" type="Node3D" parent="BasicItemPickup" unique_id=1483328759]
+script = ExtResource("13_nn1bs")
+metadata/_custom_type_script = "uid://daikq1ii1nx7j"
 
 [node name="BasicItemPickup2" parent="." unique_id=1546821840 node_paths=PackedStringArray("item") instance=ExtResource("12_04jj1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1877515, 0, -2.635439)
-item = NodePath("TestItem2")
+item = NodePath("ItemFlashlight")
 
-[node name="TestItem2" parent="BasicItemPickup2" unique_id=1326528688 instance=ExtResource("13_nn1bs")]
+[node name="ItemFlashlight" type="Node3D" parent="BasicItemPickup2" unique_id=2072494197]
+script = ExtResource("13_nn1bs")
+metadata/_custom_type_script = "uid://daikq1ii1nx7j"
 
 [node name="BasicItemPickup3" parent="." unique_id=1933413228 node_paths=PackedStringArray("item") instance=ExtResource("12_04jj1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9212325, 0, -4.720641)
-item = NodePath("TestItem3")
+item = NodePath("ItemFlashlight")
 
-[node name="TestItem3" parent="BasicItemPickup3" unique_id=424363013 instance=ExtResource("13_nn1bs")]
+[node name="ItemFlashlight" type="Node3D" parent="BasicItemPickup3" unique_id=681875112]
+script = ExtResource("13_nn1bs")
+metadata/_custom_type_script = "uid://daikq1ii1nx7j"
 
 [node name="BasicItemPickup4" parent="." unique_id=1651093661 node_paths=PackedStringArray("item") instance=ExtResource("12_04jj1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2120821, 0, -3.1091628)
-item = NodePath("TestItem4")
+item = NodePath("ItemFlashlight")
 
-[node name="TestItem4" parent="BasicItemPickup4" unique_id=865024130 instance=ExtResource("13_nn1bs")]
+[node name="ItemFlashlight" type="Node3D" parent="BasicItemPickup4" unique_id=48925730]
+script = ExtResource("13_nn1bs")
+metadata/_custom_type_script = "uid://daikq1ii1nx7j"
 
 [node name="BasicItemPickup5" parent="." unique_id=612810599 node_paths=PackedStringArray("item") instance=ExtResource("12_04jj1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1445465, 0, -2.0090032)
-item = NodePath("TestItem5")
+item = NodePath("ItemFlashlight")
 
-[node name="TestItem5" parent="BasicItemPickup5" unique_id=499869601 instance=ExtResource("13_nn1bs")]
+[node name="ItemFlashlight" type="Node3D" parent="BasicItemPickup5" unique_id=207665774]
+script = ExtResource("13_nn1bs")
+metadata/_custom_type_script = "uid://daikq1ii1nx7j"
 
 [node name="BasicItemInteraction" parent="." unique_id=1033956577 instance=ExtResource("14_nn1bs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.524159, 0.97518563, -5.190706)
