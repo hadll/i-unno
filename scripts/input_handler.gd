@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 const INTERACTION_MASK := 3
 const LOG_LOOKING := false
@@ -13,12 +13,16 @@ var allow_free_mouse_look := true
 ## disable all input handler methods (e.g. when using monitor)
 var disable_input := false
 
+var world_3d: World3D
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"meta_exit"):
 		release_mouse()
 	update_look()
 
 func update_look() -> void:
+	if not world_3d:
+		return
 	if not PlayerCamera.me:
 		return
 	var query := PhysicsRayQueryParameters3D.new()
@@ -30,7 +34,7 @@ func update_look() -> void:
 	else:
 		query.from = PlayerCamera.me.global_position
 		query.to = PlayerCamera.me.global_position - PlayerCamera.me.global_basis.z * 2.5
-	var intersection := get_world_3d().direct_space_state.intersect_ray(query)
+	var intersection := world_3d.direct_space_state.intersect_ray(query)
 	var now_looking_at := intersection.get("collider") as CollisionObject3D
 	if now_looking_at != looking_at:
 		if looking_at:
@@ -44,8 +48,7 @@ func update_look() -> void:
 func _input(event: InputEvent) -> void:
 	if disable_input:
 		return
-	if event is InputEventKey or event is InputEventMouseButton:
-		input.emit(event)
+	input.emit(event)
 
 func is_action_pressed(action: StringName, exact_match: bool = false) -> bool:
 	return false if disable_input else Input.is_action_pressed(action, exact_match)

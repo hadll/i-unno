@@ -24,9 +24,13 @@ Map="*uid://bd4ysp1jsa3bf"
 PrinterManager="*uid://3a6jvsiki65d"
 LevelGenerator="*uid://b7iqdjcxrkkum"
 
+[display]
+
+window/size/resizable=false
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/camera_angle_gizmo/plugin.cfg", "res://addons/object_angle_gizmo/plugin.cfg", "res://addons/object_spawner_gizmo/plugin.cfg")
+enabled=PackedStringArray("res://addons/camera_angle_gizmo/plugin.cfg", "res://addons/object_spawner_gizmo/plugin.cfg")
 
 [global_group]
 

@@ -18,6 +18,9 @@ var camera_request: int
 func _init() -> void:
 	me = self
 
+func _ready() -> void:
+	InputHandler.world_3d = get_world_3d()
+
 func _process(_delta: float) -> void:
 	if InputHandler.is_action_just_pressed(&"freecam_on"):
 		if detached_freecam:

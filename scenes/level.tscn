@@ -1,23 +1,6 @@
 [gd_scene format=3 uid="uid://dfl0ouravh1mb"]
 
 [ext_resource type="Script" uid="uid://b635bb0hp26mg" path="res://scripts/level.gd" id="1_w8frs"]
-[ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="4_mx8sn"]
-
-[sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = false
-script = ExtResource("4_mx8sn")
-metadata/_custom_type_script = "uid://y8yqh08fax47"
-
-[sub_resource type="Compositor" id="Compositor_g4v7s"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5fn")])
 
 [node name="Level" type="Node3D" unique_id=862827639]
 script = ExtResource("1_w8frs")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=556321814]
-compositor = SubResource("Compositor_g4v7s")

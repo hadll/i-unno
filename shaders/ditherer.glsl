@@ -14,8 +14,8 @@ layout(push_constant, std430) uniform Params {
     vec4 position;
     vec4 viewport_data;
     float calmness;
-    float view_dist;
-    float view_fog;
+    // float view_dist;
+    // float view_fog;
 } params;
 
 void main() {

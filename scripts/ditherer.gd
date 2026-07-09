@@ -1,10 +1,8 @@
 class_name Ditherer extends CompositorEffect
-const WIDTH := 1152
-const HEIGHT := 648
+
+static var me: Ditherer
 
 @export var calmness: float = 1
-@export var view_dist: float = 5
-@export var view_fog: float = 8
 
 var rd: RenderingDevice
 var shader: RID
@@ -15,11 +13,14 @@ var nearest_sampler: RID
 var palette_buffer: RID
 var dither_buffer: RID
 
+var viewport_size := Vector2i(1152, 648)
+
 func _init() -> void:
+	me = self
+	rd = RenderingServer.get_rendering_device()
 	initialise_shader.call_deferred()
 
 func initialise_shader() -> void:
-	rd = RenderingServer.get_rendering_device()
 	var shader_file: RDShaderFile = load("res://shaders/ditherer.glsl")
 	var shader_spirv: RDShaderSPIRV = shader_file.get_spirv()
 	shader = rd.shader_create_from_spirv(shader_spirv)
@@ -83,8 +84,6 @@ func _render_callback(called_effect_callback_type: int, render_data: RenderData)
 		camera_transform.origin.x, camera_transform.origin.y, camera_transform.origin.z, Time.get_ticks_msec() / 1000.0,
 		camera_half_extents.x, camera_half_extents.y, camera_projection.get_z_near(), 0.0,
 		calmness,
-		view_dist,
-		view_fog
 	]).to_byte_array()
 	
 	if not uniform_set.is_valid():
@@ -124,7 +123,7 @@ func _render_callback(called_effect_callback_type: int, render_data: RenderData)
 	rd.compute_list_bind_uniform_set(compute_list, uniform_set, 0)
 	rd.compute_list_set_push_constant(compute_list, data_bytes, data_bytes.size())
 	@warning_ignore("integer_division")
-	rd.compute_list_dispatch(compute_list, WIDTH / 8, HEIGHT / 8, 1)
+	rd.compute_list_dispatch(compute_list, (viewport_size.x + 7) / 8, (viewport_size.y + 7) / 8, 1)
 	rd.compute_list_end()
 
 func free_rids() -> void:

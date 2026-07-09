@@ -39,6 +39,7 @@ func _ready() -> void:
 	camera_request = PlayerCamera.me.request_camera(global_transform, self, false)
 	InputHandler.capture_mouse()
 	InputHandler.allow_free_mouse_look = false
+	InputHandler.input.connect(input)
 
 func _process(delta: float) -> void:
 	super(delta)
@@ -55,15 +56,13 @@ func _process(delta: float) -> void:
 	
 	PlayerCamera.me.edit_request_transform(camera_request, camera_point.global_transform)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			InputHandler.capture_mouse()
-
-func _unhandled_input(event: InputEvent) -> void:
+func input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if InputHandler.mouse_captured():
 			rotate_camera(event.relative * 0.001)
+	elif event is InputEventMouseButton:
+		if event.is_pressed():
+			InputHandler.capture_mouse()
 
 func _physics_process(delta: float) -> void:
 	var was_on_floor := body.is_on_floor()
