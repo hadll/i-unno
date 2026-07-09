@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://di52orq243m4u"]
 
 [ext_resource type="Script" uid="uid://d22dt3j63vbyj" path="res://scripts/office_player.gd" id="1_k1xg8"]
-[ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="2_4fwej"]
 [ext_resource type="PackedScene" uid="uid://bkn3ji1jinmgb" path="res://scenes/flashlight_beam.tscn" id="2_q55qd"]
 [ext_resource type="PackedScene" uid="uid://di7e5sbchs1de" path="res://scenes/inventory.tscn" id="4_e5q8v"]
 
@@ -15,12 +14,6 @@ freecam = NodePath("FreeCamera")
 [node name="CameraPoint" type="Node3D" parent="." unique_id=1984453337]
 
 [node name="FlashlightBeam" parent="CameraPoint" unique_id=1354591547 instance=ExtResource("2_q55qd")]
-
-[node name="PlayerCamera" type="Camera3D" parent="." unique_id=105009619]
-top_level = true
-current = true
-script = ExtResource("2_4fwej")
-metadata/_custom_type_script = "uid://i4gm277hvbec"
 
 [node name="FreeCamera" type="Camera3D" parent="." unique_id=752729604]
 

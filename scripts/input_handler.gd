@@ -23,17 +23,15 @@ func _process(_delta: float) -> void:
 func update_look() -> void:
 	if not world_3d:
 		return
-	if not PlayerCamera.me:
-		return
 	var query := PhysicsRayQueryParameters3D.new()
 	query.collision_mask = INTERACTION_MASK
 	if allow_free_mouse_look and not mouse_captured():
 		var mouse_pos := get_viewport().get_mouse_position()
-		query.from = PlayerCamera.me.project_ray_origin(mouse_pos)
-		query.to = query.from + PlayerCamera.me.project_ray_normal(mouse_pos) * 1000
+		query.from = PlayerCamera.project_ray_origin(mouse_pos)
+		query.to = query.from + PlayerCamera.project_ray_normal(mouse_pos) * 1000
 	else:
-		query.from = PlayerCamera.me.global_position
-		query.to = PlayerCamera.me.global_position - PlayerCamera.me.global_basis.z * 2.5
+		query.from = PlayerCamera.global_position
+		query.to = PlayerCamera.global_position - PlayerCamera.global_basis.z * 2.5
 	var intersection := world_3d.direct_space_state.intersect_ray(query)
 	var now_looking_at := intersection.get("collider") as CollisionObject3D
 	if now_looking_at != looking_at:

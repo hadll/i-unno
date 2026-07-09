@@ -21,12 +21,12 @@ func _ready() -> void:
 
 func on_trigger_start() -> void:
 	if use_player_camera:
-		PlayerCamera.me.request_camera(global_transform, self, tween)
+		PlayerCamera.request_camera(global_transform, self, tween)
 	else:
 		camera.request_camera(global_transform, self, tween)
 
 func on_trigger_end() -> void:
 	if use_player_camera:
-		PlayerCamera.me.release_camera_by_requester(self)
+		PlayerCamera.release_camera_by_requester(self)
 	else:
 		camera.release_camera_by_requester(self)

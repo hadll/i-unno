@@ -36,7 +36,7 @@ var step_progress := 0.0
 var left_step := true
 
 func _ready() -> void:
-	camera_request = PlayerCamera.me.request_camera(global_transform, self, false)
+	camera_request = PlayerCamera.request_camera(global_transform, self, false)
 	InputHandler.capture_mouse()
 	InputHandler.allow_free_mouse_look = false
 	InputHandler.input.connect(input)
@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	camera_point.position.y = lerpf(target_y, camera_point.position.y, exp(-delta * crouch_speed))
 	camera_point.position.x = lerpf(target_x, camera_point.position.x, exp(-delta * crouch_speed))
 	
-	PlayerCamera.me.edit_request_transform(camera_request, camera_point.global_transform)
+	PlayerCamera.edit_request_transform(camera_request, camera_point.global_transform)
 
 func input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -122,7 +122,7 @@ func rotate_camera(by: Vector2, sens_mod: float = 1.0) -> void:
 	if controlling_freecam:
 		freecam.rotation.x = clamp(freecam.rotation.x - by.y * sensitivity, -1.5, 1.5)
 		freecam.rotation.y -= by.x * sensitivity
-	elif PlayerCamera.me.has_camera(self):
+	elif PlayerCamera.has_camera(self):
 		body.rotation.y -= by.x * sensitivity * sens_mod
 		camera_point.rotation.x = clamp(camera_point.rotation.x - by.y * sensitivity * sens_mod, -1.5, 1.5)
 

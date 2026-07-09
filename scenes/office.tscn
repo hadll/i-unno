@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://di52orq243m4u" path="res://scenes/office_player.tscn" id="6_fmddn"]
 [ext_resource type="Script" uid="uid://b1bhud65igef6" path="res://scripts/triggers/pulse_trigger.gd" id="6_ja80a"]
 [ext_resource type="PackedScene" uid="uid://bcqm7kysac72w" path="res://scenes/objects/security_door.tscn" id="8_fmddn"]
-[ext_resource type="Script" uid="uid://y8yqh08fax47" path="res://scripts/ditherer.gd" id="9_gdafm"]
 [ext_resource type="PackedScene" uid="uid://d3gjhb4lxf248" path="res://scenes/printer.tscn" id="11_6hbky"]
 [ext_resource type="PackedScene" uid="uid://dp50arh8m1yce" path="res://scenes/monitor.tscn" id="12_o23kw"]
 [ext_resource type="Script" uid="uid://d04kbdpodjah" path="res://scripts/triggers/toggle_trigger.gd" id="12_wruke"]
@@ -21,21 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://b8lihijcm3d4f" path="res://assets/sounds/honk.mp3" id="18_ja80a"]
 [ext_resource type="AudioStream" uid="uid://vxiaj8gpduea" path="res://assets/sounds/office_ambience_main.wav" id="19_kviqm"]
 [ext_resource type="Script" uid="uid://daowwhg8fxkuo" path="res://scripts/debug_print.gd" id="21_alkg7"]
-
-[sub_resource type="CompositorEffect" id="CompositorEffect_yf5fn"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = false
-script = ExtResource("9_gdafm")
-view_dist = 35.0
-view_fog = 75.0
-metadata/_custom_type_script = "uid://y8yqh08fax47"
-
-[sub_resource type="Compositor" id="Compositor_in4ui"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_yf5fn")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frh1e"]
 albedo_color = Color(0, 0, 0, 1)
@@ -196,9 +180,6 @@ script = ExtResource("13_wruke")
 condition = 0
 triggers = [NodePath("../../../AxisTrigger/LookLeft"), NodePath("../../../InteractTrigger")]
 metadata/_custom_type_script = "uid://557bh1kgicsc"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1512259475]
-compositor = SubResource("Compositor_in4ui")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=96264283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92233133, 3.0170763, 0.44297194)

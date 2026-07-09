@@ -1,8 +1,6 @@
-[gd_scene format=3 uid="uid://cnd2x2sg5hn3r"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://0hqsanm1u362"]
 
-[ext_resource type="Script" uid="uid://davbdv7wypc1a" path="res://scripts/post_processing.gd" id="1_1tnkr"]
-[ext_resource type="PackedScene" uid="uid://dfl0ouravh1mb" path="res://scenes/level.tscn" id="1_2mtlo"]
-[ext_resource type="Shader" uid="uid://dap4f5ppuhd1x" path="res://shaders/ditherer.gdshader" id="3_1tnkr"]
+[ext_resource type="Shader" uid="uid://dap4f5ppuhd1x" path="res://shaders/ditherer.gdshader" id="1_fq6qs"]
 
 [sub_resource type="Image" id="Image_1tnkr"]
 data = {
@@ -28,31 +26,8 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_v665l"]
 image = SubResource("Image_u3bpk")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1tnkr"]
-shader = ExtResource("3_1tnkr")
+[resource]
+shader = ExtResource("1_fq6qs")
 shader_parameter/dither_pattern = SubResource("ImageTexture_54dpj")
 shader_parameter/palette = SubResource("ImageTexture_v665l")
 shader_parameter/calmness = 1.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
-viewport_path = NodePath("GameViewport")
-
-[node name="PostProcessing" type="Node" unique_id=906529301 node_paths=PackedStringArray("game_viewport", "display")]
-script = ExtResource("1_1tnkr")
-game_viewport = NodePath("GameViewport")
-display = NodePath("Display")
-
-[node name="GameViewport" type="SubViewport" parent="." unique_id=1043451022]
-size = Vector2i(1152, 648)
-
-[node name="Level" parent="GameViewport" unique_id=862827639 instance=ExtResource("1_2mtlo")]
-
-[node name="Display" type="TextureRect" parent="." unique_id=1471736330]
-material = SubResource("ShaderMaterial_1tnkr")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("ViewportTexture_yf5fn")

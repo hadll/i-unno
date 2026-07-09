@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cuiqnc7ir6lns"]
 
 [ext_resource type="Script" uid="uid://dgymm6mt6o3t0" path="res://scripts/moving_player.gd" id="1_3mr7f"]
-[ext_resource type="Script" uid="uid://i4gm277hvbec" path="res://scripts/player_camera.gd" id="2_1e7h7"]
 [ext_resource type="AudioStream" uid="uid://b4efgsv5igrye" path="res://assets/sounds/footsteps/stone_hard.tres" id="2_knrqe"]
 [ext_resource type="PackedScene" uid="uid://bkn3ji1jinmgb" path="res://scenes/flashlight_beam.tscn" id="2_ws1kw"]
 [ext_resource type="AudioStream" uid="uid://kmso74muypkk" path="res://assets/sounds/footsteps/stone_soft.tres" id="4_7klvn"]
@@ -25,6 +24,20 @@ height = 1.4
 script = ExtResource("1_3mr7f")
 walk_speed = 3.0
 sprint_speed = 5.0
+ground_grip = null
+air_grip = null
+gravity = null
+jump_height = null
+stand_height = null
+crouch_height = null
+crouch_speed = null
+sensitivity = null
+disable_gravity = null
+step_walk_distance = null
+step_sprint_distance = null
+step_bob_vertical = null
+step_bob_horizontal = null
+step_influence_velocity = null
 step_group_sounds = Dictionary[StringName, AudioStream]({
 &"StepMetalHard": ExtResource("5_skkqu"),
 &"StepMetalMedium": ExtResource("6_it6dx"),
@@ -74,12 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="StepAudio" type="AudioStreamPlayer3D" parent="Body" unique_id=778331850]
 stream = ExtResource("5_a7ac3")
 max_polyphony = 4
-
-[node name="PlayerCamera" type="Camera3D" parent="." unique_id=968239037]
-top_level = true
-current = true
-script = ExtResource("2_1e7h7")
-metadata/_custom_type_script = "uid://i4gm277hvbec"
 
 [node name="FreeCamera" type="Camera3D" parent="." unique_id=204704429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6119912, 0)

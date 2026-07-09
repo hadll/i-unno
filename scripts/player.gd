@@ -56,4 +56,4 @@ func freecam_start() -> void:
 func freecam_stop() -> void:
 	detached_freecam = false
 	controlling_freecam = false
-	PlayerCamera.me.make_current()
+	PlayerCamera.make_current()
