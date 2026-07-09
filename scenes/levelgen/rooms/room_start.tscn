@@ -2,20 +2,22 @@
 
 [ext_resource type="Script" uid="uid://c0gji5pa8chf5" path="res://scripts/levelgen/rooms/room_start.gd" id="1_8ewhc"]
 [ext_resource type="PackedScene" uid="uid://cuiqnc7ir6lns" path="res://scenes/moving_player.tscn" id="2_hg6cr"]
+[ext_resource type="Script" uid="uid://eq6ikk4n10ko" path="res://scripts/spawnpoint.gd" id="2_unm5t"]
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="3_bp07h"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="4_6a77m"]
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="5_6a77m"]
 [ext_resource type="Script" uid="uid://daikq1ii1nx7j" path="res://scripts/items/item_flashlight.gd" id="7_vswvw"]
 [ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="9_snexx"]
 
-[node name="RoomStart" type="Node3D" unique_id=1067108896 node_paths=PackedStringArray("spawn_point")]
+[node name="RoomStart" type="Node3D" unique_id=1067108896]
 script = ExtResource("1_8ewhc")
-player_scene = ExtResource("2_hg6cr")
-spawn_point = NodePath("Spawn")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="Spawn" type="Node3D" parent="." unique_id=1617246010]
+[node name="Spawn" type="Node3D" parent="." unique_id=1193062517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+script = ExtResource("2_unm5t")
+player_scene = ExtResource("2_hg6cr")
+metadata/_custom_type_script = "uid://eq6ikk4n10ko"
 
 [node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("3_bp07h")]
 
