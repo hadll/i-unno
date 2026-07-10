@@ -15,6 +15,8 @@ var debug_map_display_layer := 0
 
 var camera_request: int
 
+var calmness := 1.0
+
 func _init() -> void:
 	me = self
 
@@ -22,6 +24,7 @@ func _ready() -> void:
 	InputHandler.world_3d = get_world_3d()
 
 func _process(_delta: float) -> void:
+	PostProcessing.set_calmness(calmness)
 	if InputHandler.is_action_just_pressed(&"freecam_on"):
 		if detached_freecam:
 			freecam_stop()

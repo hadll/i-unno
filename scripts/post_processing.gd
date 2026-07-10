@@ -2,6 +2,7 @@ extends Node
 
 var game_viewport: SubViewport
 var display: TextureRect
+var display_material: ShaderMaterial
 
 func _ready() -> void:
 	game_viewport = SubViewport.new()
@@ -9,7 +10,8 @@ func _ready() -> void:
 	
 	display = TextureRect.new()
 	display.set_anchors_preset(Control.PRESET_FULL_RECT)
-	display.material = preload("res://assets/dithering_material.tres")
+	display_material = load("res://assets/dithering_material.tres").duplicate()
+	display.material = display_material
 	display.texture = game_viewport.get_texture()
 	add_child(display)
 	
@@ -21,3 +23,6 @@ func _ready() -> void:
 
 func update_size() -> void:
 	game_viewport.size = get_window().size
+
+func set_calmness(to: float) -> void:
+	display_material.set_shader_parameter(&"calmness", to)
