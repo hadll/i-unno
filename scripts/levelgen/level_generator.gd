@@ -134,6 +134,32 @@ func try_generate(seed_value: int) -> bool:
 				consecutive_fails += 1
 			if consecutive_fails > MAX_CONSECUTIVE_FAILS:
 				return false
+		for room in section_def.required:
+			while true:
+				var start_door_index = clampi(int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors)), 0, len(unfilled_doors) - 1)
+				var start_door := unfilled_doors[start_door_index]
+				var end_door_index = rng.randi() % len(room.doors)
+				var end_door := room.doors[end_door_index]
+				var transformed := room.transform(
+					end_door.from, 
+					posmod(end_door.dir - start_door.dir + 2, 4) as Direction, 
+					start_door.get_target()
+				)
+				var in_hole := false
+				for cell in transformed.shape:
+					if Vector2i(cell.x, cell.z) in holes:
+						in_hole = true
+						break
+				if in_hole:
+					continue
+				if try_place(transformed, section_def, start_door):
+					consecutive_fails = 0
+					break
+				else:
+					consecutive_fails += 1
+				if consecutive_fails > MAX_CONSECUTIVE_FAILS:
+					return false
+					
 		unfilled_doors.sort_custom(func(a: DoorDef, b: DoorDef) -> bool:
 			return a.from.distance_squared_to(section_start_rough) > b.from.distance_squared_to(section_start_rough)
 		)
