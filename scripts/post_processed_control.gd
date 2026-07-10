@@ -1,8 +1,11 @@
 class_name PostProcessedControl
 extends Control
 
+var was_visible: bool
+
 func _ready() -> void:
-	hide()
+	was_visible = visible
+	visible = false
 	await get_tree().process_frame
 	reparent(PostProcessing.game_viewport, false)
-	show()
+	visible = was_visible
