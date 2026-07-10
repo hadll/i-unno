@@ -1,5 +1,5 @@
 class_name Inventory
-extends Control
+extends PostProcessedControl
 
 @export var item_slot_scene: PackedScene
 # can't exactly have 6 root nodes, really don't know how this should work
@@ -18,6 +18,7 @@ var slots: Array[ItemSlot]
 var selected_slot := 0
 
 func _ready() -> void:
+	await super()
 	for i in slot_count:
 		var slot: ItemSlot = item_slot_scene.instantiate()
 		slot_container.add_child(slot)

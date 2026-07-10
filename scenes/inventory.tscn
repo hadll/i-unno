@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://rchgqjh135p2" path="res://scenes/item_slot.tscn" id="1_qw0r6"]
 [ext_resource type="Script" uid="uid://dkq6mobqqioes" path="res://scripts/triggers/global_key_trigger.gd" id="3_ty45s"]
 
-[node name="Inventory" type="Control" unique_id=491016439 node_paths=PackedStringArray("trigger_item_next", "trigger_item_previous", "trigger_item_1", "trigger_item_2", "trigger_item_3", "trigger_item_4", "trigger_item_use", "slot_container")]
+[node name="Inventory" type="Control" unique_id=959321935 node_paths=PackedStringArray("trigger_item_next", "trigger_item_previous", "trigger_item_1", "trigger_item_2", "trigger_item_3", "trigger_item_4", "trigger_item_use", "slot_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ trigger_item_3 = NodePath("TriggerItem3")
 trigger_item_4 = NodePath("TriggerItem4")
 trigger_item_use = NodePath("TriggerItemUse")
 slot_container = NodePath("Slots")
+metadata/_custom_type_script = "uid://ci4c07f71mx1u"
 
 [node name="Slots" type="HBoxContainer" parent="." unique_id=740609684]
 layout_mode = 1
