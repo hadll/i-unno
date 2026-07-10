@@ -141,8 +141,8 @@ func step() -> void:
 	left_step = not left_step
 	
 	var query := PhysicsRayQueryParameters3D.new()
-	query.from = body.global_position
-	query.to = body.global_position + Vector3.DOWN
+	query.from = body.global_position + Vector3.UP
+	query.to = body.global_position + Vector3.DOWN * 2
 	query.exclude = [body.get_rid()]
 	var intersection := get_world_3d().direct_space_state.intersect_ray(query)
 	var collider := intersection.get("collider") as CollisionObject3D
