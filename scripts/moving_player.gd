@@ -36,6 +36,7 @@ var step_progress := 0.0
 var left_step := true
 
 func _ready() -> void:
+	super()
 	camera_request = PlayerCamera.request_camera(global_transform, self, false)
 	InputHandler.capture_mouse()
 	InputHandler.allow_free_mouse_look = false
