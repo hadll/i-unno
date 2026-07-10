@@ -15,11 +15,15 @@ func _ready() -> void:
 	display.texture = game_viewport.get_texture()
 	add_child(display)
 	
-	RenderingServer.viewport_attach_camera(game_viewport.get_viewport_rid(), PlayerCamera.get_camera_rid())
+	assign_camera(PlayerCamera.get_camera_rid())
+	
 	get_window().size_changed.connect(update_size)
 	update_size()
 	
 	InputHandler.input.connect(game_viewport.push_input)
+
+func assign_camera(camera: RID) -> void:
+	RenderingServer.viewport_attach_camera(game_viewport.get_viewport_rid(), camera)
 
 func update_size() -> void:
 	game_viewport.size = get_window().size

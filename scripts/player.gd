@@ -53,10 +53,10 @@ func pick_up_item(item: Item) -> bool:
 func freecam_start() -> void:
 	detached_freecam = true
 	controlling_freecam = true
-	freecam.make_current()
+	PostProcessing.assign_camera(freecam.get_camera_rid())
 	freecam.global_transform = camera_point.global_transform
 
 func freecam_stop() -> void:
 	detached_freecam = false
 	controlling_freecam = false
-	PlayerCamera.make_current()
+	PostProcessing.assign_camera(PlayerCamera.get_camera_rid())
