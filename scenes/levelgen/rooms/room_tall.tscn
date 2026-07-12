@@ -5,31 +5,22 @@
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="2_8uino"]
 [ext_resource type="PackedScene" uid="uid://bhem43hh2qlpm" path="res://scenes/levelgen/blocks/overhang_wall.tscn" id="3_8uino"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
-vertices = PackedVector3Array(-3.7500005, 0.3, -3.7500005, -3.7500005, 0.3, 3.7499995, 3.7499995, 0.3, 3.7499995, 3.7499995, 0.3, -3.7500005)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-geometry_collision_mask = 4294967289
-agent_radius = 0.25
-
 [node name="RoomTall" type="Node3D" unique_id=699583692]
 script = ExtResource("1_ow3fa")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=55133923]
-navigation_mesh = SubResource("NavigationMesh_g4v7s")
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("1_pk4su")]
 
-[node name="Floor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("1_pk4su")]
-
-[node name="Ceiling" parent="NavigationRegion3D" unique_id=60897152 instance=ExtResource("2_8uino")]
+[node name="Ceiling" parent="." unique_id=60897152 instance=ExtResource("2_8uino")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="OverhangWall" parent="NavigationRegion3D" unique_id=731952364 instance=ExtResource("3_8uino")]
+[node name="OverhangWall" parent="." unique_id=731952364 instance=ExtResource("3_8uino")]
 
-[node name="OverhangWall2" parent="NavigationRegion3D" unique_id=1717091872 instance=ExtResource("3_8uino")]
+[node name="OverhangWall2" parent="." unique_id=1717091872 instance=ExtResource("3_8uino")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="OverhangWall3" parent="NavigationRegion3D" unique_id=779585353 instance=ExtResource("3_8uino")]
+[node name="OverhangWall3" parent="." unique_id=779585353 instance=ExtResource("3_8uino")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="OverhangWall4" parent="NavigationRegion3D" unique_id=1045210941 instance=ExtResource("3_8uino")]
+[node name="OverhangWall4" parent="." unique_id=1045210941 instance=ExtResource("3_8uino")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)

@@ -8,52 +8,43 @@
 [ext_resource type="PackedScene" uid="uid://5lepirb3fmo5" path="res://scenes/levelgen/blocks/tall_wall.tscn" id="5_p7gti"]
 [ext_resource type="PackedScene" uid="uid://bhem43hh2qlpm" path="res://scenes/levelgen/blocks/overhang_wall.tscn" id="6_8fcwi"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_7c1hi"]
-vertices = PackedVector3Array(-3.5000005, 0.5, -3.2500005, -3.5000005, 0.5, 3.2499995, 19.5, -4.5, 3.2499995, 19.5, -4.5, -3.2500005, 12.3125, -4.5, -3.2500005, 3.6874995, 0.5, -3.2500005, 3.6874995, 0.5, 3.2499995, 12.3125, -4.5, 3.2499995, 10.9901085, -4, -0.97611594)
-polygons = [PackedInt32Array(2, 7, 3), PackedInt32Array(3, 7, 4), PackedInt32Array(4, 8, 5), PackedInt32Array(5, 6, 0), PackedInt32Array(0, 6, 1), PackedInt32Array(6, 8, 7), PackedInt32Array(7, 8, 4), PackedInt32Array(8, 6, 5)]
-geometry_collision_mask = 4294967289
-agent_radius = 0.25
-
 [node name="RoomStairs" type="Node3D" unique_id=1253613354]
 script = ExtResource("1_6wu7r")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1792963461]
-navigation_mesh = SubResource("NavigationMesh_7c1hi")
-
-[node name="Stairs" parent="NavigationRegion3D" unique_id=1605496743 instance=ExtResource("2_6wu7r")]
+[node name="Stairs" parent="." unique_id=1605496743 instance=ExtResource("2_6wu7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -5, 0)
 
-[node name="Floor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("2_xfoet")]
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_xfoet")]
 
-[node name="Floor2" parent="NavigationRegion3D" unique_id=1684924538 instance=ExtResource("2_xfoet")]
+[node name="Floor2" parent="." unique_id=1684924538 instance=ExtResource("2_xfoet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 0)
 
-[node name="Ceiling" parent="NavigationRegion3D" unique_id=845570810 instance=ExtResource("3_6wu7r")]
+[node name="Ceiling" parent="." unique_id=845570810 instance=ExtResource("3_6wu7r")]
 
-[node name="Ceiling2" parent="NavigationRegion3D" unique_id=1699015705 instance=ExtResource("3_6wu7r")]
+[node name="Ceiling2" parent="." unique_id=1699015705 instance=ExtResource("3_6wu7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 0)
 
-[node name="Ceiling3" parent="NavigationRegion3D" unique_id=1716310470 instance=ExtResource("3_6wu7r")]
+[node name="Ceiling3" parent="." unique_id=1716310470 instance=ExtResource("3_6wu7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="Wall" parent="NavigationRegion3D" unique_id=731952364 instance=ExtResource("4_22eqy")]
+[node name="Wall" parent="." unique_id=731952364 instance=ExtResource("4_22eqy")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Wall2" parent="NavigationRegion3D" unique_id=137377572 instance=ExtResource("4_22eqy")]
+[node name="Wall2" parent="." unique_id=137377572 instance=ExtResource("4_22eqy")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
 
-[node name="Wall3" parent="NavigationRegion3D" unique_id=937110458 instance=ExtResource("4_22eqy")]
+[node name="Wall3" parent="." unique_id=937110458 instance=ExtResource("4_22eqy")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, -5, 0)
 
-[node name="Wall4" parent="NavigationRegion3D" unique_id=71662223 instance=ExtResource("4_22eqy")]
+[node name="Wall4" parent="." unique_id=71662223 instance=ExtResource("4_22eqy")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 16, -5, 0)
 
-[node name="TallWall" parent="NavigationRegion3D" unique_id=1147066669 instance=ExtResource("5_p7gti")]
+[node name="TallWall" parent="." unique_id=1147066669 instance=ExtResource("5_p7gti")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, -5, 0)
 
-[node name="TallWall2" parent="NavigationRegion3D" unique_id=372221236 instance=ExtResource("5_p7gti")]
+[node name="TallWall2" parent="." unique_id=372221236 instance=ExtResource("5_p7gti")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, -5, 0)
 
-[node name="OverhangWall" parent="NavigationRegion3D" unique_id=1679508564 instance=ExtResource("6_8fcwi")]
+[node name="OverhangWall" parent="." unique_id=1679508564 instance=ExtResource("6_8fcwi")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, -5, 0)

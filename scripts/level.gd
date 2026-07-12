@@ -3,8 +3,11 @@ extends Node3D
 
 const ROOM_SCALE := Vector3(8, 5, 8)
 
+@export var nav_region: NavigationRegion3D
+
 func _ready() -> void:
 	await generate()
+	nav_region.bake_navigation_mesh()
 
 func generate() -> void:
 	var placement_rng := RandomNumberGenerator.new()

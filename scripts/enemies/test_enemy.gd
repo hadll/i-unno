@@ -19,4 +19,4 @@ func update_nav() -> void:
 	target_player()
 
 func target_player() -> void:
-	agent.set_target_position(Player.me.global_position)
+	agent.set_target_position(MovingPlayer.me.body.global_position)

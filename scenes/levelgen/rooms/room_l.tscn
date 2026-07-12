@@ -8,47 +8,38 @@
 [ext_resource type="PackedScene" uid="uid://bdmmugrkqvah0" path="res://scenes/levelgen/objects/spawners/object_spawner_wide.tscn" id="6_gbdwo"]
 [ext_resource type="PackedScene" uid="uid://6wkffw8jydh8" path="res://scenes/levelgen/objects/spawners/object_spawner_medium.tscn" id="7_046iw"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_gbdwo"]
-vertices = PackedVector3Array(4.75, 0.3, 3.5, 11.75, 0.3, 3.5, 11.75, 0.3, -3.75, 4, 0.3, -3.5, -3.5, 0.3, 4, 3.5, 0.3, 4.75, 3.5, 0.3, 3.75, -3.5, 0.3, -3.5, -3.75, 0.3, 11.75, 3.5, 0.3, 11.75)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(0, 6, 3), PackedInt32Array(3, 6, 7), PackedInt32Array(7, 6, 4), PackedInt32Array(9, 8, 5), PackedInt32Array(5, 8, 4)]
-geometry_collision_mask = 4294967289
-agent_radius = 0.25
-
 [node name="RoomL" type="Node3D" unique_id=713928196]
 script = ExtResource("1_vhk50")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=242726025]
-navigation_mesh = SubResource("NavigationMesh_gbdwo")
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_vhk50")]
 
-[node name="Floor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("2_vhk50")]
+[node name="Ceiling" parent="." unique_id=2015592012 instance=ExtResource("3_nu1ya")]
 
-[node name="Ceiling" parent="NavigationRegion3D" unique_id=2015592012 instance=ExtResource("3_nu1ya")]
-
-[node name="Floor3" parent="NavigationRegion3D" unique_id=360731057 instance=ExtResource("2_vhk50")]
+[node name="Floor3" parent="." unique_id=360731057 instance=ExtResource("2_vhk50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="Ceiling3" parent="NavigationRegion3D" unique_id=2139929453 instance=ExtResource("3_nu1ya")]
+[node name="Ceiling3" parent="." unique_id=2139929453 instance=ExtResource("3_nu1ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="Floor4" parent="NavigationRegion3D" unique_id=379483168 instance=ExtResource("2_vhk50")]
+[node name="Floor4" parent="." unique_id=379483168 instance=ExtResource("2_vhk50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="Ceiling4" parent="NavigationRegion3D" unique_id=1647637550 instance=ExtResource("3_nu1ya")]
+[node name="Ceiling4" parent="." unique_id=1647637550 instance=ExtResource("3_nu1ya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="Wall" parent="NavigationRegion3D" unique_id=731952364 instance=ExtResource("4_gbdwo")]
+[node name="Wall" parent="." unique_id=731952364 instance=ExtResource("4_gbdwo")]
 
-[node name="Wall2" parent="NavigationRegion3D" unique_id=991990779 instance=ExtResource("4_gbdwo")]
+[node name="Wall2" parent="." unique_id=991990779 instance=ExtResource("4_gbdwo")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 8)
 
-[node name="Wall3" parent="NavigationRegion3D" unique_id=1882007855 instance=ExtResource("4_gbdwo")]
+[node name="Wall3" parent="." unique_id=1882007855 instance=ExtResource("4_gbdwo")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Wall4" parent="NavigationRegion3D" unique_id=1994731551 instance=ExtResource("4_gbdwo")]
+[node name="Wall4" parent="." unique_id=1994731551 instance=ExtResource("4_gbdwo")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, 0, 0)
 
-[node name="Pillar" parent="NavigationRegion3D" unique_id=1772171140 instance=ExtResource("5_vhk50")]
+[node name="Pillar" parent="." unique_id=1772171140 instance=ExtResource("5_vhk50")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="ObjectSpawnerWide" parent="." unique_id=674842031 instance=ExtResource("6_gbdwo")]

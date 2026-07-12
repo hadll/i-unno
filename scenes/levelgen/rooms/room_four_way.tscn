@@ -4,19 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_7c1hi"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_b6dda"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
-vertices = PackedVector3Array(-3.75, 0.3, -3.75, -3.75, 0.3, 3.75, 3.75, 0.3, 3.75, 3.75, 0.3, -3.75)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-geometry_collision_mask = 4294967289
-agent_radius = 0.25
-
 [node name="RoomFourWay" type="Node3D" unique_id=1530586601]
 script = ExtResource("1_7c1hi")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1143866022]
-navigation_mesh = SubResource("NavigationMesh_g4v7s")
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_7c1hi")]
 
-[node name="Floor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("2_7c1hi")]
-
-[node name="Ceiling" parent="NavigationRegion3D" unique_id=1099383626 instance=ExtResource("3_b6dda")]
+[node name="Ceiling" parent="." unique_id=1099383626 instance=ExtResource("3_b6dda")]

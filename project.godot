@@ -42,6 +42,7 @@ StepMetalSoft="Plays metal_soft step sounds"
 StepStoneHard="Plays stone_hard step sounds"
 StepStoneSoft="Plays stone_soft step sounds"
 StepStoneMedium="Plays stone_medium step sounds"
+Navigation=""
 
 [input]
 
@@ -180,7 +181,6 @@ debug_map={
 
 3d_render/layer_2="PlayerBody"
 3d_physics/layer_2="Passable"
-3d_physics/layer_3="NonWalkable"
 
 [navigation]
 

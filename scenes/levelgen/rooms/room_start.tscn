@@ -10,57 +10,48 @@
 [ext_resource type="PackedScene" uid="uid://bod55i2r1mfbo" path="res://scenes/enemies/test_enemy.tscn" id="9_rv6hv"]
 [ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="9_snexx"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_yf5fn"]
-vertices = PackedVector3Array(-3.25, 0.3, -3.25, -3.25, 0.3, 11.25, 11.5, 0.3, 11.5, 11.5, 0.3, -3.5)
-polygons = [PackedInt32Array(0, 3, 1), PackedInt32Array(1, 3, 2)]
-geometry_collision_mask = 4294967289
-agent_radius = 0.25
-
 [node name="RoomStart" type="Node3D" unique_id=1067108896]
 script = ExtResource("1_8ewhc")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1675784193]
-navigation_mesh = SubResource("NavigationMesh_yf5fn")
-
-[node name="Floor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("3_bp07h")]
-
-[node name="Floor2" parent="NavigationRegion3D" unique_id=116812086 instance=ExtResource("3_bp07h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
-
-[node name="Floor3" parent="NavigationRegion3D" unique_id=1891033067 instance=ExtResource("3_bp07h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-
-[node name="Floor4" parent="NavigationRegion3D" unique_id=285205752 instance=ExtResource("3_bp07h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
-
-[node name="Ceiling" parent="NavigationRegion3D" unique_id=280239341 instance=ExtResource("4_6a77m")]
-
-[node name="Ceiling2" parent="NavigationRegion3D" unique_id=610838646 instance=ExtResource("4_6a77m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
-
-[node name="Ceiling3" parent="NavigationRegion3D" unique_id=1835628635 instance=ExtResource("4_6a77m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-
-[node name="Ceiling4" parent="NavigationRegion3D" unique_id=256626768 instance=ExtResource("4_6a77m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
-
-[node name="Wall" parent="NavigationRegion3D" unique_id=731952364 instance=ExtResource("5_6a77m")]
-
-[node name="Wall2" parent="NavigationRegion3D" unique_id=1531751282 instance=ExtResource("5_6a77m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-
-[node name="Wall3" parent="NavigationRegion3D" unique_id=1440320832 instance=ExtResource("5_6a77m")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="Wall4" parent="NavigationRegion3D" unique_id=583910154 instance=ExtResource("5_6a77m")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 8)
 
 [node name="Spawn" type="Node3D" parent="." unique_id=1193062517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 script = ExtResource("2_unm5t")
 player_scene = ExtResource("2_hg6cr")
 metadata/_custom_type_script = "uid://eq6ikk4n10ko"
+
+[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("3_bp07h")]
+
+[node name="Ceiling" parent="." unique_id=280239341 instance=ExtResource("4_6a77m")]
+
+[node name="Floor2" parent="." unique_id=116812086 instance=ExtResource("3_bp07h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Ceiling2" parent="." unique_id=610838646 instance=ExtResource("4_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Floor3" parent="." unique_id=1891033067 instance=ExtResource("3_bp07h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Ceiling3" parent="." unique_id=1835628635 instance=ExtResource("4_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Floor4" parent="." unique_id=285205752 instance=ExtResource("3_bp07h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="Ceiling4" parent="." unique_id=256626768 instance=ExtResource("4_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="Wall" parent="." unique_id=731952364 instance=ExtResource("5_6a77m")]
+
+[node name="Wall2" parent="." unique_id=1531751282 instance=ExtResource("5_6a77m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Wall3" parent="." unique_id=1440320832 instance=ExtResource("5_6a77m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Wall4" parent="." unique_id=583910154 instance=ExtResource("5_6a77m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 8)
 
 [node name="BasicItemPickup" parent="." unique_id=612810599 node_paths=PackedStringArray("item") instance=ExtResource("9_snexx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.398, 0.2, 6.864)
@@ -71,4 +62,4 @@ script = ExtResource("7_vswvw")
 metadata/_custom_type_script = "uid://daikq1ii1nx7j"
 
 [node name="TestEnemy" parent="." unique_id=1024240035 instance=ExtResource("9_rv6hv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7235729, 1.1896977, -2.7447903)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4617083, 1.0000005, -2.5089293)
