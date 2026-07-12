@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://uu3exw17m02j" path="res://assets/fonts/MechanicalBoldOblique.otf" id="4_u0ipa"]
 [ext_resource type="FontFile" uid="uid://dvqxtirfms1ku" path="res://assets/fonts/MechanicalOblique.otf" id="5_lorsi"]
 [ext_resource type="Script" uid="uid://cbto06xeb80ld" path="res://scripts/terminal/item_types/terminal_root_dir.gd" id="6_7j3o2"]
+[ext_resource type="Script" uid="uid://b1jm4xv6uwt54" path="res://scripts/cursor_rte.gd" id="6_xachw"]
 [ext_resource type="Script" uid="uid://brtb5uyu08pxu" path="res://scripts/terminal/item_types/terminal_text_file.gd" id="7_gv23m"]
 [ext_resource type="Script" uid="uid://5mfiyh44bu0y" path="res://scripts/terminal/item_types/terminal_dir.gd" id="8_63nsn"]
 [ext_resource type="Script" uid="uid://dakhpemcfrplg" path="res://scripts/terminal/programs/terminal_program_list.gd" id="9_06bkl"]
@@ -21,6 +22,10 @@
 [ext_resource type="Script" uid="uid://3g4g6qvas2p8" path="res://scripts/terminal/programs/terminal_program_help.gd" id="19_w8cwc"]
 [ext_resource type="Script" uid="uid://duqdku2emd8nr" path="res://scripts/terminal/programs/terminal_program_door.gd" id="20_4wun2"]
 [ext_resource type="Script" uid="uid://dqjrbs3wvkb7p" path="res://scripts/terminal/programs/terminal_program_print.gd" id="21_on0gj"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_on0gj"]
+script = ExtResource("6_xachw")
+metadata/_custom_type_script = "uid://b1jm4xv6uwt54"
 
 [node name="TerminalDisplay" type="PanelContainer" unique_id=387103375 node_paths=PackedStringArray("fs_root", "fs_home", "fs_programs", "fs_maps", "screen_text")]
 anchors_preset = 15
@@ -49,7 +54,9 @@ scroll_following = true
 scroll_following_visible_characters = true
 autowrap_mode = 1
 autowrap_trim_flags = 0
+shortcut_keys_enabled = false
 justification_flags = 0
+custom_effects = [SubResource("RichTextEffect_on0gj")]
 
 [node name="FileSystem" type="Node" parent="." unique_id=923089020]
 

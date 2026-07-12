@@ -39,7 +39,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 [node name="UnderhangWall4" parent="." unique_id=438358381 instance=ExtResource("3_q3pmg")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
 
-[node name="Catwalk" type="StaticBody3D" parent="." unique_id=434780564 groups=["StepMetalMedium"]]
+[node name="Catwalk" type="StaticBody3D" parent="." unique_id=434780564 groups=["Navigation", "StepMetalMedium"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Catwalk" unique_id=1578811800]
 mesh = SubResource("QuadMesh_g4v7s")

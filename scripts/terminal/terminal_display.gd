@@ -1,6 +1,9 @@
 class_name TerminalDisplay
 extends Control
 
+const CURSOR_PRE := "[c]"
+const CURSOR_POST := "[/c]"
+
 @export var print_speed: float
 
 @export var fs_root: TerminalRootDir
@@ -20,6 +23,7 @@ var command_history_index := 0
 var cursor_inset_amount := 0
 var tab_completions: Array[String] = []
 var tab_completion_index := 0
+var has_cursor := false
 
 func _ready() -> void:
 	if MultiplayerConnection.username:
@@ -30,6 +34,8 @@ func _ready() -> void:
 	Terminal.cwd = fs_home
 	Terminal.program_dir = fs_programs
 	Terminal.prompt()
+	add_cursor()
+	update_display_text()
 	Map.add_files(fs_maps)
 
 func _process(delta: float) -> void:
@@ -44,15 +50,8 @@ func _process(delta: float) -> void:
 func key_input(event: InputEventKey) -> void:
 	if not event.is_pressed():
 		return
-	if event.unicode:
-		if allow_typing:
-			type_ahead(String.chr(event.unicode))
-			tab_completions = []
-	elif event.keycode == Key.KEY_BACKSPACE:
-		if len(screen_string) - cursor_inset_amount > typing_start_string_index:
-			delete_behind(1)
-			tab_completions = []
-	elif event.keycode == Key.KEY_ENTER:
+	remove_cursor()
+	if event.keycode == Key.KEY_ENTER:
 		var command := screen_string.substr(typing_start_string_index).replace("[lb]", "[")
 		print_text("\n")
 		finish_printing()
@@ -61,6 +60,18 @@ func key_input(event: InputEventKey) -> void:
 		command_history_index = len(command_history)
 		cursor_inset_amount = 0
 		tab_completions = []
+		add_cursor()
+		update_display_text()
+		return
+	
+	if event.unicode:
+		if allow_typing:
+			type_ahead(String.chr(event.unicode))
+			tab_completions = []
+	elif event.keycode == Key.KEY_BACKSPACE:
+		if len(screen_string) - cursor_inset_amount > typing_start_string_index:
+			delete_behind(1)
+			tab_completions = []
 	elif event.keycode == Key.KEY_UP:
 		command_history_index = maxi(0, command_history_index - 1)
 		screen_string = screen_string.substr(0, typing_start_string_index)
@@ -113,16 +124,41 @@ func key_input(event: InputEventKey) -> void:
 			delete_behind(len(tab_completions[tab_completion_index]))
 			tab_completion_index = posmod(tab_completion_index + (-1 if event.shift_pressed else 1), len(tab_completions))
 			type_ahead(tab_completions[tab_completion_index])
-			
+	add_cursor()
+	update_display_text()
 
-func type_ahead(text: String, update := true) -> void:
-	screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount) + text.replace("[", "[lb]") + screen_string.substr(len(screen_string) - cursor_inset_amount)
+func add_cursor() -> void:
+	if has_cursor:
+		return
 	if cursor_inset_amount == 0:
-		screen_text.add_text(text)
-	elif update:
-		update_display_text()
+		screen_string = screen_string + CURSOR_PRE + " " + CURSOR_POST
+	else:
+		screen_string = (
+			screen_string.substr(0, len(screen_string) - cursor_inset_amount) + 
+			CURSOR_PRE + 
+			screen_string[len(screen_string) - cursor_inset_amount] + 
+			CURSOR_POST + 
+			screen_string.substr(len(screen_string) - cursor_inset_amount + 1)
+		)
+	has_cursor = true
 
-func delete_behind(amount: int, update := true) -> void:
+func remove_cursor() -> void:
+	if not has_cursor:
+		return
+	if cursor_inset_amount == 0:
+		screen_string = screen_string.substr(0, len(screen_string) - len(CURSOR_PRE) - 1 - len(CURSOR_POST))
+	else:
+		screen_string = (
+			screen_string.substr(0, len(screen_string) - cursor_inset_amount - len(CURSOR_PRE) - len(CURSOR_POST)) + 
+			screen_string[len(screen_string) - cursor_inset_amount - len(CURSOR_POST)] + 
+			screen_string.substr(len(screen_string) - cursor_inset_amount + 1)
+		)
+	has_cursor = false
+
+func type_ahead(text: String) -> void:
+	screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount) + text.replace("[", "[lb]") + screen_string.substr(len(screen_string) - cursor_inset_amount)
+
+func delete_behind(amount: int) -> void:
 	var true_amount := 0
 	for i in amount:
 		if screen_string.substr(len(screen_string) - cursor_inset_amount - true_amount - 4, 4) == "[lb]":
@@ -130,8 +166,7 @@ func delete_behind(amount: int, update := true) -> void:
 		else:
 			true_amount += 1
 	screen_string = screen_string.substr(0, len(screen_string) - cursor_inset_amount - true_amount) + screen_string.substr(len(screen_string) - cursor_inset_amount)
-	if update:
-		update_display_text()
+
 
 func update_display_text() -> void:
 	screen_text.text = "clear" # force a regeneration
