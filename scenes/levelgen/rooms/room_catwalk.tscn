@@ -5,6 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="2_q3pmg"]
 [ext_resource type="PackedScene" uid="uid://bf8jhdi1a52t5" path="res://scenes/levelgen/blocks/underhang_wall.tscn" id="3_q3pmg"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_a7663"]
+vertices = PackedVector3Array(-0.5000005, 0.5, 0.9999995, -0.5000005, 0.5, 3.4999995, 0.7499995, 0.5, 3.4999995, 0.9999995, 0.5, 0.7499995, 0.7499995, 0.5, -0.7500005, -0.7500005, 0.5, -0.5000005, 3.4999995, 0.5, 0.7499995, 3.4999995, 0.5, -0.5000005, -3.5000005, 0.5, -0.5000005, -3.5000005, 0.5, 0.7499995, 0.7499995, 0.5, -3.5000005, -0.5000005, 0.5, -3.5000005, -3.2500005, -4.5, -3.2500005, -3.2500005, -4.5, 3.2499995, 3.2499995, -4.5, 3.2499995, 3.2499995, -4.5, -3.2500005)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(6, 3, 7), PackedInt32Array(7, 3, 4), PackedInt32Array(8, 5, 9), PackedInt32Array(9, 5, 0), PackedInt32Array(10, 4, 11), PackedInt32Array(11, 4, 5), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
+geometry_collision_mask = 4294967289
+agent_radius = 0.25
+
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 size = Vector2(8, 2)
 orientation = 1
@@ -23,43 +29,46 @@ size = Vector3(2, 0.1, 3)
 script = ExtResource("1_436pa")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="PitFloor" parent="." unique_id=1786931697 instance=ExtResource("2_436pa")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1854995061]
+navigation_mesh = SubResource("NavigationMesh_a7663")
+
+[node name="PitFloor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("2_436pa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 
-[node name="Ceiling" parent="." unique_id=162293560 instance=ExtResource("2_q3pmg")]
+[node name="Ceiling" parent="NavigationRegion3D" unique_id=162293560 instance=ExtResource("2_q3pmg")]
 
-[node name="UnderhangWall" parent="." unique_id=731952364 instance=ExtResource("3_q3pmg")]
+[node name="UnderhangWall" parent="NavigationRegion3D" unique_id=731952364 instance=ExtResource("3_q3pmg")]
 
-[node name="UnderhangWall2" parent="." unique_id=1988073560 instance=ExtResource("3_q3pmg")]
+[node name="UnderhangWall2" parent="NavigationRegion3D" unique_id=1988073560 instance=ExtResource("3_q3pmg")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="UnderhangWall3" parent="." unique_id=2122369810 instance=ExtResource("3_q3pmg")]
+[node name="UnderhangWall3" parent="NavigationRegion3D" unique_id=2122369810 instance=ExtResource("3_q3pmg")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="UnderhangWall4" parent="." unique_id=438358381 instance=ExtResource("3_q3pmg")]
+[node name="UnderhangWall4" parent="NavigationRegion3D" unique_id=438358381 instance=ExtResource("3_q3pmg")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
 
-[node name="Catwalk" type="StaticBody3D" parent="." unique_id=434780564 groups=["StepMetalMedium"]]
+[node name="Catwalk" type="StaticBody3D" parent="NavigationRegion3D" unique_id=434780564 groups=["StepMetalMedium"]]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Catwalk" unique_id=1578811800]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Catwalk" unique_id=1578811800]
 mesh = SubResource("QuadMesh_g4v7s")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Catwalk" unique_id=1014308837]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/Catwalk" unique_id=1014308837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 mesh = SubResource("QuadMesh_q3pmg")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Catwalk" unique_id=1554417590]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/Catwalk" unique_id=1554417590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
 mesh = SubResource("QuadMesh_q3pmg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalk" unique_id=2023464456]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Catwalk" unique_id=2023464456]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("BoxShape3D_g4v7s")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalk" unique_id=333188884]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Catwalk" unique_id=333188884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 2.5)
 shape = SubResource("BoxShape3D_q3pmg")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalk" unique_id=719211399]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/Catwalk" unique_id=719211399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -2.5)
 shape = SubResource("BoxShape3D_q3pmg")

@@ -4,16 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_tg72a"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_xsbnx"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
+vertices = PackedVector3Array(-3.75, 0.3, -3.75, -3.75, 0.3, 3.75, 11.75, 0.3, 3.75, 11.75, 0.3, -3.75)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_collision_mask = 4294967289
+agent_radius = 0.25
+
 [node name="RoomWide" type="Node3D" unique_id=788090034]
 script = ExtResource("1_tg72a")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_tg72a")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1579320237]
+navigation_mesh = SubResource("NavigationMesh_g4v7s")
 
-[node name="Floor2" parent="." unique_id=569061124 instance=ExtResource("2_tg72a")]
+[node name="Floor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("2_tg72a")]
+
+[node name="Floor2" parent="NavigationRegion3D" unique_id=569061124 instance=ExtResource("2_tg72a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="Ceiling" parent="." unique_id=1486313409 instance=ExtResource("3_xsbnx")]
+[node name="Ceiling" parent="NavigationRegion3D" unique_id=1486313409 instance=ExtResource("3_xsbnx")]
 
-[node name="Ceiling2" parent="." unique_id=946666765 instance=ExtResource("3_xsbnx")]
+[node name="Ceiling2" parent="NavigationRegion3D" unique_id=946666765 instance=ExtResource("3_xsbnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)

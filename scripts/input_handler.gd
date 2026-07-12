@@ -1,6 +1,6 @@
 extends Node
 
-const INTERACTION_MASK := 3
+const INTERACTION_MASK := ~0
 const LOG_LOOKING := false
 
 signal input(event: InputEvent)

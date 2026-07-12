@@ -8,50 +8,59 @@
 [ext_resource type="PackedScene" uid="uid://bdmmugrkqvah0" path="res://scenes/levelgen/objects/spawners/object_spawner_wide.tscn" id="6_37w8d"]
 [ext_resource type="PackedScene" uid="uid://6wkffw8jydh8" path="res://scenes/levelgen/objects/spawners/object_spawner_medium.tscn" id="7_e23kq"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_37w8d"]
+vertices = PackedVector3Array(3.5, 0.3, -4.75, 3.5, 0.3, -11.75, -3.75, 0.3, -11.75, -3.5, 0.3, -3.75, 3.75, 0.3, -3.5, -3.5, 0.3, 4, 3.5, 0.3, 4.75, 3.75, 0.3, 3.5, 5.75, 0.3, 3.5, 5.75, 0.3, -3.5, 11.75, 0.3, 3.5, 11.75, 0.3, -3.5, -3.75, 0.3, 11.75, 3.5, 0.3, 11.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 4), PackedInt32Array(4, 5, 0), PackedInt32Array(0, 5, 3), PackedInt32Array(4, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(9, 11, 8), PackedInt32Array(8, 11, 10), PackedInt32Array(13, 12, 6), PackedInt32Array(6, 12, 5)]
+geometry_collision_mask = 4294967289
+agent_radius = 0.25
+
 [node name="RoomT" type="Node3D" unique_id=609273534]
 script = ExtResource("1_6jb1p")
 metadata/_custom_type_script = "uid://dpqfxm6ek6g3f"
 
-[node name="Floor" parent="." unique_id=1786931697 instance=ExtResource("2_6jb1p")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=581903558]
+navigation_mesh = SubResource("NavigationMesh_37w8d")
 
-[node name="Ceiling" parent="." unique_id=1833284639 instance=ExtResource("3_2ldck")]
+[node name="Floor" parent="NavigationRegion3D" unique_id=1786931697 instance=ExtResource("2_6jb1p")]
 
-[node name="Floor2" parent="." unique_id=1846267639 instance=ExtResource("2_6jb1p")]
+[node name="Ceiling" parent="NavigationRegion3D" unique_id=1833284639 instance=ExtResource("3_2ldck")]
+
+[node name="Floor2" parent="NavigationRegion3D" unique_id=1846267639 instance=ExtResource("2_6jb1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
-[node name="Ceiling2" parent="." unique_id=304221015 instance=ExtResource("3_2ldck")]
+[node name="Ceiling2" parent="NavigationRegion3D" unique_id=304221015 instance=ExtResource("3_2ldck")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
-[node name="Floor3" parent="." unique_id=1971947027 instance=ExtResource("2_6jb1p")]
+[node name="Floor3" parent="NavigationRegion3D" unique_id=1971947027 instance=ExtResource("2_6jb1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="Ceiling3" parent="." unique_id=814818358 instance=ExtResource("3_2ldck")]
+[node name="Ceiling3" parent="NavigationRegion3D" unique_id=814818358 instance=ExtResource("3_2ldck")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="Floor4" parent="." unique_id=1888180816 instance=ExtResource("2_6jb1p")]
+[node name="Floor4" parent="NavigationRegion3D" unique_id=1888180816 instance=ExtResource("2_6jb1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="Ceiling4" parent="." unique_id=1327419354 instance=ExtResource("3_2ldck")]
+[node name="Ceiling4" parent="NavigationRegion3D" unique_id=1327419354 instance=ExtResource("3_2ldck")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
-[node name="Wall" parent="." unique_id=731952364 instance=ExtResource("4_37w8d")]
+[node name="Wall" parent="NavigationRegion3D" unique_id=731952364 instance=ExtResource("4_37w8d")]
 
-[node name="Wall2" parent="." unique_id=2117730764 instance=ExtResource("4_37w8d")]
+[node name="Wall2" parent="NavigationRegion3D" unique_id=2117730764 instance=ExtResource("4_37w8d")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 8)
 
-[node name="Wall3" parent="." unique_id=178249387 instance=ExtResource("4_37w8d")]
+[node name="Wall3" parent="NavigationRegion3D" unique_id=178249387 instance=ExtResource("4_37w8d")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -8)
 
-[node name="Wall4" parent="." unique_id=1701145126 instance=ExtResource("4_37w8d")]
+[node name="Wall4" parent="NavigationRegion3D" unique_id=1701145126 instance=ExtResource("4_37w8d")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, 0, 0)
 
-[node name="Wall5" parent="." unique_id=1729446824 instance=ExtResource("4_37w8d")]
+[node name="Wall5" parent="NavigationRegion3D" unique_id=1729446824 instance=ExtResource("4_37w8d")]
 transform = Transform3D(-2.1855693e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855693e-07, 8, 0, 0)
 
-[node name="Pillar" parent="." unique_id=1772171140 instance=ExtResource("5_6jb1p")]
+[node name="Pillar" parent="NavigationRegion3D" unique_id=1772171140 instance=ExtResource("5_6jb1p")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Pillar2" parent="." unique_id=1271427548 instance=ExtResource("5_6jb1p")]
+[node name="Pillar2" parent="NavigationRegion3D" unique_id=1271427548 instance=ExtResource("5_6jb1p")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="ObjectSpawnerWide" parent="." unique_id=674842031 instance=ExtResource("6_37w8d")]
