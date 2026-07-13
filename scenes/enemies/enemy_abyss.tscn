@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://id8ya68oedf2"]
 
-[ext_resource type="Shader" uid="uid://brf3k823cfvrd" path="res://shaders/abyss_wires.gdshader" id="1_5cbd4"]
+[ext_resource type="Shader" uid="uid://brf3k823cfvrd" path="res://shaders/abyss/abyss_wires.gdshader" id="1_5cbd4"]
 [ext_resource type="Script" uid="uid://c7tyv40dnnu12" path="res://scripts/enemies/enemy_abyss.gd" id="1_8j6yi"]
-[ext_resource type="Shader" uid="uid://b01k5nwft3c4f" path="res://shaders/abyss.gdshader" id="1_pl2vc"]
+[ext_resource type="Shader" uid="uid://b01k5nwft3c4f" path="res://shaders/abyss/abyss_shape.gdshader" id="3_35rp8"]
+[ext_resource type="Shader" uid="uid://bj1f4p7t1k2g2" path="res://shaders/abyss/abyss_xray.gdshader" id="4_h4b56"]
+[ext_resource type="Shader" uid="uid://cop2n8142i7sm" path="res://shaders/abyss/abyss_xray_wires.gdshader" id="4_jti3l"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d0u6y"]
 frequency = 0.0108
@@ -18,33 +20,73 @@ shader_parameter/speed = 1.0
 shader_parameter/spikiness = 0.25
 shader_parameter/max_spike = 3.0
 shader_parameter/agitation = 0.999999977648
-shader_parameter/wobble = 0.2
-shader_parameter/wobble_speed = 3.0
 shader_parameter/expand = 0.03
 shader_parameter/back_colour = Color(0, 0, 1, 1)
 shader_parameter/back_threshold = 0.0
 shader_parameter/front_colour = Color(1, 0, 0.20392157, 1)
 shader_parameter/front_threshold = 0.85
 shader_parameter/main_colour = Color(0, 0, 0.0627451, 1)
+shader_parameter/wobble = 0.2
+shader_parameter/wobble_speed = 3.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_5cbd4")
-shader = ExtResource("1_pl2vc")
+shader = ExtResource("3_35rp8")
 shader_parameter/noise = SubResource("NoiseTexture2D_57qmd")
 shader_parameter/speed = 1.0
 shader_parameter/spikiness = 0.25
 shader_parameter/max_spike = 3.0
 shader_parameter/agitation = 0.999999977648
-shader_parameter/wobble = 0.2
-shader_parameter/wobble_speed = 3.0
 shader_parameter/expand = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
-material = SubResource("ShaderMaterial_yf5fn")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8j6yi"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_yf5fn")
+shader = ExtResource("4_jti3l")
+shader_parameter/noise = SubResource("NoiseTexture2D_57qmd")
+shader_parameter/speed = 1.0
+shader_parameter/spikiness = 0.25
+shader_parameter/max_spike = 3.0
+shader_parameter/agitation = 0.999999977648
+shader_parameter/expand = 0.0
+shader_parameter/back_colour = Color(0, 0, 1, 1)
+shader_parameter/back_threshold = 0.0
+shader_parameter/front_colour = Color(1, 0, 0.20392157, 1)
+shader_parameter/front_threshold = 0.85
+shader_parameter/main_colour = Color(0, 0, 0.0627451, 1)
+shader_parameter/wobble = 0.2
+shader_parameter/wobble_speed = 3.0
+shader_parameter/alpha = 0.15
+shader_parameter/max_dist = 16.0
+shader_parameter/min_dist = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_35rp8"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_8j6yi")
+shader = ExtResource("4_h4b56")
+shader_parameter/noise = SubResource("NoiseTexture2D_57qmd")
+shader_parameter/speed = 1.0
+shader_parameter/spikiness = 0.25
+shader_parameter/max_spike = 3.0
+shader_parameter/agitation = 0.999999977648
+shader_parameter/expand = 0.0
+shader_parameter/back_colour = Color(0, 0, 1, 1)
+shader_parameter/back_threshold = 0.0
+shader_parameter/front_colour = Color(1, 0, 0.20392157, 1)
+shader_parameter/front_threshold = 0.85
+shader_parameter/main_colour = Color(0, 0, 0.0627451, 1)
+shader_parameter/wobble = 0.2
+shader_parameter/wobble_speed = 3.0
+shader_parameter/alpha = 0.3
+shader_parameter/max_dist = 16.0
+shader_parameter/min_dist = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_jti3l"]
+material = SubResource("ShaderMaterial_35rp8")
 
 [node name="EnemyAbyss" type="Node3D" unique_id=452525480]
 script = ExtResource("1_8j6yi")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=79389023]
-mesh = SubResource("SphereMesh_g4v7s")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1081829904]
+mesh = SubResource("SphereMesh_jti3l")
