@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://id8ya68oedf2"]
+
+[ext_resource type="Shader" uid="uid://brf3k823cfvrd" path="res://shaders/abyss_wires.gdshader" id="1_5cbd4"]
+[ext_resource type="Script" uid="uid://c7tyv40dnnu12" path="res://scripts/enemies/enemy_abyss.gd" id="1_8j6yi"]
+[ext_resource type="Shader" uid="uid://b01k5nwft3c4f" path="res://shaders/abyss.gdshader" id="1_pl2vc"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d0u6y"]
+frequency = 0.0108
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_57qmd"]
+noise = SubResource("FastNoiseLite_d0u6y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5cbd4"]
+render_priority = 0
+shader = ExtResource("1_5cbd4")
+shader_parameter/noise = SubResource("NoiseTexture2D_57qmd")
+shader_parameter/speed = 1.0
+shader_parameter/spikiness = 0.25
+shader_parameter/max_spike = 3.0
+shader_parameter/agitation = 0.999999977648
+shader_parameter/wobble = 0.2
+shader_parameter/wobble_speed = 3.0
+shader_parameter/expand = 0.03
+shader_parameter/back_colour = Color(0, 0, 1, 1)
+shader_parameter/back_threshold = 0.0
+shader_parameter/front_colour = Color(1, 0, 0.20392157, 1)
+shader_parameter/front_threshold = 0.85
+shader_parameter/main_colour = Color(0, 0, 0.0627451, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_5cbd4")
+shader = ExtResource("1_pl2vc")
+shader_parameter/noise = SubResource("NoiseTexture2D_57qmd")
+shader_parameter/speed = 1.0
+shader_parameter/spikiness = 0.25
+shader_parameter/max_spike = 3.0
+shader_parameter/agitation = 0.999999977648
+shader_parameter/wobble = 0.2
+shader_parameter/wobble_speed = 3.0
+shader_parameter/expand = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = SubResource("ShaderMaterial_yf5fn")
+
+[node name="EnemyAbyss" type="Node3D" unique_id=452525480]
+script = ExtResource("1_8j6yi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=79389023]
+mesh = SubResource("SphereMesh_g4v7s")

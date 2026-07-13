@@ -10,7 +10,7 @@ size = Vector3(1.8, 0.1, 1.8)
 script = ExtResource("1_ibv7q")
 metadata/_custom_type_script = "uid://c58w5le86o66m"
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=697655052]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=697655052 groups=["Navigation"]]
 
 [node name="table" parent="StaticBody3D" unique_id=2109759532 instance=ExtResource("2_ayvbl")]
 

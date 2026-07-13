@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b635bb0hp26mg" path="res://scripts/level.gd" id="1_w8frs"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
-geometry_source_geometry_mode = 1
+geometry_source_geometry_mode = 2
 geometry_source_group_name = &"Navigation"
 
 [node name="Level" type="Node3D" unique_id=862827639 node_paths=PackedStringArray("nav_region")]

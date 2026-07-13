@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="4_6a77m"]
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="5_6a77m"]
 [ext_resource type="Script" uid="uid://daikq1ii1nx7j" path="res://scripts/items/item_flashlight.gd" id="7_vswvw"]
-[ext_resource type="PackedScene" uid="uid://bod55i2r1mfbo" path="res://scenes/enemies/test_enemy.tscn" id="9_rv6hv"]
+[ext_resource type="PackedScene" uid="uid://bod55i2r1mfbo" path="res://scenes/enemies/enemy_test.tscn" id="9_rv6hv"]
 [ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="9_snexx"]
+[ext_resource type="PackedScene" uid="uid://id8ya68oedf2" path="res://scenes/enemies/enemy_abyss.tscn" id="10_snexx"]
 
 [node name="RoomStart" type="Node3D" unique_id=1067108896]
 script = ExtResource("1_8ewhc")
@@ -61,5 +62,11 @@ item = NodePath("ItemFlashlight")
 script = ExtResource("7_vswvw")
 metadata/_custom_type_script = "uid://daikq1ii1nx7j"
 
-[node name="TestEnemy" parent="." unique_id=1024240035 instance=ExtResource("9_rv6hv")]
+[node name="EnemyTest" parent="." unique_id=1024240035 instance=ExtResource("9_rv6hv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4617083, 1.0000005, -2.5089293)
+
+[node name="Node3D" parent="." unique_id=452525480 instance=ExtResource("10_snexx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8609767, 1.7018538, 6.261838)
+
+[node name="Node3D2" parent="." unique_id=2068034747 instance=ExtResource("10_snexx")]
+transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, 5.4420404, 1.7018533, -0.91377306)
