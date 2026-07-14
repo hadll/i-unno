@@ -85,8 +85,19 @@ shader_parameter/min_dist = 4.0
 [sub_resource type="SphereMesh" id="SphereMesh_jti3l"]
 material = SubResource("ShaderMaterial_35rp8")
 
-[node name="EnemyAbyss" type="Node3D" unique_id=452525480]
+[node name="EnemyAbyss" type="Node3D" unique_id=452525480 node_paths=PackedStringArray("wait_timer")]
 script = ExtResource("1_8j6yi")
+wait_timer = NodePath("WaitTimer")
+min_wait_time = -0.5
+max_wait_time = 2.0
+speed = 3.0
+grip = 1.0
+float_height = 2.0
+size = 3.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1081829904]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2, 0)
 mesh = SubResource("SphereMesh_jti3l")
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=1301541033]
+one_shot = true

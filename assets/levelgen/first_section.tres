@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/defs/room_def.gd" id="1_a3e2q"]
 [ext_resource type="Resource" uid="uid://byjnj52wuuux8" path="res://assets/levelgen/rooms/stairs.tres" id="1_kich7"]
 [ext_resource type="Script" uid="uid://gh8ikjeckkx" path="res://scripts/levelgen/defs/section_def.gd" id="2_d7vme"]
+[ext_resource type="PackedScene" uid="uid://id8ya68oedf2" path="res://scenes/enemies/enemy_abyss.tscn" id="2_x2chi"]
 [ext_resource type="Resource" uid="uid://ca5vmd637ay2x" path="res://assets/levelgen/rooms/four_way.tres" id="3_qytu8"]
 [ext_resource type="Resource" uid="uid://bydhl3hsn7g8f" path="res://assets/levelgen/rooms/wide.tres" id="4_faxrp"]
 [ext_resource type="Resource" uid="uid://crjdndfx5gqxb" path="res://assets/levelgen/rooms/catwalk.tres" id="5_812dm"]
@@ -35,4 +36,6 @@ extra_door_chance = 0.25
 duplicate_door_chance = 0.05
 sprawl = 0.6
 end_depth = 0.75
+enemy_pool = Array[PackedScene]([ExtResource("2_x2chi")])
+enemy_count = 1
 metadata/_custom_type_script = "uid://gh8ikjeckkx"

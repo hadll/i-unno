@@ -7,12 +7,11 @@ const ROOM_SCALE := Vector3(8, 5, 8)
 
 func _ready() -> void:
 	await generate()
-	nav_region.bake_navigation_mesh()
-	PathingNode.precalculate_orderings()
 
 func generate() -> void:
+	var generation_seed := await LevelGenerator.generate()
 	var placement_rng := RandomNumberGenerator.new()
-	placement_rng.seed = await LevelGenerator.generate()
+	placement_rng.seed = generation_seed
 	
 	for room_def in LevelGenerator.rooms:
 		var room: GenerationObject = room_def.scene.instantiate()
@@ -26,3 +25,23 @@ func generate() -> void:
 		door.rotation.y = -LevelGenerator.dir_angle(door_def.dir) + PI * (randi() % 2)
 		add_child(door)
 		door.generate(door_def.section, placement_rng)
+	
+	nav_region.bake_navigation_mesh()
+	PathingNode.precalculate_orderings()
+	
+	var enemy_rng := RandomNumberGenerator.new()
+	enemy_rng.seed = generation_seed + 1
+	
+	for section_def in LevelGenerator.gen.sections:
+		var section_nodes: Array[PathingNode] = []
+		for node in PathingNode.all_nodes:
+			section_nodes.append(node)
+		for i in section_def.enemy_count:
+			var enemy: Enemy = section_def.enemy_pool[enemy_rng.randi() % len(section_def.enemy_pool)].instantiate()
+			var node_index := enemy_rng.randi() % len(section_nodes)
+			section_nodes.remove_at(node_index)
+			var node := section_nodes[node_index]
+			add_child(enemy)
+			enemy.global_position = node.global_position
+			enemy.generate(section_def, enemy_rng)
+			enemy.set_target_node(node)

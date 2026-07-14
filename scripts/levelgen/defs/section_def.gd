@@ -29,3 +29,8 @@ extends Resource
 @export var material_wall: Material
 ## material used for floors
 @export var material_floor: Material
+@export_group("Enemies", "enemy_")
+## pool of enemies to spawn
+@export var enemy_pool: Array[PackedScene]
+## number of enemies to spawn
+@export var enemy_count: int
