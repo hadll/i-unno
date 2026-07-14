@@ -16,14 +16,14 @@ func _ready() -> void:
 	
 	pass_0_display = TextureRect.new()
 	pass_0_display.set_anchors_preset(Control.PRESET_FULL_RECT)
-	pass_0_material = load("res://assets/post_processing/dithering_material.tres").duplicate()
+	pass_0_material = load("res://assets/post_processing/distortion_material.tres").duplicate()
 	pass_0_display.material = pass_0_material
 	pass_0_display.texture = main_viewport.get_texture()
 	pass_1_viewport.add_child(pass_0_display)
 	
 	pass_1_display = TextureRect.new()
 	pass_1_display.set_anchors_preset(Control.PRESET_FULL_RECT)
-	pass_1_material = load("res://assets/post_processing/distortion_material.tres").duplicate()
+	pass_1_material = load("res://assets/post_processing/dithering_material.tres").duplicate()
 	pass_1_display.material = pass_1_material
 	pass_1_display.texture = pass_1_viewport.get_texture()
 	add_child(pass_1_display)
@@ -42,8 +42,8 @@ func update_size() -> void:
 	main_viewport.size = get_window().size
 	pass_1_viewport.size = get_window().size
 
-func set_calmness(to: float) -> void:
-	pass_0_material.set_shader_parameter(&"calmness", to)
+func get_dithering_material() -> ShaderMaterial:
+	return pass_1_material
 
 func get_distortion_material() -> ShaderMaterial:
-	return pass_1_material
+	return pass_0_material

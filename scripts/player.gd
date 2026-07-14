@@ -24,7 +24,7 @@ func _ready() -> void:
 	InputHandler.world_3d = get_world_3d()
 
 func _process(_delta: float) -> void:
-	PostProcessing.set_calmness(calmness)
+	PostProcessing.get_dithering_material().set_shader_parameter(&"calmness", calmness)
 	if InputHandler.is_action_just_pressed(&"freecam_on"):
 		if detached_freecam:
 			freecam_stop()
