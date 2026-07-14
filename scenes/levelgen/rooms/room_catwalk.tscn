@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://6gub2e75ioy6" path="res://scenes/levelgen/blocks/pit_floor.tscn" id="2_436pa"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="2_q3pmg"]
 [ext_resource type="PackedScene" uid="uid://bf8jhdi1a52t5" path="res://scenes/levelgen/blocks/underhang_wall.tscn" id="3_q3pmg"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="5_qm2uo"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 size = Vector2(8, 2)
@@ -63,3 +64,7 @@ shape = SubResource("BoxShape3D_q3pmg")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalk" unique_id=719211399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -2.5)
 shape = SubResource("BoxShape3D_q3pmg")
+
+[node name="PathingNode" type="Node3D" parent="." unique_id=1419927799]
+script = ExtResource("5_qm2uo")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"

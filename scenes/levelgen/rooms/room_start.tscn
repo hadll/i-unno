@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="3_bp07h"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="4_6a77m"]
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="5_6a77m"]
-[ext_resource type="Script" uid="uid://daikq1ii1nx7j" path="res://scripts/items/item_flashlight.gd" id="7_vswvw"]
-[ext_resource type="PackedScene" uid="uid://bod55i2r1mfbo" path="res://scenes/enemies/enemy_test.tscn" id="9_rv6hv"]
-[ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="9_snexx"]
-[ext_resource type="PackedScene" uid="uid://id8ya68oedf2" path="res://scenes/enemies/enemy_abyss.tscn" id="10_snexx"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="7_vswvw"]
 
 [node name="RoomStart" type="Node3D" unique_id=1067108896]
 script = ExtResource("1_8ewhc")
@@ -54,19 +51,26 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 [node name="Wall4" parent="." unique_id=583910154 instance=ExtResource("5_6a77m")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 8)
 
-[node name="BasicItemPickup" parent="." unique_id=612810599 node_paths=PackedStringArray("item") instance=ExtResource("9_snexx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.398, 0.2, 6.864)
-item = NodePath("ItemFlashlight")
-
-[node name="ItemFlashlight" type="Node3D" parent="BasicItemPickup" unique_id=541553972]
+[node name="PathingNode" type="Node3D" parent="." unique_id=362269336]
 script = ExtResource("7_vswvw")
-metadata/_custom_type_script = "uid://daikq1ii1nx7j"
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
 
-[node name="EnemyTest" parent="." unique_id=1024240035 instance=ExtResource("9_rv6hv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4617083, 1.0000005, -2.5089293)
+[node name="PathingNode2" type="Node3D" parent="." unique_id=1147427170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+script = ExtResource("7_vswvw")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
 
-[node name="Node3D" parent="." unique_id=452525480 instance=ExtResource("10_snexx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8609767, 1.7018538, 6.261838)
+[node name="PathingNode3" type="Node3D" parent="." unique_id=652200025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+script = ExtResource("7_vswvw")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
 
-[node name="Node3D2" parent="." unique_id=2068034747 instance=ExtResource("10_snexx")]
-transform = Transform3D(2.83, 0, 0, 0, 2.83, 0, 0, 0, 2.83, 5.4420404, 1.7018533, -0.91377306)
+[node name="PathingNode4" type="Node3D" parent="." unique_id=1178139536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+script = ExtResource("7_vswvw")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode5" type="Node3D" parent="." unique_id=1968552030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+script = ExtResource("7_vswvw")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"

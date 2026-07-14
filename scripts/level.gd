@@ -8,6 +8,7 @@ const ROOM_SCALE := Vector3(8, 5, 8)
 func _ready() -> void:
 	await generate()
 	nav_region.bake_navigation_mesh()
+	PathingNode.precalculate_orderings()
 
 func generate() -> void:
 	var placement_rng := RandomNumberGenerator.new()

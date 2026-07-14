@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dpqfxm6ek6g3f" path="res://scripts/levelgen/room.gd" id="1_tg72a"]
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="2_tg72a"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="3_xsbnx"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="4_xsbnx"]
 
 [node name="RoomWide" type="Node3D" unique_id=788090034]
 script = ExtResource("1_tg72a")
@@ -17,3 +18,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
 [node name="Ceiling2" parent="." unique_id=946666765 instance=ExtResource("3_xsbnx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="PathingNode" type="Node3D" parent="." unique_id=320935200]
+script = ExtResource("4_xsbnx")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode2" type="Node3D" parent="." unique_id=1510622250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+script = ExtResource("4_xsbnx")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"

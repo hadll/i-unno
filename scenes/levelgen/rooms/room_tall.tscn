@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dbeknqanw0r8j" path="res://scenes/levelgen/blocks/floor.tscn" id="1_pk4su"]
 [ext_resource type="PackedScene" uid="uid://d227tyin2s41e" path="res://scenes/levelgen/blocks/ceiling.tscn" id="2_8uino"]
 [ext_resource type="PackedScene" uid="uid://bhem43hh2qlpm" path="res://scenes/levelgen/blocks/overhang_wall.tscn" id="3_8uino"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="5_dcw17"]
 
 [node name="RoomTall" type="Node3D" unique_id=699583692]
 script = ExtResource("1_ow3fa")
@@ -24,3 +25,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="OverhangWall4" parent="." unique_id=1045210941 instance=ExtResource("3_8uino")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0, 0, 0)
+
+[node name="PathingNode" type="Node3D" parent="." unique_id=2090481913]
+script = ExtResource("5_dcw17")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"

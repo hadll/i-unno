@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bdmmugrkqvah0" path="res://scenes/levelgen/objects/spawners/object_spawner_wide.tscn" id="11_m7kpt"]
 [ext_resource type="PackedScene" uid="uid://6wkffw8jydh8" path="res://scenes/levelgen/objects/spawners/object_spawner_medium.tscn" id="12_54dqk"]
 [ext_resource type="PackedScene" uid="uid://b6gsnswdqbxvj" path="res://scenes/levelgen/objects/spawners/object_spawner_small.tscn" id="13_54dqk"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="14_q2akv"]
 
 [node name="RoomRaised" type="Node3D" unique_id=331541554]
 script = ExtResource("1_sotti")
@@ -138,3 +139,37 @@ transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -3, 
 
 [node name="ObjectSpawnerSmall" parent="." unique_id=1916971672 instance=ExtResource("13_54dqk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0, 5)
+
+[node name="PathingNode" type="Node3D" parent="." unique_id=856524081]
+script = ExtResource("14_q2akv")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode2" type="Node3D" parent="." unique_id=455688443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+script = ExtResource("14_q2akv")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode3" type="Node3D" parent="." unique_id=422049753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+script = ExtResource("14_q2akv")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode4" type="Node3D" parent="." unique_id=1577734367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
+script = ExtResource("14_q2akv")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode5" type="Node3D" parent="." unique_id=107897056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, 0)
+script = ExtResource("14_q2akv")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode6" type="Node3D" parent="." unique_id=1819597163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, -8)
+script = ExtResource("14_q2akv")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode7" type="Node3D" parent="." unique_id=1064532951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5, -8)
+script = ExtResource("14_q2akv")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"

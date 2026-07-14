@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://clbx1plikq8ul" path="res://scenes/levelgen/blocks/wall.tscn" id="4_22eqy"]
 [ext_resource type="PackedScene" uid="uid://5lepirb3fmo5" path="res://scenes/levelgen/blocks/tall_wall.tscn" id="5_p7gti"]
 [ext_resource type="PackedScene" uid="uid://bhem43hh2qlpm" path="res://scenes/levelgen/blocks/overhang_wall.tscn" id="6_8fcwi"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="8_22eqy"]
 
 [node name="RoomStairs" type="Node3D" unique_id=1253613354]
 script = ExtResource("1_6wu7r")
@@ -48,3 +49,12 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, -
 
 [node name="OverhangWall" parent="." unique_id=1679508564 instance=ExtResource("6_8fcwi")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, -5, 0)
+
+[node name="PathingNode" type="Node3D" parent="." unique_id=1148280856]
+script = ExtResource("8_22eqy")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode2" type="Node3D" parent="." unique_id=446322541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 0)
+script = ExtResource("8_22eqy")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"

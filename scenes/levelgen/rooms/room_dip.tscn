@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dlr3sp2d2w5u3" path="res://scenes/levelgen/blocks/pillar.tscn" id="8_lmqg0"]
 [ext_resource type="PackedScene" uid="uid://bdmmugrkqvah0" path="res://scenes/levelgen/objects/spawners/object_spawner_wide.tscn" id="9_gwga5"]
 [ext_resource type="PackedScene" uid="uid://6wkffw8jydh8" path="res://scenes/levelgen/objects/spawners/object_spawner_medium.tscn" id="10_xpjrh"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="11_3ti5v"]
 
 [node name="RoomDip" type="Node3D" unique_id=892180288]
 script = ExtResource("1_lmqg0")
@@ -120,3 +121,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -5, -7)
 
 [node name="ObjectSpawnerMedium4" parent="." unique_id=626121114 instance=ExtResource("10_xpjrh")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, -5, -7)
+
+[node name="PathingNode" type="Node3D" parent="." unique_id=1424975085]
+script = ExtResource("11_3ti5v")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode2" type="Node3D" parent="." unique_id=2121545762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 0)
+script = ExtResource("11_3ti5v")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode3" type="Node3D" parent="." unique_id=1503288403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 0)
+script = ExtResource("11_3ti5v")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode4" type="Node3D" parent="." unique_id=368913760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, -8)
+script = ExtResource("11_3ti5v")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode5" type="Node3D" parent="." unique_id=1103385752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 8)
+script = ExtResource("11_3ti5v")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
