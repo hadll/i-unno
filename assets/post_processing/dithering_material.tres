@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://0hqsanm1u362"]
 
-[ext_resource type="Shader" uid="uid://dap4f5ppuhd1x" path="res://shaders/ditherer.gdshader" id="1_fq6qs"]
+[ext_resource type="Shader" uid="uid://dap4f5ppuhd1x" path="res://shaders/post_processing/ditherer.gdshader" id="1_fq6qs"]
 [ext_resource type="Texture2D" uid="uid://dexqi7a35s6r7" path="res://assets/dither.png" id="2_e171g"]
 [ext_resource type="Texture2D" uid="uid://cvo6r217hqwlo" path="res://assets/palette.png" id="3_pfvnm"]
 

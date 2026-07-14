@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ddhs71hqreg6o"]
+
+[ext_resource type="Shader" uid="uid://c4i8uls8rillh" path="res://shaders/post_processing/distortion.gdshader" id="1_o8x6g"]
+
+[resource]
+shader = ExtResource("1_o8x6g")
+shader_parameter/centre = Vector2(0, 0)
+shader_parameter/distortion = 0.0
+shader_parameter/angle_distortion_factor = 0.8
+shader_parameter/angle_distortion_offset = 0.03
+shader_parameter/angle_distortion_extent = 0.6
+shader_parameter/angle_distortion_speed = 1.5
+shader_parameter/angle_distortion_drag = 8.0

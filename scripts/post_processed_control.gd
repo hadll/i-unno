@@ -7,5 +7,5 @@ func _ready() -> void:
 	was_visible = visible
 	visible = false
 	await get_tree().process_frame
-	reparent(PostProcessing.game_viewport, false)
+	reparent(PostProcessing.main_viewport, false)
 	visible = was_visible

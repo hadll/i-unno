@@ -59,7 +59,7 @@ shader_parameter/wobble = 0.2
 shader_parameter/wobble_speed = 3.0
 shader_parameter/alpha = 0.15
 shader_parameter/max_dist = 16.0
-shader_parameter/min_dist = 4.0
+shader_parameter/min_dist = 8.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35rp8"]
 render_priority = 0
@@ -79,8 +79,8 @@ shader_parameter/main_colour = Color(0, 0, 0.0627451, 1)
 shader_parameter/wobble = 0.2
 shader_parameter/wobble_speed = 3.0
 shader_parameter/alpha = 0.3
-shader_parameter/max_dist = 16.0
-shader_parameter/min_dist = 4.0
+shader_parameter/max_dist = 24.0
+shader_parameter/min_dist = 12.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_jti3l"]
 material = SubResource("ShaderMaterial_35rp8")
@@ -92,11 +92,14 @@ min_wait_time = -0.5
 max_wait_time = 2.0
 speed = 3.0
 grip = 1.0
-float_height = 2.0
+float_height = 2.5
 size = 3.0
+distortion_distance = 24.0
+distortion_falloff = 0.7
+distortion_strength = 0.6
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1081829904]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 mesh = SubResource("SphereMesh_jti3l")
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=1301541033]
