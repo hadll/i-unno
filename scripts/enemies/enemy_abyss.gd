@@ -1,6 +1,9 @@
 class_name EnemyAbyss
 extends Enemy
 
+static var closest: EnemyAbyss
+static var closest_dist: float
+
 @export var wait_timer: Timer
 @export var min_wait_time: float
 @export var max_wait_time: float
@@ -20,7 +23,6 @@ func generate(_section_def: SectionDef, _rng: RandomNumberGenerator) -> void:
 	wait_timer.timeout.connect(pick_new_target)
 
 func _process(delta: float) -> void:
-	var mat := PostProcessing.get_distortion_material()
 	var offset := global_position - PlayerCamera.global_position
 	var distance := offset.length()
 	var distortion := maxf(0.0, 1.0 - pow(distance / distortion_distance, distortion_falloff))
@@ -28,10 +30,15 @@ func _process(delta: float) -> void:
 	var centre := (screen_pos / Vector2(get_window().size)).clampf(0.0, 1.0)
 	var camera_angle_factor := maxf(0.0, PlayerCamera.global_basis.z.angle_to(offset) / TAU * 4 - 1.0)
 	distortion *= camera_angle_factor * distortion_strength
-	mat.set_shader_parameter(&"distortion", distortion)
-	mat.set_shader_parameter(&"centre", centre)
 	
 	Player.me.reduce_sanity(distortion * sanity_drain * delta)
+	
+	if not closest or closest == self or distance < closest_dist:
+		closest = self
+		closest_dist = distance
+		var mat := PostProcessing.get_distortion_material()
+		mat.set_shader_parameter(&"distortion", distortion)
+		mat.set_shader_parameter(&"centre", centre)
 
 func _physics_process(delta: float) -> void:
 	var offset := target_position - global_position
