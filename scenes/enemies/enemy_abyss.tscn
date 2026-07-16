@@ -87,17 +87,19 @@ material = SubResource("ShaderMaterial_35rp8")
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_2wo20"]
 
-[node name="EnemyAbyss" type="Node3D" unique_id=452525480 node_paths=PackedStringArray("audio_player", "wait_timer")]
+[node name="EnemyAbyss" type="Node3D" unique_id=452525480 node_paths=PackedStringArray("audio_player", "wait_timer", "mesh")]
 script = ExtResource("1_8j6yi")
 audio_player = NodePath("AudioStreamPlayer3D")
 wait_timer = NodePath("WaitTimer")
+mesh = NodePath("MeshInstance3D")
 min_wait_time = -0.5
 max_wait_time = 2.0
 speed = 3.0
 grip = 1.0
-float_height = 2.5
-size = 3.0
+float_height = 2.0
+size = 5.0
 sanity_drain = 0.4
+size_gain = 7.0
 distortion_distance = 24.0
 distortion_falloff = 0.7
 distortion_strength = 0.6
@@ -112,6 +114,6 @@ one_shot = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=827007258]
 stream = SubResource("AudioStreamGenerator_2wo20")
 attenuation_model = 3
-volume_db = -4.0
+volume_db = -6.0
 autoplay = true
 max_distance = 36.0
