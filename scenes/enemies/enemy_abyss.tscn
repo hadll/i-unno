@@ -85,8 +85,11 @@ shader_parameter/min_dist = 12.0
 [sub_resource type="SphereMesh" id="SphereMesh_jti3l"]
 material = SubResource("ShaderMaterial_35rp8")
 
-[node name="EnemyAbyss" type="Node3D" unique_id=452525480 node_paths=PackedStringArray("wait_timer")]
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_2wo20"]
+
+[node name="EnemyAbyss" type="Node3D" unique_id=452525480 node_paths=PackedStringArray("audio_player", "wait_timer")]
 script = ExtResource("1_8j6yi")
+audio_player = NodePath("AudioStreamPlayer3D")
 wait_timer = NodePath("WaitTimer")
 min_wait_time = -0.5
 max_wait_time = 2.0
@@ -105,3 +108,10 @@ mesh = SubResource("SphereMesh_jti3l")
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=1301541033]
 one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=827007258]
+stream = SubResource("AudioStreamGenerator_2wo20")
+attenuation_model = 3
+volume_db = -4.0
+autoplay = true
+max_distance = 36.0

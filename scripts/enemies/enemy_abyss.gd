@@ -4,6 +4,7 @@ extends Enemy
 static var closest: EnemyAbyss
 static var closest_dist: float
 
+@export var audio_player: AudioStreamPlayer3D
 @export var wait_timer: Timer
 @export var min_wait_time: float
 @export var max_wait_time: float
@@ -19,8 +20,16 @@ static var closest_dist: float
 var target_position: Vector3
 var velocity := Vector3.ZERO
 
-func generate(_section_def: SectionDef, _rng: RandomNumberGenerator) -> void:
+var audio_playback: AudioStreamGeneratorPlayback
+var audio_sample_rate: float
+var audio_sin_t := 0.0
+var audio_saw_t := 0.0
+var audio_sqr_t := 0.0
+
+func _ready() -> void:
 	wait_timer.timeout.connect(pick_new_target)
+	audio_playback = audio_player.get_stream_playback() as AudioStreamGeneratorPlayback
+	audio_sample_rate = (audio_player.stream as AudioStreamGenerator).mix_rate
 
 func _process(delta: float) -> void:
 	var offset := global_position - PlayerCamera.global_position
@@ -29,16 +38,17 @@ func _process(delta: float) -> void:
 	var screen_pos := PlayerCamera.unproject_position(global_position)
 	var centre := (screen_pos / Vector2(get_window().size)).clampf(0.0, 1.0)
 	var camera_angle_factor := maxf(0.0, PlayerCamera.global_basis.z.angle_to(offset) / TAU * 4 - 1.0)
-	distortion *= camera_angle_factor * distortion_strength
 	
-	Player.me.reduce_sanity(distortion * sanity_drain * delta)
+	Player.me.reduce_sanity(distortion * camera_angle_factor * sanity_drain * delta)
 	
 	if not closest or closest == self or distance < closest_dist:
 		closest = self
 		closest_dist = distance
 		var mat := PostProcessing.get_distortion_material()
-		mat.set_shader_parameter(&"distortion", distortion)
+		mat.set_shader_parameter(&"distortion", distortion * camera_angle_factor * distortion_strength)
 		mat.set_shader_parameter(&"centre", centre)
+	
+	generate_audio(distortion)
 
 func _physics_process(delta: float) -> void:
 	var offset := target_position - global_position
@@ -59,3 +69,16 @@ func set_target_position(to: Vector3) -> void:
 		randf_range(-1.0, 1.0) + float_height,
 		randf_range(-2.0, 2.0),
 	)
+
+func generate_audio(distortion: float) -> void:
+	var hz := pow(5.0 + 20.0 * (randf() * lerpf(0.4, 1.0, distortion)), 2.0)
+	var increment := hz / audio_sample_rate
+	var quant := exp(lerpf(log(audio_sample_rate) * 0.5, 0.0, pow(distortion, 0.35)))
+	for f in range(audio_playback.get_frames_available()):
+		var sin_t := floorf(audio_sin_t * quant) / quant + randf() * distortion * 0.5
+		var saw_t := floorf(audio_saw_t * quant) / quant + randf() * distortion * 0.5
+		var sqr_t := floorf(audio_sqr_t * quant) / quant + randf() * distortion * 0.5
+		audio_playback.push_frame(Vector2.ONE * (sin(sin_t * TAU) + saw_t - 0.5 + (0.4 if sqr_t > 0.5 else -0.4)))
+		audio_sin_t = fmod(audio_sin_t + increment, 1.0)
+		audio_saw_t = fmod(audio_saw_t + increment * 1.6345893, 1.0)
+		audio_sqr_t = fmod(audio_sqr_t + increment * 0.7376426, 1.0)
