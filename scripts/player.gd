@@ -50,6 +50,9 @@ func _process(_delta: float) -> void:
 func pick_up_item(item: Item) -> bool:
 	return inventory.pick_up_item(item)
 
+func reduce_sanity(by: float) -> void:
+	calmness = maxf(0.0, calmness - by)
+
 func freecam_start() -> void:
 	detached_freecam = true
 	controlling_freecam = true

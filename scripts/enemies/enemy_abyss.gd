@@ -8,6 +8,7 @@ extends Enemy
 @export var grip: float
 @export var float_height: float
 @export var size: float
+@export var sanity_drain: float
 @export var distortion_distance: float
 @export var distortion_falloff: float
 @export var distortion_strength: float
@@ -18,10 +19,7 @@ var velocity := Vector3.ZERO
 func generate(_section_def: SectionDef, _rng: RandomNumberGenerator) -> void:
 	wait_timer.timeout.connect(pick_new_target)
 
-func _process(_delta: float) -> void:
-	update_post_processing()
-
-func update_post_processing() -> void:
+func _process(delta: float) -> void:
 	var mat := PostProcessing.get_distortion_material()
 	var offset := global_position - PlayerCamera.global_position
 	var distance := offset.length()
@@ -32,6 +30,8 @@ func update_post_processing() -> void:
 	distortion *= camera_angle_factor * distortion_strength
 	mat.set_shader_parameter(&"distortion", distortion)
 	mat.set_shader_parameter(&"centre", centre)
+	
+	Player.me.reduce_sanity(distortion * sanity_drain * delta)
 
 func _physics_process(delta: float) -> void:
 	var offset := target_position - global_position
