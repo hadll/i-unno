@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cbto06xeb80ld" path="res://scripts/terminal/item_types/terminal_root_dir.gd" id="6_7j3o2"]
 [ext_resource type="Script" uid="uid://b1jm4xv6uwt54" path="res://scripts/cursor_rte.gd" id="6_xachw"]
 [ext_resource type="Script" uid="uid://brtb5uyu08pxu" path="res://scripts/terminal/item_types/terminal_text_file.gd" id="7_gv23m"]
+[ext_resource type="Script" uid="uid://4ecn7koq8fkk" path="res://scripts/glitch_rte.gd" id="7_jg43g"]
 [ext_resource type="Script" uid="uid://5mfiyh44bu0y" path="res://scripts/terminal/item_types/terminal_dir.gd" id="8_63nsn"]
 [ext_resource type="Script" uid="uid://dakhpemcfrplg" path="res://scripts/terminal/programs/terminal_program_list.gd" id="9_06bkl"]
 [ext_resource type="Script" uid="uid://dfmnt25brihfc" path="res://scripts/terminal/item_types/terminal_home_dir.gd" id="9_lorsi"]
@@ -27,6 +28,10 @@
 script = ExtResource("6_xachw")
 metadata/_custom_type_script = "uid://b1jm4xv6uwt54"
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_xachw"]
+script = ExtResource("7_jg43g")
+metadata/_custom_type_script = "uid://4ecn7koq8fkk"
+
 [node name="TerminalDisplay" type="PanelContainer" unique_id=387103375 node_paths=PackedStringArray("fs_root", "fs_home", "fs_programs", "fs_maps", "screen_text")]
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k6ius")
-print_speed = 50.0
+print_speed = 100.0
 fs_root = NodePath("FileSystem/root")
 fs_home = NodePath("FileSystem/root/users/USERNAME")
 fs_programs = NodePath("FileSystem/root/bin")
@@ -56,7 +61,7 @@ autowrap_mode = 1
 autowrap_trim_flags = 0
 shortcut_keys_enabled = false
 justification_flags = 0
-custom_effects = [SubResource("RichTextEffect_on0gj")]
+custom_effects = [SubResource("RichTextEffect_on0gj"), SubResource("RichTextEffect_xachw")]
 
 [node name="FileSystem" type="Node" parent="." unique_id=923089020]
 
@@ -85,6 +90,22 @@ metadata/_custom_type_script = "uid://brtb5uyu08pxu"
 [node name="maps" type="Node" parent="FileSystem/root/users/USERNAME" unique_id=619603907]
 script = ExtResource("8_63nsn")
 metadata/_custom_type_script = "uid://5mfiyh44bu0y"
+
+[node name="info" type="Node" parent="FileSystem/root/users/USERNAME" unique_id=755960871]
+script = ExtResource("8_63nsn")
+metadata/_custom_type_script = "uid://5mfiyh44bu0y"
+
+[node name="abyss=info" type="Node" parent="FileSystem/root/users/USERNAME/info" unique_id=433871708]
+script = ExtResource("7_gv23m")
+content = "[b]========= THE ABYSS =========[/b]
+
+[color=green]DESCRIPTION[/color]
+The Abyss is a relatively small mobile puncture through space. It is not malicious, but it still may post a threat to any personel who happen to lie in its path. Directly observing The Abyss has been shown to have significant negative impacts on stability of the mind and should be avoided whenever possible. Accounts from those suffering from severe effects mention an increase in [color=red][glitch]dread[/glitch][/color] and percieved danger.
+
+[color=green]RECOMMENDED ACTION[/color]
+Avoid if possible, although contact is not fatal it may result in [color=red][glitch]perceptual collapse[/glitch][/color]. The Abyss will not engage in pursuit, so the [color=red][glitch]second[/glitch][/color] best course of action is to leave the affected area and wait for it to leave.
+"
+metadata/_custom_type_script = "uid://brtb5uyu08pxu"
 
 [node name="bin" type="Node" parent="FileSystem/root" unique_id=1340922483]
 script = ExtResource("8_63nsn")

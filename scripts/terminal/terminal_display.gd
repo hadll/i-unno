@@ -29,6 +29,7 @@ func _ready() -> void:
 	if MultiplayerConnection.username:
 		fs_home.name = Terminal.make_item_name(MultiplayerConnection.username)
 	Terminal.printed_text.connect(print_text)
+	Terminal.printed_text_raw.connect(print_text_bbcode)
 	Terminal.root = fs_root
 	Terminal.home = fs_home
 	Terminal.cwd = fs_home
@@ -173,13 +174,15 @@ func update_display_text() -> void:
 	screen_text.text = screen_string
 
 func print_text(text: String, bbcode_start := "", bbcode_end := "") -> void:
+	print_text_bbcode(bbcode_start + text.replace("[", "[lb]") + bbcode_end)
+
+func print_text_bbcode(text: String) -> void:
 	if not printing:
 		screen_text.visible_characters = typing_start_text_index
 		true_visible = typing_start_text_index
 		printing = true
-	var appending := bbcode_start + text.replace("[", "[lb]") + bbcode_end
-	screen_text.append_text(appending)
-	screen_string += appending
+	screen_text.append_text(text)
+	screen_string += text
 	typing_start_text_index = screen_text.get_total_character_count()
 	typing_start_string_index = len(screen_string)
 

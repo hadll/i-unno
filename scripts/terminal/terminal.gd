@@ -1,5 +1,6 @@
 extends Node
 signal printed_text(text: String)
+signal printed_text_raw(text: String)
 
 const SEP := "/"
 const EXT := "."
@@ -148,3 +149,6 @@ func out_error(code: TError, args: Dictionary[String, String]) -> void:
 
 func out_print(text: String) -> void:
 	printed_text.emit(text)
+
+func out_print_raw(text: String) -> void:
+	printed_text_raw.emit(text)

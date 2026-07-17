@@ -11,7 +11,7 @@ func run(args: PackedStringArray) -> void:
 	if not file:
 		return
 	if file is TerminalFile:
-		Terminal.out_print(file.read() + "\n")
+		Terminal.out_print_raw(file.read() + "\n")
 	else:
 		Terminal.out_error(Terminal.TError.NOT_A_FILE, {
 			"item": Terminal.trans_name_node_to_item(file.name)
