@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://id8ya68oedf2" path="res://scenes/enemies/enemy_abyss.tscn" id="2_x2chi"]
 [ext_resource type="Resource" uid="uid://ca5vmd637ay2x" path="res://assets/levelgen/rooms/four_way.tres" id="3_qytu8"]
 [ext_resource type="Resource" uid="uid://bydhl3hsn7g8f" path="res://assets/levelgen/rooms/wide.tres" id="4_faxrp"]
+[ext_resource type="Resource" uid="uid://bug4r78botwgv" path="res://assets/levelgen/rooms/storage.tres" id="4_xlagp"]
 [ext_resource type="Resource" uid="uid://crjdndfx5gqxb" path="res://assets/levelgen/rooms/catwalk.tres" id="5_812dm"]
 [ext_resource type="Resource" uid="uid://bji15e0uph0if" path="res://assets/levelgen/rooms/tall.tres" id="6_twu6x"]
 [ext_resource type="Resource" uid="uid://dre4r4k00m2u1" path="res://assets/levelgen/rooms/dip.tres" id="7_nkfym"]
@@ -29,6 +30,7 @@ ExtResource("10_xlagp"): 25.0,
 ExtResource("11_kx1sv"): 15.0
 })
 end = ExtResource("1_kich7")
+required = Array[ExtResource("1_a3e2q")]([ExtResource("4_xlagp")])
 required_density = 0.6
 hole_density = 0.1
 hole_size = 2.0

@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="RoomDef" format=3 uid="uid://bug4r78botwgv"]
+
+[ext_resource type="Script" uid="uid://jyutv7juuysb" path="res://scripts/levelgen/defs/door_def.gd" id="1_720l3"]
+[ext_resource type="PackedScene" uid="uid://cfbx2n72ptbmd" path="res://scenes/levelgen/rooms/room_storage.tscn" id="2_j51sd"]
+[ext_resource type="Script" uid="uid://b4gd7h41k7f6n" path="res://scripts/levelgen/defs/room_def.gd" id="2_uv6vb"]
+
+[sub_resource type="Resource" id="Resource_j51sd"]
+script = ExtResource("1_720l3")
+dir = 2
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_iao3h"]
+script = ExtResource("1_720l3")
+from = Vector3i(0, 0, 1)
+dir = 2
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_4kwex"]
+script = ExtResource("1_720l3")
+from = Vector3i(1, 0, 2)
+dir = 1
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_ldork"]
+script = ExtResource("1_720l3")
+from = Vector3i(2, 0, 1)
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[sub_resource type="Resource" id="Resource_i6wv8"]
+script = ExtResource("1_720l3")
+from = Vector3i(0, 0, -1)
+dir = 3
+metadata/_custom_type_script = "uid://jyutv7juuysb"
+
+[resource]
+script = ExtResource("2_uv6vb")
+name = "Storage"
+scene = ExtResource("2_j51sd")
+shape = Array[Vector3i]([Vector3i(0, 0, -1), Vector3i(0, 0, 0), Vector3i(0, 0, 1), Vector3i(1, 0, -1), Vector3i(1, 0, 0), Vector3i(1, 0, 1), Vector3i(1, 0, 2), Vector3i(2, 0, 0), Vector3i(2, 0, 1), Vector3i(0, 0, -1), Vector3i(0, 0, 0), Vector3i(0, 0, 1), Vector3i(0, 0, 2), Vector3i(1, 0, -1), Vector3i(1, 0, 0), Vector3i(1, 0, 1), Vector3i(1, 0, 2), Vector3i(2, 0, -1), Vector3i(2, 0, 0), Vector3i(2, 0, 1), Vector3i(2, 0, 2)])
+doors = Array[ExtResource("1_720l3")]([SubResource("Resource_j51sd"), SubResource("Resource_iao3h"), SubResource("Resource_4kwex"), SubResource("Resource_ldork"), SubResource("Resource_i6wv8")])
+type = 1
+metadata/_custom_type_script = "uid://b4gd7h41k7f6n"

@@ -1,10 +1,30 @@
 [gd_scene format=3 uid="uid://crjisxm83oqrl"]
 
-[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_php3e"]
+[ext_resource type="Script" uid="uid://d0xl3p2twm1gu" path="res://scripts/levelgen/objects/generation_object_multiple.gd" id="1_odl2q"]
 [ext_resource type="PackedScene" uid="uid://bplafkc0xfdaj" path="res://assets/models/shelf/shelf.blend" id="2_odl2q"]
+[ext_resource type="PackedScene" uid="uid://bv0bo7h7lm3uc" path="res://scenes/levelgen/objects/spawners/object_spawner_decor_item.tscn" id="3_odl2q"]
 
-[node name="Shelf" type="Node3D" unique_id=778541955]
-script = ExtResource("1_php3e")
-metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+[node name="Shelf" type="Node3D" unique_id=1174969092]
+script = ExtResource("1_odl2q")
+metadata/_custom_type_script = "uid://d0xl3p2twm1gu"
 
 [node name="shelf" parent="." unique_id=1606828043 instance=ExtResource("2_odl2q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.375, 0, 1.639177e-08)
+
+[node name="ObjectSpawnerDecorItem" parent="." unique_id=629872924 instance=ExtResource("3_odl2q")]
+transform = Transform3D(0.9561804, 0, 0.2927782, 0, 1, 0, -0.2927782, 0, 0.9561804, -0.37167653, 0.625, 0.4826491)
+
+[node name="ObjectSpawnerDecorItem2" parent="." unique_id=1507521532 instance=ExtResource("3_odl2q")]
+transform = Transform3D(0.8804663, 0, -0.47410876, 0, 1, 0, 0.47410876, 0, 0.8804663, -0.34910944, 0.625, -0.47060037)
+
+[node name="ObjectSpawnerDecorItem3" parent="." unique_id=96079897 instance=ExtResource("3_odl2q")]
+transform = Transform3D(0.8804663, 0, -0.47410876, 0, 1, 0, 0.47410876, 0, 0.8804663, -0.37970227, 1.25, -0.376381)
+
+[node name="ObjectSpawnerDecorItem4" parent="." unique_id=767941940 instance=ExtResource("3_odl2q")]
+transform = Transform3D(0.9580663, 0, 0.28654677, 0, 1, 0, -0.28654677, 0, 0.9580663, -0.43345153, 1.25, 0.49477628)
+
+[node name="ObjectSpawnerDecorItem5" parent="." unique_id=1482978324 instance=ExtResource("3_odl2q")]
+transform = Transform3D(0.9818366, 0, 0.1897287, 0, 1, 0, -0.1897287, 0, 0.9818366, -0.43299997, 1.875, 0.49500003)
+
+[node name="ObjectSpawnerDecorItem6" parent="." unique_id=1890475084 instance=ExtResource("3_odl2q")]
+transform = Transform3D(0.95411, 0, -0.29945645, 0, 1, 0, 0.29945645, 0, 0.95411, -0.4274884, 1.8750001, -0.38262412)

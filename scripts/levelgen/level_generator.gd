@@ -11,6 +11,7 @@ enum Direction {
 }
 enum RoomType {
 	STANDARD = 0,
+	STORAGE = 1,
 	
 	START = 8,
 	CHECKPOINT = 9,

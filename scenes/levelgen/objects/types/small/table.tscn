@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://csx1p65bksj2m"]
 
-[ext_resource type="Script" uid="uid://c58w5le86o66m" path="res://scripts/levelgen/objects/generation_object_offset.gd" id="1_ibv7q"]
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_f3inh"]
 [ext_resource type="PackedScene" uid="uid://cc1ariserwuiv" path="res://assets/models/blend/table.blend" id="2_ayvbl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(1.8, 0.1, 1.8)
 
-[node name="Table" type="Node3D" unique_id=73215599]
-script = ExtResource("1_ibv7q")
-metadata/_custom_type_script = "uid://c58w5le86o66m"
+[node name="Table" type="Node3D" unique_id=1838051285]
+script = ExtResource("1_f3inh")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=697655052 groups=["Navigation"]]
 
