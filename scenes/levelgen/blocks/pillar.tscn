@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dlr3sp2d2w5u3"]
 
+[ext_resource type="Material" uid="uid://cdpbdvcf3rtgs" path="res://assets/materials/pillar.tres" id="1_nxa67"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = ExtResource("1_nxa67")
 size = Vector3(0.1, 4, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xa4p6"]

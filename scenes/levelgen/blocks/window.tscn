@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://tkjq71eh0iqb"]
+
+[ext_resource type="Material" uid="uid://cixk4qxofkrcc" path="res://assets/materials/glass.tres" id="1_1qv1q"]
+[ext_resource type="Material" uid="uid://cj5jwpnb1ehxn" path="res://assets/materials/wall.tres" id="1_vd4l3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yhs67"]
+material = ExtResource("1_vd4l3")
+size = Vector3(0.2, 1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1qv1q"]
+material = ExtResource("1_vd4l3")
+size = Vector3(0.2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vd4l3"]
+material = ExtResource("1_1qv1q")
+size = Vector3(0.1, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fi67a"]
+size = Vector3(0.1, 4, 8)
+
+[node name="Wall" type="StaticBody3D" unique_id=731952364 groups=["Navigation"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1317928559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 0)
+mesh = SubResource("BoxMesh_yhs67")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=974725990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.5, 0)
+mesh = SubResource("BoxMesh_yhs67")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1674352048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 3)
+mesh = SubResource("BoxMesh_1qv1q")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=598330279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
+mesh = SubResource("BoxMesh_1qv1q")
+
+[node name="Glass" type="MeshInstance3D" parent="." unique_id=1687605490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+mesh = SubResource("BoxMesh_vd4l3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=475514434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95, 2, 0)
+shape = SubResource("BoxShape3D_fi67a")

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cej08pn51g84h"]
+
+[ext_resource type="Material" uid="uid://cj5jwpnb1ehxn" path="res://assets/materials/wall.tres" id="1_15yrp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rofvo"]
+size = Vector3(0.2, 3.2, 2.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qfnq8"]
+material = ExtResource("1_15yrp")
+size = Vector3(0.2, 3.2, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcjmr"]
+size = Vector3(0.2, 0.8, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g3b13"]
+material = ExtResource("1_15yrp")
+size = Vector3(0.2, 0.8, 8)
+
+[node name="DoorFrame" type="StaticBody3D" unique_id=123795023 groups=["Navigation"]]
+
+[node name="LeftCollider" type="CollisionShape3D" parent="." unique_id=294986904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.6, 2.75)
+shape = SubResource("BoxShape3D_rofvo")
+
+[node name="LeftMesh" type="MeshInstance3D" parent="." unique_id=2134516638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.6, 2.75)
+mesh = SubResource("BoxMesh_qfnq8")
+
+[node name="RightCollider" type="CollisionShape3D" parent="." unique_id=972410063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.6, -2.75)
+shape = SubResource("BoxShape3D_rofvo")
+
+[node name="RightMesh" type="MeshInstance3D" parent="." unique_id=1931453939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.6, -2.75)
+mesh = SubResource("BoxMesh_qfnq8")
+
+[node name="TopCollider" type="CollisionShape3D" parent="." unique_id=1514001039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.6, 0)
+shape = SubResource("BoxShape3D_bcjmr")
+
+[node name="TopMesh" type="MeshInstance3D" parent="." unique_id=1332349421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.6, 0)
+mesh = SubResource("BoxMesh_g3b13")
