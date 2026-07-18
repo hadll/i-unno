@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dyxlhwjtmd48c" path="res://scripts/levelgen/objects/generation_object_picker.gd" id="1_0j6ku"]
 [ext_resource type="PackedScene" uid="uid://csx1p65bksj2m" path="res://scenes/levelgen/objects/types/small/table.tscn" id="2_2bty0"]
+[ext_resource type="PackedScene" uid="uid://crjisxm83oqrl" path="res://scenes/levelgen/objects/types/small/shelf.tscn" id="3_wdy3f"]
 
 [node name="ObjectSmall" type="Node3D" unique_id=911271633]
 script = ExtResource("1_0j6ku")
-scenes = Array[PackedScene]([ExtResource("2_2bty0")])
-weights = Array[float]([1.0])
+scenes = Array[PackedScene]([ExtResource("2_2bty0"), ExtResource("3_wdy3f")])
+weights = Array[float]([1.0, 1.0])
 metadata/_custom_type_script = "uid://dyxlhwjtmd48c"
