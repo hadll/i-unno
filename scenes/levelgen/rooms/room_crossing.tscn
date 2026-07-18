@@ -7,13 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ni0x1wkx2o3n" path="res://scenes/levelgen/blocks/double_tall_wall.tscn" id="5_ll2ol"]
 [ext_resource type="PackedScene" uid="uid://6gub2e75ioy6" path="res://scenes/levelgen/blocks/pit_floor.tscn" id="6_wbn8n"]
 [ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="7_wbn8n"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_ll2ol"]
-size = Vector2(8, 2)
-orientation = 1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wbn8n"]
-size = Vector3(8, 0.1, 2)
+[ext_resource type="PackedScene" uid="uid://bwughvhxifkpe" path="res://scenes/levelgen/blocks/catwalk.tscn" id="7_yxgd3"]
 
 [node name="RoomCrossing" type="Node3D" unique_id=414392575]
 script = ExtResource("1_ll2ol")
@@ -50,15 +44,8 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 8, -
 [node name="PitFloor" parent="." unique_id=1779059031 instance=ExtResource("6_wbn8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -10, 0)
 
-[node name="Crossing" type="StaticBody3D" parent="." unique_id=622268222 groups=["Navigation", "StepMetalMedium"]]
+[node name="Catwalk" parent="." unique_id=1186566016 instance=ExtResource("7_yxgd3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Crossing" unique_id=1413604370]
-mesh = SubResource("QuadMesh_ll2ol")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Crossing" unique_id=649962635]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
-shape = SubResource("BoxShape3D_wbn8n")
 
 [node name="PathingNode" type="Node3D" parent="." unique_id=1440660967]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
