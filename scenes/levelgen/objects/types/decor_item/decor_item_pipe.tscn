@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cfif221ru3d7w"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_hlvm2"]
+[ext_resource type="PackedScene" uid="uid://bii2lct05r2ml" path="res://assets/models/decor/pipe/pipe.blend" id="2_tblw4"]
+
+[node name="DecorItemPipe" type="Node3D" unique_id=2100266681]
+script = ExtResource("1_hlvm2")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="pipe" parent="." unique_id=531952738 instance=ExtResource("2_tblw4")]

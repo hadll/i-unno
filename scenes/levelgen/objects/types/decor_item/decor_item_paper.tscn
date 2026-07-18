@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://8c4dpfkh7flt"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_ef5sg"]
+[ext_resource type="PackedScene" uid="uid://d35mipof0yotk" path="res://assets/models/decor/paper/paper.blend" id="2_maf0w"]
+
+[node name="DecorItemPaper" type="Node3D" unique_id=1244270893]
+script = ExtResource("1_ef5sg")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="paper" parent="." unique_id=998183211 instance=ExtResource("2_maf0w")]

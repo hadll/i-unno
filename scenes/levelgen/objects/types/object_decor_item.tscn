@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://blweebbvdccok"]
+
+[ext_resource type="Script" uid="uid://dyxlhwjtmd48c" path="res://scripts/levelgen/objects/generation_object_picker.gd" id="1_3cdng"]
+[ext_resource type="PackedScene" uid="uid://6o17f0jq12xj" path="res://scenes/levelgen/objects/types/decor_item/decor_item_box.tscn" id="2_871c2"]
+[ext_resource type="PackedScene" uid="uid://b6vnkfnt5wqe" path="res://scenes/levelgen/objects/types/decor_item/decor_item_bucket.tscn" id="3_8l8di"]
+[ext_resource type="PackedScene" uid="uid://cqm0n882yqd11" path="res://scenes/levelgen/objects/types/decor_item/decor_item_cable.tscn" id="4_p7emy"]
+[ext_resource type="PackedScene" uid="uid://doehtl66l68n3" path="res://scenes/levelgen/objects/types/decor_item/decor_item_can.tscn" id="5_ngdu2"]
+[ext_resource type="PackedScene" uid="uid://8c4dpfkh7flt" path="res://scenes/levelgen/objects/types/decor_item/decor_item_paper.tscn" id="6_ac8oj"]
+[ext_resource type="PackedScene" uid="uid://cfif221ru3d7w" path="res://scenes/levelgen/objects/types/decor_item/decor_item_pipe.tscn" id="7_xunoq"]
+
+[node name="ObjectDecorItem" type="Node3D" unique_id=2050092072]
+script = ExtResource("1_3cdng")
+scenes = Array[PackedScene]([ExtResource("2_871c2"), ExtResource("3_8l8di"), ExtResource("4_p7emy"), ExtResource("5_ngdu2"), ExtResource("6_ac8oj"), ExtResource("7_xunoq")])
+weights = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+metadata/_custom_type_script = "uid://dyxlhwjtmd48c"

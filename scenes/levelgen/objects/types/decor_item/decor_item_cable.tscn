@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cqm0n882yqd11"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_565ba"]
+[ext_resource type="PackedScene" uid="uid://bygcokgqlk4dc" path="res://assets/models/decor/cable/cable.blend" id="2_a11vl"]
+
+[node name="DecorItemCable" type="Node3D" unique_id=515410318]
+script = ExtResource("1_565ba")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="cable" parent="." unique_id=1938274315 instance=ExtResource("2_a11vl")]

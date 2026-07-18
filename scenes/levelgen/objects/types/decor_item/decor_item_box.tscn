@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://6o17f0jq12xj"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_j7aek"]
+[ext_resource type="PackedScene" uid="uid://7cb3cg101rbm" path="res://assets/models/decor/box/box.blend" id="2_6ksur"]
+
+[node name="DecorItemBox" type="Node3D" unique_id=1631644247]
+script = ExtResource("1_j7aek")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="box" parent="." unique_id=1354182122 instance=ExtResource("2_6ksur")]

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b6vnkfnt5wqe"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_634fn"]
+[ext_resource type="PackedScene" uid="uid://cg3xheov3ldxj" path="res://assets/models/decor/bucket/bucket.blend" id="2_ep8ac"]
+
+[node name="DecorItemBucket" type="Node3D" unique_id=1606104780]
+script = ExtResource("1_634fn")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="bucket" parent="." unique_id=765932014 instance=ExtResource("2_ep8ac")]

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bv0bo7h7lm3uc"]
+
+[ext_resource type="Script" uid="uid://cnr1be64cu1ce" path="res://scripts/levelgen/objects/generation_object_spawner.gd" id="1_vdxgw"]
+[ext_resource type="PackedScene" uid="uid://blweebbvdccok" path="res://scenes/levelgen/objects/types/object_decor_item.tscn" id="2_ojmcs"]
+
+[node name="ObjectSpawnerDecorItem" type="Node3D" unique_id=629872924]
+script = ExtResource("1_vdxgw")
+scenes = Array[PackedScene]([ExtResource("2_ojmcs"), null])
+weights = Array[float]([1.0, 3.0])
+range_angle = 6.283185307179586
+range_x = 0.2
+range_z = 0.2
+metadata/_custom_type_script = "uid://cnr1be64cu1ce"

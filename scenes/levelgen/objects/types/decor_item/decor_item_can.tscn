@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://doehtl66l68n3"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_fpsqx"]
+[ext_resource type="PackedScene" uid="uid://blt4c4ubbfhdn" path="res://assets/models/decor/can/can.blend" id="2_rjwsg"]
+
+[node name="DecorItemCan" type="Node3D" unique_id=265436760]
+script = ExtResource("1_fpsqx")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="can" parent="." unique_id=1495932042 instance=ExtResource("2_rjwsg")]
