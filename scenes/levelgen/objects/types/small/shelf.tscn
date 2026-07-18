@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://crjisxm83oqrl"]
+
+[ext_resource type="Script" uid="uid://ddw38u6b6an1a" path="res://scripts/levelgen/objects/generation_object.gd" id="1_php3e"]
+[ext_resource type="PackedScene" uid="uid://bplafkc0xfdaj" path="res://assets/models/shelf/shelf.blend" id="2_odl2q"]
+
+[node name="Shelf" type="Node3D" unique_id=778541955]
+script = ExtResource("1_php3e")
+metadata/_custom_type_script = "uid://ddw38u6b6an1a"
+
+[node name="shelf" parent="." unique_id=1606828043 instance=ExtResource("2_odl2q")]
