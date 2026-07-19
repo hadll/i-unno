@@ -27,8 +27,10 @@ func game_state_changed(to: String) -> void:
 	if to == "game":
 		if MultiplayerConnection.is_host():
 			get_tree().change_scene_to_packed(office_scene)
+			PostProcessing.clear_scene()
 		else:
 			get_tree().change_scene_to_packed(level_scene)
+			PostProcessing.clear_scene()
 
 func host() -> void:
 	await MultiplayerConnection.host_room()

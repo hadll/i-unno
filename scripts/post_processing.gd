@@ -35,6 +35,10 @@ func _ready() -> void:
 	
 	InputHandler.input.connect(main_viewport.push_input)
 
+func clear_scene() -> void:
+	for node in main_viewport.get_children():
+		main_viewport.remove_child(node)
+
 func assign_camera(camera: RID) -> void:
 	RenderingServer.viewport_attach_camera(main_viewport.get_viewport_rid(), camera)
 
