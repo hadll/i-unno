@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cgyionwow04br"]
+
+[ext_resource type="Script" uid="uid://6uknmkc8yvof" path="res://scripts/wire_box.gd" id="1_2i3jc"]
+[ext_resource type="PackedScene" uid="uid://tap5qd8ifv0r" path="res://assets/models/wire_box/wire_box.blend" id="2_5c4a1"]
+[ext_resource type="Script" uid="uid://c2vlk0ij1eiwu" path="res://scripts/triggers/click_trigger_3d.gd" id="3_5c4a1"]
+[ext_resource type="PackedScene" uid="uid://dxwbylgnauof4" path="res://scenes/objects/coloured_wire.tscn" id="4_16ric"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.625, 0.125, 0.625)
+
+[node name="WireBox" type="Node3D" unique_id=1490785077 node_paths=PackedStringArray("lid", "lid_opener", "open_lid_trigger", "top_wire", "bottom_wire", "left_wire", "right_wire")]
+script = ExtResource("1_2i3jc")
+lid = NodePath("wire_box/Lid")
+lid_opener = NodePath("LidOpener")
+open_lid_trigger = NodePath("OpenLidTrigger")
+top_wire = NodePath("ColouredWireTop")
+bottom_wire = NodePath("ColouredWireBottom")
+left_wire = NodePath("ColouredWireLeft")
+right_wire = NodePath("ColouredWireRight")
+
+[node name="wire_box" parent="." unique_id=532728951 instance=ExtResource("2_5c4a1")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.1, 0, 0)
+
+[node name="LidOpener" type="StaticBody3D" parent="." unique_id=79254964]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.1, 0, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LidOpener" unique_id=858152484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.063, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="OpenLidTrigger" type="Node3D" parent="." unique_id=1836617294 node_paths=PackedStringArray("collision_object")]
+script = ExtResource("3_5c4a1")
+button = 1
+collision_object = NodePath("../LidOpener")
+metadata/_custom_type_script = "uid://c2vlk0ij1eiwu"
+
+[node name="ColouredWireTop" parent="." unique_id=608584888 instance=ExtResource("4_16ric")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.183, 0.094, 0)
+
+[node name="ColouredWireBottom" parent="." unique_id=1202855570 instance=ExtResource("4_16ric")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.183, -0.094, 0)
+
+[node name="ColouredWireLeft" parent="." unique_id=1994313988 instance=ExtResource("4_16ric")]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -0.204, 0, -0.094)
+
+[node name="ColouredWireRight" parent="." unique_id=1472328975 instance=ExtResource("4_16ric")]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -0.204, 0, 0.094)
+
+[editable path="wire_box"]
