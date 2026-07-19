@@ -12,12 +12,12 @@ enum Colour {
 	G = 1 << 2,
 	B = 1 << 3,
 	O = 1 << 4,
-	M = 1 << 5,
-	Y = 1 << 6,
-	W = 1 << 7,
+	Y = 1 << 5,
+	W = 1 << 6,
 }
 
 const SAMPLE_COUNT := 1024
+const MAX_SECTIONS := 8
 const WIRE_NAMES: Dictionary[WireRuleManager.Wire, String] = {
 	WireRuleManager.Wire.TOP: "[b]top[/b]",
 	WireRuleManager.Wire.BOTTOM: "[b]bottom[/b]",
@@ -32,7 +32,6 @@ const COLOUR_NAMES: Dictionary[WireRuleManager.Colour, String] = {
 	WireRuleManager.Colour.G: "[b][color=green]Green[/color][/b]",
 	WireRuleManager.Colour.B: "[b][color=blue]Blue[/color][/b]",
 	WireRuleManager.Colour.O: "[b][color=orange]Orange[/color][/b]",
-	WireRuleManager.Colour.M: "[b][color=purple]Purple[/color][/b]",
 	WireRuleManager.Colour.Y: "[b][color=yellow]Yellow[/color][/b]",
 	WireRuleManager.Colour.W: "[b][color=white]White[/color][/b]",
 }
@@ -65,6 +64,9 @@ func init_new_section(rng: RandomNumberGenerator, samples: Array[WireRuleManager
 	section_count += 1
 	sections[index] = WireRuleSection.generate(rng, samples, first)
 
+func more_sections_allowed() -> bool:
+	return section_count < MAX_SECTIONS
+
 func get_colour_name(colour: int) -> String:
 	var names: PackedStringArray = []
 	for mask: int in COLOUR_NAMES.keys():
@@ -73,12 +75,10 @@ func get_colour_name(colour: int) -> String:
 	return " and ".join(names)
 
 func random_wire(rng: RandomNumberGenerator) -> WireRuleManager.Wire:
-	return (rng.randi() % 4) as WireRuleManager.Wire
+	return (rng.randi() % len(Wire)) as WireRuleManager.Wire
 
 func random_colour(rng: RandomNumberGenerator, multi: float) -> int:
-	if rng.randf() < multi:
-		return (1 << (rng.randi() % 8)) | (1 << (rng.randi() % 8))
-	return 1 << (rng.randi() % 8)
+	return 1 << (rng.randi() % len(Colour)) | (1 << (rng.randi() % len(Colour)) if rng.randf() < multi else 0)
 
 func generate_state(rng: RandomNumberGenerator) -> WireRuleManager.State:
 	return WireRuleManager.State.new({
