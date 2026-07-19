@@ -22,6 +22,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	InputHandler.world_3d = get_world_3d()
+	freecam_stop()
 
 func _process(_delta: float) -> void:
 	PostProcessing.get_dithering_material().set_shader_parameter(&"calmness", calmness)
