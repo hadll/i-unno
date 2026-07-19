@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://dnipxxarswcj6" path="res://assets/sounds/footsteps/metal_hard.tres" id="5_skkqu"]
 [ext_resource type="AudioStream" uid="uid://caywwjqxw04o1" path="res://assets/sounds/footsteps/metal_medium.tres" id="6_it6dx"]
 [ext_resource type="AudioStream" uid="uid://mj0tde28hhmv" path="res://assets/sounds/footsteps/metal_soft.tres" id="7_xlojs"]
+[ext_resource type="Script" uid="uid://ci4c07f71mx1u" path="res://scripts/post_processed_control.gd" id="10_7klvn"]
+[ext_resource type="Texture2D" uid="uid://bkma2w5b31rrg" path="res://assets/crosshair.png" id="11_skkqu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 
@@ -80,3 +82,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6119912, 0)
 
 [node name="Inventory" parent="." unique_id=491016439 instance=ExtResource("4_xw8ta")]
 slot_count = 4
+
+[node name="Crosshair" type="CenterContainer" parent="." unique_id=831806813]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_7klvn")
+
+[node name="Crosshair" type="TextureRect" parent="Crosshair" unique_id=1352355430]
+layout_mode = 2
+texture = ExtResource("11_skkqu")
