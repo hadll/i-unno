@@ -4,12 +4,16 @@ extends Control
 const CURSOR_PRE := "[c]"
 const CURSOR_POST := "[/c]"
 
+static var me: TerminalDisplay
+
 @export var print_speed: float
 
 @export var fs_root: TerminalRootDir
 @export var fs_home: TerminalHomeDir
 @export var fs_programs: TerminalDir
 @export var fs_maps: TerminalDir
+@export var fs_wires_info: TerminalTextFile
+
 @export var screen_text: RichTextLabel
 
 var screen_string := ""
@@ -26,6 +30,18 @@ var tab_completion_index := 0
 var has_cursor := false
 
 func _ready() -> void:
+	me = self
+
+func _process(delta: float) -> void:
+	if printing:
+		true_visible += delta * print_speed
+		var now_visible := mini(typing_start_text_index, int(true_visible))
+		if now_visible == typing_start_text_index:
+			finish_printing()
+		else:
+			screen_text.visible_characters = now_visible
+
+func initialise() -> void:
 	if MultiplayerConnection.username:
 		fs_home.name = Terminal.make_item_name(MultiplayerConnection.username)
 	Terminal.printed_text.connect(print_text)
@@ -38,16 +54,9 @@ func _ready() -> void:
 	add_cursor()
 	update_display_text()
 	Map.add_files(fs_maps)
+	
+	fs_wires_info.content += WireRuleManager.get_instructions()
 
-func _process(delta: float) -> void:
-	if printing:
-		true_visible += delta * print_speed
-		var now_visible := mini(typing_start_text_index, int(true_visible))
-		if now_visible == typing_start_text_index:
-			finish_printing()
-		else:
-			screen_text.visible_characters = now_visible
-		
 func key_input(event: InputEventKey) -> void:
 	if not event.is_pressed():
 		return

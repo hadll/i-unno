@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://b1jm4xv6uwt54"
 script = ExtResource("7_jg43g")
 metadata/_custom_type_script = "uid://4ecn7koq8fkk"
 
-[node name="TerminalDisplay" type="PanelContainer" unique_id=387103375 node_paths=PackedStringArray("fs_root", "fs_home", "fs_programs", "fs_maps", "screen_text")]
+[node name="TerminalDisplay" type="PanelContainer" unique_id=387103375 node_paths=PackedStringArray("fs_root", "fs_home", "fs_programs", "fs_maps", "fs_wires_info", "screen_text")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,6 +44,7 @@ fs_root = NodePath("FileSystem/root")
 fs_home = NodePath("FileSystem/root/users/USERNAME")
 fs_programs = NodePath("FileSystem/root/bin")
 fs_maps = NodePath("FileSystem/root/users/USERNAME/maps")
+fs_wires_info = NodePath("FileSystem/root/users/USERNAME/info/wires=info")
 screen_text = NodePath("ScreenText")
 
 [node name="ScreenText" type="RichTextLabel" parent="." unique_id=1334911848]
@@ -95,7 +96,7 @@ metadata/_custom_type_script = "uid://5mfiyh44bu0y"
 script = ExtResource("8_63nsn")
 metadata/_custom_type_script = "uid://5mfiyh44bu0y"
 
-[node name="abyss=info" type="Node" parent="FileSystem/root/users/USERNAME/info" unique_id=433871708]
+[node name="the_abyss=info" type="Node" parent="FileSystem/root/users/USERNAME/info" unique_id=433871708]
 script = ExtResource("7_gv23m")
 content = "[b]========= THE ABYSS =========[/b]
 
@@ -104,6 +105,13 @@ The Abyss is a relatively small mobile puncture through space. It is not malicio
 
 [color=green]RECOMMENDED ACTION[/color]
 Avoid if possible, although contact is not fatal it may result in [color=red][glitch]perceptual collapse[/glitch][/color]. The Abyss will not engage in pursuit, so the [color=red][glitch]second[/glitch][/color] best course of action is to leave the affected area and wait for it to leave.
+"
+metadata/_custom_type_script = "uid://brtb5uyu08pxu"
+
+[node name="wires=info" type="Node" parent="FileSystem/root/users/USERNAME/info" unique_id=2125516949]
+script = ExtResource("7_gv23m")
+content = "[b]========= WIRES =========[/b]
+
 "
 metadata/_custom_type_script = "uid://brtb5uyu08pxu"
 

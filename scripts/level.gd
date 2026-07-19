@@ -10,6 +10,11 @@ func _ready() -> void:
 
 func generate() -> void:
 	var generation_seed := await LevelGenerator.generate()
+	
+	var wire_rule_rng := RandomNumberGenerator.new()
+	wire_rule_rng.seed = generation_seed + 2
+	WireRuleManager.generate_rules(wire_rule_rng)
+	
 	var placement_rng := RandomNumberGenerator.new()
 	placement_rng.seed = generation_seed
 	

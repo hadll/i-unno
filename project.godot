@@ -25,6 +25,7 @@ PrinterManager="*uid://3a6jvsiki65d"
 LevelGenerator="*uid://b7iqdjcxrkkum"
 PlayerCamera="*uid://i4gm277hvbec"
 PostProcessing="*uid://davbdv7wypc1a"
+WireRuleManager="*uid://d2j717khaoj64"
 
 [display]
 
