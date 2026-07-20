@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://crjisxm83oqrl"]
 
 [ext_resource type="Script" uid="uid://d0xl3p2twm1gu" path="res://scripts/levelgen/objects/generation_object_multiple.gd" id="1_odl2q"]
-[ext_resource type="PackedScene" uid="uid://bplafkc0xfdaj" path="res://assets/models/shelf/shelf.blend" id="2_odl2q"]
+[ext_resource type="PackedScene" uid="uid://4qncdyr8g5yh" path="res://scenes/objects/empty_shelf.tscn" id="2_odl2q"]
 [ext_resource type="PackedScene" uid="uid://bv0bo7h7lm3uc" path="res://scenes/levelgen/objects/spawners/object_spawner_decor_item.tscn" id="3_odl2q"]
 
 [node name="Shelf" type="Node3D" unique_id=1174969092]
 script = ExtResource("1_odl2q")
 metadata/_custom_type_script = "uid://d0xl3p2twm1gu"
 
-[node name="shelf" parent="." unique_id=1606828043 instance=ExtResource("2_odl2q")]
+[node name="EmptyShelf" parent="." unique_id=1395927623 instance=ExtResource("2_odl2q")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.375, 0, 1.639177e-08)
 
 [node name="ObjectSpawnerDecorItem" parent="." unique_id=629872924 instance=ExtResource("3_odl2q")]

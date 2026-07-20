@@ -13,8 +13,5 @@ func get_item_id() -> StringName:
 func get_item_texture() -> Texture2D:
 	return preload("res://assets/items/flashlight_on.png") if Player.me.flashlight.visible else preload("res://assets/items/flashlight_off.png")
 
-func init_item_slot() -> void:
-	pass
-
 func use() -> void:
 	Player.me.flashlight.visible = not Player.me.flashlight.visible

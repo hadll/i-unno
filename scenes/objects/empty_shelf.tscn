@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://4qncdyr8g5yh"]
+
+[ext_resource type="PackedScene" uid="uid://bplafkc0xfdaj" path="res://assets/models/shelf/shelf.blend" id="1_imbii"]
+
+[node name="EmptyShelf" unique_id=1395927623 instance=ExtResource("1_imbii")]

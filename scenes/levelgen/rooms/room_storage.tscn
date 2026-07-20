@@ -17,6 +17,18 @@
 [ext_resource type="PackedScene" uid="uid://crjisxm83oqrl" path="res://scenes/levelgen/objects/types/small/shelf.tscn" id="15_a3ixw"]
 [ext_resource type="PackedScene" uid="uid://bdmmugrkqvah0" path="res://scenes/levelgen/objects/spawners/object_spawner_wide.tscn" id="16_mijh8"]
 [ext_resource type="PackedScene" uid="uid://b6gsnswdqbxvj" path="res://scenes/levelgen/objects/spawners/object_spawner_small.tscn" id="17_6g5r6"]
+[ext_resource type="PackedScene" uid="uid://cgyionwow04br" path="res://scenes/objects/wire_box.tscn" id="18_6g5r6"]
+[ext_resource type="Script" uid="uid://dhm0nxq2tmj6n" path="res://scripts/path_mover.gd" id="19_hpjpb"]
+[ext_resource type="PackedScene" uid="uid://4qncdyr8g5yh" path="res://scenes/objects/empty_shelf.tscn" id="20_2geag"]
+[ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="21_3h4qe"]
+[ext_resource type="Script" uid="uid://qpuhaq1m80s" path="res://scripts/items/item_red_keycard.gd" id="22_mycgt"]
+
+[sub_resource type="Curve3D" id="Curve3D_2geag"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -1, 0, 0, 8, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="RoomStorage" type="Node3D" unique_id=717141852]
 script = ExtResource("1_dtoip")
@@ -62,9 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
 [node name="Stairs" parent="." unique_id=1605496743 instance=ExtResource("3_mijh8")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, 0)
-
-[node name="Catwalk" parent="." unique_id=1186566016 instance=ExtResource("4_6g5r6")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 5, 0)
 
 [node name="Catwalk2" parent="." unique_id=67364495 instance=ExtResource("4_6g5r6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 5, 8)
@@ -409,3 +418,34 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0
 
 [node name="ObjectSpawnerSmall3" parent="." unique_id=1312018210 instance=ExtResource("17_6g5r6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3, 5, 13)
+
+[node name="WireBox" parent="." unique_id=1490785077 instance=ExtResource("18_6g5r6")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -2, 6, -12)
+
+[node name="MovingCatwalkPath" type="Path3D" parent="." unique_id=179615253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+curve = SubResource("Curve3D_2geag")
+
+[node name="PathMover" type="PathFollow3D" parent="MovingCatwalkPath" unique_id=588803169]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 0)
+loop = false
+tilt_enabled = false
+script = ExtResource("19_hpjpb")
+speed = 2.0
+metadata/_custom_type_script = "uid://dhm0nxq2tmj6n"
+
+[node name="Catwalk" parent="MovingCatwalkPath/PathMover" unique_id=1186566016 instance=ExtResource("4_6g5r6")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="EmptyShelf" parent="." unique_id=1395927623 instance=ExtResource("20_2geag")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19, 5, 16)
+
+[node name="BasicItemPickup" parent="EmptyShelf" unique_id=612810599 node_paths=PackedStringArray("item") instance=ExtResource("21_3h4qe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+item = NodePath("ItemRedKeycard")
+
+[node name="ItemRedKeycard" type="Node3D" parent="EmptyShelf/BasicItemPickup" unique_id=384902229]
+script = ExtResource("22_mycgt")
+metadata/_custom_type_script = "uid://qpuhaq1m80s"
+
+[connection signal="cut" from="WireBox" to="MovingCatwalkPath/PathMover" method="move"]

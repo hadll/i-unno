@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ci2275xiwyl7f" path="res://scripts/triggers/item_pickup_trigger.gd" id="1_84efc"]
 [ext_resource type="Script" uid="uid://56atenn0cf2b" path="res://scripts/triggers/key_trigger.gd" id="2_54rpc"]
-[ext_resource type="Texture2D" uid="uid://cbjws68aa3gkg" path="res://assets/items/flashlight_off.png" id="2_kwkdm"]
+[ext_resource type="Texture2D" uid="uid://b7ykamajicg0t" path="res://assets/items/red_keycard.png" id="2_kwkdm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 radius = 0.25
