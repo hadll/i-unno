@@ -7,8 +7,8 @@ extends Resource
 @export var rooms: Dictionary[RoomDef, float]
 ## final room of this section
 @export var end: RoomDef
-## requried rooms for this section
-@export var required: Array[RoomDef]
+## requried room depths for this section
+@export var required: Dictionary[RoomDef, float]
 @export_group("Layout")
 ## horizontal density required to finish this section
 @export_range(0.0, 1.0, 0.01) var required_density: float

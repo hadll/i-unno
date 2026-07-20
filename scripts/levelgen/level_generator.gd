@@ -105,8 +105,40 @@ func try_generate(seed_value: int) -> bool:
 		var room_list: Array[RoomDef] = []
 		room_list.assign(section_def.rooms.keys())
 		
+		var required_done: Array[RoomDef] = []
+		
 		var consecutive_fails := 0
-		while get_density() - existing_density <= section_def.required_density:
+		while true:
+			var depth := (get_density() - existing_density) / section_def.required_density
+			for required_room in section_def.required:
+				if section_def.required[required_room] < depth and not required_done.has(required_room):
+					while true:
+						var required_start_door_index = clampi(int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors)), 0, len(unfilled_doors) - 1)
+						var required_start_door := unfilled_doors[required_start_door_index]
+						var required_end_door_index = rng.randi() % len(required_room.doors)
+						var required_end_door := required_room.doors[required_end_door_index]
+						var required_transformed := required_room.transform(
+							required_end_door.from, 
+							posmod(required_end_door.dir - required_start_door.dir + 2, 4) as Direction, 
+							required_start_door.get_target()
+						)
+						var required_in_hole := false
+						for cell in required_transformed.shape:
+							if Vector2i(cell.x, cell.z) in holes:
+								required_in_hole = true
+								break
+						if required_in_hole:
+							continue
+						if try_place(required_transformed, section_def, required_start_door):
+							consecutive_fails = 0
+							break
+						else:
+							consecutive_fails += 1
+						if consecutive_fails > MAX_CONSECUTIVE_FAILS:
+							return false
+					required_done.append(required_room)
+			if depth >= 1.0:
+				break
 			var start_door_index = clampi(int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors)), 0, len(unfilled_doors) - 1)
 			var start_door := unfilled_doors[start_door_index]
 			var room_weighted_choice := rng.randf() * room_weight_total
@@ -135,32 +167,7 @@ func try_generate(seed_value: int) -> bool:
 				consecutive_fails += 1
 			if consecutive_fails > MAX_CONSECUTIVE_FAILS:
 				return false
-		for room in section_def.required:
-			while true:
-				var start_door_index = clampi(int(rng.randf()**(1 - section_def.sprawl) * len(unfilled_doors)), 0, len(unfilled_doors) - 1)
-				var start_door := unfilled_doors[start_door_index]
-				var end_door_index = rng.randi() % len(room.doors)
-				var end_door := room.doors[end_door_index]
-				var transformed := room.transform(
-					end_door.from, 
-					posmod(end_door.dir - start_door.dir + 2, 4) as Direction, 
-					start_door.get_target()
-				)
-				var in_hole := false
-				for cell in transformed.shape:
-					if Vector2i(cell.x, cell.z) in holes:
-						in_hole = true
-						break
-				if in_hole:
-					continue
-				if try_place(transformed, section_def, start_door):
-					consecutive_fails = 0
-					break
-				else:
-					consecutive_fails += 1
-				if consecutive_fails > MAX_CONSECUTIVE_FAILS:
-					return false
-					
+		
 		unfilled_doors.sort_custom(func(a: DoorDef, b: DoorDef) -> bool:
 			return a.from.distance_squared_to(section_start_rough) > b.from.distance_squared_to(section_start_rough)
 		)

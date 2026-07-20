@@ -30,7 +30,9 @@ ExtResource("10_xlagp"): 25.0,
 ExtResource("11_kx1sv"): 15.0
 })
 end = ExtResource("1_kich7")
-required = Array[ExtResource("1_a3e2q")]([ExtResource("4_xlagp")])
+required = Dictionary[ExtResource("1_a3e2q"), float]({
+ExtResource("4_xlagp"): 0.5
+})
 required_density = 0.6
 hole_density = 0.1
 hole_size = 2.0
