@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://ydt20mvuuuj3" path="res://scenes/door_code.tscn" id="4_mxki2"]
 [ext_resource type="Script" uid="uid://bpj8ajinuuf45" path="res://scripts/triggers/auto_trigger.gd" id="4_tewie"]
 
-[node name="DoorSecurity" type="Node3D" unique_id=1334290406]
+[node name="DoorSecurity" type="Node3D" unique_id=2134060671]
 script = ExtResource("1_bo4q1")
+metadata/_custom_type_script = "uid://v3ota6oqrcgq"
 
 [node name="SecurityDoor" parent="." unique_id=1712412024 node_paths=PackedStringArray("triggers") instance=ExtResource("2_enr8c")]
 triggers = [NodePath("../MultiplayerFlagTrigger"), NodePath("../AutoTrigger")]

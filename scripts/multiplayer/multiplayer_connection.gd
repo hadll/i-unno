@@ -52,10 +52,12 @@ func request(path: String, data: Variant = null) -> Variant:
 	if LOG_MULTIPLAYER: print("Multiplayer Requesting Url: %s" % url)
 	while busy:
 		await get_tree().process_frame
-	http.request(url, [], HTTPClient.METHOD_POST, JSON.stringify({
+	var start_error := http.request(url, [], HTTPClient.METHOD_POST, JSON.stringify({
 		"me": get_my_data(),
 		"data": data
 	}))
+	if start_error != Error.OK:
+		push_error("Multiplayer Request Not Sent: %d" % start_error)
 	busy = true
 	var response: Array = await http.request_completed
 	busy = false

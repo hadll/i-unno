@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://5lepirb3fmo5" path="res://scenes/levelgen/blocks/tall_wall.tscn" id="5_p7gti"]
 [ext_resource type="PackedScene" uid="uid://bhem43hh2qlpm" path="res://scenes/levelgen/blocks/overhang_wall.tscn" id="6_8fcwi"]
 [ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="8_22eqy"]
+[ext_resource type="PackedScene" uid="uid://cej08pn51g84h" path="res://scenes/levelgen/blocks/door_frame.tscn" id="9_8fcwi"]
+[ext_resource type="PackedScene" uid="uid://busdc5hitklxr" path="res://scenes/levelgen/doors/door_keycard.tscn" id="10_a6knf"]
 
 [node name="RoomStairs" type="Node3D" unique_id=1253613354]
 script = ExtResource("1_6wu7r")
@@ -58,3 +60,10 @@ metadata/_custom_type_script = "uid://faw2ll6ut1v5"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 0)
 script = ExtResource("8_22eqy")
 metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="DoorFrame" parent="." unique_id=123795023 instance=ExtResource("9_8fcwi")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 16, -5, 0)
+
+[node name="DoorKeycard" parent="." unique_id=330487235 instance=ExtResource("10_a6knf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -5, 0)
+item_id = &"red_keycard"

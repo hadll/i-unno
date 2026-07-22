@@ -23,6 +23,7 @@ func interact() -> void:
 	match filter_mode:
 		FilterMode.ITEM: if selected != filter_item: return
 		FilterMode.ITEM_ID: if selected.get_item_id() != filter_item_id: return
-	trigger.emit()
+	set_active(true)
 	if consume:
 		Player.me.inventory.set_selected_item(null)
+	set_active(false)
