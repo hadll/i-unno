@@ -6,7 +6,6 @@ const DIGITS := "0123456789"
 
 static var door_codes: Dictionary[DoorSecurity, String]
 
-@onready var security_door: RelayTrigger = $SecurityDoor
 @onready var multiplayer_flag_trigger: MultiplayerFlagTrigger = $MultiplayerFlagTrigger
 @onready var door_code_note1: DoorCodeNote = $DoorCodeNote1
 @onready var door_code_note2: DoorCodeNote = $DoorCodeNote2

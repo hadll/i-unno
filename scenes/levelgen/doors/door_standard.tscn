@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://blhw6lssbjanr"]
 
 [ext_resource type="Script" uid="uid://dyxlhwjtmd48c" path="res://scripts/levelgen/objects/generation_object_picker.gd" id="1_c7omj"]
+[ext_resource type="PackedScene" uid="uid://c0kiqaeii41qh" path="res://scenes/levelgen/doors/door_security.tscn" id="2_bcjmr"]
 [ext_resource type="PackedScene" uid="uid://cej08pn51g84h" path="res://scenes/levelgen/blocks/door_frame.tscn" id="2_rofvo"]
 
 [node name="DoorStandard" type="Node3D" unique_id=649409107]
 script = ExtResource("1_c7omj")
+scenes = Array[PackedScene]([ExtResource("2_bcjmr"), null])
+weights = Array[float]([1.0, 5.0])
 
 [node name="DoorFrame" parent="." unique_id=123795023 instance=ExtResource("2_rofvo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)

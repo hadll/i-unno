@@ -15,6 +15,8 @@ var picked: GenerationObject
 func generate(section_def: SectionDef, rng: RandomNumberGenerator) -> void:
 	if len(scenes) != len(weights):
 		push_error("GenerationObjectPicker weighting size mismatch")
+	if not scenes:
+		push_error("GenerationObjectPicker needs at least one scene")
 	var total := 0.0
 	for weight in weights:
 		total += weight
