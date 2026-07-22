@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://4qncdyr8g5yh" path="res://scenes/objects/empty_shelf.tscn" id="20_2geag"]
 [ext_resource type="PackedScene" uid="uid://b3aau1b4a46b7" path="res://scenes/basic_item_pickup.tscn" id="21_3h4qe"]
 [ext_resource type="Script" uid="uid://qpuhaq1m80s" path="res://scripts/items/item_red_keycard.gd" id="22_mycgt"]
+[ext_resource type="Script" uid="uid://faw2ll6ut1v5" path="res://scripts/pathing_node.gd" id="23_mycgt"]
 
 [sub_resource type="Curve3D" id="Curve3D_2geag"]
 _data = {
@@ -447,5 +448,64 @@ item = NodePath("ItemRedKeycard")
 [node name="ItemRedKeycard" type="Node3D" parent="EmptyShelf/BasicItemPickup" unique_id=384902229]
 script = ExtResource("22_mycgt")
 metadata/_custom_type_script = "uid://qpuhaq1m80s"
+
+[node name="PathingNode" type="Node3D" parent="." unique_id=724875238]
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode2" type="Node3D" parent="." unique_id=1524136016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode3" type="Node3D" parent="." unique_id=244881800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode4" type="Node3D" parent="." unique_id=1457515956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode5" type="Node3D" parent="." unique_id=618884819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -8)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode6" type="Node3D" parent="." unique_id=368088666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, -8)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode7" type="Node3D" parent="." unique_id=1008223235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5, -5)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode8" type="Node3D" parent="." unique_id=1345621893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5, -11)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode9" type="Node3D" parent="." unique_id=981555605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode10" type="Node3D" parent="." unique_id=1500926555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 16)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode11" type="Node3D" parent="." unique_id=1069708211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
+
+[node name="PathingNode12" type="Node3D" parent="." unique_id=161483350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+script = ExtResource("23_mycgt")
+metadata/_custom_type_script = "uid://faw2ll6ut1v5"
 
 [connection signal="cut" from="WireBox" to="MovingCatwalkPath/PathMover" method="move"]
